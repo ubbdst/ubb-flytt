@@ -25,7 +25,11 @@
         label, 
         mainRepresentation 
       },
-      depicts[]->{_id, label, mainRepresentation},
+      depicts[]->{
+        _id, 
+        label, 
+        mainRepresentation
+      },
       'geoJSON': activityStream[]{
         describedByGeoJSON[]{
           'type': properties.type,
@@ -58,7 +62,12 @@
 	import Map from '../../components/Map.svelte';
   import MapMarker from '../../components/MapMarker.svelte';
 
-	export let item;
+  export let item;
+  export let geoJSON;
+
+  if (item.geoJSON && item.geoJSON[0].describedByGeoJSON) {
+    geoJSON = item.geoJSON[0].describedByGeoJSON;
+  }
 </script>
 
 <style>
@@ -184,24 +193,29 @@
     {/if}
   </div>
 </div>
-<div class='content'>
-  {#if item.depictions}
-    {#each item.depictions as depiction, i}
+
+<div>
+  <div class='content'>
+  {#each item.depictions as depiction, i}
+    <div class="depicted">
       <a rel='prefetch' href='id/{depiction._id}'>
-        <img alt='{depiction.label ? depiction.label : ''}' src={urlFor(depiction.mainRepresentation).width(100).height(100).url()}>
+        <img alt='{depiction.label ? depiction.label : ''}' src={urlFor(depiction.mainRepresentation).width(250).height(250).url()}>
       </a>
       <h3><a rel='prefetch' href='id/{depiction._id}'>{depiction.label}</a></h3>
-    {/each}
-  {/if}
+    </div>
+  {/each}
+  </div>
 </div>
 
+{#if item.geoJSON}
 <div class="map">
   <Map lat={60.24115} lon={5.24430} zoom={13.5}>
-    {#each item.geoJSON[0].describedByGeoJSON as marker, i}  
-      <MapMarker lat={marker.lat} lon={marker.lng} label="{marker.type}"/>
+    {#each geoJSON as marker, i}  
+    <MapMarker lat={marker.lat} lon={marker.lng} label="{marker.type}"/>
     {/each}
   </Map>
 </div>
+{/if}
 
 <div>
   <h2>Data</h2>
