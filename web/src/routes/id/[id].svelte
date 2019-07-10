@@ -4,7 +4,7 @@
   import client from '../../sanityClient'
   import serializers from '../../components/serializers'
   import Mirador from '../../components/Mirador3'
-
+  
 	export async function preload({ params }) {
 		// the `slug` parameter is available because
     // this file is called [slug].html
@@ -12,7 +12,6 @@
     const filter = '*[_id == $id][0]'
     const projection = `{
       ...,
-      depicts[]->{_id, displayName},
       description[]{
         nor[]{
           ...,
@@ -20,14 +19,21 @@
             ...
           }
         }
-      }
+      },
+      'depictions': *[references(^._id)]{ 
+        _id, 
+        label, 
+        mainRepresentation 
+      },
+      depicts[]->{_id, label}
     }`
 
     const query = filter + projection
     const item = await client.fetch(query, { id }).catch(err => this.error(500, err))
+    if (item.description && item.description.nor) { item.description = blocksToHtml({blocks: item.description.nor, serializers, ...client.clientConfig })}
+    if (item.bio) { item.bio = blocksToHtml({blocks: item.bio, serializers, ...client.clientConfig })}
     return { item: {
       ...item,
-      description: blocksToHtml({blocks: item.description.nor, serializers, ...client.clientConfig })
     } };
   }
   // Get a pre-configured url-builder from your sanity client
@@ -42,6 +48,9 @@
 </script>
 
 <script>
+	// import Map from '../../components/Map.svelte';
+  // import MapMarker from '../../components/MapMarker.svelte';
+
 	export let item;
 </script>
 
@@ -129,21 +138,49 @@
         <Mirador manifest='{item.mainManifest.url}'/>
       </div>
     {:else}
-      <img src={urlFor(item.mainRepresentation).width(600).url()} />
+      <img alt='{item.title ? item.title : ''}' src={urlFor(item.mainRepresentation).width(600).url()} />
     {/if}
   </div>
   <div class='column'>
-    <h1>{item.label}</h1>
-    {@html item.description}
+    <h1>{item.label ? item.label : item.displayName}</h1>
+    {#if item.description}
+      {@html item.description}
+    {/if}
+    {#if item.bio}
+      {@html item.bio}
+    {/if}
 
     {#if item.depicts}
       <h3>Avbildet</h3>
       {#each item.depicts as depicted, i}
       <div>
-        <p><a href="actor/{depicted._id}">{depicted.displayName}</a></p>
+        <p><a href="id/{depicted._id}">{depicted.label}</a></p>
       </div>
       {/each}
     {/if}
   </div>
 </div>
+<div class='content'>
+  {#if item.depictions}
+    {#each item.depictions as depiction, i}
+      <a rel='prefetch' href='id/{depiction._id}'>
+        <img alt='{depiction.label ? depiction.label : ''}' src={urlFor(depiction.mainRepresentation).width(100).height(100).url()}>
+      </a>
+      <h3><a rel='prefetch' href='id/{depiction._id}'>{depiction.label}</a></h3>
+    {/each}
+  {/if}
+</div>
+<div>
+  <pre>
+    <code>{JSON.stringify(item, null, 2)}</code>
+  </pre>
+</div>
+<!-- <Map lat={35} lon={-84} zoom={3.5}>
+	<MapMarker lat={37.8225} lon={-122.0024} label="Svelte Body Shaping"/>
+	<MapMarker lat={33.8981} lon={-118.4169} label="Svelte Barbershop & Essentials"/>
+	<MapMarker lat={29.7230} lon={-95.4189} label="Svelte Waxing Studio"/>
+	<MapMarker lat={28.3378} lon={-81.3966} label="Svelte 30 Nutritional Consultants"/>
+	<MapMarker lat={40.6483} lon={-74.0237} label="Svelte Brands LLC"/>
+	<MapMarker lat={40.6986} lon={-74.4100} label="Svelte Medical Systems"/>
+</Map> -->
 
