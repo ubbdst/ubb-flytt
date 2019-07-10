@@ -1,7 +1,10 @@
-import mapbox from 'mapbox-gl';
+let mapbox = {}
 
+if (process.browser) {
+  mapbox = require('mapbox-gl');
+ }
 // https://docs.mapbox.com/help/glossary/access-token/
-mapbox.accessToken = 'pk.eyJ1IjoidGFyamVsYXZpayIsImEiOiJjanh2eHIwNmMwNGsxM2V1bHZmc2lrOTViIn0.R5P0QF0oEpv6L6S4hkmzyw';
+mapbox.accessToken = 'pk.eyJ1IjoidGFyamVsYXZpayIsImEiOiJjanh2eGkxdXAwOXRlM2hvOHFwOWQ4Y3V4In0.BE92pIYXT8ngDbprrzN6Kg';
 
 const key = {};
 

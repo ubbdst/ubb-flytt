@@ -25,7 +25,14 @@
         label, 
         mainRepresentation 
       },
-      depicts[]->{_id, label}
+      depicts[]->{_id, label, mainRepresentation},
+      'geoJSON': activityStream[]{
+        describedByGeoJSON[]{
+          'type': properties.type,
+          'lng': geometry.lng,
+          'lat': geometry.lat
+        }
+      }
     }`
 
     const query = filter + projection
@@ -48,8 +55,8 @@
 </script>
 
 <script>
-	// import Map from '../../components/Map.svelte';
-  // import MapMarker from '../../components/MapMarker.svelte';
+	import Map from '../../components/Map.svelte';
+  import MapMarker from '../../components/MapMarker.svelte';
 
 	export let item;
 </script>
@@ -117,12 +124,26 @@
   }
   .column {
     width: 50%;
-    padding: 1rem;
+  }
+  .column.text {
+    padding: 0 1rem;
   }
   .mirador {
     position: relative;
     width: 100%;
     height: 600px;
+  }
+  .map {
+    width: 100%;
+    height: 400px;
+  }
+  img.rounded {
+    border-radius: 50%;
+    float: left;
+  }
+  .depicted {
+    display: flex;
+    align-items: center;
   }
 </style>
 
@@ -141,7 +162,7 @@
       <img alt='{item.title ? item.title : ''}' src={urlFor(item.mainRepresentation).width(600).url()} />
     {/if}
   </div>
-  <div class='column'>
+  <div class='column text'>
     <h1>{item.label ? item.label : item.displayName}</h1>
     {#if item.description}
       {@html item.description}
@@ -153,8 +174,11 @@
     {#if item.depicts}
       <h3>Avbildet</h3>
       {#each item.depicts as depicted, i}
-      <div>
-        <p><a href="id/{depicted._id}">{depicted.label}</a></p>
+      <div class="depicted">
+          <a rel='prefetch' href='id/{depicted._id}'>
+            <img class='rounded' src={urlFor(depicted.mainRepresentation).width(50).height(50).url()} />
+          </a>
+          <h3><a href='id/{depicted._id}'>{depicted.label}</a></h3>
       </div>
       {/each}
     {/if}
@@ -170,17 +194,19 @@
     {/each}
   {/if}
 </div>
+
+<div class="map">
+  <Map lat={60.24115} lon={5.24430} zoom={13.5}>
+    {#each item.geoJSON[0].describedByGeoJSON as marker, i}  
+      <MapMarker lat={marker.lat} lon={marker.lng} label="{marker.type}"/>
+    {/each}
+  </Map>
+</div>
+
 <div>
+  <h2>Data</h2>
   <pre>
-    <code>{JSON.stringify(item, null, 2)}</code>
+    {JSON.stringify(item, null, 2)}
   </pre>
 </div>
-<!-- <Map lat={35} lon={-84} zoom={3.5}>
-	<MapMarker lat={37.8225} lon={-122.0024} label="Svelte Body Shaping"/>
-	<MapMarker lat={33.8981} lon={-118.4169} label="Svelte Barbershop & Essentials"/>
-	<MapMarker lat={29.7230} lon={-95.4189} label="Svelte Waxing Studio"/>
-	<MapMarker lat={28.3378} lon={-81.3966} label="Svelte 30 Nutritional Consultants"/>
-	<MapMarker lat={40.6483} lon={-74.0237} label="Svelte Brands LLC"/>
-	<MapMarker lat={40.6986} lon={-74.4100} label="Svelte Medical Systems"/>
-</Map> -->
 
