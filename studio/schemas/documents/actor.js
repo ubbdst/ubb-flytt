@@ -8,7 +8,7 @@ export default {
   fields: [
     {
       title: 'Display name',
-      name: 'displayName',
+      name: 'label',
       type: 'string'
     },
     {
@@ -51,7 +51,7 @@ export default {
     },
     {
       title: 'Image',
-      name: 'representation',
+      name: 'mainRepresentation',
       type: 'image',
       options: {
         hotspot: true

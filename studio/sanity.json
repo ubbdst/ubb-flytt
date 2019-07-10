@@ -20,7 +20,8 @@
     "@sanity/code-input",
     "@sanity/color-input",
     "@sanity/google-maps-input",
-    "kn-search-input"
+    "kn-search-input",
+    "vision"
   ],
   "parts": [
     {
