@@ -1,13 +1,8 @@
 <script>
-	import { onMount, setContext } from 'svelte';
-	import { mapbox, key } from './mapbox.js';
+	import { onMount } from 'svelte';
+	import { mapbox } from './mapbox.js';
 
-	setContext(key, {
-		getMap: () => map
-	});
-	export let lat;
-	export let lon;
-	export let zoom;
+	export let src;
 
 	let container;
 	let map;
@@ -18,21 +13,40 @@
 		link.href = 'https://unpkg.com/mapbox-gl/dist/mapbox-gl.css';
 		link.onload = () => {
 			map = new mapbox.Map({
-				container,
+				container: 'map',
 				style: 'mapbox://styles/mapbox/streets-v9',
-				center: [lon, lat],
-				zoom
       });
+
+      map.on('load', function () {
+        map.addSource('features', {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: src
+            }
+        })
+
+        map.addLayer({
+          "id": "points",
+          "type": "circle",
+          "source": "features",
+          "paint": {
+            "circle-radius": 6,
+            "circle-color": "#B42222"
+          },
+          "filter": ["==", "$type", "Point"],
+        });
+      })
     };
-    
+
     document.head.appendChild(link);
 
 		return () => {
-			map.remove();
+      map.remove();
 			link.parentNode.removeChild(link);
 		};
   });
-  
+
 
 </script>
 
@@ -43,8 +57,4 @@
 	}
 </style>
 
-<div bind:this={container}>
-	{#if map}
-		<slot></slot>
-	{/if}
-</div>
+<div id="map"></div>

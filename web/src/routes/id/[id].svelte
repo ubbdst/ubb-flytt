@@ -46,9 +46,11 @@
       }
     )}
     
-    return { item: {
-      ...item,
-    } };
+    return { 
+      item: {
+        ...item,
+      }
+    };
   }
   // Get a pre-configured url-builder from your sanity client
   const builder = imageUrlBuilder(client)
@@ -62,20 +64,18 @@
 </script>
 
 <script>
-	import Map from '../../components/Map.svelte';
-  import MapMarker from '../../components/MapMarker.svelte';
+	// import Map from '../../components/Map.svelte';
 
   export let item;
-  export let geoJSON;
+  /* export let geoJSON;
+  let result
+
   const expression = jsonata("**.geoJSON");
-  
-  let result = expression.evaluate(item);
-  console.log(result);
+  result = expression.evaluate(item);
 
   if(result) {
     geoJSON = result.map(item => {
-      let container = {
-      }
+      let container = {}
       container.type = 'Feature';
       container.properties = item.properties;
       container.geometry = {};
@@ -84,9 +84,7 @@
 
       return container
     })
-  };
-
-  console.log(geoJSON)
+  }; */
 </script>
 
 <style>
@@ -179,7 +177,6 @@
 	<title>{item.label}</title>
 </svelte:head>
 
-
 <div class='content'>
   <div class='column'>
     {#if item.mainManifest}
@@ -206,7 +203,7 @@
           <a rel='prefetch' href='id/{depicted._id}'>
             <img class='rounded' src={urlFor(depicted.mainRepresentation).width(50).height(50).url()} />
           </a>
-          <h3><a href='id/{depicted._id}'>{depicted.label}</a></h3>
+          <h3><a rel=prefetch href='id/{depicted._id}'>{depicted.label}</a></h3>
       </div>
       {/each}
     {/if}
@@ -226,13 +223,11 @@
   </div>
 </div>
 
-{#if result}
+<!-- {#if geoJSON}
 <div class="map">
-  <Map lat={60.24115} lon={5.24430} zoom={13.5}>
-      <MapMarker src={geoJSON}></MapMarker>
-  </Map>
+  <Map src={geoJSON}></Map>
 </div>
-{/if}
+{/if} -->
 
 <div>
   <h2>Data</h2>
