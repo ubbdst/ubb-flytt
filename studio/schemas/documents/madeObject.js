@@ -232,7 +232,7 @@ export default {
     },
     /* {
       title: 'Geographic features',
-      name: 'describedByGeoJSON',
+      name: 'geoJSON',
       fieldset: 'visualObject',
       type: 'array',
       of: [

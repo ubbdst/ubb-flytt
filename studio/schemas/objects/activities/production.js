@@ -20,7 +20,7 @@ export default {
     },
     {
       title: 'Geographic features',
-      name: 'describedByGeoJSON',
+      name: 'geoJSON',
       type: 'array',
       of: [
         {type: 'feature'}

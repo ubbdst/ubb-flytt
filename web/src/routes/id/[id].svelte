@@ -4,7 +4,8 @@
   import client from '../../sanityClient'
   import serializers from '../../components/serializers'
   import Mirador from '../../components/Mirador3'
-  
+  import jsonata from 'jsonata'
+
 	export async function preload({ params }) {
 		// the `slug` parameter is available because
     // this file is called [slug].html
@@ -30,19 +31,21 @@
         label, 
         mainRepresentation
       },
-      'geoJSON': activityStream[]{
-        describedByGeoJSON[]{
-          'type': properties.type,
-          'lng': geometry.lng,
-          'lat': geometry.lat
-        }
-      }
     }`
 
     const query = filter + projection
     const item = await client.fetch(query, { id }).catch(err => this.error(500, err))
-    if (item.description && item.description.nor) { item.description = blocksToHtml({blocks: item.description.nor, serializers, ...client.clientConfig })}
-    if (item.bio) { item.bio = blocksToHtml({blocks: item.bio, serializers, ...client.clientConfig })}
+
+    if (item.description && item.description.nor) { 
+      item.description = blocksToHtml({blocks: item.description.nor, serializers, ...client.clientConfig 
+      }
+    )};
+
+    if (item.bio) { 
+      item.bio = blocksToHtml({blocks: item.bio, serializers, ...client.clientConfig 
+      }
+    )}
+    
     return { item: {
       ...item,
     } };
@@ -64,10 +67,26 @@
 
   export let item;
   export let geoJSON;
+  const expression = jsonata("**.geoJSON");
+  
+  let result = expression.evaluate(item);
+  console.log(result);
 
-  if (item.geoJSON && item.geoJSON[0].describedByGeoJSON) {
-    geoJSON = item.geoJSON[0].describedByGeoJSON;
-  }
+  if(result) {
+    geoJSON = result.map(item => {
+      let container = {
+      }
+      container.type = 'Feature';
+      container.properties = item.properties;
+      container.geometry = {};
+      container.geometry.type = 'Point';
+      container.geometry.coordinates = [item.geometry.lng, item.geometry.lat];
+
+      return container
+    })
+  };
+
+  console.log(geoJSON)
 </script>
 
 <style>
@@ -207,12 +226,10 @@
   </div>
 </div>
 
-{#if item.geoJSON}
+{#if result}
 <div class="map">
   <Map lat={60.24115} lon={5.24430} zoom={13.5}>
-    {#each geoJSON as marker, i}  
-    <MapMarker lat={marker.lat} lon={marker.lng} label="{marker.type}"/>
-    {/each}
+      <MapMarker src={geoJSON}></MapMarker>
   </Map>
 </div>
 {/if}

@@ -5,7 +5,6 @@
 	setContext(key, {
 		getMap: () => map
 	});
-
 	export let lat;
 	export let lon;
 	export let zoom;
@@ -17,23 +16,24 @@
 		const link = document.createElement('link');
 		link.rel = 'stylesheet';
 		link.href = 'https://unpkg.com/mapbox-gl/dist/mapbox-gl.css';
-
 		link.onload = () => {
 			map = new mapbox.Map({
 				container,
 				style: 'mapbox://styles/mapbox/streets-v9',
 				center: [lon, lat],
 				zoom
-			});
-		};
-
-		document.head.appendChild(link);
+      });
+    };
+    
+    document.head.appendChild(link);
 
 		return () => {
 			map.remove();
 			link.parentNode.removeChild(link);
 		};
-	});
+  });
+  
+
 </script>
 
 <style>

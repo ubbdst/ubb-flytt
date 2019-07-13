@@ -5,15 +5,26 @@
 	const { getMap } = getContext(key);
 	const map = getMap();
 
-	export let lat;
-	export let lon;
-	export let label;
+  export let src;
 
-	const popup = new mapbox.Popup({ offset: 25 })
-		.setText(label);
+  map.on('load', function () {
+    map.addSource('features', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: src
+        }
+    })
 
-	const marker = new mapbox.Marker()
-		.setLngLat([lon, lat])
-		.setPopup(popup)
-		.addTo(map);
+    map.addLayer({
+      "id": "points",
+      "type": "circle",
+      "source": "features",
+      "paint": {
+        "circle-radius": 6,
+        "circle-color": "#B42222"
+      },
+      "filter": ["==", "$type", "Point"],
+    });
+  })
 </script>

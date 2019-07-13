@@ -18,6 +18,7 @@
     "@sanity/image-url": "^0.140.12",
     "compression": "^1.7.4",
     "groq": "^0.140.0",
+    "jsonata": "^1.6.5",
     "mapbox": "^1.0.0-beta10",
     "mapbox-gl": "^0.52.0",
     "mirador": "^3.0.0-alpha.16",
@@ -29,6 +30,6 @@
     "sapper": "^0.27.1",
     "svelte": "^3.4.2",
     "svelte-loader": "^2.13.4",
-    "webpack": "^4.32.0"
+    "webpack": "^4.35.3"
   }
 }
