@@ -15,11 +15,14 @@ export default {
           options: {
             list: [
               {title: 'Point of camera', value: 'Point of camera'},
-              {title: 'Center of motif', value: 'Center of motif'}
+              {title: 'Center of motif', value: 'Center of motif'},
+              {title: 'Place', value: 'Place'},
+              {title: 'Building', value: 'Building'}
             ]
           }
         }
-      ]
+      ],
+      validation: Rule => Rule.required()
     },
     {
       title: 'Coordinates',

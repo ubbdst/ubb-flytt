@@ -67,7 +67,6 @@ import dissolution from './objects/activities/dissolution'
 import formation from './objects/activities/formation'
 import manifest from './objects/manifest'
 import timelineSlide from './objects/timelineSlide'
-import geopoint from './objects/geopoint'
 import feature from './objects/feature'
 
 // Then we give our schema to the builder and provide the result to Sanity
@@ -130,7 +129,6 @@ export default createSchema({
     actorInRole,
     dimension,
     feature,
-    geopoint,
     identifier,
     experimental,
     part,
