@@ -67,14 +67,14 @@ export default {
       }
     },
     {
-      name: 'accessStatus',
+      name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
       options: {
         list: [
-          {title: 'Open', value: 'open'},
-          {title: 'Private/Secret', value: 'secret'}
+          {title: 'Private/Secret', value: 'secret'},
+          {title: 'Open', value: 'open'}
         ],
         layout: 'radio',
         direction: 'horizontal'
