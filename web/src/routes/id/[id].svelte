@@ -45,6 +45,24 @@
       item.bio = blocksToHtml({blocks: item.bio, serializers, ...client.clientConfig 
       }
     )}
+
+    item.label ? item.label : item.displayName;
+
+    const expression = jsonata("**.geoJSON");
+    let result = expression.evaluate(item);
+
+    if(result) {
+      item.geoJSON = result.map(item => {
+        let container = {}
+        container.type = 'Feature';
+        container.properties = item.properties;
+        container.geometry = {};
+        container.geometry.type = 'Point';
+        container.geometry.coordinates = [item.geometry.lng, item.geometry.lat];
+
+        return container
+      })
+    };
     
     return { 
       item: {
@@ -64,27 +82,9 @@
 </script>
 
 <script>
-	// import Map from '../../components/Map.svelte';
+	import Map from '../../components/Map.svelte';
 
   export let item;
-  /* export let geoJSON;
-  let result
-
-  const expression = jsonata("**.geoJSON");
-  result = expression.evaluate(item);
-
-  if(result) {
-    geoJSON = result.map(item => {
-      let container = {}
-      container.type = 'Feature';
-      container.properties = item.properties;
-      container.geometry = {};
-      container.geometry.type = 'Point';
-      container.geometry.coordinates = [item.geometry.lng, item.geometry.lat];
-
-      return container
-    })
-  }; */
 </script>
 
 <style>
@@ -188,7 +188,7 @@
     {/if}
   </div>
   <div class='column text'>
-    <h1>{item.label ? item.label : item.displayName}</h1>
+    <h1>{item.label}</h1>
     {#if item.description}
       {@html item.description}
     {/if}
@@ -223,11 +223,11 @@
   </div>
 </div>
 
-<!-- {#if geoJSON}
+{#if item.geoJSON}
 <div class="map">
-  <Map src={geoJSON}></Map>
+  <Map src={item.geoJSON}></Map>
 </div>
-{/if} -->
+{/if}
 
 <div>
   <h2>Data</h2>

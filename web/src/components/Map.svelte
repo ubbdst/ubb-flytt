@@ -1,7 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
-	import { mapbox } from './mapbox.js';
-
+  import { mapbox } from './mapbox.js';
+  
 	export let src;
 
 	let container;
@@ -14,16 +14,32 @@
 		link.onload = () => {
 			map = new mapbox.Map({
 				container: 'map',
-				style: 'mapbox://styles/mapbox/streets-v9',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        center: [7.6, 60],
+        zoom: 4
       });
 
+      let geojson = {
+            type: 'FeatureCollection',
+            features: src };
+      
+      var bounds = new mapbox.LngLatBounds();
+
+
+
       map.on('load', function () {
+        geojson.features.forEach(function(feature) {
+          bounds.extend(feature.geometry.coordinates);
+        });
+
+        map.fitBounds(bounds, {
+          padding: 50,
+          maxZoom: 17
+        });
+
         map.addSource('features', {
           type: 'geojson',
-          data: {
-            type: 'FeatureCollection',
-            features: src
-            }
+          data: geojson
         })
 
         map.addLayer({
