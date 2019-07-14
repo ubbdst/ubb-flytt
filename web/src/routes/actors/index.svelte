@@ -28,36 +28,68 @@
 </script>
 
 <style>
-	ul {
-		margin: 0 0 1em 0;
-		line-height: 1.5;
+	section {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		width: 100%;
+	}
+	article {
+		display: flex;
+		flex-direction: column;
+		flex: 1 0 500px;
+    box-sizing: border-box;
+		background-color: rgb(41, 40, 40);
+		color: white;
+    margin: 1rem .25em;
+		box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
+		border-top-right-radius: 5px;
+		border-top-left-radius: 5px;
+	}
+	.content h1 {
+		font-size: 1.4rem;
 	}
 	img {
-		float: left;
-		margin: 0 1rem 1rem 0;
-	}
-	div {
-		display: flex;
 		width: 100%;
+		border-top-right-radius: 5px;
+		border-top-left-radius: 5px;
+	}
+	.content {
+		padding: 1rem;
+	}
+
+	@media screen and (min-width: 40em) {
+    article {
+       max-width: calc(50% -  1em);
+    }
+	}
+	
+	@media screen and (min-width: 60em) {
+		article {
+				max-width: calc(25% - 1em);
+		}
 	}
 </style>
 
 <svelte:head>
-	<title>Objekt</title>
+	<title>Aktører</title>
 </svelte:head>
 
-<h1>Objekt</h1>
+<h1>Aktører</h1>
 
+	<section>
 	{#each items as item}
 		<!-- we're using the non-standard `rel=prefetch` attribute to
 				tell Sapper to load the data for the page as soon as
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
-		<div>
+		<article>
 			<a rel='prefetch' href='id/{item._id}'>
-				<img src={urlFor(item.mainRepresentation).width(100).height(100).url()} />
+				<img src={urlFor(item.mainRepresentation).width(300).url()} />
 			</a>
-			<h2><a rel='prefetch' href='id/{item._id}'>{item.label}</a></h2>
-		</div>
-
+			<div class="content">
+				<h1><a rel='prefetch' href='id/{item._id}'>{item.label}</a></h1>
+			</div>
+		</article>
 	{/each}
+	</section>

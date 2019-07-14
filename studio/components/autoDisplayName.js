@@ -3,11 +3,9 @@ import React from 'react'
 import Fieldset from 'part:@sanity/components/fieldsets/default'
 import {setIfMissing} from 'part:@sanity/form-builder/patch-event'
 // FormBuilderInput automatically generates fields from a schema
-import {FormBuilderInput} from 'part:@sanity/form-builder'
-// a Higher Order Component that passes document values as props
-import {withDocument} from 'part:@sanity/form-builder'
+import {FormBuilderInput, withDocument} from 'part:@sanity/form-builder'
 
-class AutoDisplayName extends React.PureComponent {
+class Autolabel extends React.PureComponent {
   static propTypes = {
     type: PropTypes.shape({
       title: PropTypes.string,
@@ -34,11 +32,11 @@ class AutoDisplayName extends React.PureComponent {
     onChange(fieldPatchEvent.prefixAll(field.name).prepend(setIfMissing({_type: type.name})))
   }
 
-  focus() {
+  focus () {
     this.firstFieldInput.current.focus()
   }
 
-  render() {
+  render () {
     console.log(this.props)
     const {document, type, value, level, focusPath, onFocus, onBlur} = this.props
     /**
@@ -48,7 +46,7 @@ class AutoDisplayName extends React.PureComponent {
      *   type: 'boolean'
      * }
      */
-    const { has_type } = document
+    const {hasType} = document
     return (
       <Fieldset level={level} legend={type.title} description={type.description}>
         This is my custom object input with fields
@@ -57,7 +55,7 @@ class AutoDisplayName extends React.PureComponent {
             /**
              * You can add any kind of logic here depending on how your
              * schemas look and what you want to do:
-             * 
+             *
              *  {
              *     name: 'aFieldWithConditions',
              *     type: 'object',
@@ -75,27 +73,27 @@ class AutoDisplayName extends React.PureComponent {
              *   }
              *  Here the field 'b' will show only if the 'condition' boolean is set to true
              */
-            .filter(field => field.name === 'displayName' ? `${has_type}` : 'No title')
+            .filter(field => field.name === 'label' ? `${hasType}` : 'No title')
             .map((field, i) => (
             // Delegate to the generic FormBuilderInput. It will resolve and insert the actual input component
             // for the given field type
-            <FormBuilderInput
-              level={level + 1}
-              ref={i === 0 ? this.firstFieldInput : null}
-              key={field.name}
-              type={field.type}
-              value={value && value[field.name]}
-              onChange={patchEvent => this.handleFieldChange(field, patchEvent)}
-              path={[field.name]}
-              focusPath={focusPath}
-              onFocus={onFocus}
-              onBlur={onBlur}
-            />
-          ))}
+              <FormBuilderInput
+                level={level + 1}
+                ref={i === 0 ? this.firstFieldInput : null}
+                key={field.name}
+                type={field.type}
+                value={value && value[field.name]}
+                onChange={patchEvent => this.handleFieldChange(field, patchEvent)}
+                path={[field.name]}
+                focusPath={focusPath}
+                onFocus={onFocus}
+                onBlur={onBlur}
+              />
+            ))}
         </div>
       </Fieldset>
     )
   }
 }
 
-export default withDocument(AutoDisplayName)
+export default withDocument(Autolabel)

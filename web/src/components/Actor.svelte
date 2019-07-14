@@ -1,22 +1,11 @@
-<script context="module">
-	import client from '../../sanityClient'
-  import imageUrlBuilder from '@sanity/image-url'
-
-	export function preload({ params, query }) {
-    return client.fetch('*[_type == "madeObject"]|order(preferredIdentifier desc)').then(items => {
-			return { items };
-		}).catch(err => this.error(500, err));
-	}
-</script>
-
 <script>
-  export let items;
+  import client from '../sanityClient'
+  import imageUrlBuilder from '@sanity/image-url'
+  import Mirador from './Mirador3'
 
-  function formatDate(date) {
-    return new Date(date).toLocaleDateString()
-	}
-	
-	// Get a pre-configured url-builder from your sanity client
+  export let item
+
+  // Get a pre-configured url-builder from your sanity client
   const builder = imageUrlBuilder(client)
 
   // Then we like to make a simple function like this that gives the
@@ -50,12 +39,12 @@
 	.content h1 {
 		font-size: 1.4rem;
 	}
-	img {
+	article .image img {
 		width: 100%;
 		box-shadow: 0px 5px 10px rgba(0,0,0,0.75);
 	}
 
-	.image {
+	article .image {
 		width: 50%;
 	}
 
@@ -77,25 +66,32 @@
 	}
 </style>
 
-<svelte:head>
-	<title>Objekt</title>
-</svelte:head>
 
-<h1>Objekt</h1>
-	<section>
-	{#each items as item}
-		<!-- we're using the non-standard `rel=prefetch` attribute to
-				tell Sapper to load the data for the page as soon as
-				the user hovers over the link or taps it, instead of
-				waiting for the 'click' event -->
-		<article>
-			<a class="image" rel='prefetch' href='id/{item._id}'>
-				<img src={urlFor(item.mainRepresentation).height(200).url()} />
-			</a>
-			<div class="content">
-				<h1><a rel='prefetch' href='id/{item._id}'>{item.label}</a></h1>
-			</div>
-		</article>
+{#if item.mainManifest}
+  <div class='mirador'>
+    <Mirador manifest='{item.mainManifest.url}'/>
+  </div>
+{:else}
+  <img alt='{item.title ? item.title : ''}' src={urlFor(item.mainRepresentation).width(600).url()} />
+{/if}
 
-	{/each}
-	</section>
+<h1>{item.label}</h1>
+{#if item.bio}
+  {@html item.bio}
+{/if}
+
+{#if item.depictions}
+  <h3>Avbildet</h3>
+  <section>
+  {#each item.depictions as depiction, i}
+  <article class="depicted">
+      <a class="image" rel='prefetch' href='id/{depiction._id}'>
+        <img class='rounded' src={urlFor(depiction.mainRepresentation).width(150).height(150).url()} />
+      </a>
+      <div class="content">
+        <h3><a rel=prefetch href='id/{depiction._id}'>{depiction.label}</a></h3>
+      </div>
+  </article>
+  {/each}
+  </section>
+{/if}

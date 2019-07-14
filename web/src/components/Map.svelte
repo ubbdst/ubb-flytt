@@ -16,7 +16,8 @@
 				container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
         center: [7.6, 60],
-        zoom: 4
+        zoom: 3,
+        pitch: 40
       });
 
       let geojson = {
