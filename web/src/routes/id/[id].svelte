@@ -19,7 +19,7 @@
           }
         }
       },
-      'depictions': *[references(^._id)]{ 
+      'depictions': *[references(^._id) && accessState == "open"]{ 
         _id, 
         label, 
         mainRepresentation 

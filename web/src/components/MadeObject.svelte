@@ -28,7 +28,7 @@
 		flex-direction: column;
 		flex: 1 0 500px;
     box-sizing: border-box;
-		background-color: rgb(41, 40, 40);
+		background-color: rgb(65, 63, 63);
 		color: white;
     margin: 1rem .25em;
 		box-shadow: 0px 5px 10px rgba(0,0,0,0.15);

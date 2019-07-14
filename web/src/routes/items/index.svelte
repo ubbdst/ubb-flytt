@@ -3,7 +3,7 @@
   import imageUrlBuilder from '@sanity/image-url'
 
 	export function preload({ params, query }) {
-    return client.fetch('*[_type == "madeObject"]|order(preferredIdentifier desc)').then(items => {
+    return client.fetch('*[_type == "madeObject" && accessState == "open"]|order(preferredIdentifier desc)').then(items => {
 			return { items };
 		}).catch(err => this.error(500, err));
 	}
@@ -41,7 +41,7 @@
 		align-items: flex-start;
 		flex: 1 0 500px;
     box-sizing: border-box;
-		background-color: rgb(41, 40, 40);
+		background-color: rgb(65, 63, 63);
 		color: white;
     margin: 2em 1em;
 		padding: 1em;
