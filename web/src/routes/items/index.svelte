@@ -43,7 +43,7 @@
     box-sizing: border-box;
 		background-color: rgb(65, 63, 63);
 		color: white;
-    margin: 2em 1em;
+    margin: 0 1em 2em 1em;
 		padding: 1em;
 		box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
 	}
