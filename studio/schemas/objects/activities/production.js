@@ -27,6 +27,18 @@ export default {
       ]
     },
     {
+      title: 'Took place at',
+      name: 'tookPlaceAt',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'place'}
+          ]
+        }
+      ]
+    },
+    {
       title: 'Description',
       name: 'description',
       type: 'array',

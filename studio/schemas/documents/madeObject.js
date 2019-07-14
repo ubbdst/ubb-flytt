@@ -81,6 +81,20 @@ export default {
       }
     },
     {
+      title: 'Main manifest',
+      description: 'The main manifest of this object',
+      fieldset: 'representation',
+      name: 'mainManifest',
+      type: 'url'
+    },
+    {
+      title: 'Main image',
+      name: 'mainRepresentation',
+      fieldset: 'representation',
+      description: 'Big, lovely image of the object. TODO: this should be a image in the manifest, optionally cropped',
+      type: 'mainRepresentation'
+    },
+    {
       title: 'Preferred identifier',
       name: 'preferredIdentifier',
       fieldset: 'minimum',
@@ -129,21 +143,6 @@ export default {
       },
       validation: Rule => Rule.required()
     },
-    {
-      title: 'Main manifest',
-      description: 'The main manifest of this object',
-      fieldset: 'representation',
-      name: 'mainManifest',
-      type: 'url'
-    },
-    {
-      title: 'Main image',
-      name: 'mainRepresentation',
-      fieldset: 'representation',
-      description: 'Big, lovely image of the object. TODO: this should be a image in the manifest, optionally cropped',
-      type: 'mainRepresentation'
-    },
-
     {
       title: 'Activity stream',
       description: 'Events and activities connected to this object',
@@ -365,28 +364,28 @@ export default {
       title: 'Title, A-Å',
       name: 'title',
       by: [
-        {field: 'title', direction: 'desc'}
+        {field: 'label', direction: 'asc'}
       ]
     },
     {
       title: 'Title, Å-A',
       name: 'title',
       by: [
-        {field: 'title', direction: 'asc'}
+        {field: 'label', direction: 'desc'}
       ]
     },
     {
       title: 'Preferred identifier, Descending',
       name: 'preferredIdentifier',
       by: [
-        {field: 'title', direction: 'desc'}
+        {field: 'preferredIdentifier', direction: 'desc'}
       ]
     },
     {
       title: 'Preferred identifier, Ascending',
       name: 'preferredIdentifier',
       by: [
-        {field: 'title', direction: 'asc'}
+        {field: 'preferredIdentifier', direction: 'asc'}
       ]
     }
   ]
