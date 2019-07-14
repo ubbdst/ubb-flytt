@@ -19,6 +19,10 @@
           }
         }
       },
+      activityStream[]{
+        ...,
+        tookPlaceAt[]->
+      },
       'depictions': *[references(^._id) && accessState == "open"]{ 
         _id, 
         label, 
@@ -44,7 +48,7 @@
       }
     )}
 
-    const expression = jsonata("**.geoJSON");
+    const expression = jsonata("**.geoJSON[]");
     let result = expression.evaluate(item);
 
     if(result) {

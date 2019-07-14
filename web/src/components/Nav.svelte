@@ -51,11 +51,11 @@
 <nav>
 	<ul>
 		<li><a class='{segment === undefined ? "selected" : ""}' href='.'>hjem</a></li>
-		<li><a class='{segment === "about" ? "selected" : ""}' href='about'>om</a></li>
-
+<!-- 		<li><a class='{segment === "about" ? "selected" : ""}' href='about'>om</a></li>
+ -->
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 		     the blog data when we hover over the link or tap it on a touchscreen -->
-		<li><a rel=prefetch class='{segment === "blog" ? "selected" : ""}' href='blog'>blog</a></li>
+		<li><a rel=prefetch class='{segment === "articles" ? "selected" : ""}' href='articles'>artikler</a></li>
 		<li><a rel=prefetch class='{segment === "actors" ? "selected" : ""}' href='actors'>aktører</a></li>
 		<li><a rel=prefetch class='{segment === "items" ? "selected" : ""}' href='items'>objekt</a></li>
 	</ul>

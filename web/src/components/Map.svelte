@@ -16,7 +16,7 @@
 				container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
         center: [7.6, 60],
-        zoom: 3,
+        zoom: 6,
         pitch: 40
       });
 
@@ -42,6 +42,17 @@
           type: 'geojson',
           data: geojson
         })
+
+        map.addLayer({
+          "id": "circle",
+          "type": "circle",
+          "source": "features",
+          "paint": {
+            "circle-color": "#888",
+            "circle-radius": 6
+          },
+          "filter": ["==", "$type", "Point"],
+        });
 
         map.loadImage('/240px-Camera_Flat_Icon_Vector.svg.png', function(error, image) {
           if (error) throw error;
@@ -76,10 +87,6 @@
               "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
               "text-offset": [0, 0.6],
               "text-anchor": "top"
-            },
-            "point": {
-              "circle-color": "#888",
-              "circle-radius": 6
             },
             "filter": ["==", "type", "Center of motif"],
           });

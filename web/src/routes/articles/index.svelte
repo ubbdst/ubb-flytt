@@ -26,7 +26,7 @@
 	<title>Blog</title>
 </svelte:head>
 
-<h1>Recent posts</h1>
+<h1>Siste artikler</h1>
 
 <ul>
 	{#each posts as post}
@@ -34,6 +34,6 @@
 				tell Sapper to load the data for the page as soon as
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
-		<li><a rel='prefetch' href='blog/{post.slug.current}'>{post.title}</a> ({formatDate(post.publishedAt)})</li>
+		<li><a rel='prefetch' href='articles/{post.slug.current}'>{post.title}</a> ({formatDate(post.publishedAt)})</li>
 	{/each}
 </ul>
