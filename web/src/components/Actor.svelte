@@ -20,7 +20,7 @@
 	section {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-evenly;
+		justify-content: flex-start;
 		width: 100%;
 	}
 	article {
@@ -32,7 +32,7 @@
     box-sizing: border-box;
 		background-color: rgb(65, 63, 63);
 		color: white;
-    margin: 2em 1em;
+    margin: 0 1em 2em 0;
 		padding: 1em;
 		box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
 	}
@@ -64,6 +64,15 @@
 			max-width: calc(50% - 2em);
 		}
 	}
+
+  .left {
+    float: left;
+    margin: 0 2em 2em 0;
+  }
+  header {
+    display: block;
+    width: 100%;
+  }
 </style>
 
 
@@ -72,7 +81,7 @@
     <Mirador manifest='{item.mainManifest.url}'/>
   </div>
 {:else}
-  <img alt='{item.title ? item.title : ''}' src={urlFor(item.mainRepresentation).width(600).url()} />
+  <img class="left" alt='{item.title ? item.title : ''}' src={urlFor(item.mainRepresentation).width(300).url()} />
 {/if}
 
 <h1>{item.label}</h1>
@@ -81,8 +90,11 @@
 {/if}
 
 {#if item.depictions}
-  <h3>Avbildet</h3>
+  
   <section>
+  <header>
+    <h2>Avbildet</h2>
+  </header>
   {#each item.depictions as depiction, i}
   <article class="depicted">
       <a class="image" rel='prefetch' href='id/{depiction._id}'>

@@ -20,7 +20,7 @@
 	section {
 		display: flex;
 		flex-wrap: wrap;
-		justify-content: space-evenly;
+		justify-content: flex-start;
 		width: 100%;
 	}
 	article {
@@ -77,7 +77,9 @@
     {/if}
 
     {#if item.depicts}
-      <h3>Avbildet</h3>
+      <header>
+        <h2>Avbildet</h2>
+      </header>
       <section>
         {#each item.depicts as depicted, i}
         <article class="depicted">
