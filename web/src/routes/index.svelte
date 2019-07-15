@@ -35,6 +35,7 @@
 	img {
 		margin: auto;
 		display: block;
+		width: 70%;
 	}
 
 	p {
