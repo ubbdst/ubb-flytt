@@ -28,7 +28,6 @@
 		flex-direction: row;
 		justify-content: flex-start;
 		align-items: flex-start;
-		flex: 1 0 500px;
     box-sizing: border-box;
 		background-color: rgb(65, 63, 63);
 		color: white;

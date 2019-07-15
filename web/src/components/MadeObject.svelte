@@ -17,6 +17,9 @@
 </script>
 
 <style>
+  img {
+    width: 100%;
+  }
 	section {
 		display: flex;
 		flex-wrap: wrap;
@@ -26,7 +29,6 @@
 	article {
 		display: flex;
 		flex-direction: column;
-		flex: 1 0 500px;
     box-sizing: border-box;
 		background-color: rgb(65, 63, 63);
 		color: white;
