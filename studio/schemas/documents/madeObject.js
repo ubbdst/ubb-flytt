@@ -25,13 +25,13 @@ export default {
       options: {collapsible: true, collapsed: false}
     },
     {
-      name: 'additionalInformation',
-      title: 'Alternative names, identifiers and descriptions',
-      options: {collapsible: true, collapsed: true}
-    },
-    {
       name: 'visualObject',
       title: 'Fields related to visual objects',
+      options: {collapsible: true, collapsed: false}
+    },
+    {
+      name: 'additionalInformation',
+      title: 'Alternative names, identifiers and descriptions',
       options: {collapsible: true, collapsed: true}
     },
     {
@@ -130,7 +130,7 @@ export default {
       name: 'description',
       description: 'A shortish description',
       fieldset: 'minimum',
-      type: 'localeBlock'
+      type: 'localeBlockSimple'
     },
     {
       title: 'Rights',
@@ -188,6 +188,36 @@ export default {
       ]
     },
     {
+      title: 'Depicts',
+      name: 'depicts',
+      type: 'array',
+      fieldset: 'visualObject',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'madeObject'},
+            {type: 'actor'},
+            {type: 'group'},
+            {type: 'typeClass'}
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Shown visual item',
+      name: 'showsVisualItem',
+      type: 'array',
+      fieldset: 'visualObject',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'visualItem'}
+          ]
+        }
+      ]
+    },
+    {
       title: 'Titles',
       name: 'title',
       description: 'Add all known titles',
@@ -238,36 +268,6 @@ export default {
         {type: 'feature'}
       ]
     }, */
-    {
-      title: 'Depicts',
-      name: 'depicts',
-      type: 'array',
-      fieldset: 'visualObject',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            {type: 'madeObject'},
-            {type: 'actor'},
-            {type: 'group'},
-            {type: 'typeClass'}
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Shown visual item',
-      name: 'showsVisualItem',
-      type: 'array',
-      fieldset: 'visualObject',
-      of: [
-        {type: 'reference',
-          to: [
-            {type: 'visualItem'}
-          ]
-        }
-      ]
-    },
     {
       title: 'Carries Work',
       name: 'carries',

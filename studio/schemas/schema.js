@@ -9,8 +9,10 @@ import config from './singletons/config'
 
 // Texts
 import genericText from './texts/genericText'
+import simpleText from './texts/simpleText'
 import localeBlock from './texts/localeBlock'
 import localeString from './texts/localeString'
+import localeBlockSimple from './texts/localeBlockSimple'
 
 // Images
 import mainRepresentation from './images/mainRepresentation'
@@ -133,8 +135,10 @@ export default createSchema({
     experimental,
     part,
     genericText,
+    simpleText,
     typeClass,
     localeBlock,
+    localeBlockSimple,
     localeString,
     config,
     manifest,

@@ -12,6 +12,34 @@ export default {
       type: 'string'
     },
     {
+      title: 'Image',
+      name: 'mainRepresentation',
+      type: 'image',
+      options: {
+        hotspot: true
+      }
+    },
+    {
+      title: 'Description',
+      name: 'description',
+      description: 'A shortish description',
+      type: 'localeBlockSimple'
+    },
+    {
+      title: 'Activity stream',
+      name: 'activityStream',
+      description: 'Add all known events this smuck did',
+      type: 'array',
+      of: [
+        {type: 'birth'},
+        {type: 'activity'},
+        {type: 'death'}
+      ],
+      options: {
+        editModal: 'fullscreen'
+      }
+    },
+    {
       title: 'Names',
       name: 'names',
       description: 'Add all known names and pseudonyms you wish',
@@ -34,33 +62,6 @@ export default {
       options: {
         editModal: 'popup'
       }
-    },
-    {
-      title: 'Activity stream',
-      name: 'activityStream',
-      description: 'Add all known events this smuck did',
-      type: 'array',
-      of: [
-        {type: 'birth'},
-        {type: 'activity'},
-        {type: 'death'}
-      ],
-      options: {
-        editModal: 'fullscreen'
-      }
-    },
-    {
-      title: 'Image',
-      name: 'mainRepresentation',
-      type: 'image',
-      options: {
-        hotspot: true
-      }
-    },
-    {
-      name: 'bio',
-      title: 'Bio',
-      type: 'genericText'
     }
   ]
 }
