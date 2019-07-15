@@ -32,14 +32,9 @@
 		text-align: center;
 	}
 
-	figure {
-		margin: 0 0 1em 0;
-	}
-
-	svg {
-		width: 100%;
-		max-width: 400px;
-		margin: 0 0 1em 0;
+	img {
+		margin: auto;
+		display: block;
 	}
 
 	p {
@@ -64,7 +59,7 @@
 
 <h1>{data.siteSettings[0].title}</h1>
 <h2>{data.siteSettings[0].description}</h2>
-
+<img src="https://cdn.sanity.io/images/e56ijdvg/production/07dfa9cdc998f60c49fba21624ac9cd5ab34b428-3264x2448.jpg?w=600">
 <p></p>
 
 <ul>
