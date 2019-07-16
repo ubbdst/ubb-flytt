@@ -21,7 +21,15 @@
       },
       activityStream[]{
         ...,
-        tookPlaceAt[]->
+        tookPlaceAt[]->,
+        carriedOutBy[]{
+          ...,
+          actor->{
+          	_id,
+          	label,
+          	mainRepresentation
+        	}
+        }
       },
       'depictions': *[references(^._id) && accessState == "open"]{ 
         _id, 

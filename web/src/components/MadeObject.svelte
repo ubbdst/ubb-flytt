@@ -1,7 +1,8 @@
 <script>
   import client from '../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
-  import Mirador from './Mirador3'
+
+  import MainImage from './MainImage'
 
   export let item
 
@@ -48,7 +49,67 @@
 	article .content {
 		padding: 1rem;
 	}
-
+  
+  .timeline ul {
+    padding: 1em 0 0 2em;
+    margin: 0;
+    list-style: none;
+    position: relative;
+  }
+  .timeline ul::before {
+    content: ' ';
+    height: 100%;
+    width: 1px;
+    background-color: lightgray;
+    position: absolute;
+    top: 0;
+    left: 2.5em;
+    /* z-index: -1; */
+  }
+  
+  .timeline li div{
+    display: inline-block;
+    margin: 1em 0;
+    vertical-align: top;
+  }
+  
+  .timeline .bullet {
+    width: 1em;
+    height: 1em;
+    box-sizing: border-box;
+    border-radius: 50%;
+    background: white;
+    z-index: 1;
+    margin-right: 1em;
+  }
+    
+  .timeline .bullet.pink {
+    border: 2px solid pink;
+  }  
+  
+  .timeline .time {
+    width: 20%;
+    font-size: 0.75em;
+    padding-top: 0.25em;
+  }
+  
+  .timeline .desc {
+    width: 50%;
+  }
+  
+  .timeline h3 {
+    font-size: 0.9em;
+    font-weight: 400;
+    margin: 0;
+  }
+  
+  .timeline p {
+    margin: 0;
+    font-size: 0.7em;
+    font-weight: 400;
+    color: dark-grey;
+  }
+  
 	@media screen and (min-width: 40em) {
     article {
        max-width: calc(50% -  1em);
@@ -62,41 +123,40 @@
 	}
 </style>
 
-<div class='content'>
-  <div class='column'>
-    {#if item.mainManifest}
-      <div class='mirador'>
-        <Mirador manifest='{item.mainManifest.url}'/>
-      </div>
-    {:else}
-      <img alt='{item.title ? item.title : ''}' src={urlFor(item.mainRepresentation).width(600).url()} />
-    {/if}
-  </div>
-  <div class='column text'>
-    <h1>{item.label}</h1>
-    {#if item.description}
-      {@html item.description}
-    {/if}
+<h1>{item.label}</h1>
+{#if item.description}
+  {@html item.description}
+{/if}
 
-    {#if item.depicts}
-      <header>
-        <h2>Avbildet</h2>
-      </header>
-      <section>
-        {#each item.depicts as depicted, i}
-        <article class="depicted">
-            <a class="image" rel='prefetch' href='id/{depicted._id}'>
-              <img class='rounded' src={urlFor(depicted.mainRepresentation).width(150).height(150).url()} />
-            </a>
-            <div class="content">
-              <h3><a rel=prefetch href='id/{depicted._id}'>{depicted.label}</a></h3>
-            </div>
-        </article>
-        {/each}
-      </section>
-    {/if}
-  </div>
-</div>
+<MainImage 
+  image={item.mainRepresentation}
+  manifest={item.mainManifest && item.mainManifest.url ? item.mainManifest.url : ''}
+  rights={item.rights}
+  id={item.preferredIdentifier}
+  alt={item.title}>
+</MainImage>
+
+
+
+{#if item.depicts.length != 0}
+  <header>
+    <h2>Avbildet</h2>
+  </header>
+  <section>
+    {#each item.depicts as depicted, i}
+    <article class="depicted">
+      {#if depicted.mainRepresentation}
+        <a class="image" rel='prefetch' href='id/{depicted._id}'>
+          <img alt='{depicted.label}' class='rounded' src={urlFor(depicted.mainRepresentation).width(150).height(150).url()} />
+        </a>
+      {/if}
+      <div class="content">
+        <h1><a rel=prefetch href='id/{depicted._id}'>{depicted.label}</a></h1>
+      </div>
+    </article>
+    {/each}
+  </section>
+{/if}
 
 <div>
   <div class='content'>
@@ -110,3 +170,34 @@
   {/each}
   </div>
 </div>
+
+{#if item.activityStream}
+<div class="timeline">
+  <h2>Tidslinje</h2>
+  <ul>
+    {#each item.activityStream as activity, i}
+    <li>
+      <div class="bullet pink"></div>
+      {#if activity.timespan}
+      {#each activity.timespan as e, i}
+        <div class="time">
+          {e.beginOfTheBegin} - {e.endOfTheEnd}
+        </div>
+      {/each}
+      {/if}
+      <div class="desc">
+        <h3>{activity._type}</h3>
+        {#if activity.carriedOutBy.length > 0}
+          <p>Skapt av: 
+          {#each activity.carriedOutBy as actor, i}
+            <span>{actor.actor.label}</span>
+          {/each}
+          </p>
+        {/if}
+      </div>
+    </li>
+    {/each}
+  </ul>
+</div>
+{/if}
+    

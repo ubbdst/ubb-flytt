@@ -79,7 +79,7 @@
   <div class='mirador'>
     <Mirador manifest='{item.mainManifest.url}'/>
   </div>
-{:else}
+{:else if item.mainRepresentation}
   <img class="left" alt='{item.title ? item.title : ''}' src={urlFor(item.mainRepresentation).width(300).url()} />
 {/if}
 
@@ -89,18 +89,17 @@
 {/if}
 
 {#if item.depictions}
-  
   <section>
   <header>
-    <h2>Avbildet</h2>
+    <h2>Relatert til</h2>
   </header>
   {#each item.depictions as depiction, i}
   <article class="depicted">
       <a class="image" rel='prefetch' href='id/{depiction._id}'>
-        <img class='rounded' src={urlFor(depiction.mainRepresentation).width(150).height(150).url()} />
+        <img class='rounded' alt="{depiction.label}" src={urlFor(depiction.mainRepresentation).width(150).height(150).url()} />
       </a>
       <div class="content">
-        <h3><a rel=prefetch href='id/{depiction._id}'>{depiction.label}</a></h3>
+        <h1><a rel=prefetch href='id/{depiction._id}'>{depiction.label}</a></h1>
       </div>
   </article>
   {/each}
