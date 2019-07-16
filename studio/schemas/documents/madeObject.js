@@ -105,6 +105,13 @@ export default {
       })
     },
     {
+      title: 'Title',
+      name: 'label',
+      fieldset: 'minimum',
+      type: 'string',
+      validation: Rule => Rule.required()
+    },
+    {
       title: 'Classified as',
       name: 'hasType',
       description: 'WIP, should use API',
@@ -116,13 +123,6 @@ export default {
         service: 'aat',
         childOf: 'aat:1000000'
       },
-      validation: Rule => Rule.required()
-    },
-    {
-      title: 'Title',
-      name: 'label',
-      fieldset: 'minimum',
-      type: 'string',
       validation: Rule => Rule.required()
     },
     {
@@ -154,10 +154,7 @@ export default {
         {type: 'move'},
         {type: 'activity'},
         {type: 'endingActivity'}
-      ],
-      options: {
-        editModal: 'fullscreen'
-      }
+      ]
     },
     {
       title: 'Composed of',
@@ -168,21 +165,6 @@ export default {
         {type: 'reference',
           to: [
             {type: 'madeObject'}
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Related stuff',
-      name: 'relation',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            {type: 'madeObject'},
-            {type: 'actor'},
-            {type: 'group'}
           ]
         }
       ]
@@ -213,6 +195,35 @@ export default {
         {type: 'reference',
           to: [
             {type: 'visualItem'}
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Former or current owner',
+      name: 'hasFormerOrCurrentOwner',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'actor'},
+            {type: 'group'}
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Related stuff',
+      name: 'relation',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'madeObject'},
+            {type: 'actor'},
+            {type: 'group'}
           ]
         }
       ]
@@ -254,10 +265,7 @@ export default {
         to: [
           {type: 'linguisticObject'}
         ]
-      }],
-      options: {
-        editModal: 'fullscreen'
-      }
+      }]
     },
     /* {
       title: 'Geographic features',
