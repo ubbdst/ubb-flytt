@@ -83,9 +83,11 @@
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
 		<article>
+			{#if item.mainRepresentation}
 			<a rel='prefetch' href='id/{item._id}'>
-				<img src={urlFor(item.mainRepresentation).width(300).url()} />
+				<img alt="{item.label ? item.label : ''}" src={urlFor(item.mainRepresentation).width(300).height(300).url()} />
 			</a>
+			{/if}
 			<div class="content">
 				<h1><a rel='prefetch' href='id/{item._id}'>{item.label}</a></h1>
 			</div>
