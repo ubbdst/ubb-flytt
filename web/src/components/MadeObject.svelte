@@ -171,7 +171,7 @@
   </div>
 </div>
 
-{#if item.activityStream}
+{#if (item.activityStream && item.activityStream[0].timespan) || (item.activityStream && item.activityStream[0].carriedOutBy)}
 <div class="timeline">
   <h2>Tidslinje</h2>
   <ul>
@@ -181,13 +181,14 @@
       {#if activity.timespan}
       {#each activity.timespan as e, i}
         <div class="time">
-          {e.beginOfTheBegin} - {e.endOfTheEnd}
+          {#if e.date}{e.date}{/if}
+          {#if e.beginOfTheBegin}{e.beginOfTheBegin}{/if}{#if e.beginOfTheBegin && e.endOfTheEnd} - {/if}{#if e.endOfTheEnd}{e.endOfTheEnd}{/if}
         </div>
       {/each}
       {/if}
       <div class="desc">
         <h3>{activity._type}</h3>
-        {#if activity.carriedOutBy.length > 0}
+        {#if activity.carriedOutBy && activity.carriedOutBy.length > 0}
           <p>Skapt av: 
           {#each activity.carriedOutBy as actor, i}
             <span>{actor.actor.label}</span>
