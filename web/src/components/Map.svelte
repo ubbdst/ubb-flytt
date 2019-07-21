@@ -26,8 +26,6 @@
       
       var bounds = new mapbox.LngLatBounds();
 
-
-
       map.on('load', function () {
         geojson.features.forEach(function(feature) {
           bounds.extend(feature.geometry.coordinates);

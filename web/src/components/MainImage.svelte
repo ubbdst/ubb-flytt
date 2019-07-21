@@ -1,4 +1,5 @@
 <script>
+  import { onMount, onDestroy } from 'svelte';
   import client from '../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
   import Mirador from './Mirador3'
@@ -18,36 +19,6 @@
   function urlFor(source) {
     return builder.image(source)
   }
-
-  let ccIcon
-  let rightsIcon
-
-  switch (rights) {
-    case 'https://creativecommons.org/publicdomain/mark/1.0/':
-      ccIcon = '/cc-icons/cc.svg';
-      rightsIcon = '/cc-icons/pd.svg';
-      break;
-    case 'https://creativecommons.org/licenses/by/4.0/':
-      ccIcon = '/cc-icons/cc.svg';
-      rightsIcon = '/cc-icons/by.svg';
-      break;
-    case 'https://creativecommons.org/publicdomain/zero/1.0/':
-      ccIcon = '/cc-icons/cc.svg';
-      rightsIcon = '/cc-icons/zero.svg';
-      break;
-    case 'https://rightsstatements.org/vocab/InC/1.0/':
-      rightsIcon = '/rights-statements/buttons/InC.dark-white-interior.svg';
-      break;
-    case 'https://rightsstatements.org/vocab/InC-NC/1.0/':
-      rightsIcon = '/rights-statements/buttons/NoC-NONCOMMERCIAL.dark-white-interior.svg';
-      break;
-    case 'https://rightsstatements.org/vocab/CNE/1.0/':
-      rightsIcon = '/rights-statements/buttons/Other-NOTEVALUATED.dark-white-interior.svg';
-      break;
-    case 'https://rightsstatements.org/vocab/UND/1.0/':
-      rightsIcon = '/rights-statements/buttons/Other-UNDETERMINED.dark-white-interior.svg';
-      break;
-  }
 </script>
 
 <style>
@@ -63,21 +34,18 @@
   }
 
   figure img {
-    max-height: 60vh;
+    max-height: 70vh;
     max-width: 100%;
     margin: 0 auto;
   }
 
-  figcaption {
+/*   figcaption {
     text-align: center;
   }
 
-  img.cc-icon {
-    height: 1.2em;
-    padding-top: 0.2em;
-    position: relative;
-    top: 0.15em;
-  }
+  figcaption a {
+    text-decoration: none;
+  } */
 </style>
 
 {#if manifest}
@@ -85,9 +53,7 @@
     <Mirador manifest='{manifest}'/>
   </div>
 {:else}
-  <figure>
+  <figure onload="setRights()">
     <img alt="{alt ? alt : ''}" src={urlFor(image).width(600).url()} />
-    <figcaption><strong>{id}</strong>, <a href="{rights}">{#if ccIcon}<img class="cc-icon" alt="{rights}" src="{ccIcon}">{/if}<img class="cc-icon" alt="{rights}" src="{rightsIcon}"></a></figcaption>
   </figure>
 {/if}
-

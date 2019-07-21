@@ -31,7 +31,7 @@
         	}
         }
       },
-      'depictions': *[references(^._id) && accessState == "open"]{ 
+      'referencedBy': *[references(^._id) && accessState == "open"]{ 
         _id, 
         label, 
         mainRepresentation 

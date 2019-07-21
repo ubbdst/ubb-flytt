@@ -98,18 +98,18 @@
     {@html item.bio}
   {/if}
 
-  {#if item.depictions}
+  {#if item.referencedBy}
     <section>
     <header>
       <h2>Relatert til</h2>
     </header>
-    {#each item.depictions as depiction, i}
+    {#each item.referencedBy as reference, i}
     <article class="depicted">
-        <a class="image" rel='prefetch' href='id/{depiction._id}'>
-          <img class='rounded' alt="{depiction.label}" src={urlFor(depiction.mainRepresentation).width(150).height(150).url()} />
+        <a class="image" rel='prefetch' href='id/{reference._id}'>
+          <img class='rounded' alt="{reference.label}" src={urlFor(reference.mainRepresentation).width(150).height(150).url()} />
         </a>
         <div class="content">
-          <h1><a rel=prefetch href='id/{depiction._id}'>{depiction.label}</a></h1>
+          <h1><a rel=prefetch href='id/{reference._id}'>{reference.label}</a></h1>
         </div>
     </article>
     {/each}
