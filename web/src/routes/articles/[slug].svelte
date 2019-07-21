@@ -43,7 +43,14 @@
 		all elements inside .content
 	*/
 
-
+	main {
+		position: relative;
+		max-width: 56em;
+		background-color: white;
+		padding: 2em;
+		margin: 0 auto;
+		box-sizing: border-box;
+	}
 
 	.content :global(h2) {
 		font-size: 1.4em;
@@ -99,8 +106,10 @@
 	<title>{post.title}</title>
 </svelte:head>
 
-<h1>{post.title}</h1>
+<main>
+  <h1>{post.title}</h1>
 
-<div class='content'>
-	{@html post.body}
-</div>
+  <div class='content'>
+    {@html post.body}
+  </div>
+</main>

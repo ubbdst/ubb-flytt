@@ -90,10 +90,10 @@
 </script>
 
 <style>
-  .map {
+/*   .map {
     width: 100%;
     height: 400px;
-  }
+  } */
 </style>
 
 <svelte:head>
@@ -107,9 +107,9 @@
 {#if item._type == 'actor'}
   <Actor item={item}></Actor>
 {/if}
-
+<!-- 
 {#if item.geoJSON}
 <div class="map">
   <Map src={item.geoJSON}></Map>
 </div>
-{/if}
+{/if} -->

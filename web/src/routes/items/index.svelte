@@ -28,12 +28,20 @@
 </script>
 
 <style>
-	section {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-evenly;
-		width: 100%;
+	main {
+		position: relative;
+		max-width: 56em;
+		background-color: white;
+		padding: 2em;
+		margin: 0 auto;
+		box-sizing: border-box;
 	}
+
+	section {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+	}
+
 	article {
 		display: flex;
 		flex-direction: row;
@@ -63,7 +71,7 @@
 		width: 50%;
 	}
 
-	@media screen and (min-width: 40em) {
+	/* @media screen and (min-width: 40em) {
     article {
        max-width: 100%;
     }
@@ -73,14 +81,15 @@
 		article {
 			max-width: calc(50% - 2em);
 		}
-	}
+	} */
 </style>
 
 <svelte:head>
 	<title>Objekt</title>
 </svelte:head>
 
-<h1>Objekt</h1>
+<main>
+	<h1>Objekt</h1>
 	<section>
 	{#each items as item}
 		<!-- we're using the non-standard `rel=prefetch` attribute to
@@ -95,6 +104,6 @@
 				<h1><a rel='prefetch' href='id/{item._id}'>{item.label}</a></h1>
 			</div>
 		</article>
-
 	{/each}
 	</section>
+</main>

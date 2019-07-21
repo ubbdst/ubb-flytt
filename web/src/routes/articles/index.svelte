@@ -16,6 +16,15 @@
 </script>
 
 <style>
+	main {
+		position: relative;
+		max-width: 56em;
+		background-color: white;
+		padding: 2em;
+		margin: 0 auto;
+		box-sizing: border-box;
+	}
+
 	ul {
 		margin: 0 0 1em 0;
 		line-height: 1.5;
@@ -26,14 +35,16 @@
 	<title>Blog</title>
 </svelte:head>
 
-<h1>Siste artikler</h1>
+<main>
+	<h1>Siste artikler</h1>
 
-<ul>
-	{#each posts as post}
-		<!-- we're using the non-standard `rel=prefetch` attribute to
-				tell Sapper to load the data for the page as soon as
-				the user hovers over the link or taps it, instead of
-				waiting for the 'click' event -->
-		<li><a rel='prefetch' href='articles/{post.slug.current}'>{post.title}</a> ({formatDate(post.publishedAt)})</li>
-	{/each}
-</ul>
+	<ul>
+		{#each posts as post}
+			<!-- we're using the non-standard `rel=prefetch` attribute to
+					tell Sapper to load the data for the page as soon as
+					the user hovers over the link or taps it, instead of
+					waiting for the 'click' event -->
+			<li><a rel='prefetch' href='articles/{post.slug.current}'>{post.title}</a> ({formatDate(post.publishedAt)})</li>
+		{/each}
+	</ul>
+</main>

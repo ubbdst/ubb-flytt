@@ -35,16 +35,16 @@
       ccIcon = '/cc-icons/cc.svg';
       rightsIcon = '/cc-icons/zero.svg';
       break;
-    case 'http://rightsstatements.org/vocab/InC/1.0/':
+    case 'https://rightsstatements.org/vocab/InC/1.0/':
       rightsIcon = '/rights-statements/buttons/InC.dark-white-interior.svg';
       break;
-    case 'http://rightsstatements.org/vocab/InC-NC/1.0/':
+    case 'https://rightsstatements.org/vocab/InC-NC/1.0/':
       rightsIcon = '/rights-statements/buttons/NoC-NONCOMMERCIAL.dark-white-interior.svg';
       break;
-    case 'http://rightsstatements.org/vocab/CNE/1.0/':
+    case 'https://rightsstatements.org/vocab/CNE/1.0/':
       rightsIcon = '/rights-statements/buttons/Other-NOTEVALUATED.dark-white-interior.svg';
       break;
-    case 'http://rightsstatements.org/vocab/UND/1.0/':
+    case 'https://rightsstatements.org/vocab/UND/1.0/':
       rightsIcon = '/rights-statements/buttons/Other-UNDETERMINED.dark-white-interior.svg';
       break;
   }
@@ -54,9 +54,29 @@
   figure {
     margin: 0;
     color: dimgrey;
+    width: 100%;
+    background-color: black;
+    padding-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
   }
+
+  figure img {
+    max-height: 60vh;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  figcaption {
+    text-align: center;
+  }
+
   img.cc-icon {
     height: 1.2em;
+    padding-top: 0.2em;
+    position: relative;
+    top: 0.15em;
   }
 </style>
 

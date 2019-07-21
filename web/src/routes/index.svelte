@@ -16,7 +16,16 @@
 </script>
 
 <style>
-	h1, figure, p {
+	main {
+		position: relative;
+		max-width: 56em;
+		background-color: white;
+		padding: 2em;
+		margin: 0 auto;
+		box-sizing: border-box;
+	}
+
+	h1, p {
 		text-align: center;
 		margin: 0 auto;
 	}
@@ -58,17 +67,19 @@
 	<title>Sælen-samlingen</title>
 </svelte:head>
 
-<h1>{data.siteSettings[0].title}</h1>
-<h2>{data.siteSettings[0].description}</h2>
-<img src="https://cdn.sanity.io/images/e56ijdvg/production/07dfa9cdc998f60c49fba21624ac9cd5ab34b428-3264x2448.jpg?w=600">
-<p></p>
+<main>
+	<h1>{data.siteSettings[0].title}</h1>
+	<h2>{data.siteSettings[0].description}</h2>
+	<img src="https://cdn.sanity.io/images/e56ijdvg/production/07dfa9cdc998f60c49fba21624ac9cd5ab34b428-3264x2448.jpg?w=600">
+	<p></p>
 
-<ul>
-	{#each data.articles as post}
-		<!-- we're using the non-standard `rel=prefetch` attribute to
-				tell Sapper to load the data for the page as soon as
-				the user hovers over the link or taps it, instead of
-				waiting for the 'click' event -->
-		<li><a rel='prefetch' href='articles/{post.slug.current}'>{post.title}</a> ({formatDate(post.publishedAt)})</li>
-	{/each}
-</ul>
+	<ul>
+		{#each data.articles as post}
+			<!-- we're using the non-standard `rel=prefetch` attribute to
+					tell Sapper to load the data for the page as soon as
+					the user hovers over the link or taps it, instead of
+					waiting for the 'click' event -->
+			<li><a rel='prefetch' href='articles/{post.slug.current}'>{post.title}</a> ({formatDate(post.publishedAt)})</li>
+		{/each}
+	</ul>
+</main>

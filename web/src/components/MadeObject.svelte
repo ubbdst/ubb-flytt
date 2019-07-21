@@ -3,6 +3,7 @@
   import imageUrlBuilder from '@sanity/image-url'
 
   import MainImage from './MainImage'
+  import Map from './Map'
 
   export let item
 
@@ -18,17 +19,39 @@
 </script>
 
 <style>
-  img {
-    width: 100%;
+  .main {
+    padding: 1em;
+    background-color: rgb(34, 30, 30);
+    color: rgb(221, 217, 217)
   }
+
 	section {
-		display: flex;
+		border-top: 1px solid rgba(255,62,0,0.1);
+    border-bottom: 1px solid rgba(255,62,0,0.1);
+    padding-top: 1em;
+		/* display: flex;
 		flex-wrap: wrap;
 		justify-content: flex-start;
-		width: 100%;
-	}
+		width: 100%; */
+  }
+
+  section h2 {
+    font-size: 1.2em;
+    color: dimgrey;
+    width: 100%;
+    display: block;
+  }
+
+  .horizontal {
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    width: 100%;
+  }
+  
 	article {
-		display: flex;
+    display: flex;
+    flex: 0 0 auto;
 		flex-direction: column;
     box-sizing: border-box;
 		background-color: rgb(65, 63, 63);
@@ -39,17 +62,23 @@
 		border-top-left-radius: 5px;
 	}
 	.content h1 {
-		font-size: 1.4rem;
-	}
+		font-size: 1rem;
+  }
+  
 	article .image img {
 		width: 100%;
 		border-top-right-radius: 5px;
 		border-top-left-radius: 5px;
-	}
+  }
+  
 	article .content {
 		padding: 1rem;
 	}
   
+  .timeline {
+    padding: 1em;
+  }
+
   .timeline ul {
     padding: 1em 0 0 2em;
     margin: 0;
@@ -64,7 +93,7 @@
     position: absolute;
     top: 0;
     left: 2.5em;
-    /* z-index: -1; */
+    z-index: 1;
   }
   
   .timeline li div{
@@ -79,7 +108,7 @@
     box-sizing: border-box;
     border-radius: 50%;
     background: white;
-    z-index: 1;
+    z-index: 2;
     margin-right: 1em;
   }
     
@@ -109,6 +138,11 @@
     font-weight: 400;
     color: dark-grey;
   }
+
+  .map {
+    width: 100%;
+    height: 300px;
+  }
   
 	@media screen and (min-width: 40em) {
     article {
@@ -117,88 +151,129 @@
 	}
 	
 	@media screen and (min-width: 60em) {
+    .grid {
+      display: grid;
+      grid-template-columns: (3, 1fr);
+      /* grid-gap: 10px; */
+      grid-auto-rows: minmax(100px, auto);
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(260px, 1fr);
+    }
+
 		article {
 				max-width: calc(25% - 1em);
-		}
-	}
+    }
+    
+    aside {
+      border-left: 1px solid #333;
+      overflow-x: scroll
+    }
+  }
+
+  main {
+    grid-column: 1 / 3;
+  }
+  aside { 
+    grid-column: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    background-color: black;
+    color: white;
+  }
 </style>
 
-<h1>{item.label}</h1>
-{#if item.description}
-  {@html item.description}
-{/if}
+<div class="grid">
+  <main>
+    <MainImage 
+      image={item.mainRepresentation}
+      manifest={item.mainManifest && item.mainManifest.url ? item.mainManifest.url : ''}
+      rights={item.rights}
+      id={item.preferredIdentifier}
+      alt={item.title}>
+    </MainImage>
 
-<MainImage 
-  image={item.mainRepresentation}
-  manifest={item.mainManifest && item.mainManifest.url ? item.mainManifest.url : ''}
-  rights={item.rights}
-  id={item.preferredIdentifier}
-  alt={item.title}>
-</MainImage>
-
-
-
-{#if item.depicts.length != 0}
-  <header>
-    <h2>Avbildet</h2>
-  </header>
-  <section>
-    {#each item.depicts as depicted, i}
-    <article class="depicted">
-      {#if depicted.mainRepresentation}
-        <a class="image" rel='prefetch' href='id/{depicted._id}'>
-          <img alt='{depicted.label}' class='rounded' src={urlFor(depicted.mainRepresentation).width(150).height(150).url()} />
-        </a>
+    <div class="main">
+      <h1>{item.label}</h1>
+      {#if item.description}
+        {@html item.description}
       {/if}
-      <div class="content">
-        <h1><a rel=prefetch href='id/{depicted._id}'>{depicted.label}</a></h1>
-      </div>
-    </article>
-    {/each}
-  </section>
-{/if}
 
-<div>
-  <div class='content'>
-  {#each item.depictions as depiction, i}
-    <div class="depicted">
-      <a rel='prefetch' href='id/{depiction._id}'>
-        <img alt='{depiction.label ? depiction.label : ''}' src={urlFor(depiction.mainRepresentation).width(250).height(250).url()}>
-      </a>
-      <h3><a rel='prefetch' href='id/{depiction._id}'>{depiction.label}</a></h3>
-    </div>
-  {/each}
-  </div>
-</div>
+      {#if item.depicts && item.depicts.length != 0}
+        <section class="box">
+          <header>
+            <h2>Avbildet</h2>
+          </header>
+          <div class="horizontal">
+            {#each item.depicts as depicted, i}
+            <article class="depicted">
+              {#if depicted.mainRepresentation}
+                <a class="image" rel='prefetch' href='id/{depicted._id}'>
+                  <img alt='{depicted.label}' class='rounded' src={urlFor(depicted.mainRepresentation).width(150).height(150).url()} />
+                </a>
+              {/if}
+              <div class="content">
+                <h1><a rel=prefetch href='id/{depicted._id}'>{depicted.label}</a></h1>
+              </div>
+            </article>
+            {/each}
+          </div>
+        </section>
+      {/if}
 
-{#if (item.activityStream && item.activityStream[0].timespan) || (item.activityStream && item.activityStream[0].carriedOutBy)}
-<div class="timeline">
-  <h2>Tidslinje</h2>
-  <ul>
-    {#each item.activityStream as activity, i}
-    <li>
-      <div class="bullet pink"></div>
-      {#if activity.timespan}
-      {#each activity.timespan as e, i}
-        <div class="time">
-          {#if e.date}{e.date}{/if}
-          {#if e.beginOfTheBegin}{e.beginOfTheBegin}{/if}{#if e.beginOfTheBegin && e.endOfTheEnd} - {/if}{#if e.endOfTheEnd}{e.endOfTheEnd}{/if}
+      <div>
+        <div class='content'>
+        {#each item.depictions as depiction, i}
+          <div class="depicted">
+            <a rel='prefetch' href='id/{depiction._id}'>
+              <img alt='{depiction.label ? depiction.label : ''}' src={urlFor(depiction.mainRepresentation).width(250).height(250).url()}>
+            </a>
+            <h3><a rel='prefetch' href='id/{depiction._id}'>{depiction.label}</a></h3>
+          </div>
+        {/each}
         </div>
-      {/each}
-      {/if}
-      <div class="desc">
-        <h3>{activity._type}</h3>
-        {#if activity.carriedOutBy && activity.carriedOutBy.length > 0}
-          <p>Skapt av: 
-          {#each activity.carriedOutBy as actor, i}
-            <span>{actor.actor.label}</span>
-          {/each}
-          </p>
-        {/if}
       </div>
-    </li>
-    {/each}
-  </ul>
-</div>
-{/if}
+    </div>
+  </main>
+
     
+  <aside>
+    {#if item.geoJSON}
+    <div class="map">
+      <Map src={item.geoJSON}></Map>
+    </div>
+    {/if}
+
+    {#if (item.activityStream && item.activityStream[0].timespan) || (item.activityStream && item.activityStream[0].carriedOutBy)}
+    <div class="timeline">
+      <h2>Tidslinje</h2>
+      <ul>
+        {#each item.activityStream as activity, i}
+        <li>
+          <div class="bullet pink"></div>
+          {#if activity.timespan}
+          {#each activity.timespan as e, i}
+            <div class="time">
+              {#if e.date}{e.date}{/if}
+              {#if e.beginOfTheBegin}{e.beginOfTheBegin}{/if}{#if e.beginOfTheBegin && e.endOfTheEnd} - {/if}{#if e.endOfTheEnd}{e.endOfTheEnd}{/if}
+            </div>
+          {/each}
+          {/if}
+          <div class="desc">
+            <h3>{activity._type}</h3>
+            {#if activity.carriedOutBy && activity.carriedOutBy.length > 0}
+              <p>Skapt av: 
+              {#each activity.carriedOutBy as actor, i}
+                <span><a alt="{actor.actor.label}" href="id/{actor.actor._id}">{actor.actor.label}</a></span>
+              {/each}
+              </p>
+            {/if}
+          </div>
+        </li>
+        {/each}
+      </ul>
+    </div>
+    {/if}
+  </aside>
+</div>

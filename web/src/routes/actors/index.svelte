@@ -28,6 +28,15 @@
 </script>
 
 <style>
+	main {
+		position: relative;
+		max-width: 56em;
+		background-color: white;
+		padding: 2em;
+		margin: 0 auto;
+		box-sizing: border-box;
+	}
+
 	section {
 		display: flex;
 		flex-wrap: wrap;
@@ -74,7 +83,8 @@
 	<title>Aktører</title>
 </svelte:head>
 
-<h1>Aktører</h1>
+<main>
+	<h1>Aktører</h1>
 
 	<section>
 	{#each items as item}
@@ -94,3 +104,4 @@
 		</article>
 	{/each}
 	</section>
+</main>

@@ -17,6 +17,16 @@
 </script>
 
 <style>
+	main {
+		position: relative;
+		max-width: 56em;
+		background-color: white;
+		padding: 2em;
+		margin: 0 auto;
+		box-sizing: border-box;
+  }
+  
+
 	section {
 		display: flex;
 		flex-wrap: wrap;
@@ -74,34 +84,35 @@
   }
 </style>
 
+<main>
+  {#if item.mainManifest}
+    <div class='mirador'>
+      <Mirador manifest='{item.mainManifest.url}'/>
+    </div>
+  {:else if item.mainRepresentation}
+    <img class="left" alt='{item.title ? item.title : ''}' src={urlFor(item.mainRepresentation).width(300).url()} />
+  {/if}
 
-{#if item.mainManifest}
-  <div class='mirador'>
-    <Mirador manifest='{item.mainManifest.url}'/>
-  </div>
-{:else if item.mainRepresentation}
-  <img class="left" alt='{item.title ? item.title : ''}' src={urlFor(item.mainRepresentation).width(300).url()} />
-{/if}
+  <h1>{item.label}</h1>
+  {#if item.bio}
+    {@html item.bio}
+  {/if}
 
-<h1>{item.label}</h1>
-{#if item.bio}
-  {@html item.bio}
-{/if}
-
-{#if item.depictions}
-  <section>
-  <header>
-    <h2>Relatert til</h2>
-  </header>
-  {#each item.depictions as depiction, i}
-  <article class="depicted">
-      <a class="image" rel='prefetch' href='id/{depiction._id}'>
-        <img class='rounded' alt="{depiction.label}" src={urlFor(depiction.mainRepresentation).width(150).height(150).url()} />
-      </a>
-      <div class="content">
-        <h1><a rel=prefetch href='id/{depiction._id}'>{depiction.label}</a></h1>
-      </div>
-  </article>
-  {/each}
-  </section>
-{/if}
+  {#if item.depictions}
+    <section>
+    <header>
+      <h2>Relatert til</h2>
+    </header>
+    {#each item.depictions as depiction, i}
+    <article class="depicted">
+        <a class="image" rel='prefetch' href='id/{depiction._id}'>
+          <img class='rounded' alt="{depiction.label}" src={urlFor(depiction.mainRepresentation).width(150).height(150).url()} />
+        </a>
+        <div class="content">
+          <h1><a rel=prefetch href='id/{depiction._id}'>{depiction.label}</a></h1>
+        </div>
+    </article>
+    {/each}
+    </section>
+  {/if}
+</main>
