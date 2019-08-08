@@ -41,7 +41,7 @@
           data: geojson
         })
 
-        map.addControl(new mapboxgl.FullscreenControl());
+        map.addControl(new mapbox.FullscreenControl());
 
         map.addLayer({
           "id": "circle",
