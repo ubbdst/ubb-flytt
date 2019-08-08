@@ -18,6 +18,7 @@
     "@sanity/image-url": "^0.140.12",
     "@turf/turf": "^5.1.6",
     "compression": "^1.7.4",
+    "dayjs": "^1.8.15",
     "groq": "^0.140.0",
     "jsonata": "^1.6.5",
     "mapbox": "^1.0.0-beta10",

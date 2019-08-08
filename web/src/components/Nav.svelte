@@ -61,5 +61,6 @@
 		<li><a rel=prefetch class='{segment === "articles" ? "selected" : ""}' href='articles'>artikler</a></li>
 		<li><a rel=prefetch class='{segment === "actors" ? "selected" : ""}' href='actors'>aktører</a></li>
 		<li><a rel=prefetch class='{segment === "items" ? "selected" : ""}' href='items'>objekt</a></li>
+		<li><a rel=prefetch class='{segment === "timelines" ? "selected" : ""}' href='timelines'>tidslinjer</a></li>
 	</ul>
 </nav>
