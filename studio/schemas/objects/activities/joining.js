@@ -48,7 +48,7 @@ export default {
   preview: {
     select: {
       type: '_type',
-      date: 'date'
+      date: 'timespan.0.date'
     },
     prepare (selection) {
       const {type, date} = selection

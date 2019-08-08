@@ -47,13 +47,18 @@ export default {
   ],
   preview: {
     select: {
-      date: 'date',
+      bb: 'timespan.0.beginOfTheBegin',
+      eb: 'timespan.0.endOfTheBegin',
+      date: 'timespan.0.date',
+      be: 'timespan.0.beginOfTheEnd',
+      ee: 'timespan.0.endOfTheEnd',
+      blocks: 'description',
       type: '_type'
     },
     prepare (selection) {
-      const {type, date} = selection
+      const {type, bb, eb, date, be, ee} = selection
       return {
-        title: `${date || 'No date'}`,
+        title: `${date || ''}${bb || ''}${bb && eb ? '~' : ''}${eb || ''}` + `${(bb || eb) && (be || ee) ? ' / ' : ''}` + `${be || ''}${be && ee ? '~' : ''}${ee || ''}`,
         subtitle: `${capitalize(type)}`
       }
     }
