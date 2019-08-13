@@ -132,7 +132,11 @@
     const tl = await Object.assign({}, data, {
       title: {
         text: {
-          headline: title.text.headline
+          headline: title.text.headline,
+          text: title.text.text.nor ? blocksToHtml({
+                blocks: title.text.text.nor.filter(({ _key = "" }) => _key)
+              })
+            : ""
         },
         /* background: Object.assign({}, title.background, {
           color: title.background.color.hex ? title.background.color.hex : '#dddddd'
