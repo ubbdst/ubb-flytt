@@ -1,5 +1,7 @@
 <script>
-	import { onMount } from 'svelte';
+  import { onMount } from 'svelte';
+  import jsonata from 'jsonata'
+
   import { mapbox } from './mapbox.js';
   
 	export let src;
@@ -7,18 +9,51 @@
 	let container;
 	let map;
 
+  let ID = function() {
+      // Math.random should be unique because of its seeding algorithm.
+      // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+      // after the decimal.
+      return 'map_' + Math.random().toString(36).substr(2, 9);
+    };
+
+  let id = ID();
+
 	onMount(() => {
 		const link = document.createElement('link');
 		link.rel = 'stylesheet';
-		link.href = 'https://unpkg.com/mapbox-gl/dist/mapbox-gl.css';
+    link.href = 'https://unpkg.com/mapbox-gl/dist/mapbox-gl.css';
 		link.onload = () => {
 			map = new mapbox.Map({
-				container: 'map',
+				container: id,
         style: 'mapbox://styles/mapbox/streets-v9',
         center: [7.6, 60],
         zoom: 6,
         pitch: 40
       });
+
+      console.log(src);
+
+      const expression = jsonata("**.geoJSON[]");
+      
+      if (src.all) {
+        src = src.all;
+      }
+      else {
+        src = expression.evaluate(src);
+      };
+
+      if(src) {
+        src = src.map(item => {
+          let container = {}
+          container.type = 'Feature';
+          container.properties = item.properties;
+          container.geometry = {};
+          container.geometry.type = 'Point';
+          container.geometry.coordinates = [item.geometry.lng, item.geometry.lat];
+
+          return container
+        })
+      };
 
       let geojson = {
             type: 'FeatureCollection',
@@ -112,4 +147,4 @@
 	}
 </style>
 
-<div id="map"></div>
+<div id="{id}"></div>

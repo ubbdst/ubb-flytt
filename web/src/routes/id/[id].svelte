@@ -60,16 +60,8 @@
     let result = expression.evaluate(item);
 
     if(result) {
-      item.geoJSON = result.map(item => {
-        let container = {}
-        container.type = 'Feature';
-        container.properties = item.properties;
-        container.geometry = {};
-        container.geometry.type = 'Point';
-        container.geometry.coordinates = [item.geometry.lng, item.geometry.lat];
-
-        return container
-      })
+      item.geoJSON = {};
+      item.geoJSON.all = result
     };
     
     console.log(JSON.stringify(item, null, 2));

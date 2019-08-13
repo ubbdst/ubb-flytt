@@ -21,8 +21,6 @@
 <style>
   .main {
     padding: 1em;
-    background-color: rgb(34, 30, 30);
-    color: rgb(221, 217, 217)
   }
 
 	section {
@@ -36,9 +34,6 @@
   }
 
   section h2 {
-    font-size: 1.2em;
-    color: dimgrey;
-    width: 100%;
     display: block;
   }
 
@@ -54,15 +49,22 @@
     flex: 0 0 auto;
 		flex-direction: column;
     box-sizing: border-box;
-		background-color: rgb(65, 63, 63);
-		color: white;
-    margin: 1rem .25em;
-		box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
-		border-top-right-radius: 5px;
-		border-top-left-radius: 5px;
+    margin: .25em;
+    max-width: calc(15% -  1em);
 	}
-	.content h1 {
-		font-size: 0.8rem;
+
+  article.depicted .image img {
+    border-radius: 50%;
+  }
+	
+  article .content {
+		padding: 0.5rem;
+	}
+
+	article .content h1 {
+		font-size: 1rem;
+    font-weight: bolder;
+    text-align: center;
   }
   
 	article .image img {
@@ -70,10 +72,6 @@
 		border-top-right-radius: 5px;
 		border-top-left-radius: 5px;
   }
-  
-	article .content {
-		padding: 1rem;
-	}
   
   .timeline {
     padding: 1em;
@@ -98,7 +96,7 @@
   
   .timeline li div{
     display: inline-block;
-    margin: 0 0 1em 0;
+    /* margin: 0 0 1em 0; */
     vertical-align: top;
   }
   
@@ -117,7 +115,7 @@
   }  
   
   .timeline .desc {
-    width: 75%;
+    width: 90%;
   }
 
   .timeline .desc .time {
@@ -141,18 +139,19 @@
   .map {
     width: 100%;
     height: 300px;
+    margin: 1em 0;
   }
   
 	@media screen and (min-width: 40em) {
     article {
-       max-width: calc(50% -  1em);
+       max-width: calc(15% -  1em);
     }
 	}
 	
 	@media screen and (min-width: 60em) {
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(1, 1fr);
       /* grid-gap: 10px; */
       grid-auto-rows: minmax(100px, auto);
       grid-auto-flow: column;
@@ -160,33 +159,20 @@
     }
 
 		article {
-				max-width: calc(25% - 1em);
-    }
-    
-    aside {
-      border-left: 1px solid #333;
-      overflow-x: scroll
+				max-width: calc(15% - 1em);
     }
   }
 
   main {
     grid-column: 1 / 3;
   }
-  aside { 
-    grid-column: 3;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    background-color: black;
-    color: white;
-  }
+
   .metadata {
-    padding: 1em;
+    padding: 0.25em 1em;
     border-bottom: 1px solid rgb(61, 28, 17);
   }
   .metadata img.cc-icon, img.rights-icon {
-    height: 1.2em;
+    height: 1em;
     padding-top: 0.2em;
     position: relative;
     top: 0.15em;
@@ -206,6 +192,36 @@
       id={item.preferredIdentifier}
       alt={item.title}>
     </MainImage>
+
+    <div class="metadata">
+      {item.preferredIdentifier}, 
+      <a class="rights" href="{item.rights}">
+        {#if item.rights == 'https://creativecommons.org/publicdomain/mark/1.0/'}
+          <img class="cc-icon" alt="{item.rights}" src="/cc-icons/cc.svg">
+          <img class="cc-icon" alt="{item.rights}" src="/cc-icons/pd.svg">
+        {/if}
+        {#if item.rights == 'https://creativecommons.org/licenses/by/4.0/'}
+          <img class="cc-icon" alt="{item.rights}" src="/cc-icons/cc.svg">
+          <img class="cc-icon" alt="{item.rights}" src="/cc-icons/by.svg">
+        {/if}
+        {#if item.rights == 'https://creativecommons.org/publicdomain/zero/1.0/'}
+          <img class="cc-icon" alt="{item.rights}" src="/cc-icons/cc.svg">
+          <img class="cc-icon" alt="{item.rights}" src="/cc-icons/zero.svg">
+        {/if}
+        {#if item.rights == 'https://rightsstatements.org/vocab/InC/1.0/'}
+          <img class="rights-icon" alt="{item.rights}" src="/rights-statements/buttons/InC.dark-white-interior.svg">
+        {/if}
+        {#if item.rights == 'https://rightsstatements.org/vocab/InC-NC/1.0/'}
+          <img class="rights-icon" alt="{item.rights}" src="/rights-statements/buttons/NoC-NONCOMMERCIAL.dark-white-interior.svg">
+        {/if}
+        {#if item.rights == 'https://rightsstatements.org/vocab/CNE/1.0/'}
+          <img class="rights-icon" alt="{item.rights}" src="/rights-statements/buttons/Other-NOTEVALUATED.dark-white-interior.svg">
+        {/if}
+        {#if item.rights == 'https://rightsstatements.org/vocab/UND/1.0/'}
+          <img class="rights-icon" alt="{item.rights}" src="/rights-statements/buttons/Other-UNDETERMINED.dark-white-interior.svg">
+        {/if}
+      </a>
+    </div>
 
     <div class="main">
       <h1>{item.label}</h1>
@@ -257,47 +273,14 @@
       </section>
       {/if}
     </div>
-  </main>
 
-    
-  <aside>
-    {#if item.geoJSON}
+    <!-- {#if item.geoJSON}
     <div class="map">
       <Map src={item.geoJSON}></Map>
     </div>
-    {/if}
+    {/if} -->
 
-    <div class="metadata">
-      <strong>{item.preferredIdentifier}</strong>, 
-      <a class="rights" href="{item.rights}">
-        {#if item.rights == 'https://creativecommons.org/publicdomain/mark/1.0/'}
-          <img class="cc-icon" alt="{item.rights}" src="/cc-icons/cc.svg">
-          <img class="cc-icon" alt="{item.rights}" src="/cc-icons/pd.svg">
-        {/if}
-        {#if item.rights == 'https://creativecommons.org/licenses/by/4.0/'}
-          <img class="cc-icon" alt="{item.rights}" src="/cc-icons/cc.svg">
-          <img class="cc-icon" alt="{item.rights}" src="/cc-icons/by.svg">
-        {/if}
-        {#if item.rights == 'https://creativecommons.org/publicdomain/zero/1.0/'}
-          <img class="cc-icon" alt="{item.rights}" src="/cc-icons/cc.svg">
-          <img class="cc-icon" alt="{item.rights}" src="/cc-icons/zero.svg">
-        {/if}
-        {#if item.rights == 'https://rightsstatements.org/vocab/InC/1.0/'}
-          <img class="rights-icon" alt="{item.rights}" src="/rights-statements/buttons/InC.dark-white-interior.svg">
-        {/if}
-        {#if item.rights == 'https://rightsstatements.org/vocab/InC-NC/1.0/'}
-          <img class="rights-icon" alt="{item.rights}" src="/rights-statements/buttons/NoC-NONCOMMERCIAL.dark-white-interior.svg">
-        {/if}
-        {#if item.rights == 'https://rightsstatements.org/vocab/CNE/1.0/'}
-          <img class="rights-icon" alt="{item.rights}" src="/rights-statements/buttons/Other-NOTEVALUATED.dark-white-interior.svg">
-        {/if}
-        {#if item.rights == 'https://rightsstatements.org/vocab/UND/1.0/'}
-          <img class="rights-icon" alt="{item.rights}" src="/rights-statements/buttons/Other-UNDETERMINED.dark-white-interior.svg">
-        {/if}
-      </a>
-    </div>
-
-    {#if (item.activityStream && item.activityStream[0].timespan) || (item.activityStream && item.activityStream[0].carriedOutBy)}
+    {#if item.activityStream}
     <div class="timeline">
       <h2>Tidslinje</h2>
       <ul>
@@ -313,8 +296,7 @@
               {#if e.beginOfTheBegin}{e.beginOfTheBegin}{/if}{#if e.beginOfTheBegin && e.endOfTheEnd}&nbsp;- {/if}{#if e.endOfTheEnd}{e.endOfTheEnd}{/if}
             </div>
             {/each}
-            {:else}
-            <div class="time">Ukjent dato</div>
+            
             {/if}
 
             <h3>{activity._type}</h3>
@@ -332,11 +314,16 @@
               {/each}
               </p>
             {/if}
+            {#if activity.geoJSON || activity.tookPlaceAt }
+              <div class="map">
+                <Map src={activity}></Map>
+              </div>
+              {/if}
           </div>
         </li>
         {/each}
       </ul>
     </div>
     {/if}
-  </aside>
+  </main>
 </div>
