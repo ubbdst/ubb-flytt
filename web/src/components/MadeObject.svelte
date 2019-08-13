@@ -82,6 +82,7 @@
     margin: 0;
     list-style: none;
     position: relative;
+    z-index: 2;
   }
   .timeline ul::before {
     content: ' ';
@@ -91,7 +92,7 @@
     position: absolute;
     top: 0;
     left: 2.5em;
-    z-index: 1;
+    z-index: -1; 
   }
   
   .timeline li div{
@@ -101,12 +102,12 @@
   }
   
   .timeline .bullet {
+    display: inline-block;
     width: 1em;
     height: 1em;
     box-sizing: border-box;
     border-radius: 50%;
     background: white;
-    z-index: 2;
     margin-right: 1em;
   }
     
@@ -123,8 +124,8 @@
   }
   
   .timeline h3 {
-    font-size: 0.9em;
-    font-weight: 400;
+    font-size: 1em;
+    font-weight: bolder;
     margin: 0;
     text-transform: capitalize;
   }
