@@ -44,19 +44,20 @@
     let data = await client.fetch(query, { id }).catch(err => this.error(500, err))
    
     console.log(JSON.stringify(data, undefined, 2));
+    
     const events = await data.events.map(
       function (event, i) {
       if(event._type == 'event') {
         return {
           start_date: {
-            year: dayjs(event.timespan[0].beginOfTheBegin).format("YYYY"),
-            day: dayjs(event.timespan[0].beginOfTheBegin).format("DD"),
-            month: dayjs(event.timespan[0].beginOfTheBegin).format("MM")
+            year: dayjs(event.timespan[0].beginOfTheBegin ? event.timespan[0].beginOfTheBegin : event.timespan[0].date).format("YYYY"),
+            day: dayjs(event.timespan[0].beginOfTheBegin ? event.timespan[0].beginOfTheBegin : event.timespan[0].date).format("DD"),
+            month: dayjs(event.timespan[0].beginOfTheBegin ? event.timespan[0].beginOfTheBegin : event.timespan[0].date).format("MM")
           },
           end_date: {
-            year: dayjs(event.timespan[0].endOfTheEnd).format("YYYY"),
-            day: dayjs(event.timespan[0].endOfTheEnd).format("DD"),
-            month: dayjs(event.timespan[0].endOfTheEnd).format("MM")
+            year: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("YYYY"),
+            day: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("DD"),
+            month: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("MM")
           },
           media: Object.assign({}, event.media, {
             caption: event.media.caption,
@@ -75,14 +76,14 @@
       if(event._type == 'timelineSlide') {
         return {
           start_date: {
-            year: dayjs(event.timespan[0].beginOfTheBegin).format("YYYY"),
-            day: dayjs(event.timespan[0].beginOfTheBegin).format("DD"),
-            month: dayjs(event.timespan[0].beginOfTheBegin).format("MM")
+            year: dayjs(event.timespan[0].beginOfTheBegin ? event.timespan[0].beginOfTheBegin : event.timespan[0].date).format("YYYY"),
+            day: dayjs(event.timespan[0].beginOfTheBegin ? event.timespan[0].beginOfTheBegin : event.timespan[0].date).format("DD"),
+            month: dayjs(event.timespan[0].beginOfTheBegin ? event.timespan[0].beginOfTheBegin : event.timespan[0].date).format("MM")
           },
           end_date: {
-            year: dayjs(event.timespan[0].endOfTheEnd).format("YYYY"),
-            day: dayjs(event.timespan[0].endOfTheEnd).format("DD"),
-            month: dayjs(event.timespan[0].endOfTheEnd).format("MM")
+            year: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("YYYY"),
+            day: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("DD"),
+            month: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("MM")
           },
           media: Object.assign({}, event.media, {
             caption: event.media.caption,
