@@ -18,6 +18,7 @@ import localeBlockSimple from './texts/localeBlockSimple'
 import mainRepresentation from './images/mainRepresentation'
 import figure from './images/figure'
 import mediaObject from './images/mediaObject'
+
 // document schemas
 import author from './documents/author'
 import category from './documents/category'
@@ -70,6 +71,7 @@ import formation from './objects/activities/formation'
 import manifest from './objects/manifest'
 import timelineSlide from './objects/timelineSlide'
 import feature from './objects/feature'
+import externalMediaObject from './images/externalMediaObject'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -146,6 +148,7 @@ export default createSchema({
     // Image
     mainRepresentation,
     figure,
-    mediaObject
+    mediaObject,
+    externalMediaObject
   ])
 })

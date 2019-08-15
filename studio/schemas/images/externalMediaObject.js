@@ -1,7 +1,7 @@
 export default {
-  title: 'Media object',
-  name: 'mediaObject',
-  type: 'image',
+  title: 'External media object',
+  name: 'externalMediaObject',
+  type: 'object',
   options: {
     hotspot: true
   },
@@ -59,7 +59,7 @@ export default {
   ],
   preview: {
     select: {
-      imageUrl: 'asset.url',
+      imageUrl: 'url',
       title: 'caption'
     }
   }

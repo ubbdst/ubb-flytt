@@ -32,7 +32,7 @@
           },
           _type == 'timelineSlide' => @{
             ...,
-            "media": media{
+            "media": media[0]{
               caption,
               credit,
               "url": coalesce(url, asset->url)
@@ -86,12 +86,13 @@
             month: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("MM")
           },
           media: Object.assign({}, event.media, {
-            caption: event.media.caption,
-            credit: event.media.credit
+            url: event.media.url ? event.media.url : null,
+            caption: event.media.caption ? event.media.caption : null,
+            credit: event.media.credit ? event.media.credit : null,
           }),
           text: Object.assign({}, {
             headline: event.text.headline,
-            text: event.text.text
+            text: event.text.text.nor
               ? blocksToHtml({
                   blocks: event.text.text.nor.filter(({ _key = "" }) => _key)
                 })
