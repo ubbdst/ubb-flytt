@@ -30,52 +30,58 @@
 <style>
 	main {
 		position: relative;
-		max-width: 56em;
 		background-color: white;
-		padding: 2em;
 		margin: 0 auto;
-		box-sizing: border-box;
+		box-sizing: border-box;	
+	}
+
+	main > h1 {
+		padding: 1em;
+		font-size: 1em;
+		margin: 0;
+		background-color: #222;
+		color: white;
+	}
+
+	main > h1::before {
+		content: "-> "
 	}
 
 	section {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-evenly;
-		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(4, 25%);
 	}
 	article {
 		display: flex;
 		flex-direction: column;
     box-sizing: border-box;
-		background-color: rgb(65, 63, 63);
 		color: white;
-    margin: 1rem .25em;
-		box-shadow: 0px 5px 10px rgba(0,0,0,0.15);
-		border-top-right-radius: 5px;
-		border-top-left-radius: 5px;
+		background-color: #444;
+		position: relative;
+	}
+	article:nth-child(2n) {
+		background-color: #222;
+	}
+	article:nth-child(3n+1) {
+		background-color: #333;
+	}
+	article > a {
+		line-height: 0;
 	}
 	.content h1 {
-		font-size: 1.4rem;
+		font-size: 1rem;
+		font-weight: 500;
+		margin: 0;
+	}
+	.content h1 a {
+		text-decoration: none;
 	}
 	img {
 		width: 100%;
-		border-top-right-radius: 5px;
-		border-top-left-radius: 5px;
 	}
 	.content {
-		padding: 1rem;
-	}
-
-	@media screen and (min-width: 40em) {
-    article {
-       max-width: calc(50% -  1em);
-    }
-	}
-	
-	@media screen and (min-width: 60em) {
-		article {
-				max-width: calc(25% - 1em);
-		}
+		padding: 0.5rem;
+		text-align: center;
 	}
 </style>
 

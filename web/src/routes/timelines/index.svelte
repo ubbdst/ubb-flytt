@@ -1,6 +1,8 @@
 <script context="module">
 	import client from '../../sanityClient'
-  import imageUrlBuilder from '@sanity/image-url'
+	import imageUrlBuilder from '@sanity/image-url'
+	import blocksToHtml from '@sanity/block-content-to-html'
+  import serializers from '../../components/serializers'
 
 	export function preload({ params, query }) {
     return client.fetch('*[_type == "timeline"]|order(label asc)').then(items => {
@@ -66,7 +68,7 @@
 		padding: 1rem;
 	}
 
-	@media screen and (min-width: 40em) {
+	/* @media screen and (min-width: 40em) {
     article {
        max-width: calc(50% -  1em);
     }
@@ -76,7 +78,7 @@
 		article {
 				max-width: calc(25% - 1em);
 		}
-	}
+	} */
 </style>
 
 <svelte:head>
@@ -95,11 +97,16 @@
 		<article>
 			{#if item.title.media}
 			<a rel='prefetch' href='timelines/{item._id}'>
-				<img alt="{item.title.text.headline ? item.title.text.headline : ''}" src={urlFor(item.title.media).width(300).height(300).url()} />
+				<img alt="{item.title.text.headline ? item.title.text.headline : ''}" src={urlFor(item.title.media).width(1200).height(300).url()} />
 			</a>
 			{/if}
 			<div class="content">
 				<h1><a rel='prefetch' href='timelines/{item._id}'>{item.title.text.headline}</a></h1>
+				{@html item.title.text.text.nor
+              ? blocksToHtml({
+                  blocks: item.title.text.text.nor.filter(({ _key = "" }) => _key)
+                })
+              : ""}
 			</div>
 		</article>
 	{/each}

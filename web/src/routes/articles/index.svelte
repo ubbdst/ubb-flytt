@@ -36,7 +36,7 @@
 </svelte:head>
 
 <main>
-	<h1>Siste artikler</h1>
+	<h1>Artikler</h1>
 
 	<ul>
 		{#each posts as post}
