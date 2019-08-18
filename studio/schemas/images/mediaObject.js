@@ -3,7 +3,8 @@ export default {
   name: 'mediaObject',
   type: 'image',
   options: {
-    hotspot: true
+    hotspot: true,
+    metadata: ['exif', 'location', 'lqip', 'palette']
   },
   fields: [
     {

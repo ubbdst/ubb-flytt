@@ -31,8 +31,8 @@
         pitch: 40
       });
 
-      console.log(src);
-
+/*       console.log(src);
+ */
       const expression = jsonata("**.geoJSON[]");
       
       if (src.all) {
@@ -56,8 +56,9 @@
       };
 
       let geojson = {
-            type: 'FeatureCollection',
-            features: src };
+        type: 'FeatureCollection',
+        features: src 
+      };
       
       var bounds = new mapbox.LngLatBounds();
 

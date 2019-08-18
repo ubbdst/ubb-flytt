@@ -35,7 +35,7 @@
 		box-sizing: border-box;	
 	}
 
-	main > h1 {
+/* 	main > h1 {
 		padding: 1em;
 		font-size: 1em;
 		margin: 0;
@@ -45,7 +45,7 @@
 
 	main > h1::before {
 		content: "-> "
-	}
+	} */
 
 	section {
 		display: grid;
@@ -90,7 +90,7 @@
 </svelte:head>
 
 <main>
-	<h1>Aktører</h1>
+	<!-- <h1>Aktører</h1> -->
 
 	<section>
 	{#each items as item}

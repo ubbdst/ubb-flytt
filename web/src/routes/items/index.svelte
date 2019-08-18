@@ -30,62 +30,58 @@
 <style>
 	main {
 		position: relative;
-		background-color: #222;
-		padding: 2em;
+		background-color: white;
 		margin: 0 auto;
-		box-sizing: border-box;
+		box-sizing: border-box;	
 	}
 
-	main > h1 {
+/* 	main > h1 {
+		padding: 1em;
+		font-size: 1em;
+		margin: 0;
+		background-color: #222;
 		color: white;
 	}
 
+	main > h1::before {
+		content: "-> "
+	} */
+
 	section {
 		display: grid;
-		grid-template-columns: repeat(1, minmax(250px, 1fr));
-		gap: 1em;
+		grid-template-columns: repeat(4, 25%);
 	}
-
 	article {
 		display: flex;
 		flex-direction: column;
-		justify-content: flex-start;
-		align-items: flex-start;
     box-sizing: border-box;
+		color: white;
+		background-color: #444;
+		position: relative;
+	}
+	article:nth-child(2n) {
+		background-color: #222;
+	}
+	article:nth-child(3n+1) {
 		background-color: #333;
-		color: #ccc;
-		box-shadow: 0px 5px 10px rgba(0,0,0,0.95);
+	}
+	article > a {
+		line-height: 0;
 	}
 	.content h1 {
 		font-size: 1rem;
+		font-weight: 500;
+		margin: 0;
+	}
+	.content h1 a {
+		text-decoration: none;
 	}
 	img {
 		width: 100%;
 	}
-
-	.image {
-		width: 100%;
-	}
-
 	.content {
-		padding-left: 1rem;
-		width: 50%;
-	}
-
-	@media screen and (min-width: 40em) {
-		section {
-			display: grid;
-			grid-template-columns: repeat(2, minmax(250px, 1fr));
-			gap: 1em;
-		}
-	}
-	
-	@media screen and (min-width: 60em) {
-		section {
-			display: grid;
-			grid-template-columns: repeat(3, minmax(250px, 1fr));
-			gap: 1em;
-		}
+		padding: 0.5rem;
+		text-align: center;
 	}
 </style>
 
@@ -94,7 +90,7 @@
 </svelte:head>
 
 <main>
-	<h1>Objekt</h1>
+	<!-- <h1>Objekt</h1> -->
 	<section>
 	{#each items as item}
 		<!-- we're using the non-standard `rel=prefetch` attribute to
@@ -103,7 +99,7 @@
 				waiting for the 'click' event -->
 		<article>
 			<a class="image" rel='prefetch' href='id/{item._id}'>
-				<img src={urlFor(item.mainRepresentation).height(350).url()} />
+				<img alt="{item.label}" src={urlFor(item.mainRepresentation).fit('fill').height(350).width(350).url()} />
 			</a>
 			<div class="content">
 				<h1><a rel='prefetch' href='id/{item._id}'>{item.label}</a></h1>

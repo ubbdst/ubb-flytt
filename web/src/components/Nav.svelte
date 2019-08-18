@@ -9,12 +9,16 @@
 		padding: 0 1em;
 		width: 100%;
 		min-height: 3.6em;
-		z-index: 1;
+		z-index: 3;
 		font-weight: 300;
 		color: white;
 		display: flex;
 		align-items: center;
   	justify-content: space-between;
+	}
+
+	nav a {
+		padding: 0 0.5em;
 	}
 
 	nav.opaque {
@@ -30,7 +34,7 @@
 		position: absolute;
 		content: '';
 		width: calc(100% - 1em);
-		margin-left: 0.5em;
+		/* margin-left: 0.5em; */
 		height: 2px;
 		background-color: rgb(255,62,0);
 		display: block;
@@ -61,12 +65,13 @@
 		<!-- <a class='{segment === "about" ? "selected" : ""}' href='about'>om</a> -->
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 					the blog data when we hover over the link or tap it on a touchscreen -->
-		<a rel=prefetch class='{segment === "articles" ? "selected" : ""}' href='articles'>artikler</a>
-		<a rel=prefetch class='{segment === "timelines" ? "selected" : ""}' href='timelines'>tidslinjer</a>
+		<a rel=prefetch class='{segment === "articles" ? "selected" : ""}' href='articles'>Artikler</a>
+		<a rel=prefetch class='{segment === "timelines" ? "selected" : ""}' href='timelines'>Tidslinjer</a>
+		<a rel=prefetch class='{segment === "map" ? "selected" : ""}' href='map'>Kart</a>
 	</div>
 	<h1 class><a href='.'>Sælen</a></h1>
 	<div class="nav-right">
-		<a rel=prefetch class='{segment === "actors" ? "selected" : ""}' href='actors'>aktører</a>
-		<a rel=prefetch class='{segment === "items" ? "selected" : ""}' href='items'>objekt</a>
+		<a rel=prefetch class='{segment === "actors" ? "selected" : ""}' href='actors'>Aktører</a>
+		<a rel=prefetch class='{segment === "items" ? "selected" : ""}' href='items'>Objekt</a>
 	</div>
 </nav>
