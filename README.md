@@ -1,5 +1,7 @@
 # Sælen-samlingen
 
+Code base for saelen.family, using Sanity.io and Svelte [TODO refactor schema and move to Gatsby, yeah, and redesign]. 
+
 _Fully customizable blog template with a Svelte.js front-end._
 
 Deployed from [sanity.io/create](https://www.sanity.io/create?template=sanity-io/sanity-template-sapper-blog)
