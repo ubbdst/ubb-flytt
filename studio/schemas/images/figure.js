@@ -22,8 +22,8 @@ export default {
       type: 'string',
       options: {
         isHighlighted: true
-      },
-      validation: Rule => Rule.error('You have to fill out the alternative text.').required()
+      }
+      // validation: Rule => Rule.error('You have to fill out the alternative text.').required()
     }
   ],
   preview: {

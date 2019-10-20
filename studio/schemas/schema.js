@@ -72,6 +72,8 @@ import manifest from './objects/manifest'
 import timelineSlide from './objects/timelineSlide'
 import feature from './objects/feature'
 import externalMediaObject from './images/externalMediaObject'
+import era from './objects/era'
+import background from './objects/background'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -145,6 +147,8 @@ export default createSchema({
     config,
     manifest,
     timelineSlide,
+    era,
+    background,
     // Image
     mainRepresentation,
     figure,

@@ -56,6 +56,9 @@ export default {
       }
     },
     {
+      type: 'figure'
+    },
+    {
       type: 'reference',
       to: [
         {type: 'actor'},
@@ -64,7 +67,8 @@ export default {
         {type: 'group'},
         {type: 'event'},
         {type: 'material'},
-        {type: 'timeline'}
+        {type: 'timeline'},
+        {type: 'measurement'}
       ]
     }
   ]
