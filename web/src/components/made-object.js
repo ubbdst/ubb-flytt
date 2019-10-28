@@ -4,36 +4,35 @@ import React from 'react'
 import {buildImageObj} from '../lib/helpers'
 import {imageUrlFor} from '../lib/image-url'
 // import BlockContent from './block-content'
-import Container from './container'
+// import Container from './container'
 
-import styles from './project.module.css'
+import styles from './made-object.module.css'
+import ActivityStream from './activity-stream'
 
 function Project (props) {
-  const {label, mainRepresentation} = props
+  const {label, preferredIdentifier, mainRepresentation, _rawActivityStream} = props
+  console.log(_rawActivityStream)
   return (
     <article className={styles.root}>
+      <header className={styles.center}>
+        <h1 className={styles.title}>{label}</h1>
+        <p>{preferredIdentifier}</p>
+      </header>
       {props.mainRepresentation && mainRepresentation.asset && (
         <div className={styles.mainImage}>
           <img
             src={imageUrlFor(buildImageObj(mainRepresentation))
-              .width(1200)
-              .height(Math.floor((9 / 16) * 1200))
-              .fit('crop')
+              .maxWidth(980)
+              .maxHeight(700)
+              .fit('max')
               .url()}
             alt={mainRepresentation.alt}
           />
         </div>
       )}
-      <Container>
-        <div className={styles.grid}>
-          <div className={styles.mainContent}>
-            <h1 className={styles.title}>{label}</h1>
-          </div>
-          <aside className={styles.metaContent}>
-            <p>kjk</p>
-          </aside>
-        </div>
-      </Container>
+      {props._rawActivityStream && _rawActivityStream && (
+        <ActivityStream {...props._rawActivityStream} />
+      )}
     </article>
   )
 }

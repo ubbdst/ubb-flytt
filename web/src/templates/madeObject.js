@@ -2,7 +2,7 @@ import React from 'react'
 import {graphql} from 'gatsby'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
-import Project from '../components/project'
+import MadeObject from '../components/made-object'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
 
@@ -44,7 +44,7 @@ const MadeObjectTemplate = props => {
           <GraphQLErrorList errors={errors} />
         </Container>
       )}
-      {madeObject && <Project {...madeObject} />}
+      {madeObject && <MadeObject {...madeObject} />}
     </Layout>
   )
 }

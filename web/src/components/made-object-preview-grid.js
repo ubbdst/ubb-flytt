@@ -1,34 +1,34 @@
 import {Link} from 'gatsby'
 import React from 'react'
-import ProjectPreview from './project-preview'
+import MadeObjectPreview from './made-object-preview'
 
-import styles from './project-preview-grid.module.css'
+import styles from './made-object-preview-grid.module.css'
 
-function ProjectPreviewGrid (props) {
+function MadeObjectPreviewGrid (props) {
   return (
     <div className={styles.root}>
-      {props.label && <h2 className={styles.headline}>{props.label}</h2>}
+      {props.title && <h2 className={styles.headline}>{props.title}</h2>}
       <ul className={styles.grid}>
         {props.nodes &&
           props.nodes.map(node => (
             <li key={node.id}>
-              <ProjectPreview {...node} />
+              <MadeObjectPreview {...node} />
             </li>
           ))}
       </ul>
       {props.browseMoreHref && (
         <div className={styles.browseMoreNav}>
-          <Link to={props.browseMoreHref}>Browse more</Link>
+          <Link to={props.browseMoreHref}>Se flere</Link>
         </div>
       )}
     </div>
   )
 }
 
-ProjectPreviewGrid.defaultProps = {
+MadeObjectPreviewGrid.defaultProps = {
   title: '',
   nodes: [],
   browseMoreHref: ''
 }
 
-export default ProjectPreviewGrid
+export default MadeObjectPreviewGrid

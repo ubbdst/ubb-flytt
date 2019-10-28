@@ -8,7 +8,7 @@ import SEO from '../components/seo'
 import Layout from '../containers/layout'
 
 export const query = graphql`
-  query IndexPageQuery {
+  query MadeObjectssPageQuery {
     site: sanitySiteSettings(_id: {regex: "/(drafts.|)siteSettings/"}) {
       title
       description
@@ -16,12 +16,12 @@ export const query = graphql`
     }
     madeObjects: allSanityMadeObject(
       sort: {fields: _createdAt, order: DESC},
-      limit: 6
     ) {
       edges {
         node {
           id
           label
+          preferredIdentifier
           _rawActivityStream(resolveReferences: {maxDepth: 10})
           mainRepresentation {
             asset {
@@ -40,7 +40,7 @@ export const query = graphql`
   }
 `
 
-const IndexPage = props => {
+const MadeObjectsPage = props => {
   const {data, errors} = props
 
   if (errors) {
@@ -71,7 +71,7 @@ const IndexPage = props => {
           <MadeObjectPreviewGrid
             title='Sist registrerte objekt'
             nodes={madeObjectNodes}
-            browseMoreHref='/made-object/'
+            browseMoreHref='/madeobject/'
           />
         )}
       </Container>
@@ -79,4 +79,4 @@ const IndexPage = props => {
   )
 }
 
-export default IndexPage
+export default MadeObjectsPage

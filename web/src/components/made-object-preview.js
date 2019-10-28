@@ -4,10 +4,10 @@ import {cn, buildImageObj} from '../lib/helpers'
 import {imageUrlFor} from '../lib/image-url'
 import BlockText from './block-text'
 
-import styles from './project-preview.module.css'
+import styles from './made-object-preview.module.css'
 import {responsiveTitle3} from './typography.module.css'
 
-function ProjectPreview (props) {
+function MadeObjectPreview (props) {
   return (
     <Link className={styles.root} to={`/made-object/${props.id}`}>
       <div className={styles.leadMediaThumb}>
@@ -31,4 +31,4 @@ function ProjectPreview (props) {
   )
 }
 
-export default ProjectPreview
+export default MadeObjectPreview
