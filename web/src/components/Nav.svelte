@@ -14,7 +14,13 @@
 		color: white;
 		display: flex;
 		align-items: center;
-  	justify-content: space-between;
+  		justify-content: space-between;
+	}
+
+	@media screen and (max-width: 40em) {
+		nav {
+			bottom: 0;
+		}
 	}
 
 	nav a {
