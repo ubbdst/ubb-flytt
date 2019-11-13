@@ -59,8 +59,10 @@
   {/if}
 
   
-  {#if item.bio}
-    {@html item.bio}
+  {#if item.description}
+  <p class="content is-medium">
+    {@html item.description}
+  </p>
   {/if}
 
   {#if item.activityStream}
