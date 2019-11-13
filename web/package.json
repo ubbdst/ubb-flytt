@@ -17,6 +17,7 @@
     "@sanity/client": "^0.140.17",
     "@sanity/image-url": "^0.140.12",
     "@turf/turf": "^5.1.6",
+    "bulma": "^0.8.0",
     "compression": "^1.7.4",
     "dayjs": "^1.8.15",
     "groq": "^0.140.0",

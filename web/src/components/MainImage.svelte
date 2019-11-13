@@ -26,7 +26,6 @@
     margin: 0;
     color: dimgrey;
     width: 100%;
-    background-color: black;
     padding-bottom: 1em;
     display: flex;
     flex-direction: column;
@@ -37,6 +36,7 @@
     max-height: 70vh;
     max-width: 100%;
     margin: 0 auto;
+    border: 2em solid #222;
   }
 
 /*   figcaption {

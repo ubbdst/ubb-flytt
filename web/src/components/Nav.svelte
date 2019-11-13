@@ -3,81 +3,46 @@
 </script>
 
 <style>
-	nav {
-		position: fixed;
-		box-sizing: border-box;
-		padding: 0 1em;
-		width: 100%;
-		min-height: 3.6em;
-		z-index: 3;
-		font-weight: 300;
-		color: white;
-		display: flex;
-		align-items: center;
-  		justify-content: space-between;
-	}
-
-	@media screen and (max-width: 40em) {
-		nav {
-			bottom: 0;
-		}
-	}
-
-	nav a {
-		padding: 0 0.5em;
-	}
-
-	nav.opaque {
-		background-color: black;
-	}
-
-	.selected {
-		position: relative;
-		display: inline-block;
-	}
-
-	.selected::after {
-		position: absolute;
-		content: '';
-		width: calc(100% - 1em);
-		/* margin-left: 0.5em; */
-		height: 2px;
-		background-color: rgb(255,62,0);
-		display: block;
-		bottom: -1px;
-	}
-
-	nav h1 {
-		text-align: center;
-		width: 30%;
-		margin-top: 0.3em;
-		font-family: 'Vampiro One', sans-serif;
-		color: white;
-	}
-	.nav-left, .nav-right {
-		width: 35%;
-	}
-	.nav-right {
-		text-align: right;
-	}
-	
-	nav a, nav h1 a {
-		text-decoration: none;
-	}
+.title {
+	font-weight: lighter;
+	margin-top: 0.5em;
+}
+.level{
+	margin-bottom: 0.3em;
+}
+.level-item {
+	font-weight: lighter;
+	margin-top: 0;
+}
+nav.level{
+	margin-bottom: 4em;
+}
 </style>
 
-<nav class='{segment === undefined ? "" : "opaque"}'>
-	<div class="nav-left">
+<div class="fluid-container">
+<div class="level">
+	<div class="level-item has-text-centered">
+		<h1 class="title">
+			<a class="has-text-black" href=".">
+				Sælen-samlingen
+			</a>
+		</h1>
+
+		<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</a>
+	</div>
+</div>
+<nav class="container level">
 		<!-- <a class='{segment === "about" ? "selected" : ""}' href='about'>om</a> -->
 		<!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
 					the blog data when we hover over the link or tap it on a touchscreen -->
-		<a rel=prefetch class='{segment === "articles" ? "selected" : ""}' href='articles'>Artikler</a>
-		<a rel=prefetch class='{segment === "timelines" ? "selected" : ""}' href='timelines'>Tidslinjer</a>
-		<a rel=prefetch class='{segment === "map" ? "selected" : ""}' href='map'>Kart</a>
-	</div>
-	<h1 class><a href='.'>Sælen</a></h1>
-	<div class="nav-right">
-		<a rel=prefetch class='{segment === "actors" ? "selected" : ""}' href='actors'>Aktører</a>
-		<a rel=prefetch class='{segment === "items" ? "selected" : ""}' href='items'>Objekt</a>
-	</div>
+	<a rel=prefetch class='level-item has-text-black {segment === "articles" ? "selected" : ""}' href='articles'>Artikler</a>
+	<a rel=prefetch class='level-item has-text-black {segment === "timelines" ? "selected" : ""}' href='timelines'>Tidslinjer</a>
+	<a rel=prefetch class='level-item has-text-black {segment === "map" ? "selected" : ""}' href='map'>Kart</a>
+	<a rel=prefetch class='level-item has-text-black {segment === "actors" ? "selected" : ""}' href='actors'>Aktører</a>
+	<a rel=prefetch class='level-item has-text-black {segment === "items" ? "selected" : ""}' href='items'>Objekt</a>
 </nav>
+</div>

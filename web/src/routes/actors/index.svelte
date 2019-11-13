@@ -28,84 +28,42 @@
 </script>
 
 <style>
-	main {
-		position: relative;
-		background-color: white;
-		margin: 0 auto;
-		box-sizing: border-box;	
-	}
-
-/* 	main > h1 {
-		padding: 1em;
-		font-size: 1em;
-		margin: 0;
-		background-color: #222;
-		color: white;
-	}
-
-	main > h1::before {
-		content: "-> "
-	} */
-
-	section {
-		display: grid;
-		grid-template-columns: repeat(4, 25%);
-	}
-	article {
-		display: flex;
-		flex-direction: column;
-    box-sizing: border-box;
-		color: white;
-		background-color: #444;
-		position: relative;
-	}
-	article:nth-child(2n) {
-		background-color: #222;
-	}
-	article:nth-child(3n+1) {
-		background-color: #333;
-	}
-	article > a {
-		line-height: 0;
-	}
-	.content h1 {
-		font-size: 1rem;
-		font-weight: 500;
-		margin: 0;
-	}
-	.content h1 a {
-		text-decoration: none;
-	}
-	img {
-		width: 100%;
-	}
-	.content {
-		padding: 0.5rem;
-		text-align: center;
-	}
+.container{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+	grid-template-rows: auto;
+	grid-gap: 1em;
+}
 </style>
+
 
 <svelte:head>
 	<title>Aktører</title>
 </svelte:head>
 
-<main>
+<main class="section">
 	<!-- <h1>Aktører</h1> -->
 
-	<section>
+	<section class="container">
 	{#each items as item}
 		<!-- we're using the non-standard `rel=prefetch` attribute to
 				tell Sapper to load the data for the page as soon as
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
-		<article>
+		<article class="card">
 			{#if item.mainRepresentation}
-			<a rel='prefetch' href='id/{item._id}'>
-				<img alt="{item.label ? item.label : ''}" src={urlFor(item.mainRepresentation).width(300).height(300).url()} />
+			<a class="card-image" rel='prefetch' href='id/{item._id}'>
+				<figure class="image">
+					<img alt="{item.label ? item.label : ''}" src={urlFor(item.mainRepresentation).width(300).height(300).url()} />
+				</figure>
 			</a>
 			{/if}
-			<div class="content">
-				<h1><a rel='prefetch' href='id/{item._id}'>{item.label}</a></h1>
+			<div class="card-content">
+				<div class="media">
+					<div class="media-content">
+						<p class="title"><a class="has-text-black" rel='prefetch' href='id/{item._id}'>{item.label}</a></p>
+					</div>
+				</div>
 			</div>
 		</article>
 	{/each}

@@ -56,14 +56,13 @@
 <script>
   import Map from '../../components/Map.svelte';
   
-  
   export let src;
 </script>
 
 <style>
   .map {
-    width: 100%;
     height: 80vh;
+    margin-top: 2em;
   }
 </style>
 
@@ -72,7 +71,7 @@
 </svelte:head>
 
 {#if src}
-<div class="map">
+<div class="container map">
   <Map src={src}></Map>
 </div>
 {/if}
