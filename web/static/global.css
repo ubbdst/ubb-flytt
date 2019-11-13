@@ -4,6 +4,10 @@ h1.title{
 	font-family: 'Noto Serif', serif;
 }
 
+a {
+	color: black !important;
+}
+
 .box{
 	margin-top: 2em;
 }
