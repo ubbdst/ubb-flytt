@@ -20,7 +20,6 @@
 		width: 100%;
 		height: 70vh;
 		margin-top: -2em;
-		margin-bottom: 2em;
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -34,20 +33,22 @@
 
 <section class="hero is-primary"></section>
 
-<main class="container">
-	<h1 class="title">{data.siteSettings[0].title}</h1>
-	<h2 class="subtitle">{data.siteSettings[0].description}</h2>
+<section class="section">
+	<div class="container">
+		<h1 class="title">{data.siteSettings[0].title}</h1>
+		<h2 class="subtitle">{data.siteSettings[0].description}</h2>
 
-	<ul>
-	{#each data.articles as post}
-		<!-- we're using the non-standard `rel=prefetch` attribute to
-				tell Sapper to load the data for the page as soon as
-				the user hovers over the link or taps it, instead of
-				waiting for the 'click' event -->
-		<li class="post">
-			<h1><a rel='prefetch' href='articles/{post.slug.current}'>{post.title}</a></h1>
-			<h2>({formatDate(post.publishedAt)})</h2>
-		</li>
-	{/each}
-	</ul>
-</main>
+		<ul>
+		{#each data.articles as post}
+			<!-- we're using the non-standard `rel=prefetch` attribute to
+					tell Sapper to load the data for the page as soon as
+					the user hovers over the link or taps it, instead of
+					waiting for the 'click' event -->
+			<li class="post">
+				<h1><a rel='prefetch' href='articles/{post.slug.current}'>{post.title}</a></h1>
+				<h2>({formatDate(post.publishedAt)})</h2>
+			</li>
+		{/each}
+		</ul>
+	</div>
+</section>

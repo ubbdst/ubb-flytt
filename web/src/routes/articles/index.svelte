@@ -25,7 +25,7 @@
 
 <main class="section">
 	<section class="container">
-		<h1>Artikler</h1>
+		<h1 class="title has-text-centered">Artikler</h1>
 
 		<ul>
 			{#each posts as post}

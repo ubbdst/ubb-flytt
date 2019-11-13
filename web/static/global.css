@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif&display=swap');
 
-main > h1.title{
+h1.title{
 	font-family: 'Noto Serif', serif;
 }
 
@@ -8,13 +8,12 @@ main > h1.title{
 	margin-top: 2em;
 }
 
-
 .timeline {
 	padding: 1em;
 }
 
 .timeline ul {
-	padding: 0.5em 0 0 2em;
+	padding: 0.5em 0 0 0;
 	margin: 0;
 	list-style: none;
 	position: relative;
@@ -27,8 +26,12 @@ main > h1.title{
 	background-color: lightgray;
 	position: absolute;
 	top: 0;
-	left: 2.5em;
+	left: 0.49em;
 	z-index: -1; 
+}
+
+.timeline li{
+	margin-bottom: 0.5em;
 }
 
 .timeline li div{
@@ -44,7 +47,7 @@ main > h1.title{
 	box-sizing: border-box;
 	border-radius: 50%;
 	background: white;
-	margin-right: 1em;
+	margin-right: -1em;
 }
 	
 .timeline .bullet.pink {
@@ -52,15 +55,12 @@ main > h1.title{
 }  
 
 .timeline .desc {
-	width: 90%;
-}
-
-.timeline .desc .time {
-	font-size: 0.8em;
+	width: 97%;
+	padding-left: 2em;
+	margin-top: -0.3em;
 }
 
 .timeline h3 {
-	font-size: 1em;
 	font-weight: bolder;
 	margin: 0;
 	text-transform: capitalize;
@@ -68,7 +68,6 @@ main > h1.title{
 
 .timeline p {
 	margin: 0;
-	font-size: 0.7em;
 	font-weight: 400;
 	color: dark-grey;
 }

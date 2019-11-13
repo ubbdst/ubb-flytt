@@ -41,7 +41,7 @@
 </svelte:head>
 
 <main class="section">
-	<!-- <h1>Objekt</h1> -->
+	<h1 class="title has-text-centered">Objekt</h1>
 	<section class="container">
 	{#each items as item}
 		<!-- we're using the non-standard `rel=prefetch` attribute to
