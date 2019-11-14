@@ -46,6 +46,11 @@
   figcaption a {
     text-decoration: none;
   } */
+  .mirador{
+    width: 100%;
+    height: 70vh;
+    position: relative;
+  }
 </style>
 
 {#if manifest}

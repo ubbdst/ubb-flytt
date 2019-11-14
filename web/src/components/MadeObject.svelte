@@ -97,7 +97,7 @@
 
     <MainImage 
       image={item.mainRepresentation}
-      manifest={item.mainManifest && item.mainManifest.url ? item.mainManifest.url : ''}
+      manifest={item.mainManifest ? item.mainManifest : ''}
       rights={item.rights}
       id={item.preferredIdentifier}
       alt={item.title}>
