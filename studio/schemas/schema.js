@@ -5,7 +5,6 @@ import createSchema from 'part:@sanity/base/schema-creator'
 import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // Singletons
-import config from './singletons/config'
 
 // Texts
 import genericText from './texts/genericText'
@@ -142,7 +141,6 @@ export default createSchema({
     localeBlock,
     localeBlockSimple,
     localeString,
-    config,
     manifest,
     timelineSlide,
     // Image
