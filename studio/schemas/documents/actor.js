@@ -68,7 +68,7 @@ export default {
       type: 'array',
       of: [
         {type: 'birth'},
-        {type: 'activity'},
+        {type: 'reference', to: [{type: 'activity'}]},
         {type: 'death'}
       ],
       options: {

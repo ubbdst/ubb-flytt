@@ -33,7 +33,8 @@ export const activityTypes = [
   {title: 'Add', value: 'add'},
   {title: 'Remove', value: 'remove'},
   {title: 'Correspondance', value: 'correspondance'},
-  {title: 'Use', value: 'use'}
+  {title: 'Use', value: 'use'},
+  {title: 'Marriage', value: 'marriage'}
 ]
 
 export const units = [
