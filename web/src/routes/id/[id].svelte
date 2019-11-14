@@ -20,6 +20,17 @@
         }
       },
       activityStream[]{
+        _type == 'reference' => @->{
+          ...,
+          carriedOutBy[]{
+            ...,
+            actor->{
+              _id,
+              label,
+              mainRepresentation
+        	  }
+          }
+        },
         ...,
         tookPlaceAt[]->,
         carriedOutBy[]{
