@@ -2,7 +2,7 @@ export default {
   name: 'siteSettings',
   type: 'document',
   title: 'Site Settings',
-  __experimental_actions: [/*'create',*/ 'update', /*'delete',*/ 'publish'],
+  __experimental_actions: ['update', 'publish'],
   fields: [
     {
       name: 'title',
@@ -30,7 +30,7 @@ export default {
       type: 'reference',
       description: 'Publish an author and set a reference to them here.',
       title: 'Author',
-      to: [{type: 'author'}]
+      to: [{type: 'actor'}]
     }
   ]
 }

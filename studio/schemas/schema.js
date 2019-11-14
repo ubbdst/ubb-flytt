@@ -19,7 +19,6 @@ import figure from './images/figure'
 import mediaObject from './images/mediaObject'
 
 // document schemas
-import author from './documents/author'
 import category from './documents/category'
 import post from './documents/post'
 import siteSettings from './documents/siteSettings'
@@ -84,7 +83,6 @@ export default createSchema({
     siteSettings,
     post,
     category,
-    author,
     mainImage,
     authorReference,
     bodyPortableText,

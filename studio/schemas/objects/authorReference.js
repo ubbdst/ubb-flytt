@@ -8,14 +8,14 @@ export default {
       type: 'reference',
       to: [
         {
-          type: 'author'
+          type: 'actor'
         }
       ]
     }
   ],
   preview: {
     select: {
-      title: 'author.name',
+      title: 'author.label',
       media: 'author.image.asset'
     }
   }

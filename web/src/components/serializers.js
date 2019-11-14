@@ -17,7 +17,7 @@ export default {
           .auto('format')
           .url()
       }),
-    authorReference: ({ node }) => h('b', {}, node.author.name),
+    authorReference: ({ node }) => h('b', {}, h('a', {'href': '/id/' + node.author._id}, node.author.label)),
     code: ({ node }) =>
       h('pre', { 'data-language': node.language }, h('code', {}, node.code))
   }
