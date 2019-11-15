@@ -18,12 +18,11 @@
 <style>
 	.hero {
 		width: 100%;
-		height: 70vh;
-		margin-top: -2em;
+		height: 60vh;
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
-		background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0)), url('https://cdn.sanity.io/images/e56ijdvg/production/07dfa9cdc998f60c49fba21624ac9cd5ab34b428-3264x2448.jpg?w=1200')
+		background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0)), url('https://cdn.sanity.io/images/e56ijdvg/production/07dfa9cdc998f60c49fba21624ac9cd5ab34b428-3264x2448.jpg?w=1200')
 	}
 </style>
 
@@ -31,12 +30,19 @@
 	<title>Sælen-samlingen</title>
 </svelte:head>
 
-<section class="hero is-primary"></section>
+<section class="hero is-primary">
+	<div class="hero-body">
+    <div class="container">
+      <h1 class="title">{data.siteSettings[0].title}</h1>
+
+      <h2 class="subtitle">{data.siteSettings[0].description}</h2>
+
+    </div>
+  </div>
+</section>
 
 <section class="section">
 	<div class="container">
-		<h1 class="title">{data.siteSettings[0].title}</h1>
-		<h2 class="subtitle">{data.siteSettings[0].description}</h2>
 
 		<ul>
 		{#each data.articles as post}
