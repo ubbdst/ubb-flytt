@@ -1,4 +1,5 @@
 <script>
+  import ActivityStream from './ActivityStream'
   import client from '../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
 
@@ -167,50 +168,9 @@
     </div>
     {/if} -->
 
-    {#if item.activityStream}
-    <div class="box timeline">
-      <h2 class="title has-text-centered">Tidslinje</h2>
-      <ul>
-        {#each item.activityStream as activity, i}
-        <li>
-          <div class="bullet pink"></div>
-
-          <div class="desc">
-            {#if activity.timespan}
-            {#each activity.timespan as e, i}
-            <div class="time">
-              {#if e.date}{formatDate(e.date)}{/if}
-              {#if e.beginOfTheBegin}{formatDate(e.beginOfTheBegin)}{/if}{#if e.beginOfTheBegin && e.endOfTheEnd}&nbsp;- {/if}{#if e.endOfTheEnd}{formatDate(e.endOfTheEnd)}{/if}
-            </div>
-            {/each}
-            
-            {/if}
-
-            <h3>{activity._type}</h3>
-            {#if activity.carriedOutBy && activity.carriedOutBy.length > 0}
-              <p>
-              {#each activity.carriedOutBy as actor, i}
-                <span><a alt="{actor.actor.label}" href="id/{actor.actor._id}">{actor.actor.label}</a></span>
-              {/each}
-              </p>
-            {/if}
-            {#if activity.tookPlaceAt && activity.tookPlaceAt.length > 0}
-              <p>
-              {#each activity.tookPlaceAt as place, i}
-                <span>{place.title}</span>
-              {/each}
-              </p>
-            {/if}
-            {#if activity.geoJSON || activity.tookPlaceAt }
-              <div class="map">
-                <Map src={activity}></Map>
-              </div>
-              {/if}
-          </div>
-        </li>
-        {/each}
-      </ul>
-    </div>
+   {#if item.activityStream}
+      <ActivityStream stream={item.activityStream}></ActivityStream>
     {/if}
+
   </div>
 </main>

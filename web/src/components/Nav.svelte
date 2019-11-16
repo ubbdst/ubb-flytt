@@ -25,7 +25,7 @@
 }
 </style>
 
-<div class="level is-hidden-mobile">
+<div class="level is-marginless is-hidden-mobile">
 	<p class="level-item has-text-centered">
     <a href="/" class="link brand">S</a>
   </p>
