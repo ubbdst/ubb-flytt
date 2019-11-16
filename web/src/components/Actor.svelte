@@ -1,5 +1,6 @@
 <script>
   import ActivityStream from './ActivityStream'
+  import Cards from './Cards'
   import client from '../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
   import Mirador from './Mirador3'
@@ -33,13 +34,6 @@
     height: 15em;
     margin-bottom: 2em;
   }
-
-  .cards{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
-    grid-template-rows: auto;
-    grid-gap: 1em;
-  }
 </style>
 
 <main class="section">
@@ -63,31 +57,11 @@
     {/if}
 
     {#if item.activityStream}
-      <ActivityStream stream={item.activityStream}></ActivityStream>
+    <ActivityStream stream={item.activityStream}></ActivityStream>
     {/if}
 
     {#if item.referencedBy}
-    <div class="box">
-      <h2 class="title has-text-centered">Relatert til</h2>
-      <section class="cards">  
-        {#each item.referencedBy as reference, i}
-        <article class="card">
-            <a class="card-image" rel='prefetch' href='id/{reference._id}'>
-              <figure class="image">
-                <img class='rounded' alt="{reference.label}" src={urlFor(reference.mainRepresentation).width(250).height(250).url()} />
-              </figure>
-            </a>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title"><a rel=prefetch href='id/{reference._id}'>{reference.label}</a></p>
-                </div>
-              </div>
-            </div>
-        </article>
-        {/each}
-      </section>
-    </div>
+    <Cards cards={item.referencedBy} title="Relatert til"></Cards>
     {/if}
   </div>
 </main>
