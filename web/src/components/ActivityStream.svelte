@@ -44,10 +44,9 @@
           {#if e.beginOfTheBegin}{formatDate(e.beginOfTheBegin)}{/if}{#if e.beginOfTheBegin && e.endOfTheEnd}&nbsp;- {/if}{#if e.endOfTheEnd}{formatDate(e.endOfTheEnd)}{/if}
         </div>
         {/each}
-        
         {/if}
 
-        <h3>{activity._type}</h3>
+        <h3>{activity.activityType ? activity.activityType : activity._type}</h3>
         {#if activity.carriedOutBy && activity.carriedOutBy.length > 0}
           <p>
           {#each activity.carriedOutBy as actor, i}
