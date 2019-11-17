@@ -72,6 +72,7 @@ import manifest from './objects/manifest'
 import timelineSlide from './objects/timelineSlide'
 import feature from './objects/feature'
 import externalMediaObject from './images/externalMediaObject'
+import slider from './objects/slider'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -137,6 +138,7 @@ export default createSchema({
     manifest,
     timelineSlide,
     part,
+    slider,
     // Text
     genericText,
     reportText,

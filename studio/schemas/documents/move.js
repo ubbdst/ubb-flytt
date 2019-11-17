@@ -35,6 +35,21 @@ export default {
       }
     },
     {
+      title: 'Carried out by',
+      name: 'carriedOutBy',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'actor', title: 'Actor'}]}
+      ]
+    },
+    {
+      title: 'Timespan',
+      name: 'timespan',
+      type: 'array',
+      of: [{type: 'timespan'}],
+      validation: Rule => Rule.length(1).warning('You should only register one timespan')
+    },
+    {
       title: 'Moved',
       name: 'moved',
       type: 'array',
@@ -47,35 +62,25 @@ export default {
       ]
     },
     {
+      title: 'Description',
+      name: 'description',
+      type: 'genericText'
+    },
+    {
       title: 'Moved from',
       name: 'movedFrom',
-      type: 'array',
-      of: [
-        {type: 'reference',
-          to: [
-            {type: 'place'}
-          ]
-        }
+      type: 'reference',
+      to: [
+        {type: 'place'}
       ]
     },
     {
       title: 'Moved to',
       name: 'movedTo',
-      type: 'array',
-      of: [
-        {type: 'reference',
-          to: [
-            {type: 'place'}
-          ]
-        }
+      type: 'reference',
+      to: [
+        {type: 'place'}
       ]
-    },
-    {
-      title: 'Timespan',
-      name: 'timespan',
-      type: 'array',
-      of: [{type: 'timespan'}],
-      validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
       title: 'Motivated by',
@@ -88,11 +93,6 @@ export default {
           ]
         }
       ]
-    },
-    {
-      title: 'Description',
-      name: 'description',
-      type: 'genericText'
     }
   ],
   preview: {

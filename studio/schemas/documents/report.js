@@ -47,34 +47,12 @@ export default {
       type: 'string'
     },
     {
-      title: 'Overall condition',
-      name: 'overallCondition',
-      description: '1 is horrible, 100 is MINT!',
-      type: 'number',
-      options: {
-        layout: 'slider',
-        range: {min: 1, max: 100, step: 1}
-      }
-    },
-    {
-      title: 'Ink condition',
-      name: 'inkCondition',
-      description: '1 is horrible, 100 is MINT!',
-      type: 'number',
-      options: {
-        layout: 'slider',
-        range: {min: 1, max: 100, step: 1}
-      }
-    },
-    {
-      title: 'Binding condition',
-      name: 'bindingCondition',
-      description: '1 is horrible, 100 is MINT!',
-      type: 'number',
-      options: {
-        layout: 'slider',
-        range: {min: 1, max: 100, step: 1}
-      }
+      title: 'Condition assignment',
+      name: 'conditionAssignment',
+      type: 'array',
+      of: [
+        {type: 'slider'}
+      ]
     },
     {
       title: 'Classified as',
