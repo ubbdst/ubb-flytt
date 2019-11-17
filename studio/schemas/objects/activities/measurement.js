@@ -22,8 +22,10 @@ export default {
     {
       title: 'Carried out by',
       name: 'carriedOutBy',
-      type: 'reference',
-      to: [{type: 'actor', title: 'Actor'}]
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'actor', title: 'Actor'}]}
+      ]
     },
     {
       title: 'Dimension',

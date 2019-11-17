@@ -8,10 +8,12 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 
 // Texts
 import genericText from './texts/genericText'
+import reportText from './texts/reportText'
 import simpleText from './texts/simpleText'
 import localeBlock from './texts/localeBlock'
 import localeString from './texts/localeString'
 import localeBlockSimple from './texts/localeBlockSimple'
+import localeBlockReport from './texts/localeBlockReport'
 
 // Images
 import mainRepresentation from './images/mainRepresentation'
@@ -132,15 +134,18 @@ export default createSchema({
     feature,
     identifier,
     experimental,
+    manifest,
+    timelineSlide,
     part,
+    // Text
     genericText,
+    reportText,
     simpleText,
     typeClass,
     localeBlock,
     localeBlockSimple,
+    localeBlockReport,
     localeString,
-    manifest,
-    timelineSlide,
     // Image
     mainRepresentation,
     figure,

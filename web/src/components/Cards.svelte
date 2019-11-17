@@ -42,7 +42,7 @@
         <div class="card-content">
           <div class="media">
             <div class="media-content">
-              <p class="title"><a rel=prefetch href='id/{card._id}'>{card.label}</a></p>
+              <p class="title"><a rel=prefetch href='id/{card._id}'>{card.label ? card.label : card.title}</a></p>
             </div>
           </div>
         </div>

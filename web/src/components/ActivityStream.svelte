@@ -61,6 +61,13 @@
           {/each}
           </p>
         {/if}
+        {#if activity.observedDimension && activity.observedDimension.length > 0}
+          <p>
+          {#each activity.observedDimension as dimension, i}
+            <span style="display: block;"><strong>{dimension.hasType}:</strong> {dimension.value} {dimension.hasUnit}</span>
+          {/each}
+          </p>
+        {/if}
         {#if activity.geoJSON || activity.tookPlaceAt }
           <div class="map">
             <Map src={activity}></Map>

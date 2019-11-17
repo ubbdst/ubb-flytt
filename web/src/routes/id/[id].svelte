@@ -11,13 +11,23 @@
     const filter = '*[_id == $id][0]'
     const projection = `{
       ...,
-      description[]{
+      description{
         nor[]{
+          _type == 'reference' => @->{
+            _id,
+            label,
+            mainRepresentation
+        	},
           ...,
           children[]{
             ...
           }
         }
+      },
+      concerned[]->{
+        _id,
+        label,
+        mainRepresentation
       },
       activityStream[]{
         _type == 'reference' => @->{
@@ -34,6 +44,13 @@
         ...,
         tookPlaceAt[]->,
         carriedOutBy[]{
+          _type == 'reference' => @->{
+            'actor': {
+              _id,
+              label,
+              mainRepresentation
+            }
+          },
           ...,
           actor->{
           	_id,
@@ -88,6 +105,7 @@
   import Map from '../../components/Map.svelte';
   import MadeObject from '../../components/MadeObject.svelte';
   import Actor from '../../components/Actor.svelte';
+  import Report from '../../components/Report.svelte';
 
   export let item;
 </script>
@@ -107,9 +125,7 @@
 {#if item._type == 'actor'}
   <Actor item={item}></Actor>
 {/if}
-<!-- 
-{#if item.geoJSON}
-<div class="map">
-  <Map src={item.geoJSON}></Map>
-</div>
-{/if} -->
+
+{#if item._type == 'report'}
+  <Report item={item}></Report>
+{/if}

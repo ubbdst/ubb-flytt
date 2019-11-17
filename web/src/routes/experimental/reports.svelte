@@ -1,0 +1,47 @@
+<script context="module">
+  import Cards from '../../components/Cards'
+
+	import client from '../../sanityClient'
+  import imageUrlBuilder from '@sanity/image-url'
+
+	export function preload({ params, query }) {
+    return client.fetch('*[_type == "report" && accessState == "open"]|order(preferredIdentifier desc)').then(items => {
+			return { items };
+		}).catch(err => this.error(500, err));
+	}
+</script>
+
+<script>
+  export let items;
+
+  function formatDate(date) {
+    return new Date(date).toLocaleDateString()
+	}
+	
+	// Get a pre-configured url-builder from your sanity client
+  const builder = imageUrlBuilder(client)
+
+  // Then we like to make a simple function like this that gives the
+  // builder an image and returns the builder for you to specify additional
+  // parameters:
+  function urlFor(source) {
+    return builder.image(source)
+  }
+</script>
+
+<style>
+.container{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+	grid-template-rows: auto;
+	grid-gap: 1em;
+}
+</style>
+
+<svelte:head>
+	<title>Objekt</title>
+</svelte:head>
+
+<main class="section">
+  <Cards cards={items} title="Rapporter"></Cards>
+</main>

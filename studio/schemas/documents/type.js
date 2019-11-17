@@ -4,9 +4,38 @@ export default {
   type: 'document',
   fields: [
     {
-      title: 'Title',
-      name: 'title',
-      type: 'string'
+      title: 'Preferred label',
+      name: 'prefLabel',
+      type: 'localeString'
+    },
+    {
+      title: 'Alternative label',
+      name: 'altLabel',
+      type: 'localeString'
+    },
+    {
+      title: 'Domain',
+      name: 'domain',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'typeClass'}]}
+      ]
+    },
+    {
+      title: 'Broader',
+      name: 'broader',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'typeClass'}]}
+      ]
+    },
+    {
+      title: 'Narrower',
+      name: 'narrower',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'typeClass'}]}
+      ]
     },
     {
       title: 'Activity stream',
@@ -17,5 +46,16 @@ export default {
         {type: 'creation'}
       ]
     }
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'prefLabel.nor'
+    },
+    prepare (selection) {
+      const {title} = selection
+      return {
+        title: title
+      }
+    }
+  }
 }

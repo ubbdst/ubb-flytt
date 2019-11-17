@@ -17,6 +17,16 @@ export default {
           .auto('format')
           .url()
       }),
+    reference: ({ node }) =>
+      h('figure', {},
+        [h('img', {
+        src: urlFor(node.mainRepresentation)
+          .width(600)
+          .auto('format')
+          .url()
+        }),
+        h('figcaption', {}, node.label)
+      ]),
     authorReference: ({ node }) => h('b', {}, h('a', {'href': '/id/' + node.author._id}, node.author.label)),
     code: ({ node }) =>
       h('pre', { 'data-language': node.language }, h('code', {}, node.code))
