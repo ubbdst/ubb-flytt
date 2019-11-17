@@ -3,6 +3,7 @@
   import Cards from './Cards'
   import ConditionAssignment from './ConditionAssignment'
   import Map from './Map'
+  import Timespan from './Timespan'
 
   import client from '../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
@@ -26,23 +27,25 @@
 </script>
 
 <style>
-
+  .map{
+    height: 300px;
+  }
 </style>
 
 <svelte:head>
-	<title>{item.title}</title>
+	<title>Flytt uten tittel</title>
 </svelte:head>
 
 <main class="section">
   <div class="container">
-    <h1 class="title is-size-1 has-text-centered">{item.title}</h1>
+    <h1 class="title is-size-1 has-text-centered">{item.title ? item.title : 'Flytt uten tittel'}</h1>
     
-    {#if item.concerned && item.concerned.length > 0}
-    <Cards cards={item.concerned} title="Angår"></Cards>
+    {#if item.timespan}
+    <p class="has-text-centered"><Timespan items={item.timespan}></Timespan></p>
     {/if}
 
-    {#if item.conditionAssignment && item.conditionAssignment.length > 0}
-    <ConditionAssignment item={item.conditionAssignment}></ConditionAssignment>
+    {#if item.moved && item.moved.length > 0}
+    <Cards cards={item.moved} title="Flyttet"></Cards>
     {/if}
 
     {#if item.description}
@@ -54,18 +57,38 @@
     </div>
     {/if}
 
+    <div class="box">
+      <div class="columns">
+        <div class="column">
+          {#if item.movedFrom}
+          <h2 class="title has-text-centered">Flyttet fra</h2>
+          {/if}
+          {#if item.movedFrom && item.movedFrom.geoJSON}
+          <div class="map">
+            <Map src={item.movedFrom}></Map>
+          </div>
+          {/if}
+        </div>
+
+        <div class="column">
+          {#if item.movedTo}
+          <h2 class="title has-text-centered">Flyttet til</h2>
+          {/if}
+          {#if item.movedTo && item.movedTo.geoJSON}
+          <div class="map">
+            <Map src={item.movedTo}></Map>
+          </div>
+          {/if}
+        </div>
+      </div>
+    </div>
+
     {#if item.referencedBy && item.referencedBy.length != 0}
     <Cards cards={item.referencedBy} title="Relatert til"></Cards>
     {/if}
-    
-    <!-- {#if item.geoJSON}
-    <div class="map">
-      <Map src={item.geoJSON}></Map>
-    </div>
-    {/if} -->
 
-   {#if item.activityStream}
-      <ActivityStream stream={item.activityStream}></ActivityStream>
+    {#if item.activityStream}
+    <ActivityStream stream={item.activityStream}></ActivityStream>
     {/if}
 
     {#if item.documentationImage}
@@ -76,6 +99,14 @@
         {/each}
     </div>
     {/if}
+
+    <div class="box">
+      <pre>
+        <code>
+        {JSON.stringify(item, null, 2)}
+        </code>
+      </pre>
+    </div>
 
   </div>
 </main>

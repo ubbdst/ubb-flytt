@@ -1,6 +1,7 @@
 <script context="module">
 	import client from '../../sanityClient'
-  import imageUrlBuilder from '@sanity/image-url'
+	import imageUrlBuilder from '@sanity/image-url'
+	import Cards from '../../components/Cards'
 
 	export function preload({ params, query }) {
     return client.fetch('*[_type == "madeObject" && accessState == "open"]|order(preferredIdentifier desc)').then(items => {
@@ -28,12 +29,7 @@
 </script>
 
 <style>
-.container{
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
-	grid-template-rows: auto;
-	grid-gap: 1em;
-}
+
 </style>
 
 <svelte:head>
@@ -41,27 +37,5 @@
 </svelte:head>
 
 <main class="section">
-	<h1 class="title has-text-centered">Objekt</h1>
-	<section class="container">
-	{#each items as item}
-		<!-- we're using the non-standard `rel=prefetch` attribute to
-				tell Sapper to load the data for the page as soon as
-				the user hovers over the link or taps it, instead of
-				waiting for the 'click' event -->
-		<article class="card">
-			<a class="card-image" rel='prefetch' href='id/{item._id}'>
-				<figure class="image">
-					<img alt="{item.label}" src={urlFor(item.mainRepresentation).fit('fill').height(350).width(350).url()} />
-				</figure>
-			</a>
-			<div class="card-content">
-				<div class="media">
-					<div class="media-content">
-						<p class="title"><a class="has-text-black" rel='prefetch' href='id/{item._id}'>{item.label}</a></p>
-					</div>
-				</div>
-			</div>
-		</article>
-	{/each}
-	</section>
+  <Cards cards={items} title="Objekt"></Cards>
 </main>

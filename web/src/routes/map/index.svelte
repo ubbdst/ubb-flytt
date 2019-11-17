@@ -71,7 +71,7 @@
 </svelte:head>
 
 {#if src}
-<div class="container map">
+<main class="section map">
   <Map src={src}></Map>
-</div>
+</main>
 {/if}

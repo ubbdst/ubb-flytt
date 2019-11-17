@@ -1,5 +1,6 @@
 <script>
   import Map from './Map'
+  import Timespan from './Timespan'
   import { onMount, onDestroy } from 'svelte';
   import imageUrlBuilder from '@sanity/image-url'
   import client from '../sanityClient'
@@ -38,12 +39,7 @@
 
       <div class="desc">
         {#if activity.timespan}
-        {#each activity.timespan as e, i}
-        <div class="time">
-          {#if e.date}{formatDate(e.date)}{/if}
-          {#if e.beginOfTheBegin}{formatDate(e.beginOfTheBegin)}{/if}{#if e.beginOfTheBegin && e.endOfTheEnd}&nbsp;- {/if}{#if e.endOfTheEnd}{formatDate(e.endOfTheEnd)}{/if}
-        </div>
-        {/each}
+        <Timespan items={activity.timespan}></Timespan>
         {/if}
 
         <h3>{activity.activityType ? activity.activityType : activity._type}</h3>
@@ -72,7 +68,7 @@
           <div class="map">
             <Map src={activity}></Map>
           </div>
-          {/if}
+        {/if}
       </div>
     </li>
     {/each}

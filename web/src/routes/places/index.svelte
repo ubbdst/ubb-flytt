@@ -1,11 +1,10 @@
 <script context="module">
-  import Cards from '../../components/Cards'
-
 	import client from '../../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
+	import Cards from '../../components/Cards'
 
 	export function preload({ params, query }) {
-    return client.fetch('*[_type == "report" && accessState == "open"]|order(preferredIdentifier desc)').then(items => {
+    return client.fetch('*[_type == "place"]|order(label asc)').then(items => {
 			return { items };
 		}).catch(err => this.error(500, err));
 	}
@@ -33,10 +32,11 @@
 
 </style>
 
+
 <svelte:head>
-	<title>Objekt</title>
+	<title>Steder</title>
 </svelte:head>
 
 <main class="section">
-  <Cards cards={items} title="Rapporter"></Cards>
+  <Cards cards={items} title="Steder" path="places"></Cards>
 </main>

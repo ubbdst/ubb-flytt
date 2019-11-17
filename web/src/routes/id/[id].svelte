@@ -69,6 +69,13 @@
         label, 
         mainRepresentation
       },
+      moved[]->{
+        _id,
+        label,
+        mainRepresentation
+      },
+      movedFrom->,
+      movedTo->
     }`
 
     const query = filter + projection
@@ -78,11 +85,6 @@
       item.description = blocksToHtml({blocks: item.description.nor, serializers, ...client.clientConfig 
       }
     )};
-
-    if (item.bio) { 
-      item.bio = blocksToHtml({blocks: item.bio, serializers, ...client.clientConfig 
-      }
-    )}
 
     const expression = jsonata("**.geoJSON[]");
     let result = expression.evaluate(item);
@@ -102,10 +104,11 @@
 </script>
 
 <script>
-  import Map from '../../components/Map.svelte';
-  import MadeObject from '../../components/MadeObject.svelte';
-  import Actor from '../../components/Actor.svelte';
-  import Report from '../../components/Report.svelte';
+  import Map from '../../components/Map';
+  import MadeObject from '../../components/MadeObject';
+  import Actor from '../../components/Actor';
+  import Report from '../../components/Report';
+  import Move from '../../components/Move';
 
   export let item;
 </script>
@@ -115,7 +118,7 @@
 </style>
 
 <svelte:head>
-	<title>{item.label}</title>
+	<title>{item.label ? item.label : item.title}</title>
 </svelte:head>
 
 {#if item._type == 'madeObject'}
@@ -128,4 +131,8 @@
 
 {#if item._type == 'report'}
   <Report item={item}></Report>
+{/if}
+
+{#if item._type == 'move'}
+  <Move item={item}></Move>
 {/if}
