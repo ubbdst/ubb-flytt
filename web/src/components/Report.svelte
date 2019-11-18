@@ -31,12 +31,12 @@
 </style>
 
 <svelte:head>
-	<title>{item.title}</title>
+	<title>{item.label}</title>
 </svelte:head>
 
 <main class="section">
   <div class="container">
-    <h1 class="title is-size-1 has-text-centered">{item.title}</h1>
+    <h1 class="title is-size-1 has-text-centered">{item.label}</h1>
     
     {#if item.concerned && item.concerned.length > 0}
     <MediaObjects objects={item.concerned} title="Angår" imageSize="64x64"></MediaObjects>

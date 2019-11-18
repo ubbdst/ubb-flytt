@@ -44,14 +44,6 @@
           {#if o.label}
           <p class="title is-size-5"><a rel=prefetch href='{path}/{o._id}'>{o.label}</a></p>
           {/if}
-          {#if o.title}
-          <p class="title is-size-5"><a rel=prefetch href='{path}/{o._id}'>{o.title}</a></p>
-          {/if}
-          {#if o.moved && o.moved.lenght > 0}
-          {#each o.moved as item, i}
-            <p class="title is-size-5"><a rel=prefetch href='{path}/{item._id}'>{item.label ? item.label : 'Ingen tittel'}</a></p>
-          {/each}
-          {/if}
         </div>
       </div>
     </article>

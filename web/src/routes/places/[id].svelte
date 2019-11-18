@@ -42,11 +42,11 @@
 </style>
 
 <svelte:head>
-  <title>{data.title}</title>
+  <title>{data.label}</title>
 </svelte:head>
  
 <main class="section">
-  <h1 class="title has-text-centered">{data.title}</h1>
+  <h1 class="title has-text-centered">{data.label}</h1>
   {#if data.geoJSON}
     <div class="map">
       <Map src={data}></Map>

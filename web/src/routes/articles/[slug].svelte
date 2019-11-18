@@ -51,7 +51,7 @@
 
 <main class="section">
   <div class="container">
-    <h1 class="title">{post.title}</h1>
+    <h1 class="title">{post.label}</h1>
 
     <div class='content'>
       {@html post.body}

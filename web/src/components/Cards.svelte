@@ -45,17 +45,9 @@
       <div class="card-content">
         <div class="media">
           <div class="media-content">
-            {#if card.label}
-            <p class="title"><a rel=prefetch href='{path}/{card._id}'>{card.label}</a></p>
-            {/if}
-            {#if card.title}
-            <p class="title"><a rel=prefetch href='{path}/{card._id}'>{card.title}</a></p>
-            {/if}
-            {#if card.moved && card.moved.lenght > 0}
-            {#each card.moved as item, i}
-              <p class="title"><a rel=prefetch href='{path}/{item._id}'>{item.label ? item.label : 'Ingen tittel'}</a></p>
-            {/each}
-            {/if}
+            <p class="title">
+              <a rel=prefetch href='{path}/{card._id}'>{card.label ? card.label : card._id}</a>
+            </p>
           </div>
         </div>
       </div>
