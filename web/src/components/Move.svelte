@@ -59,26 +59,38 @@
 
     <div class="box">
       <div class="columns">
-        <div class="column">
+        <div class="column has-text-centered">
           {#if item.movedFrom}
-          <h2 class="title has-text-centered">Flyttet fra</h2>
-          {/if}
-          {#if item.movedFrom && item.movedFrom.geoJSON}
-          <div class="map">
-            <Map src={item.movedFrom}></Map>
-          </div>
+          <h3 class="title is-size-5">Flyttet fra</h3>
+          <ul>
+            <li>{item.movedFrom.title}</li>
+          </ul>
           {/if}
         </div>
 
-        <div class="column">
-          {#if item.movedTo}
-          <h2 class="title has-text-centered">Flyttet til</h2>
+        <div class="column has-text-centered">
+          <i class="fas fa-truck-moving fa-3x"></i>
+          {#if item.moved && item.moved.length > 0}
+          <ul>
+            {#each item.moved as item, i}
+            <li><a href='/id/{item._id}'>{item.label}{#if item.preferredIdentifier} ({item.preferredIdentifier}){/if}</a></li>
+            {/each}
+          </ul>
           {/if}
-          {#if item.movedTo && item.movedTo.geoJSON}
+        </div>
+
+        <div class="column has-text-centered">
+          {#if item.movedTo}
+          <h3 class="title is-size-5">Flyttet til</h3>
+          <ul>
+            <li>{item.movedTo.title}</li>
+          </ul>
+          {/if}
+          <!-- {#if item.movedTo && item.movedTo.geoJSON}
           <div class="map">
             <Map src={item.movedTo}></Map>
           </div>
-          {/if}
+          {/if} -->
         </div>
       </div>
     </div>

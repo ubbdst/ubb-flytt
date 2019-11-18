@@ -15,6 +15,7 @@
         nor[]{
           _type == 'reference' => @->{
             _id,
+            preferredIdentifier,
             label,
             mainRepresentation
         	},
@@ -26,6 +27,7 @@
       },
       concerned[]->{
         _id,
+        preferredIdentifier,
         label,
         mainRepresentation
       },
@@ -61,16 +63,19 @@
       },
       'referencedBy': *[references(^._id) && accessState == "open"]{ 
         _id, 
+        preferredIdentifier,
         label, 
         mainRepresentation 
       },
       depicts[]->{
         _id, 
+        preferredIdentifier,
         label, 
         mainRepresentation
       },
       moved[]->{
         _id,
+        preferredIdentifier,
         label,
         mainRepresentation
       },
