@@ -57,7 +57,7 @@
     {/if}
 
     {#if item.activityStream}
-    <ActivityStream stream={item.activityStream}></ActivityStream>
+    <ActivityStream stream={item.activityStream} title="Tidslinje"></ActivityStream>
     {/if}
 
     {#if item.referencedBy}

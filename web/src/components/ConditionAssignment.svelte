@@ -50,7 +50,7 @@
 </style>
 
 <div class="box">
-  <h2 class="title is-size-5 has-text-centered">Tilstands-score</h2>
+  <h2 class="title has-text-centered">Tilstands-score</h2>
   
   {#each item as c, i}
   <h3 class="title is-size-6 is-marginless">{decamelize(c.conditionType, ' ')}: <span class="is-pulled-right">{c.condition} / 100</span></h3>

@@ -6,7 +6,7 @@ export default {
   title: 'Blog Post',
   fields: [
     {
-      name: 'title',
+      name: 'label',
       type: 'string',
       title: 'Title',
       description: 'Titles should be catchy, descriptive, and not too long'

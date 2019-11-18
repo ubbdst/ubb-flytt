@@ -1,6 +1,7 @@
 <script>
   import ActivityStream from './ActivityStream'
   import Cards from './Cards'
+  import MediaObjects from './MediaObjects'
   import ConditionAssignment from './ConditionAssignment'
   import Map from './Map'
   import Timespan from './Timespan'
@@ -24,29 +25,86 @@
     return new Date(date).toLocaleDateString()
   }
 
+  let titleForMove = 'Flytt fra ' + item.movedFrom.title + ' til ' + item.movedTo.title
+
 </script>
 
 <style>
-  .map{
-    height: 300px;
-  }
 </style>
 
 <svelte:head>
-	<title>Flytt uten tittel</title>
+	<title>{titleForMove}</title>
 </svelte:head>
 
 <main class="section">
   <div class="container">
-    <h1 class="title is-size-1 has-text-centered">{item.title ? item.title : 'Flytt uten tittel'}</h1>
-    
-    {#if item.timespan}
-    <p class="has-text-centered"><Timespan items={item.timespan}></Timespan></p>
-    {/if}
+    <h1 class="title is-hidden has-text-centered">{titleForMove}</h1>
 
-    {#if item.moved && item.moved.length > 0}
-    <Cards cards={item.moved} title="Flyttet"></Cards>
-    {/if}
+    <div class="box">
+      <div class="columns">
+        <div class="column has-text-centered">
+          {#if item.movedFrom}
+          <h3 class="title is-size-5">Flyttet fra</h3>
+          <ul>
+            <li><a href="/places/{item.movedFrom._id}">{item.movedFrom.title}</a></li>
+          </ul>
+          {/if}
+        </div>
+
+        <div class="column is-half">
+          {#if item.timespan}
+          <p><Timespan items={item.timespan}></Timespan></p>
+          {/if}
+
+          {#if item.carriedOutBy && item.carriedOutBy.length > 0}
+          <p>Ansvarlig(e):</p>
+          <div class="columns">
+            {#each item.carriedOutBy as a, i}
+            <div class="column is-1">
+              <figure class="image is-32x32">
+                <a href="/id/{a._id}">
+                  <img class="is-rounded" src="{urlFor(a.mainRepresentation).width(128).height(128).url()}" alt="Actor icon" />
+                </a>
+              </figure>
+            </div>
+            <div class="column has-text-left">
+              <div class="content">
+                <p><a href="/id/{a._id}">{a.label}</a></p>
+              </div>
+            </div>
+            {/each}
+          </div>
+          {/if}
+
+          {#if item.wasMotivatedBy && item.wasMotivatedBy.length > 0}
+          <p>Motivasjon:</p>
+          <div class="columns">
+            {#each item.wasMotivatedBy as a, i}
+            <div class="column has-text-left">
+              <div class="content">
+                <p><a href="/id/{a._id}">{a.label}</a></p>
+              </div>
+            </div>
+            {/each}
+          </div>
+          {/if}
+
+          {#if item.moved && item.moved.length > 0}
+          <p class="has-text-centered"><i class="fas fa-truck-moving fa-3x has-text-info"></i></p>
+          <MediaObjects objects={item.moved}></MediaObjects>
+          {/if}
+        </div>
+
+        <div class="column has-text-centered">
+          {#if item.movedTo}
+          <h3 class="title is-size-5">Flyttet til</h3>
+          <ul>
+            <li><a href="/places/{item.movedTo._id}">{item.movedTo.title}</a></li>
+          </ul>
+          {/if}
+        </div>
+      </div>
+    </div>
 
     {#if item.description}
     <div class="box">
@@ -56,44 +114,6 @@
       </div>
     </div>
     {/if}
-
-    <div class="box">
-      <div class="columns">
-        <div class="column has-text-centered">
-          {#if item.movedFrom}
-          <h3 class="title is-size-5">Flyttet fra</h3>
-          <ul>
-            <li>{item.movedFrom.title}</li>
-          </ul>
-          {/if}
-        </div>
-
-        <div class="column has-text-centered">
-          <i class="fas fa-truck-moving fa-3x"></i>
-          {#if item.moved && item.moved.length > 0}
-          <ul>
-            {#each item.moved as item, i}
-            <li><a href='/id/{item._id}'>{item.label}{#if item.preferredIdentifier} ({item.preferredIdentifier}){/if}</a></li>
-            {/each}
-          </ul>
-          {/if}
-        </div>
-
-        <div class="column has-text-centered">
-          {#if item.movedTo}
-          <h3 class="title is-size-5">Flyttet til</h3>
-          <ul>
-            <li>{item.movedTo.title}</li>
-          </ul>
-          {/if}
-          <!-- {#if item.movedTo && item.movedTo.geoJSON}
-          <div class="map">
-            <Map src={item.movedTo}></Map>
-          </div>
-          {/if} -->
-        </div>
-      </div>
-    </div>
 
     {#if item.referencedBy && item.referencedBy.length != 0}
     <Cards cards={item.referencedBy} title="Relatert til"></Cards>
@@ -112,13 +132,13 @@
     </div>
     {/if}
 
-    <div class="box">
+    <!-- <div class="box">
       <pre>
         <code>
         {JSON.stringify(item, null, 2)}
         </code>
       </pre>
-    </div>
+    </div> -->
 
   </div>
 </main>

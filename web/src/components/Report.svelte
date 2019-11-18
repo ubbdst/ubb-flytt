@@ -1,6 +1,7 @@
 <script>
   import ActivityStream from './ActivityStream'
   import Cards from './Cards'
+  import MediaObjects from './MediaObjects'
   import ConditionAssignment from './ConditionAssignment'
   import Map from './Map'
 
@@ -38,11 +39,15 @@
     <h1 class="title is-size-1 has-text-centered">{item.title}</h1>
     
     {#if item.concerned && item.concerned.length > 0}
-    <Cards cards={item.concerned} title="Angår"></Cards>
+    <MediaObjects objects={item.concerned} title="Angår" imageSize="64x64"></MediaObjects>
     {/if}
 
     {#if item.conditionAssignment && item.conditionAssignment.length > 0}
     <ConditionAssignment item={item.conditionAssignment}></ConditionAssignment>
+    {/if}
+
+    {#if item.activityStream}
+    <ActivityStream stream={item.activityStream} title="Vurdering(er)" showMap="false"></ActivityStream>
     {/if}
 
     {#if item.description}
@@ -63,10 +68,6 @@
       <Map src={item.geoJSON}></Map>
     </div>
     {/if} -->
-
-   {#if item.activityStream}
-      <ActivityStream stream={item.activityStream}></ActivityStream>
-    {/if}
 
     {#if item.documentationImage}
     <div class="box">

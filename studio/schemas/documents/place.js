@@ -5,9 +5,10 @@ export default {
   type: 'document',
   fields: [
     {
-      title: 'Title',
-      name: 'title',
-      type: 'string'
+      title: 'Name',
+      name: 'label',
+      type: 'string',
+      validation: Rule => Rule.required()
     },
     {
       title: 'Description',

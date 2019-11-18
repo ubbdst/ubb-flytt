@@ -64,7 +64,7 @@ export default {
     {
       title: 'Description',
       name: 'description',
-      type: 'genericText'
+      type: 'localeBlockReport'
     },
     {
       title: 'Moved from',

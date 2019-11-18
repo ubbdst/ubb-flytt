@@ -45,7 +45,8 @@ export default {
     {
       title: 'Display name',
       name: 'label',
-      type: 'string'
+      type: 'string',
+      validation: Rule => Rule.required()
     },
     {
       title: 'Image',

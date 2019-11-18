@@ -6,7 +6,8 @@
   import client from '../sanityClient'
 
   export let stream
-
+  export let title
+  export let showMap = 'true'
   // Get a pre-configured url-builder from your sanity client
   const builder = imageUrlBuilder(client)
 
@@ -31,7 +32,7 @@
 </style>
 
 <div class="box timeline">
-  <h2 class="title has-text-centered">Tidslinje</h2>
+  {#if title}<h2 class="title has-text-centered">{title}</h2>{/if}
   <ul>
     {#each stream as activity, i}
     <li>
@@ -53,7 +54,7 @@
         {#if activity.tookPlaceAt && activity.tookPlaceAt.length > 0}
           <p>
           {#each activity.tookPlaceAt as place, i}
-            <span>{place.title}</span>
+            <span><a href="/places/{place._id}">{place.title}</a></span>
           {/each}
           </p>
         {/if}
@@ -64,7 +65,7 @@
           {/each}
           </p>
         {/if}
-        {#if activity.geoJSON || activity.tookPlaceAt }
+        {#if (activity.geoJSON || activity.tookPlaceAt) && showMap == 'true' }
           <div class="map">
             <Map src={activity}></Map>
           </div>

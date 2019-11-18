@@ -23,9 +23,10 @@ export default {
   ],
   fields: [
     {
-      title: 'Label',
+      title: 'Title',
       name: 'label',
-      type: 'string'
+      type: 'string',
+      validation: Rule => Rule.required()
     },
     {
       title: 'Activity type',
@@ -169,12 +170,14 @@ export default {
   ],
   preview: {
     select: {
+      title: 'label',
       type: 'activityType'
     },
     prepare (selection) {
-      const {type} = selection
+      const {title, type} = selection
       return {
-        title: `${activityTypes.find(id => id.value === type).title}`
+        title: title,
+        subtitle: `${activityTypes.find(id => id.value === type).title}`
       }
     }
   }

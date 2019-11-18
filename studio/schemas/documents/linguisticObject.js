@@ -34,8 +34,9 @@ export default {
     },
     {
       title: 'Title',
-      name: 'title',
-      type: 'string'
+      name: 'label',
+      type: 'string',
+      validation: Rule => Rule.required()
     },
     {
       title: 'Text type',

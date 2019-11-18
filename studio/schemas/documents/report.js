@@ -43,8 +43,9 @@ export default {
     },
     {
       title: 'Title',
-      name: 'title',
-      type: 'string'
+      name: 'label',
+      type: 'string',
+      validation: Rule => Rule.required()
     },
     {
       title: 'Condition assignment',
@@ -123,7 +124,7 @@ export default {
   preview: {
     select: {
       type: 'hasType',
-      title: 'title',
+      title: 'label',
       blocks: 'description.nor'
     },
     prepare (selection) {

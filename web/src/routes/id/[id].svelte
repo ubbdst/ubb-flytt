@@ -80,16 +80,28 @@
         mainRepresentation
       },
       movedFrom->,
-      movedTo->
+      movedTo->,
+      carriedOutBy[]->{
+        _id,
+        label,
+        mainRepresentation
+      },
+      wasMotivatedBy[]->{
+        _id,
+        label
+      }
     }`
 
     const query = filter + projection
     let item = await client.fetch(query, { id }).catch(err => this.error(500, err))
 
-    if (item.description && item.description.nor) { 
-      item.description = blocksToHtml({blocks: item.description.nor, serializers, ...client.clientConfig 
+    if (item.description) { 
+      if (item.description.nor) {
+        item.description = blocksToHtml({blocks: item.description.nor, serializers, ...client.clientConfig})
+      }else{
+        item.description = blocksToHtml({blocks: item.description, serializers, ...client.clientConfig})
       }
-    )};
+    };
 
     const expression = jsonata("**.geoJSON[]");
     let result = expression.evaluate(item);

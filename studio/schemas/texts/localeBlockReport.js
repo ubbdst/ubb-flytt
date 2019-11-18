@@ -1,6 +1,7 @@
 import {supportedLanguages} from '../vocabularies/default'
 
 export default {
+  title: 'localeBlockReport',
   name: 'localeBlockReport',
   type: 'object',
   fieldsets: [
