@@ -21,7 +21,8 @@
     "@sanity/color-input",
     "@sanity/google-maps-input",
     "kn-search-input",
-    "@sanity/vision"
+    "@sanity/vision",
+    "content-model-graph"
   ],
   "parts": [
     {
