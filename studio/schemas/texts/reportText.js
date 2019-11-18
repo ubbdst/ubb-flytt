@@ -55,6 +55,7 @@ export default {
         ]
       }
     },
+    {type: 'figure'},
     {
       type: 'reference',
       to: [

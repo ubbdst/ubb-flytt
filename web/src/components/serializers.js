@@ -1,6 +1,5 @@
 // https://www.sanity.io/docs/what-you-need-to-know-about-block-text/presenting-block-text
 import blocksToHtml from '@sanity/block-content-to-html'
-// https://www.npmjs.com/package/@sanity/image-url
 import urlBuilder from '@sanity/image-url'
 import client from '../sanityClient'
 
@@ -25,7 +24,18 @@ export default {
           .auto('format')
           .url()
         }),
-        h('figcaption', {}, node.label)
+        h('figcaption', {}, [node.label, h('a', {href: '/id/' + node._id, target: '_target'}, '. Åpne i nytt vindu')])
+      ]),
+    figure: ({ node }) =>
+      h('figure', {},
+        [h('img', {
+        src: urlFor(node)
+          .width(600)
+          .auto('format')
+          .url(),
+        alt: node.alt
+        }),
+        h('figcaption', {}, node.caption)
       ]),
     authorReference: ({ node }) => h('b', {}, h('a', {'href': '/id/' + node.author._id}, node.author.label)),
     code: ({ node }) =>
