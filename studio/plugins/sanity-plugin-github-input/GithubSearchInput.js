@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import Fieldset from 'part:@sanity/components/fieldsets/default'
-import { PatchEvent, setIfMissing, set } from 'part:@sanity/form-builder/patch-event'
-import { FormBuilderInput } from 'part:@sanity/form-builder'
-import { render } from 'react-dom'
+import {PatchEvent, setIfMissing, set} from 'part:@sanity/form-builder/patch-event'
+import {FormBuilderInput} from 'part:@sanity/form-builder'
 import axios from 'axios'
 import Downshift from 'downshift'
 
-export default class KnSearchInput extends React.PureComponent {
+export default class GithubRepoInput extends React.PureComponent {
   static propTypes = {
     type: PropTypes.shape({
       title: PropTypes.string,
@@ -22,46 +21,45 @@ export default class KnSearchInput extends React.PureComponent {
     onChange: PropTypes.func.isRequired,
     onBlur: PropTypes.func.isRequired
   }
-  
+
   state = {
     tracks: []
   }
 
   firstFieldInput = React.createRef()
-  
 
-  handleSearch = async ({ target }) => {
-    const { value } = target
+  handleSearch = async ({target}) => {
+    const {value} = target
     if (value.length > 5) {
       axios.get(`https://api.github.com/search/repositories?q=${value}`)
-      .then((response) => {
-        const data = response.data.items
-        // console.log(data)
+        .then((response) => {
+          const data = response.data.items
+          // console.log(data)
 
-        this.setState({
-            tracks : data
+          this.setState({
+            tracks: data
+          })
         })
-    })
     };
   }
-  
+
   handleSelect = (value) => {
-      // console.log({value})
-      const { id, full_name, html_url } = value || {}
-      const { onChange, type } = this.props
-      const crawledAt = new Date().toISOString()
-      onChange(
-        PatchEvent.from(
-            setIfMissing({_type: 'object'}),
-            set(full_name, ['name'] ),
-            set(html_url, ['uri'] ),
-            set(crawledAt, ['crawledAt']),
-            set(JSON.stringify(value, null, 4), ['raw'])
-        )
+    // console.log({value})
+    const {fullName, htmlUrl} = value || {}
+    const {onChange} = this.props
+    const crawledAt = new Date().toISOString()
+    onChange(
+      PatchEvent.from(
+        setIfMissing({_type: 'object'}),
+        set(fullName, ['name']),
+        set(htmlUrl, ['uri']),
+        set(crawledAt, ['crawledAt']),
+        set(JSON.stringify(value, null, 4), ['raw'])
       )
+    )
   }
   handleFieldChange = (field, fieldPatchEvent) => {
-    const { onChange, type } = this.props
+    const {onChange, type} = this.props
     // Whenever the field input emits a patch event, we need to make sure to each of the included patches
     // are prefixed with its field name, e.g. going from:
     // {path: [], set: <nextvalue>} to {path: [<fieldName>], set: <nextValue>}
@@ -69,17 +67,17 @@ export default class KnSearchInput extends React.PureComponent {
     onChange(
       fieldPatchEvent
         .prefixAll(field.name)
-        .prepend(setIfMissing({ _type: type.name }))
+        .prepend(setIfMissing({_type: type.name}))
     )
   }
 
-  focus() {
+  focus () {
     this.firstFieldInput.current.focus()
   }
 
-  render() {
-    const { type, value, level, focusPath, onFocus, onBlur } = this.props
-    const { tracks = [] } = this.state || {}
+  render () {
+    const {type, value, level, focusPath, onFocus, onBlur} = this.props
+    const {tracks = []} = this.state || {}
     return (
       <div>
         <Downshift
@@ -97,7 +95,7 @@ export default class KnSearchInput extends React.PureComponent {
             selectedItem
           }) => (
             <div>
-              <label {...getLabelProps()}>Search Artist</label>
+              <label {...getLabelProps()}>Search Github: </label>
               <input
                 {...getInputProps({
                   onChange: this.handleSearch
@@ -106,28 +104,28 @@ export default class KnSearchInput extends React.PureComponent {
               <ul {...getMenuProps()}>
                 {tracks && isOpen
                   ? tracks
-                      /* .filter(
+                  /* .filter(
                         ({name}) => !inputValue || name.includes(inputValue)
                       ) */
-                      .map((item, index) => console.log(item) || (
-                        <li
-                          {...getItemProps({
-                            key: item.id,
-                            index,
-                            item,
-                            style: {
-                              backgroundColor:
+                    .map((item, index) => console.log(item) || (
+                      <li
+                        {...getItemProps({
+                          key: item.id,
+                          index,
+                          item,
+                          style: {
+                            backgroundColor:
                                 highlightedIndex === index
                                   ? 'lightgray'
                                   : 'white',
-                              fontWeight:
+                            fontWeight:
                                 selectedItem === item ? 'bold' : 'normal'
-                            }
-                          })}
-                        >
-                          <div>{item.full_name}</div>
-                        </li>
-                      ))
+                          }
+                        })}
+                      >
+                        <div>{item.full_name}</div>
+                      </li>
+                    ))
                   : null}
               </ul>
             </div>

@@ -2,7 +2,7 @@
   "parts": [
     {
       "implements": "part:@sanity/base/schema-type",
-      "path": "./KnSearchType.js"
+      "path": "./GithubSearchType.js"
     }
   ]
 }

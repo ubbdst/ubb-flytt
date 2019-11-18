@@ -20,7 +20,7 @@
     "@sanity/code-input",
     "@sanity/color-input",
     "@sanity/google-maps-input",
-    "kn-search-input",
+    "sanity-plugin-github-input",
     "@sanity/vision",
     "content-model-graph"
   ],
