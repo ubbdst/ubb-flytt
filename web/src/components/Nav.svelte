@@ -51,6 +51,7 @@
 			<a rel=prefetch class='navbar-item has-text-black {segment === "timelines" ? "selected" : ""}' href='timelines'>Tidslinjer</a>
 			<a rel=prefetch class='navbar-item has-text-black {segment === "map" ? "selected" : ""}' href='map'>Kart</a>
 			<a rel=prefetch class='navbar-item has-text-black {segment === "places" ? "selected" : ""}' href='places'>Steder</a>
+			<a rel=prefetch class='navbar-item has-text-black {segment === "events" ? "selected" : ""}' href='events'>Hendelser</a>
 			<a rel=prefetch class='navbar-item has-text-black {segment === "actors" ? "selected" : ""}' href='actors'>Aktører</a>
 			<a rel=prefetch class='navbar-item has-text-black {segment === "items" ? "selected" : ""}' href='items'>Objekt</a>
 			<a rel=prefetch class='navbar-item has-text-black {segment === "experimental" ? "selected" : ""}' href='experimental'>Eksperiment</a>

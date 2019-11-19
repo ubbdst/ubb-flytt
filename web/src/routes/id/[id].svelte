@@ -81,6 +81,14 @@
       },
       movedFrom->,
       movedTo->,
+      transferred_title_of[]->{
+        _id,
+        preferredIdentifier,
+        label,
+        mainRepresentation
+      },
+      transferred_title_from[]->,
+      transferred_title_to[]->,
       carriedOutBy[]->{
         _id,
         label,
@@ -126,6 +134,8 @@
   import Actor from '../../components/Actor';
   import Report from '../../components/Report';
   import Move from '../../components/Move';
+  import Event from '../../components/Event';
+  import Acquisition from '../../components/Acquisition';
 
   export let item;
 </script>
@@ -152,4 +162,12 @@
 
 {#if item._type == 'move'}
   <Move item={item}></Move>
+{/if}
+
+{#if item._type == 'event'}
+  <Event item={item}></Event>
+{/if}
+
+{#if item._type == 'acquisition'}
+  <Acquisition item={item}></Acquisition>
 {/if}

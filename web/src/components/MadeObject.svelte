@@ -109,8 +109,8 @@
     </div>
     {/if} -->
 
-   {#if item.activityStream}
-      <ActivityStream stream={item.activityStream} title="Tidslinje"></ActivityStream>
+   { #if item.activityStream}
+    <ActivityStream stream={item.activityStream} title="Tidslinje"></ActivityStream>
     {/if}
 
   </div>

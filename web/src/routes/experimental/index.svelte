@@ -22,5 +22,6 @@
   <ul>
     <li><a href="experimental/reports">Rapporter</a></li>
     <li><a href="experimental/move">Flytt av objekt</a></li>
+    <li><a href="/acquisitions">Akkvisisjoner</a></li>
   </ul>
 </main>
