@@ -25,7 +25,7 @@
     return new Date(date).toLocaleDateString()
   }
 
-  let titleForMove = 'Flytt fra ' + item.movedFrom.title + ' til ' + item.movedTo.title
+  let titleForMove = 'Flytt fra ' + item.movedFrom.label + ' til ' + item.movedTo.label
 
 </script>
 
@@ -42,20 +42,24 @@
 
     <div class="has-background-grey-lighter box">
       <div class="columns">
-        <div class="column is-half has-text-centered">
+        <div class="column has-text-centered">
           {#if item.movedFrom}
-          <p class="has-text-centered"><i class="fas fa-box-open fa-3x"></i></p>
-          <h3 class="title is-size-5">Flyttet fra</h3>
+          <h3 class="title is-hidden is-size-5">Fra</h3>
+          <p class="has-text-centered"><i class="fas fa-box fa-2x"></i></p>
           <ul>
             <li><a href="/places/{item.movedFrom._id}">{item.movedFrom.label}</a></li>
           </ul>
           {/if}
         </div>
 
-        <div class="column is-half has-text-centered">
+        <div class="column has-text-centered">
+          <p class="has-text-centered"><i class="fas fa-long-arrow-alt-right fa-3x"></i></p>
+        </div>
+
+        <div class="column has-text-centered">
           {#if item.movedTo}
-          <p class="has-text-centered"><i class="fas fa-box-open fa-3x"></i></p>
-          <h3 class="title is-size-5">Flyttet til</h3>
+          <h3 class="title is-hidden is-size-5">Til</h3>
+          <p class="has-text-centered"><i class="fas fa-box-open fa-2x"></i></p>
           <ul>
             <li><a href="/places/{item.movedTo._id}">{item.movedTo.label}</a></li>
           </ul>
@@ -64,43 +68,37 @@
       </div>
 
       <div class="columns">
-        <div class="column is-full is-marginless box">
-          <p class="has-text-centered"><i class="fas fa-truck-moving fa-3x"></i></p>
+        <div class="column has-text-centered is-full is-marginless box">
+          <p><i class="fas fa-dolly fa-3x"></i></p>
           {#if item.timespan}
           <p><Timespan items={item.timespan}></Timespan></p>
           {/if}
 
           {#if item.carriedOutBy && item.carriedOutBy.length > 0}
           <p>Ansvarlig(e):</p>
-          <div class="columns">
+          <ul>
             {#each item.carriedOutBy as a, i}
-            <div class="column is-1">
-              <figure class="image is-32x32">
-                <a href="/id/{a._id}">
+            <li>
+              <a href="/id/{a._id}">
+                <span class="icon is-small">
                   <img class="is-rounded" src="{urlFor(a.mainRepresentation).width(128).height(128).url()}" alt="Actor icon" />
-                </a>
-              </figure>
-            </div>
-            <div class="column has-text-left">
-              <div class="content">
-                <p><a href="/id/{a._id}">{a.label}</a></p>
-              </div>
-            </div>
+                </span>
+                <a href="/id/{a._id}">{a.label}</a>
+              </a>
+            </li>
             {/each}
-          </div>
+          </ul>
           {/if}
 
           {#if item.wasMotivatedBy && item.wasMotivatedBy.length > 0}
           <p>Motivasjon:</p>
-          <div class="columns">
+          <ul>
             {#each item.wasMotivatedBy as a, i}
-            <div class="column has-text-left">
-              <div class="content">
-                <p><a href="/id/{a._id}">{a.label}</a></p>
-              </div>
-            </div>
+            <li>
+              <span><a href="/id/{a._id}">{a.label}</a></span>
+            </li>
             {/each}
-          </div>
+          </ul>
           {/if}
 
           {#if item.moved && item.moved.length > 0}
@@ -145,4 +143,12 @@
     </div> -->
 
   </div>
+
+  <nav class="breadcrumb is-small box" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="/">Hjem</a></li>
+      <li><a href="/experimental/move">Flytt</a></li>
+      <li class="is-active"><a href="#" aria-current="page">{titleForMove}</a></li>
+    </ul>
+  </nav>
 </main>

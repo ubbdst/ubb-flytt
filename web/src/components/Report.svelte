@@ -79,4 +79,12 @@
     {/if}
 
   </div>
+
+  <nav class="breadcrumb is-small box" aria-label="breadcrumbs">
+    <ul>
+      <li><a href="/">Hjem</a></li>
+      <li><a href="/experimental/reports">Rapporter</a></li>
+      <li class="is-active"><a href="#" aria-current="page">{item.label}</a></li>
+    </ul>
+  </nav>
 </main>
