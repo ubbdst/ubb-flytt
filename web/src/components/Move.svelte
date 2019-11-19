@@ -42,7 +42,7 @@
 
     <div class="has-background-grey-lighter box">
       <div class="columns">
-        <div class="column has-text-centered">
+        <div class="column is-half has-text-centered">
           {#if item.movedFrom}
           <p class="has-text-centered"><i class="fas fa-box-open fa-3x"></i></p>
           <h3 class="title is-size-5">Flyttet fra</h3>
@@ -52,7 +52,19 @@
           {/if}
         </div>
 
-        <div class="column is-half is-marginless box">
+        <div class="column is-half has-text-centered">
+          {#if item.movedTo}
+          <p class="has-text-centered"><i class="fas fa-box-open fa-3x"></i></p>
+          <h3 class="title is-size-5">Flyttet til</h3>
+          <ul>
+            <li><a href="/places/{item.movedTo._id}">{item.movedTo.label}</a></li>
+          </ul>
+          {/if}
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column is-full is-marginless box">
           <p class="has-text-centered"><i class="fas fa-truck-moving fa-3x"></i></p>
           {#if item.timespan}
           <p><Timespan items={item.timespan}></Timespan></p>
@@ -93,16 +105,6 @@
 
           {#if item.moved && item.moved.length > 0}
           <MediaObjects objects={item.moved}></MediaObjects>
-          {/if}
-        </div>
-
-        <div class="column has-text-centered">
-          {#if item.movedTo}
-          <p class="has-text-centered"><i class="fas fa-box-open fa-3x"></i></p>
-          <h3 class="title is-size-5">Flyttet til</h3>
-          <ul>
-            <li><a href="/places/{item.movedTo._id}">{item.movedTo.label}</a></li>
-          </ul>
           {/if}
         </div>
       </div>

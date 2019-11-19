@@ -27,7 +27,7 @@
 </style>
 
 <svelte:head>
-	<title>Sælen-samlingen</title>
+	<title>{data.siteSettings[0].title}</title>
 </svelte:head>
 
 <section class="hero is-primary">
@@ -51,7 +51,7 @@
 					the user hovers over the link or taps it, instead of
 					waiting for the 'click' event -->
 			<li class="post">
-				<h1><a rel='prefetch' href='articles/{post.slug.current}'>{post.title}</a></h1>
+				<h1><a rel='prefetch' href='articles/{post.slug.current}'>{post.label}</a></h1>
 				<h2>({formatDate(post.publishedAt)})</h2>
 			</li>
 		{/each}
