@@ -108,9 +108,10 @@ export default {
     },
     {
       title: 'Documentation images before',
-      description: '',
       name: 'documentationImage',
-      layout: 'grid',
+      options: {
+        layout: 'grid'
+      },
       type: 'array',
       of: [
         {type: 'figure'}

@@ -4,6 +4,14 @@ export default {
   type: 'object',
   fields: [
     {
+      title: 'Type',
+      name: 'hasType',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'eventType'}]}
+      ]
+    },
+    {
       title: 'Carried out by',
       name: 'carriedOutBy',
       type: 'array',

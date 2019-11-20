@@ -30,9 +30,11 @@ export default {
     },
     {
       title: 'Type',
-      name: 'type',
+      name: 'hasType',
       type: 'array',
-      of: [{type: 'string'}]
+      of: [
+        {type: 'reference', to: [{type: 'eventType'}]}
+      ]
     }
   ],
   preview: {

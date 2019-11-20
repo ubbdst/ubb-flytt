@@ -8,6 +8,14 @@ export default {
   type: 'object',
   fields: [
     {
+      title: 'Type',
+      name: 'hasType',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'eventType'}]}
+      ]
+    },
+    {
       title: 'Formed from',
       name: 'wasFormedFrom',
       type: 'array',

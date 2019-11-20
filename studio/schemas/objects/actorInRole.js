@@ -13,7 +13,9 @@ export default {
       title: 'Role',
       name: 'role',
       type: 'array',
-      of: [{type: 'string'}]
+      of: [
+        {type: 'reference', to: [{type: 'role'}]}
+      ]
     }
   ],
   preview: {

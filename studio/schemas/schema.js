@@ -41,7 +41,8 @@ import designOrProcedure from './documents/designOrProcedure'
 import typeClass from './documents/types/type'
 import assessmentType from './documents/types/assessmentType'
 import actorType from './documents/types/actorType'
-import activityType from './documents/types/activityType '
+import activityType from './documents/types/activityType'
+import eventType from './documents/types/eventType'
 import concept from './documents/types/concept'
 import role from './documents/types/role'
 import timeline from './documents/timeline'
@@ -123,6 +124,13 @@ export default createSchema({
     move,
     birth,
     death,
+    typeClass,
+    assessmentType,
+    actorType,
+    activityType,
+    eventType,
+    concept,
+    role,
     // Works
     work,
     visualItem,
@@ -152,12 +160,6 @@ export default createSchema({
     genericText,
     reportText,
     simpleText,
-    typeClass,
-    assessmentType,
-    actorType,
-    activityType,
-    concept,
-    role,
     localeBlock,
     localeBlockSimple,
     localeBlockReport,

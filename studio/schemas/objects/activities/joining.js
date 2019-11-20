@@ -6,6 +6,14 @@ export default {
   type: 'object',
   fields: [
     {
+      title: 'Type',
+      name: 'hasType',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'eventType'}]}
+      ]
+    },
+    {
       title: 'Timespan',
       name: 'timespan',
       type: 'array',
