@@ -46,7 +46,12 @@
         <div class="media">
           <div class="media-content">
             <p class="title">
-              <a rel=prefetch href='{path}/{card._id}'>{card.label ? card.label : card._id}</a>
+            {#if card.label && card.label.nor}
+              <a rel=prefetch href='{path}/{card._id}'>{card.label.nor}</a>
+            {/if}
+            {#if card.label && !card.label.nor}
+              <a rel=prefetch href='{path}/{card._id}'>{card.label}</a>
+            {/if}
             </p>
           </div>
         </div>

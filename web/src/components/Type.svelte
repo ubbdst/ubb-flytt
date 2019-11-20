@@ -31,17 +31,7 @@
 
 <main class="section">
   <div class="container">
-    <h1 class="title is-size-1 has-text-centered">{item.label}</h1>    
-
-    {#if item.mainRepresentation || item.mainManifest}
-    <MainImage 
-      image={item.mainRepresentation}
-      manifest={item.mainManifest ? item.mainManifest : ''}
-      rights={item.rights}
-      id={item.preferredIdentifier}
-      alt={item.title}>
-    </MainImage>
-    {/if}
+    <h1 class="title is-size-1 has-text-centered">{item.label.nor}</h1>    
 
     {#if item.description}
       <div class="content is-medium has-text-centered">
@@ -50,19 +40,14 @@
     {/if}
 
     {#if item.referencedBy && item.referencedBy.length != 0}
-    <Cards cards={item.referencedBy} title="Relatert til"></Cards>
+    <Cards cards={item.referencedBy} title=""></Cards>
     {/if}
     
-    {#if item.geoJSON}
-    <div class="map">
-      <Map src={item.geoJSON}></Map>
-    </div>
-    {/if}
 
-   {#if item.activityStream}
+    {#if item.activityStream}
     <ActivityStream stream={item.activityStream} title="Tidslinje"></ActivityStream>
     {/if}
-
+    
     <!-- <div class="box">
       <pre>
         <code>
@@ -70,14 +55,13 @@
         </code>
       </pre>
     </div> -->
-
   </div>
 
   <nav class="breadcrumb is-small box" aria-label="breadcrumbs">
     <ul>
       <li><a href="/">Hjem</a></li>
-      <li><a href="/events">Hendelser</a></li>
-      <li class="is-active"><a href="#" aria-current="page">{item.label}</a></li>
+      <li><a href="/types">Typer</a></li>
+      <li class="is-active"><a href="#" aria-current="page">{item.label.nor}</a></li>
     </ul>
   </nav>
 </main>

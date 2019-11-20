@@ -136,6 +136,7 @@
   import Move from '../../components/Move';
   import Event from '../../components/Event';
   import Acquisition from '../../components/Acquisition';
+  import Type from '../../components/Type';
 
   export let item;
 </script>
@@ -145,7 +146,7 @@
 </style>
 
 <svelte:head>
-	<title>{item.label ? item.label : item.title}</title>
+	<title>{item.label.nor ? item.label.nor : item.label}</title>
 </svelte:head>
 
 {#if item._type == 'madeObject'}
@@ -170,4 +171,8 @@
 
 {#if item._type == 'acquisition'}
   <Acquisition item={item}></Acquisition>
+{/if}
+
+{#if (['typeClass', 'concept','role', 'actorType', 'acquisitionType'].indexOf(item._type) >= 0)}
+    <Type item={item}></Type>
 {/if}
