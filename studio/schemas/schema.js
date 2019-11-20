@@ -38,7 +38,11 @@ import experimental from './documents/experimental'
 import move from './documents/move'
 import place from './documents/place'
 import designOrProcedure from './documents/designOrProcedure'
-import typeClass from './documents/type'
+import typeClass from './documents/types/type'
+import assessmentType from './documents/types/assessmentType'
+import actorType from './documents/types/actorType'
+import concept from './documents/types/concept'
+import role from './documents/types/role'
 import timeline from './documents/timeline'
 import exhibition from './documents/exhibition'
 import acquisition from './documents/acquisition'
@@ -73,6 +77,8 @@ import timelineSlide from './objects/timelineSlide'
 import feature from './objects/feature'
 import externalMediaObject from './images/externalMediaObject'
 import slider from './objects/slider'
+import era from './objects/era'
+import background from './objects/background'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -139,11 +145,17 @@ export default createSchema({
     timelineSlide,
     part,
     slider,
+    era,
+    background,
     // Text
     genericText,
     reportText,
     simpleText,
     typeClass,
+    assessmentType,
+    actorType,
+    concept,
+    role,
     localeBlock,
     localeBlockSimple,
     localeBlockReport,

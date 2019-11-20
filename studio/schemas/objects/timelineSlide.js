@@ -7,18 +7,14 @@ export default {
   type: 'object',
   fields: [
     {
+      title: 'Headline',
+      name: 'headline',
+      type: 'string'
+    },
+    {
+      title: 'Text',
       name: 'text',
-      type: 'object',
-      fields: [
-        {
-          name: 'headline',
-          type: 'string'
-        },
-        {
-          name: 'text',
-          type: 'localeBlock'
-        }
-      ]
+      type: 'localeBlock'
     },
     {
       title: 'Media',
@@ -50,24 +46,12 @@ export default {
     {
       title: 'Background',
       name: 'background',
-      type: 'object',
-      fields: [
-        {
-          title: 'Image',
-          name: 'url',
-          type: 'image'
-        },
-        {
-          title: 'Color',
-          name: 'color',
-          type: 'color'
-        }
-      ]
+      type: 'background'
     }
   ],
   preview: {
     select: {
-      title: 'text.headline'
+      title: 'headline'
     },
     prepare (selection) {
       const {title} = selection

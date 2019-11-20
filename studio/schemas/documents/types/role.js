@@ -1,6 +1,6 @@
 export default {
-  title: 'Type',
-  name: 'typeClass',
+  title: 'Role',
+  name: 'role',
   type: 'document',
   fields: [
     {
@@ -14,14 +14,6 @@ export default {
       type: 'localeString'
     },
     {
-      title: 'Domain',
-      name: 'domain',
-      type: 'array',
-      of: [
-        {type: 'reference', to: [{type: 'typeClass'}]}
-      ]
-    },
-    {
       title: 'Broader',
       name: 'broader',
       type: 'array',
@@ -32,6 +24,15 @@ export default {
     {
       title: 'Narrower',
       name: 'narrower',
+      description: 'Trenger vi narrower? Blir mye å registrere...',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'typeClass'}]}
+      ]
+    },
+    {
+      title: 'Domain',
+      name: 'domain',
       type: 'array',
       of: [
         {type: 'reference', to: [{type: 'typeClass'}]}
@@ -49,12 +50,14 @@ export default {
   ],
   preview: {
     select: {
-      title: 'prefLabel.nor'
+      title: 'prefLabel.nor',
+      broader: 'broader.0.prefLabel.nor'
     },
     prepare (selection) {
-      const {title} = selection
+      const {title, broader} = selection
       return {
-        title: title
+        title: title,
+        subtitle: broader ? `⬆️` + broader : '🔝 Overordnet type/konsept'
       }
     }
   }

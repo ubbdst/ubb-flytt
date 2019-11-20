@@ -117,12 +117,15 @@ export default {
       description: 'WIP, should use API',
       fieldset: 'minimum',
       type: 'array',
-      of: [{type: 'string'}],
-      options: {
-        layout: 'tags',
-        service: 'aat',
-        childOf: 'aat:1000000'
-      },
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'typeClass'},
+            {type: 'concept'}
+          ]
+        }
+      ],
       validation: Rule => Rule.required()
     },
     {
@@ -345,18 +348,18 @@ export default {
     select: {
       title: 'label',
       id: 'preferredIdentifier',
-      typeOfObject: 'hasType',
+      typeOfObject: 'hasType.0.prefLabel.nor',
       blocks: 'description',
       media: 'mainRepresentation'
     },
     prepare (selection) {
       const {title, id, typeOfObject, blocks, media} = selection
-      const expression = jsonata('nb[0]')
+      const expression = jsonata('nor[0]')
       const block = expression.evaluate(blocks)
 
       return {
         title: title,
-        subtitle: `${id}${typeOfObject ? ', ' + typeOfObject[0] : ''}`,
+        subtitle: id + ', ' + typeOfObject,
         description: block
           ? block.children
             .filter(child => child._type === 'span')

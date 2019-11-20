@@ -4,42 +4,24 @@ export default {
   title: 'Timeline',
   fields: [
     {
-      name: 'title',
-      title: 'Title',
-      type: 'object',
-      fields: [
-        {
-          name: 'text',
-          type: 'object',
-          fields: [
-            {
-              name: 'headline',
-              type: 'string'
-            },
-            {
-              name: 'text',
-              type: 'localeBlock'
-            }
-          ]
-        },
-        {
-          name: 'media',
-          type: 'image',
-          fields: [
-            {
-              title: 'Caption',
-              name: 'caption',
-              type: 'text'
-            },
-            {
-              title: 'Credit',
-              name: 'credit',
-              description: 'Add creator and link to resource',
-              type: 'string'
-            }
-          ]
-        }
-      ]
+      title: 'Headline',
+      name: 'headline', // path: title.text.heading
+      type: 'string'
+    },
+    {
+      title: 'Text',
+      name: 'text', // path: title.text.text
+      type: 'localeBlock'
+    },
+    {
+      title: 'Media',
+      name: 'media',
+      type: 'array',
+      of: [
+        {type: 'mediaObject'},
+        {type: 'externalMediaObject'}
+      ],
+      validation: Rule => Rule.length(1).error('You should only register one media object')
     },
     {
       title: 'Scale',
@@ -58,48 +40,18 @@ export default {
       name: 'eras',
       description: 'Eras is used to label a span of time on the timeline navigation component.',
       type: 'array',
-      of: [
-        {name: 'era',
-          type: 'object',
-          fields: [
-            {
-              name: 'text',
-              type: 'object',
-              fields: [
-                {
-                  name: 'headline',
-                  type: 'string'
-                },
-                {
-                  name: 'text',
-                  type: 'localeBlock'
-                }
-              ]
-            },
-            {
-              title: 'Start date',
-              name: 'startDate',
-              type: 'date'
-            },
-            {
-              title: 'End date',
-              name: 'endDate',
-              type: 'date'
-            }
-          ],
-          preview: {
-            select: {
-              title: 'text.headline'
-            },
-            prepare (selection) {
-              const {title} = selection
-              return {
-                title: title
-              }
-            }
+      of: [{type: 'era'}],
+      preview: {
+        select: {
+          title: 'headline'
+        },
+        prepare (selection) {
+          const {title} = selection
+          return {
+            title: title
           }
         }
-      ]
+      }
     },
     {
       name: 'events',
@@ -117,7 +69,7 @@ export default {
   ],
   preview: {
     select: {
-      title: 'title.text.headline'
+      title: 'headline'
     },
     prepare (selection) {
       const {title} = selection

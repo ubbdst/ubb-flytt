@@ -100,7 +100,7 @@ export default {
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'label',
       publishedAt: 'publishedAt',
       slug: 'slug',
       media: 'mainImage'
