@@ -2,10 +2,46 @@ export default {
   title: 'Actor type',
   name: 'actorType',
   type: 'document',
+  fieldsets: [
+    {
+      name: 'state',
+      title: 'State',
+      options: {collapsible: true, collapsed: false}
+    }
+  ],
   fields: [
     {
+      name: 'editorialState',
+      type: 'string',
+      fieldset: 'state',
+      validation: Rule => Rule.required(),
+      options: {
+        list: [
+          {title: 'Working draft', value: 'workingDraft'},
+          {title: 'Needs review', value: 'review'},
+          {title: 'Published', value: 'published'}
+        ],
+        layout: 'radio',
+        direction: 'horizontal'
+      }
+    },
+    {
+      name: 'accessState',
+      type: 'string',
+      fieldset: 'state',
+      validation: Rule => Rule.required(),
+      options: {
+        list: [
+          {title: 'Private/Secret', value: 'secret'},
+          {title: 'Open', value: 'open'}
+        ],
+        layout: 'radio',
+        direction: 'horizontal'
+      }
+    },
+    {
       title: 'Preferred label',
-      name: 'prefLabel',
+      name: 'label',
       type: 'localeString'
     },
     {
@@ -50,8 +86,8 @@ export default {
   ],
   preview: {
     select: {
-      title: 'prefLabel.nor',
-      broader: 'broader.0.prefLabel.nor'
+      title: 'label.nor',
+      broader: 'broader.0.label.nor'
     },
     prepare (selection) {
       const {title, broader} = selection

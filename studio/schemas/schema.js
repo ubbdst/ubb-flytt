@@ -76,7 +76,7 @@ import manifest from './objects/manifest'
 import timelineSlide from './objects/timelineSlide'
 import feature from './objects/feature'
 import externalMediaObject from './images/externalMediaObject'
-import slider from './objects/slider'
+import valueSlider from './objects/valueSlider'
 import era from './objects/era'
 import background from './objects/background'
 
@@ -144,7 +144,7 @@ export default createSchema({
     manifest,
     timelineSlide,
     part,
-    slider,
+    valueSlider,
     era,
     background,
     // Text

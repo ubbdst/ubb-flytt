@@ -52,7 +52,7 @@ export default {
       name: 'conditionAssignment',
       type: 'array',
       of: [
-        {type: 'slider'}
+        {type: 'valueSlider'}
       ]
     },
     {

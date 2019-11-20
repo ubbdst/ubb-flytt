@@ -1,19 +1,13 @@
 export default {
   title: 'Slider',
-  name: 'slider',
+  name: 'valueSlider',
   type: 'object',
   fields: [
     {
       title: 'Type',
-      name: 'conditionType',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Overall condition', value: 'overallCondition'},
-          {title: 'Ink condition', value: 'inkCondition'},
-          {title: 'Binding condition', value: 'bindingCondition'}
-        ]
-      }
+      name: 'hasType',
+      type: 'reference',
+      to: [{type: 'assessmentType'}]
     },
     {
       title: 'Condition',
@@ -28,7 +22,7 @@ export default {
   ],
   preview: {
     select: {
-      type: 'conditionType',
+      type: 'hasType.label.nor',
       value: 'condition'
     },
     prepare (selection) {
