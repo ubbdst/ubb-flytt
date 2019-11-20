@@ -63,13 +63,13 @@
     <ActivityStream stream={item.activityStream} title="Tidslinje"></ActivityStream>
     {/if}
 
-    <!-- <div class="box">
+    <div class="box">
       <pre>
         <code>
         {JSON.stringify(item, null, 2)}
         </code>
       </pre>
-    </div> -->
+    </div>
 
   </div>
 

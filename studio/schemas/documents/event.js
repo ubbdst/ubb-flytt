@@ -49,14 +49,10 @@ export default {
       title: 'Classified as',
       name: 'hasType',
       description: 'WIP, should use API',
-      fieldset: 'minimum',
       type: 'array',
-      of: [{type: 'string'}],
-      options: {
-        layout: 'tags',
-        service: 'aat',
-        childOf: 'aat:1000000'
-      },
+      of: [
+        {type: 'reference', to: [{type: 'eventType'}]}
+      ],
       validation: Rule => Rule.required()
     },
     {

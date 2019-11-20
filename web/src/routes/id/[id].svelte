@@ -150,7 +150,15 @@
 </style>
 
 <svelte:head>
-	<title>{item.label.nor ? item.label.nor : item.label}</title>
+	{#if item.label && item.label.nor}
+    <title>{item.label.nor}</title>
+  {/if}
+  {#if item.label && !item.label.nor}
+    <title>{item.label}</title>
+  {/if}
+  {#if !item.label}
+    <title>{item._id}</title>
+  {/if}
 </svelte:head>
 
 {#if item._type == 'madeObject'}
@@ -177,6 +185,6 @@
   <Acquisition item={item}></Acquisition>
 {/if}
 
-{#if (['typeClass', 'concept','role', 'actorType', 'activityType', 'acquisitionType'].indexOf(item._type) >= 0)}
+{#if (['typeClass', 'concept','role', 'actorType', 'activityType','eventType', 'acquisitionType'].indexOf(item._type) >= 0)}
     <Type item={item}></Type>
 {/if}

@@ -52,6 +52,9 @@
             {#if card.label && !card.label.nor}
               <a rel=prefetch href='{path}/{card._id}'>{card.label}</a>
             {/if}
+            {#if !card.label}
+              <a rel=prefetch href='{path}/{card._id}'>{card._id}</a>
+            {/if}
             </p>
           </div>
         </div>
