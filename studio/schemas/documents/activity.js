@@ -1,5 +1,3 @@
-import {activityTypes} from './../vocabularies/default'
-
 export default {
   title: 'Activity',
   name: 'activity',
@@ -30,12 +28,11 @@ export default {
     },
     {
       title: 'Activity type',
-      name: 'activityType',
-      type: 'string',
-      options: {
-        list: activityTypes,
-        layout: 'radio'
-      }
+      name: 'hasType',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'activityType'}]}
+      ]
     },
     {
       title: 'Carried out by',
@@ -171,13 +168,13 @@ export default {
   preview: {
     select: {
       title: 'label',
-      type: 'activityType'
+      type: 'hasType.0.label.nor'
     },
     prepare (selection) {
       const {title, type} = selection
       return {
         title: title,
-        subtitle: `${activityTypes.find(id => id.value === type).title}`
+        subtitle: type
       }
     }
   }

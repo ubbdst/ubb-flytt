@@ -41,6 +41,7 @@ import designOrProcedure from './documents/designOrProcedure'
 import typeClass from './documents/types/type'
 import assessmentType from './documents/types/assessmentType'
 import actorType from './documents/types/actorType'
+import activityType from './documents/types/activityType '
 import concept from './documents/types/concept'
 import role from './documents/types/role'
 import timeline from './documents/timeline'
@@ -154,6 +155,7 @@ export default createSchema({
     typeClass,
     assessmentType,
     actorType,
+    activityType,
     concept,
     role,
     localeBlock,

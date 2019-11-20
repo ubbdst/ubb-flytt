@@ -97,6 +97,10 @@
       wasMotivatedBy[]->{
         _id,
         label
+      },
+      conditionAssignment[]{
+        ...,
+        hasType->
       }
     }`
 

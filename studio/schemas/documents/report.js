@@ -1,5 +1,3 @@
-import {reportTypes} from '../vocabularies/default'
-
 export default {
   title: 'Report',
   name: 'report',
@@ -48,24 +46,22 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      title: 'Classified as',
+      name: 'hasType',
+      description: 'WIP, should use API',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'assessmentType'}]}
+      ],
+      validation: Rule => Rule.required()
+    },
+    {
       title: 'Condition assignment',
       name: 'conditionAssignment',
       type: 'array',
       of: [
         {type: 'valueSlider'}
       ]
-    },
-    {
-      title: 'Classified as',
-      name: 'hasType',
-      description: 'WIP, should use API',
-      type: 'string',
-      options: {
-        list: reportTypes,
-        service: 'AAT',
-        childOf: 'aat:1000000'
-      },
-      validation: Rule => Rule.required()
     },
     {
       title: 'About',
