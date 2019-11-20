@@ -177,6 +177,6 @@
   <Acquisition item={item}></Acquisition>
 {/if}
 
-{#if (['typeClass', 'concept','role', 'actorType', 'acquisitionType'].indexOf(item._type) >= 0)}
+{#if (['typeClass', 'concept','role', 'actorType', 'activityType', 'acquisitionType'].indexOf(item._type) >= 0)}
     <Type item={item}></Type>
 {/if}
