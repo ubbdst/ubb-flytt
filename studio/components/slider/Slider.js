@@ -14,7 +14,7 @@ export default class Slider extends React.Component {
     onChange: PropTypes.func.isRequired
   }
 
-  focus() {
+  focus () {
     this._inputElement.focus()
   }
 
@@ -24,7 +24,7 @@ export default class Slider extends React.Component {
     this.props.onChange(PatchEvent.from(patch))
   }
 
-  render() {
+  render () {
     const {type, value, level} = this.props
     const title = `${type.title}: ${value}`
     const {min, max, step} = type.options.range
@@ -33,7 +33,7 @@ export default class Slider extends React.Component {
         <FormField label={title} level={level} description={type.description}>
           <input
             ref={element => this._inputElement = element}
-            type="range"
+            type='range'
             className={styles.slider}
             min={min}
             max={max}
