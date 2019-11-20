@@ -13,13 +13,10 @@
     const projection = `
       {
         ...,
-        title{
-          ...,
-          media{
-            caption,
-            credit,
-            "url": asset->url
-          }
+        media[]{
+          caption,
+          credit,
+          "url": asset->url
         },
         events[] {
           _type == 'reference' => @->{
@@ -91,10 +88,10 @@
             credit: event.media.credit ? event.media.credit : null,
           }),
           text: Object.assign({}, {
-            headline: event.text.headline,
-            text: event.text.text.nor
+            headline: event.headline,
+            text: event.text.nor
               ? blocksToHtml({
-                  blocks: event.text.text.nor.filter(({ _key = "" }) => _key)
+                  blocks: event.text.nor.filter(({ _key = "" }) => _key)
                 })
               : ""
           })
@@ -129,27 +126,28 @@
     const tl = await Object.assign({}, data, {
       title: {
         text: {
-          headline: title.text.headline,
-          text: title.text.text.nor ? blocksToHtml({
-                blocks: title.text.text.nor.filter(({ _key = "" }) => _key)
+          headline: data.headline,
+          text: data.text.nor ? blocksToHtml({
+                blocks: data.text.nor.filter(({ _key = "" }) => _key)
               })
             : ""
         },
         /* background: Object.assign({}, title.background, {
           color: title.background.color.hex ? title.background.color.hex : '#dddddd'
         }), */
-        media: Object.assign({}, title.media, {
-          caption: title.media.caption
+        media:  {
+          url: data.media[0].url ? data.media[0].url : null,
+          caption: data.media[0].caption
             ? blocksToHtml({
-                blocks: title.media.caption.filter(({ _key = "" }) => _key)
+                blocks: data.media[0].caption.filter(({ _key = "" }) => _key)
               })
             : "",
-          credit: title.media.credit
+          credit: data.media[0].credit
             ? blocksToHtml({
-                blocks: title.media.credit.filter(({ _key = "" }) => _key)
+                blocks: data.media[0].credit.filter(({ _key = "" }) => _key)
               })
             : ""
-        })
+        }
       },
       events
     });

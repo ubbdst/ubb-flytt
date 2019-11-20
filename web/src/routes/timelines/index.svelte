@@ -47,20 +47,20 @@
 				the user hovers over the link or taps it, instead of
 				waiting for the 'click' event -->
 		<article class="card">
-			{#if item.title.media}
+			{#if item.media}
 			<a class="card-image" rel='prefetch' href='timelines/{item._id}'>
 				<figure class="image">
-					<img alt="{item.title.text.headline ? item.title.text.headline : ''}" src={urlFor(item.title.media).width(1200).height(300).url()} />
+					<img alt="{item.headline ? item.headline : ''}" src={urlFor(item.media[0]).width(1200).height(300).url()} />
 				</figure>
 			</a>
 			{/if}
 			<div class="card-content">
 				<div class="media">
 					<div class="media-content">
-						<p class="title"><a rel='prefetch' href='timelines/{item._id}'>{item.title.text.headline}</a></p>
-						{@html item.title.text.text.nor
+						<p class="title"><a rel='prefetch' href='timelines/{item._id}'>{item.headline}</a></p>
+						{@html item.text.nor
 									? blocksToHtml({
-											blocks: item.title.text.text.nor.filter(({ _key = "" }) => _key)
+											blocks: item.text.nor.filter(({ _key = "" }) => _key)
 										})
 									: ""}
 					</div>

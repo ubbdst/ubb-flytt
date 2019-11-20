@@ -31,8 +31,8 @@
         pitch: 40
       });
 
-/*       console.log(src);
- */
+      console.log(src);
+
       const expression = jsonata("**.geoJSON[]");
       
       if (src.all) {
@@ -46,7 +46,8 @@
         src = src.map(item => {
           let container = {}
           container.type = 'Feature';
-          container.properties = item.properties;
+          container.properties = {};
+          container.properties.type = item.type;
           container.geometry = {};
           container.geometry.type = 'Point';
           container.geometry.coordinates = [item.geometry.lng, item.geometry.lat];

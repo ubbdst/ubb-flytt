@@ -25,7 +25,7 @@
     return new Date(date).toLocaleDateString()
   }
 
-  let titleForAcquisition = 'Akkvisisjon fra ' + item.transferred_title_from.label + ' til ' + item.transferred_title_to.label
+  let titleForAcquisition = 'Akkvisisjon fra ' + item.transferred_title_from[0].label + ' til ' + item.transferred_title_to[0].label
 
 </script>
 
@@ -147,7 +147,7 @@
   <nav class="breadcrumb is-small box" aria-label="breadcrumbs">
     <ul>
       <li><a href="/">Hjem</a></li>
-      <li><a href="/experimental/move">Flytt</a></li>
+      <li><a href="/acquisitions">Akkvisisjoner</a></li>
       <li class="is-active"><a href="#" aria-current="page">{titleForAcquisition}</a></li>
     </ul>
   </nav>
