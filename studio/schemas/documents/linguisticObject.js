@@ -1,4 +1,4 @@
-import {textTypes, languages} from '../vocabularies/default'
+import {languages} from '../vocabularies/default'
 import {FaToiletPaper} from 'react-icons/fa'
 
 export default {
@@ -37,17 +37,8 @@ export default {
     {
       title: 'Title',
       name: 'label',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.required()
-    },
-    {
-      title: 'Text type',
-      name: 'textType',
-      type: 'string',
-      options: {
-        list: textTypes,
-        layout: 'radio'
-      }
     },
     {
       title: 'Language',
@@ -60,8 +51,7 @@ export default {
     {
       title: 'Body',
       name: 'body',
-      type: 'array',
-      of: [{type: 'block'}]
+      type: 'genericText'
     }
   ],
   preview: {

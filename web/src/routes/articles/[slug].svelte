@@ -49,6 +49,14 @@
 	<title>{post.title}</title>
 </svelte:head>
 
+<nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/">Hjem</a></li>
+    <li><a href="/articles">Artikler</a></li>
+    <li class="is-active"><a href="#" aria-current="page">{post.label}</a></li>
+  </ul>
+</nav>
+
 <main class="section">
   <div class="container">
     <h1 class="title">{post.label}</h1>

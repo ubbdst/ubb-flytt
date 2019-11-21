@@ -35,6 +35,14 @@
   }
 </style>
 
+<nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/">Hjem</a></li>
+    <li><a href="/items">Objekt</a></li>
+    <li class="is-active"><a href="#" aria-current="page">{item.label}</a></li>
+  </ul>
+</nav>
+
 <main class="section">
   <div class="container">
     <h1 class="title is-size-1 has-text-centered">{item.label}</h1>
@@ -45,7 +53,7 @@
         <div class="control">
           <div class="tags">
             {#each item.hasType as t, i}
-            <span class="tag is-info is-light">
+            <span class="tag is-white">
               <a href="/id/{t._id}">{t.label.nor}</a>
             </span>
             {/each}
@@ -56,7 +64,7 @@
         <div class="control">
           <div class="tags has-addons">
             <span class="tag">ID:</span>
-            <span class="tag is-dark">{item.preferredIdentifier}</span>
+            <span class="tag is-light">{item.preferredIdentifier}</span>
           </div>
         </div>
       </div>

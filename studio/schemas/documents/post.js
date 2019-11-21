@@ -1,5 +1,5 @@
 import {FaMarker} from 'react-icons/fa'
-import {format} from 'date-fns'
+import jsonata from 'jsonata'
 
 export default {
   name: 'post',
@@ -38,8 +38,7 @@ export default {
       name: 'excerpt',
       type: 'excerptPortableText',
       title: 'Excerpt',
-      description:
-        'This ends up on summary pages, on Google, when people share your post in social media.'
+      description: 'This ends up on summary pages, on Google, when people share your post in social media.'
     },
     {
       name: 'authors',
@@ -103,17 +102,23 @@ export default {
   preview: {
     select: {
       title: 'label',
-      publishedAt: 'publishedAt',
-      slug: 'slug',
+      blocks: 'excerpt',
       media: 'mainImage'
     },
-    prepare ({title = 'No title', publishedAt, slug, media}) {
-      const dateSegment = format(publishedAt, 'YYYY/MM')
-      const path = `/${dateSegment}/${slug.current}/`
+    prepare (selection) {
+      const {title, blocks, media} = selection
+      const expression = jsonata('nor[0]')
+      const block = expression.evaluate(blocks)
+
       return {
-        title,
-        media,
-        subtitle: publishedAt ? path : 'Missing publishing date'
+        title: title,
+        description: block
+          ? block.children
+            .filter(child => child._type === 'span')
+            .map(span => span.text)
+            .join('')
+          : 'No description',
+        media: media
       }
     }
   }

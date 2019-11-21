@@ -36,14 +36,13 @@ export default {
     {
       title: 'Title',
       name: 'label',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
       title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [{type: 'block'}]
+      type: 'localeBlock'
     }
   ]
 }

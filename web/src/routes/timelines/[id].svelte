@@ -20,7 +20,7 @@
         },
         events[] {
           _type == 'reference' => @->{
-          ...,
+            ...,
             "media": media{
               caption,
               credit,
@@ -61,7 +61,7 @@
             credit: event.media.credit
           }),
           text: Object.assign({}, {
-            headline: event.label,
+            headline: event.label.nor,
             text: event.description
               ? blocksToHtml({
                   blocks: event.description.nor.filter(({ _key = "" }) => _key)
@@ -88,7 +88,7 @@
             credit: event.media.credit ? event.media.credit : null,
           }),
           text: Object.assign({}, {
-            headline: event.headline,
+            headline: event.headline.nor,
             text: event.text.nor
               ? blocksToHtml({
                   blocks: event.text.nor.filter(({ _key = "" }) => _key)
@@ -126,7 +126,7 @@
     const tl = await Object.assign({}, data, {
       title: {
         text: {
-          headline: data.headline,
+          headline: data.headline.nor,
           text: data.text.nor ? blocksToHtml({
                 blocks: data.text.nor.filter(({ _key = "" }) => _key)
               })
@@ -210,5 +210,5 @@
   <title>{tl.title.text.headline}</title>
 </svelte:head>
  
- <div id='timeline-embed' style="width: 100%; height: 600px"></div>
+<div id='timeline-embed' style="width: 100%; height: 600px"></div>
  

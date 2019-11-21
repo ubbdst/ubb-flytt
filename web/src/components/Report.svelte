@@ -31,12 +31,20 @@
 </style>
 
 <svelte:head>
-	<title>{item.label}</title>
+	<title>{item.label.nor}</title>
 </svelte:head>
+
+<nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/">Hjem</a></li>
+    <li><a href="/experimental/reports">Rapporter</a></li>
+    <li class="is-active"><a href="#" aria-current="page">{item.label.nor}</a></li>
+  </ul>
+</nav>
 
 <main class="section">
   <div class="container">
-    <h1 class="title is-size-1 has-text-centered">{item.label}</h1>
+    <h1 class="title is-size-1 has-text-centered">{item.label.nor}</h1>
     
     {#if item.concerned && item.concerned.length > 0}
     <MediaObjects objects={item.concerned} title="Angår" imageSize="64x64"></MediaObjects>
@@ -79,12 +87,4 @@
     {/if}
 
   </div>
-
-  <nav class="breadcrumb is-small box" aria-label="breadcrumbs">
-    <ul>
-      <li><a href="/">Hjem</a></li>
-      <li><a href="/experimental/reports">Rapporter</a></li>
-      <li class="is-active"><a href="#" aria-current="page">{item.label}</a></li>
-    </ul>
-  </nav>
 </main>

@@ -48,6 +48,21 @@ export default {
       type: 'string',
       validation: Rule => Rule.required()
     },
+    /* {
+      title: 'Classified as',
+      name: 'hasType',
+      description: 'WIP, should use API',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'actorType'}
+          ]
+        }
+      ],
+      validation: Rule => Rule.required()
+    }, */
     {
       title: 'Image',
       name: 'mainRepresentation',

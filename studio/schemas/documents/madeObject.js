@@ -110,6 +110,7 @@ export default {
     {
       title: 'Title',
       name: 'label',
+      description: 'WIP, change to localeBlock',
       fieldset: 'minimum',
       type: 'string',
       validation: Rule => Rule.required()
@@ -351,18 +352,18 @@ export default {
     select: {
       title: 'label',
       id: 'preferredIdentifier',
-      typeOfObject: 'hasType.0.prefLabel.nor',
+      type: 'hasType.0.label.nor',
       blocks: 'description',
       media: 'mainRepresentation'
     },
     prepare (selection) {
-      const {title, id, typeOfObject, blocks, media} = selection
+      const {title, id, type, blocks, media} = selection
       const expression = jsonata('nor[0]')
       const block = expression.evaluate(blocks)
 
       return {
         title: title,
-        subtitle: id + ', ' + typeOfObject,
+        subtitle: id + ', ' + type,
         description: block
           ? block.children
             .filter(child => child._type === 'span')

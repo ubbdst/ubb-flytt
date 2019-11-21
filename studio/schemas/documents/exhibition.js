@@ -52,15 +52,7 @@ export default {
     {
       title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [
-        {type: 'block'},
-        {type: 'reference',
-          to: [
-            {type: 'timeline'}
-          ]
-        }
-      ]
+      type: 'localeBlock'
     }
   ]
 }

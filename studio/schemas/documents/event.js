@@ -62,7 +62,7 @@ export default {
       title: 'Title',
       name: 'label',
       fieldset: 'minimum',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
@@ -90,5 +90,19 @@ export default {
       name: 'media',
       type: 'mediaObject'
     }
-  ]
+  ],
+  preview: {
+    select: {
+      type: 'hasType.0.label.nor',
+      title: 'label.nor'
+    },
+    prepare (selection) {
+      const {title, type} = selection
+
+      return {
+        title: title,
+        subtitle: type
+      }
+    }
+  }
 }

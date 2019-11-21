@@ -45,14 +45,28 @@ export default {
     {
       title: 'Name',
       name: 'label',
-      type: 'string',
+      type: 'localeString',
+      validation: Rule => Rule.required()
+    },
+    {
+      title: 'Classified as',
+      name: 'hasType',
+      description: 'WIP, should use API',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'actorType'}
+          ]
+        }
+      ],
       validation: Rule => Rule.required()
     },
     {
       title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [{type: 'block'}]
+      type: 'localeBlock'
     },
     {
       title: 'Activity stream',
@@ -69,5 +83,19 @@ export default {
         editModal: 'fullscreen'
       }
     }
-  ]
+  ],
+  preview: {
+    select: {
+      type: 'hasType.0.label.nor',
+      title: 'label.nor'
+    },
+    prepare (selection) {
+      const {title, type} = selection
+
+      return {
+        title: title,
+        subtitle: type
+      }
+    }
+  }
 }

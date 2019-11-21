@@ -57,7 +57,7 @@
 			<div class="card-content">
 				<div class="media">
 					<div class="media-content">
-						<p class="title"><a rel='prefetch' href='timelines/{item._id}'>{item.headline}</a></p>
+						<p class="title"><a rel='prefetch' href='timelines/{item._id}'>{item.headline.nor}</a></p>
 						{@html item.text.nor
 									? blocksToHtml({
 											blocks: item.text.nor.filter(({ _key = "" }) => _key)

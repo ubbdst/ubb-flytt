@@ -36,6 +36,14 @@
 	<title>{titleForAcquisition}</title>
 </svelte:head>
 
+<nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/">Hjem</a></li>
+    <li><a href="/acquisitions">Akkvisisjoner</a></li>
+    <li class="is-active"><a href="#" aria-current="page">{titleForAcquisition}</a></li>
+  </ul>
+</nav>
+
 <main class="section">
   <div class="container">
     <h1 class="title is-hidden has-text-centered">{titleForAcquisition}</h1>
@@ -53,7 +61,7 @@
         </div>
 
         <div class="column has-text-centered">
-          <p class="has-text-centered"><i class="fas fa-long-arrow-alt-right fa-3x"></i></p>
+          <p class="has-text-centered"><i class="fas fa-chevron-right fa-2x"> </i><i class="fas fa-gift fa-3x"></i> <i class="fas fa-chevron-right fa-2x"></i></p>
         </div>
 
         <div class="column has-text-centered">
@@ -69,7 +77,6 @@
 
       <div class="columns">
         <div class="column has-text-centered is-full is-marginless box">
-          <p><i class="fas fa-gift fa-3x"></i></p>
           {#if item.timespan}
           <p><Timespan items={item.timespan}></Timespan></p>
           {/if}
@@ -143,12 +150,4 @@
     </div> -->
 
   </div>
-
-  <nav class="breadcrumb is-small box" aria-label="breadcrumbs">
-    <ul>
-      <li><a href="/">Hjem</a></li>
-      <li><a href="/acquisitions">Akkvisisjoner</a></li>
-      <li class="is-active"><a href="#" aria-current="page">{titleForAcquisition}</a></li>
-    </ul>
-  </nav>
 </main>

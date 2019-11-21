@@ -45,7 +45,7 @@ export default {
     {
       title: 'Title',
       name: 'label',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
@@ -123,16 +123,17 @@ export default {
   ],
   preview: {
     select: {
-      type: 'hasType',
-      title: 'label',
+      type: 'hasType.0.label.nor',
+      title: 'label.nor',
       blocks: 'description.nor'
     },
     prepare (selection) {
-      const {title, blocks} = selection
+      const {type, title, blocks} = selection
       const block = (blocks || []).find(block => block._type === 'block')
 
       return {
         title: title,
+        subtitle: type,
         description: block
           ? block.children
             .filter(child => child._type === 'span')

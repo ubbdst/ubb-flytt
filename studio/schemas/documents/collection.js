@@ -1,16 +1,16 @@
 import client from 'part:@sanity/base/client'
-import {FaArchive} from 'react-icons/fa'
+import {GiBookshelf} from 'react-icons/gi'
 
 export default {
   title: 'Collection',
   name: 'collection',
   type: 'document',
-  icon: FaArchive,
+  icon: GiBookshelf,
   fields: [
     {
       title: 'Title',
       name: 'label',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
@@ -26,8 +26,7 @@ export default {
     {
       title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [{type: 'block'}]
+      type: 'localeBlock'
     },
     {
       title: 'Activity stream',
@@ -44,5 +43,19 @@ export default {
         editModal: 'fullscreen'
       }
     }
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'label.nor',
+      subtitle: 'preferredIdentifier'
+    },
+    prepare (selection) {
+      const {title, subtitle} = selection
+
+      return {
+        title: title,
+        subtitle: subtitle
+      }
+    }
+  }
 }

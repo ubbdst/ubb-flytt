@@ -20,7 +20,7 @@ export default {
       h('figure', {},
         [h('img', {
         src: urlFor(node.mainRepresentation)
-          .width(600)
+          .width(800)
           .auto('format')
           .url()
         }),
@@ -30,7 +30,7 @@ export default {
       h('figure', {},
         [h('img', {
         src: urlFor(node)
-          .width(600)
+          .width(800)
           .auto('format')
           .url(),
         alt: node.alt

@@ -157,7 +157,6 @@
   import Event from '../../components/Event';
   import Acquisition from '../../components/Acquisition';
   import Exhibition from '../../components/Exhibition';
-  import Timeline from '../../components/Timeline';
   import Type from '../../components/Type';
 
   export let item;
@@ -205,10 +204,6 @@
 
 {#if item._type == 'exhibition'}
   <Exhibition item={item}></Exhibition>
-{/if}
-
-{#if item._type == 'timeline'}
-  <Timeline item={item}></Timeline>
 {/if}
 
 {#if (['typeClass', 'concept','role', 'actorType', 'activityType','eventType', 'acquisitionType'].indexOf(item._type) >= 0)}

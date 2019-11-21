@@ -26,7 +26,7 @@ export default {
     {
       title: 'Title',
       name: 'label',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
@@ -63,7 +63,7 @@ export default {
     {
       title: 'Description',
       name: 'description',
-      type: 'genericText'
+      type: 'localeBlock'
     },
     {
       title: 'Influenced by',

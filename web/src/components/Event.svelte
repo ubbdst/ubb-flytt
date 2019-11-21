@@ -29,6 +29,14 @@
  
 </style>
 
+<nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/">Hjem</a></li>
+    <li><a href="/events">Hendelser</a></li>
+    <li class="is-active"><a href="#" aria-current="page">{item.label}</a></li>
+  </ul>
+</nav>
+
 <main class="section">
   <div class="container">
     <h1 class="title is-size-1 has-text-centered">{item.label}</h1>    
@@ -72,12 +80,4 @@
     </div>
 
   </div>
-
-  <nav class="breadcrumb is-small box" aria-label="breadcrumbs">
-    <ul>
-      <li><a href="/">Hjem</a></li>
-      <li><a href="/events">Hendelser</a></li>
-      <li class="is-active"><a href="#" aria-current="page">{item.label}</a></li>
-    </ul>
-  </nav>
 </main>

@@ -44,6 +44,14 @@
 <svelte:head>
   <title>{data.label}</title>
 </svelte:head>
+
+<nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/">Hjem</a></li>
+    <li><a href="/places">Steder</a></li>
+    <li class="is-active"><a href="#" aria-current="page">{data.label}</a></li>
+  </ul>
+</nav>
  
 <main class="section">
   <h1 class="title has-text-centered">{data.label}</h1>

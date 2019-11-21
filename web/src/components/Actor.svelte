@@ -36,6 +36,14 @@
   }
 </style>
 
+<nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/">Hjem</a></li>
+    <li><a href="/actors">Aktører</a></li>
+    <li class="is-active"><a href="#" aria-current="page">{item.label}</a></li>
+  </ul>
+</nav>
+
 <main class="section">
   <div class="container">
     {#if item.mainManifest}

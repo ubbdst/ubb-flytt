@@ -10,14 +10,13 @@ export default {
     {
       title: 'Name',
       name: 'label',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
       title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [{type: 'block'}]
+      type: 'localeBlock'
     },
     {
       title: 'Location',
@@ -25,5 +24,16 @@ export default {
       name: 'geoJSON',
       type: 'feature'
     }
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'label.nor'
+    },
+    prepare (selection) {
+      const {title} = selection
+      return {
+        title: title
+      }
+    }
+  }
 }

@@ -9,7 +9,7 @@ export default {
     {
       title: 'Headline',
       name: 'headline',
-      type: 'string'
+      type: 'localeString'
     },
     {
       title: 'Text',
@@ -51,7 +51,7 @@ export default {
   ],
   preview: {
     select: {
-      title: 'headline'
+      title: 'headline.nor'
     },
     prepare (selection) {
       const {title} = selection
