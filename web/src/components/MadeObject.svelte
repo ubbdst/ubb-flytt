@@ -29,23 +29,39 @@
   .metadata {
     margin-bottom: 2em;
   }
+
+  .field.is-centered {
+    justify-content: center;
+  }
 </style>
 
 <main class="section">
   <div class="container">
     <h1 class="title is-size-1 has-text-centered">{item.label}</h1>
-    <p class="metadata has-text-centered">
-      {#if item.hasType && item.hasType.length > 0}
-      {#each item.hasType as t, i}
-      <span class="tag">
-        <a href="/id/{t._id}">{t.label.nor}</a>
-      </span>
-      {/each}
-      <br>
-      {/if}
-      {item.preferredIdentifier}, 
+    <div class="metadata has-text-centered">
+
+      <div class="field is-grouped is-centered is-grouped-multiline">
+        {#if item.hasType && item.hasType.length > 0}
+        <div class="control">
+          <div class="tags">
+            {#each item.hasType as t, i}
+            <span class="tag is-info is-light">
+              <a href="/id/{t._id}">{t.label.nor}</a>
+            </span>
+            {/each}
+          </div>
+        </div>
+        {/if}
+
+        <div class="control">
+          <div class="tags has-addons">
+            <span class="tag">ID:</span>
+            <span class="tag is-dark">{item.preferredIdentifier}</span>
+          </div>
+        </div>
+      </div>
       <Rights item={item.rights}></Rights>
-    </p>
+    </div>
 
     <MainImage 
       image={item.mainRepresentation}
