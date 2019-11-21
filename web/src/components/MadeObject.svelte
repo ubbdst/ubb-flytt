@@ -1,12 +1,12 @@
 <script>
   import ActivityStream from './ActivityStream'
   import Cards from './Cards'
+  import Rights from './Rights'
+  import MainImage from './MainImage'
+  import Map from './Map'
 
   import client from '../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
-
-  import MainImage from './MainImage'
-  import Map from './Map'
 
   export let item
 
@@ -29,56 +29,22 @@
   .metadata {
     margin-bottom: 2em;
   }
-
-  .metadata img.cc-icon {
-    height: 1em;
-    top: 0.1em;
-    position: relative;
-  }
-
-  .metadata img.rights-icon {
-    height: 1em;
-    padding-top: 0.1em;
-    position: relative;
-  }
-
-  a.rights {
-    display: inline-flex;
-  }
- 
 </style>
 
 <main class="section">
   <div class="container">
     <h1 class="title is-size-1 has-text-centered">{item.label}</h1>
     <p class="metadata has-text-centered">
+      {#if item.hasType && item.hasType.length > 0}
+      {#each item.hasType as t, i}
+      <span class="tag">
+        <a href="/id/{t._id}">{t.label.nor}</a>
+      </span>
+      {/each}
+      <br>
+      {/if}
       {item.preferredIdentifier}, 
-      <a class="rights" href="{item.rights}">
-        {#if item.rights == 'https://creativecommons.org/publicdomain/mark/1.0/'}
-          <img class="image is-16x16 cc-icon" alt="{item.rights}" src="/cc-icons/cc.svg">
-          <img class="image is-16x16 cc-icon" alt="{item.rights}" src="/cc-icons/pd.svg">
-        {/if}
-        {#if item.rights == 'https://creativecommons.org/licenses/by/4.0/'}
-          <img class="image is-16x16 cc-icon" alt="{item.rights}" src="/cc-icons/cc.svg">
-          <img class="image is-16x16 cc-icon" alt="{item.rights}" src="/cc-icons/by.svg">
-        {/if}
-        {#if item.rights == 'https://creativecommons.org/publicdomain/zero/1.0/'}
-          <img class="image is-16x16 cc-icon" alt="{item.rights}" src="/cc-icons/cc.svg">
-          <img class="image is-16x16 cc-icon" alt="{item.rights}" src="/cc-icons/zero.svg">
-        {/if}
-        {#if item.rights == 'https://rightsstatements.org/vocab/InC/1.0/'}
-          <img class="image rights-icon" alt="{item.rights}" src="/rights-statements/buttons/InC.dark-white-interior.svg">
-        {/if}
-        {#if item.rights == 'https://rightsstatements.org/vocab/InC-NC/1.0/'}
-          <img class="image rights-icon" alt="{item.rights}" src="/rights-statements/buttons/NoC-NONCOMMERCIAL.dark-white-interior.svg">
-        {/if}
-        {#if item.rights == 'https://rightsstatements.org/vocab/CNE/1.0/'}
-          <img class="image rights-icon" alt="{item.rights}" src="/rights-statements/buttons/Other-NOTEVALUATED.dark-white-interior.svg">
-        {/if}
-        {#if item.rights == 'https://rightsstatements.org/vocab/UND/1.0/'}
-          <img class="image rights-icon" alt="{item.rights}" src="/rights-statements/buttons/Other-UNDETERMINED.dark-white-interior.svg">
-        {/if}
-      </a>
+      <Rights item={item.rights}></Rights>
     </p>
 
     <MainImage 
@@ -109,7 +75,7 @@
     </div>
     {/if} -->
 
-   { #if item.activityStream}
+    {#if item.activityStream}
     <ActivityStream stream={item.activityStream} title="Tidslinje"></ActivityStream>
     {/if}
 

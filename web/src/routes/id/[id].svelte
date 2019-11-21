@@ -11,6 +11,10 @@
     const filter = '*[_id == $id][0]'
     const projection = `{
       ...,
+      hasType[]->{
+        _id,
+        label
+      },
       description{
         nor[]{
           _type == 'reference' => @->{
@@ -188,3 +192,15 @@
 {#if (['typeClass', 'concept','role', 'actorType', 'activityType','eventType', 'acquisitionType'].indexOf(item._type) >= 0)}
     <Type item={item}></Type>
 {/if}
+
+<!-- <div class="container">
+  <div class="box">
+    <h1 class="title">Data</h1>
+    <pre>
+      <code>
+      {JSON.stringify(item, null, 2)}
+      </code>
+    </pre>
+  </div>
+  <button class="modal-close is-large" aria-label="close"></button>
+</div> -->
