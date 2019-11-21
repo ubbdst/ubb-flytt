@@ -25,7 +25,7 @@ export default {
                 },
                 {
                   buildHookId: '5d233ea0c09ad50a72aed231',
-                  title: 'Blog Website',
+                  title: 'Sælen Web',
                   name: 'saelen-samlingen',
                   apiId: 'ffc4bb67-3ecc-4379-993e-25b7187a116b'
                 }

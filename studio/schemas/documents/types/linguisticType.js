@@ -1,10 +1,10 @@
-import {FaUsers} from 'react-icons/fa'
+import {FaTag} from 'react-icons/fa'
 
 export default {
-  title: 'Group',
-  name: 'group',
+  title: 'Linguistic type',
+  name: 'linguisticType',
   type: 'document',
-  icon: FaUsers,
+  icon: FaTag,
   fieldsets: [
     {
       name: 'state',
@@ -43,31 +43,61 @@ export default {
       }
     },
     {
-      title: 'Name',
+      title: 'Preferred label',
       name: 'label',
-      type: 'string',
-      validation: Rule => Rule.required()
+      type: 'localeString'
     },
     {
-      title: 'Description',
-      name: 'description',
+      title: 'Alternative label',
+      name: 'altLabel',
+      type: 'localeString'
+    },
+    {
+      title: 'Broader',
+      name: 'broader',
       type: 'array',
-      of: [{type: 'block'}]
+      of: [
+        {type: 'reference', to: [{type: 'typeClass'}]}
+      ]
+    },
+    {
+      title: 'Narrower',
+      name: 'narrower',
+      description: 'Trenger vi narrower? Blir mye å registrere...',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'typeClass'}]}
+      ]
+    },
+    {
+      title: 'Domain',
+      name: 'domain',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'typeClass'}]}
+      ]
     },
     {
       title: 'Activity stream',
       description: 'Events and activities connected to this object',
-      name: 'activityStream',
+      name: 'events',
       type: 'array',
       of: [
-        {type: 'formation'},
-        {type: 'joining'},
-        {type: 'leaving'},
-        {type: 'dissolution'}
-      ],
-      options: {
-        editModal: 'fullscreen'
+        {type: 'creation'}
+      ]
+    }
+  ],
+  preview: {
+    select: {
+      title: 'label.nor',
+      broader: 'broader.0.label.nor'
+    },
+    prepare (selection) {
+      const {title, broader} = selection
+      return {
+        title: title,
+        subtitle: broader ? `⬆️` + broader : '🔝 Overordnet type/konsept'
       }
     }
-  ]
+  }
 }

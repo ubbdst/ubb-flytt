@@ -43,6 +43,7 @@ import assessmentType from './documents/types/assessmentType'
 import actorType from './documents/types/actorType'
 import activityType from './documents/types/activityType'
 import eventType from './documents/types/eventType'
+import linguisticType from './documents/types/linguisticType'
 import concept from './documents/types/concept'
 import role from './documents/types/role'
 import timeline from './documents/timeline'
@@ -117,6 +118,7 @@ export default createSchema({
     actorType,
     activityType,
     eventType,
+    linguisticType,
     experimental,
     siteSettings,
     // Objects
