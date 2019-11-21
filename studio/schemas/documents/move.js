@@ -1,11 +1,12 @@
-var capitalize = require('capitalize')
+import {FaTruckLoading} from 'react-icons/fa'
 
-// Implisit 'wasFormedBy' to parent group
+var capitalize = require('capitalize')
 
 export default {
   title: 'Move',
   name: 'move',
   type: 'document',
+  icon: FaTruckLoading,
   fields: [
     {
       name: 'editorialState',

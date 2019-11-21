@@ -1,7 +1,10 @@
+import {FaUsers} from 'react-icons/fa'
+
 export default {
   title: 'Group',
   name: 'group',
   type: 'document',
+  icon: FaUsers,
   fields: [
     {
       title: 'Name',

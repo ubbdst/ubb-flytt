@@ -1,7 +1,10 @@
+import {FaTag} from 'react-icons/fa'
+
 export default {
   title: 'Actor type',
   name: 'actorType',
   type: 'document',
+  icon: FaTag,
   fieldsets: [
     {
       name: 'state',

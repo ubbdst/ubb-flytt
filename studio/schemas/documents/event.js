@@ -1,8 +1,11 @@
+import {FaCalendar} from 'react-icons/fa'
+
 export default {
   title: 'Event',
   name: 'event',
   description: 'Should be fetched from KulturNav',
   type: 'document',
+  icon: FaCalendar,
   fieldsets: [
     {
       name: 'state',

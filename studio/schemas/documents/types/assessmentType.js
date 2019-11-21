@@ -1,7 +1,10 @@
+import {FaTag} from 'react-icons/fa'
+
 export default {
   title: 'Assessment type',
   name: 'assessmentType',
   type: 'document',
+  icon: FaTag,
   fieldsets: [
     {
       name: 'state',

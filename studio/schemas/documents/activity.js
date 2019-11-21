@@ -1,7 +1,10 @@
+import {MdLocalActivity} from 'react-icons/md'
+
 export default {
   title: 'Activity',
   name: 'activity',
   type: 'document',
+  icon: MdLocalActivity,
   fieldsets: [
     {
       name: 'purpose',

@@ -1,7 +1,10 @@
+import {FaClipboard} from 'react-icons/fa'
+
 export default {
   title: 'Design or procedure',
   name: 'designOrProcedure',
   type: 'document',
+  icon: FaClipboard,
   fields: [
     {
       name: 'editorialState',

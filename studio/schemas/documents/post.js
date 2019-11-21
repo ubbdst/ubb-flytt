@@ -1,9 +1,11 @@
+import {FaMarker} from 'react-icons/fa'
 import {format} from 'date-fns'
 
 export default {
   name: 'post',
   type: 'document',
   title: 'Blog Post',
+  icon: FaMarker,
   fields: [
     {
       name: 'label',

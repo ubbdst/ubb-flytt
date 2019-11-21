@@ -1,7 +1,10 @@
+import {FaTag} from 'react-icons/fa'
+
 export default {
   title: 'Event type',
   name: 'eventType',
   type: 'document',
+  icon: FaTag,
   fieldsets: [
     {
       name: 'state',

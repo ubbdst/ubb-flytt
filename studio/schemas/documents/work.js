@@ -1,7 +1,10 @@
+import {FaCrown} from 'react-icons/fa'
+
 export default {
   title: 'Work',
   name: 'work',
   type: 'document',
+  icon: FaCrown,
   fields: [
     {
       title: 'Title',

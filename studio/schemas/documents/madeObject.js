@@ -1,4 +1,5 @@
-/* eslint-disable no-template-curly-in-string */
+import {FaBookDead} from 'react-icons/fa'
+
 import jsonata from 'jsonata'
 import client from 'part:@sanity/base/client'
 
@@ -8,6 +9,7 @@ export default {
   title: 'Made Object',
   name: 'madeObject',
   type: 'document',
+  icon: FaBookDead,
   fieldsets: [
     {
       name: 'state',
@@ -100,6 +102,7 @@ export default {
       fieldset: 'minimum',
       type: 'string',
       validation: Rule => Rule.required().custom(async prefId => {
+        // eslint-disable-next-line no-template-curly-in-string
         const docs = await client.fetch('*[preferredIdentifier == "${prefId}" && !(_id in path("drafts.**"))] { preferredIdentifier }', {prefId})
         return docs.length > 1 ? 'Value is not unique' : true
       })

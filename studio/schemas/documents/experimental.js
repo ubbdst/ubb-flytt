@@ -1,7 +1,10 @@
+import {FaFlask} from 'react-icons/fa'
+
 export default {
   title: 'Experimental',
   name: 'experimental',
   type: 'document',
+  icon: FaFlask,
   fields: [
     {
       title: 'Title',

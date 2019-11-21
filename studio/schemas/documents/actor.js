@@ -1,10 +1,10 @@
-import {MdPerson} from 'react-icons/md'
+import {FaUser} from 'react-icons/fa'
 
 export default {
   title: 'Actor',
   name: 'actor',
   type: 'document',
-  icon: MdPerson,
+  icon: FaUser,
   fieldsets: [
     {
       name: 'state',

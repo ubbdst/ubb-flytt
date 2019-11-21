@@ -1,9 +1,11 @@
 import client from 'part:@sanity/base/client'
+import {FaArchive} from 'react-icons/fa'
 
 export default {
   title: 'Collection',
   name: 'collection',
   type: 'document',
+  icon: FaArchive,
   fields: [
     {
       title: 'Title',

@@ -1,8 +1,11 @@
+import {FaMapMarker} from 'react-icons/fa'
+
 export default {
   title: 'Place',
   name: 'place',
   description: 'Should be fetched from KulturNav',
   type: 'document',
+  icon: FaMapMarker,
   fields: [
     {
       title: 'Name',

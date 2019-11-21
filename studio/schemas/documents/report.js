@@ -1,7 +1,10 @@
+import {FaPenAlt} from 'react-icons/fa'
+
 export default {
   title: 'Report',
   name: 'report',
   type: 'document',
+  icon: FaPenAlt,
   fieldsets: [
     {
       name: 'state',

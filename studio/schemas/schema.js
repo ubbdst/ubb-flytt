@@ -21,13 +21,13 @@ import figure from './images/figure'
 import mediaObject from './images/mediaObject'
 
 // document schemas
-import category from './documents/category'
+import category from './documents/types/category'
 import post from './documents/post'
 import siteSettings from './documents/siteSettings'
 import actor from './documents/actor'
 import madeObject from './documents/madeObject'
 import work from './documents/work'
-import material from './documents/material'
+import material from './documents/types/material'
 import collection from './documents/collection'
 import group from './documents/group'
 import linguisticObject from './documents/linguisticObject'
@@ -91,26 +91,39 @@ export default createSchema({
   types: schemaTypes.concat([
     // The following are document types which will appear
     // in the studio.
-    siteSettings,
-    post,
-    category,
-    mainImage,
-    authorReference,
-    bodyPortableText,
-    bioPortableText,
-    excerptPortableText,
-
-    // When added to this list, object types can be used as
-    // { type: 'typename' } in other document schemas
-    // Physical stuff
     madeObject,
     collection,
     actor,
     group,
-    // Events, activities
     event,
     activity,
     place,
+    post,
+    exhibition,
+    timeline,
+    acquisition,
+    move,
+    report,
+    designOrProcedure,
+    work,
+    visualItem,
+    linguisticObject,
+    typeClass,
+    category,
+    concept,
+    role,
+    material,
+    assessmentType,
+    actorType,
+    activityType,
+    eventType,
+    experimental,
+    siteSettings,
+    // Objects
+    authorReference,
+    name,
+    birth,
+    death,
     beginningActivity,
     production,
     transformation,
@@ -121,35 +134,11 @@ export default createSchema({
     joining,
     formation,
     dissolution,
-    move,
-    birth,
-    death,
-    typeClass,
-    assessmentType,
-    actorType,
-    activityType,
-    eventType,
-    concept,
-    role,
-    // Works
-    work,
-    visualItem,
-    // Linguistic
-    linguisticObject,
-    exhibition,
-    acquisition,
-    report,
-    timeline,
-    name,
-    designOrProcedure,
-    // Objects
     timespan,
-    material,
     actorInRole,
     dimension,
     feature,
     identifier,
-    experimental,
     manifest,
     timelineSlide,
     part,
@@ -157,6 +146,9 @@ export default createSchema({
     era,
     background,
     // Text
+    bodyPortableText,
+    bioPortableText,
+    excerptPortableText,
     genericText,
     reportText,
     simpleText,
@@ -165,6 +157,7 @@ export default createSchema({
     localeBlockReport,
     localeString,
     // Image
+    mainImage,
     mainRepresentation,
     figure,
     mediaObject,

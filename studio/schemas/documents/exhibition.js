@@ -1,8 +1,11 @@
+import {FaGlasses} from 'react-icons/fa'
+
 export default {
   title: 'Exhibition',
   name: 'exhibition',
   description: 'Should be fetched from KulturNav',
   type: 'document',
+  icon: FaGlasses,
   fields: [
     {
       title: 'Title',

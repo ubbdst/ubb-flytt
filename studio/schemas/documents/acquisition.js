@@ -1,7 +1,10 @@
+import {FaGifts} from 'react-icons/fa'
+
 export default {
   title: 'Acquisition',
   name: 'acquisition',
   type: 'document',
+  icon: FaGifts,
   fieldsets: [
     {
       name: 'state',

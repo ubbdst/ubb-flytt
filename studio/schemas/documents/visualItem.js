@@ -1,7 +1,10 @@
+import {FaImage} from 'react-icons/fa'
+
 export default {
   title: 'Visual object',
   name: 'visualItem',
   type: 'document',
+  icon: FaImage,
   fields: [
     {
       title: 'Title',

@@ -1,7 +1,10 @@
+import {FaClock} from 'react-icons/fa'
+
 export default {
   name: 'timeline',
   type: 'document',
   title: 'Timeline',
+  icon: FaClock,
   fields: [
     {
       title: 'Headline',

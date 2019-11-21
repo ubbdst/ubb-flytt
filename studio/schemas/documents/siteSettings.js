@@ -1,7 +1,10 @@
+import {FaCog} from 'react-icons/fa'
+
 export default {
   name: 'siteSettings',
   type: 'document',
   title: 'Site Settings',
+  icon: FaCog,
   __experimental_actions: ['update', 'publish'],
   fields: [
     {
