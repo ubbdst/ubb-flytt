@@ -24,5 +24,6 @@
     <li><a href="/experimental/moves">Flytt av objekt</a></li>
     <li><a href="/acquisitions">Akkvisisjoner</a></li>
     <li><a href="/types">Typer</a></li>
+    <li><a href="/exhibitions">Utstillinger</a></li>
   </ul>
 </main>
