@@ -25,7 +25,7 @@
     return new Date(date).toLocaleDateString()
   }
 
-  let titleForMove = 'Flytt fra ' + item.movedFrom.label + ' til ' + item.movedTo.label
+  let titleForMove = 'Flytt fra ' + item.movedFrom.label.nor + ' til ' + item.movedTo.label.nor
 
 </script>
 

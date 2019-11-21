@@ -209,6 +209,14 @@
 <svelte:head>
   <title>{tl.title.text.headline}</title>
 </svelte:head>
+
+<nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="/">Hjem</a></li>
+    <li><a href="/timelines">Tidslinjer</a></li>
+    <li class="is-active"><a href="#" aria-current="page">{tl.headline.nor}</a></li>
+  </ul>
+</nav>
  
 <div id='timeline-embed' style="width: 100%; height: 600px"></div>
  

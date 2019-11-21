@@ -33,13 +33,13 @@
   <ul>
     <li><a href="/">Hjem</a></li>
     <li><a href="/events">Hendelser</a></li>
-    <li class="is-active"><a href="#" aria-current="page">{item.label}</a></li>
+    <li class="is-active"><a href="#" aria-current="page">{item.label.nor}</a></li>
   </ul>
 </nav>
 
 <main class="section">
   <div class="container">
-    <h1 class="title is-size-1 has-text-centered">{item.label}</h1>    
+    <h1 class="title is-size-1 has-text-centered">{item.label.nor}</h1>    
 
     {#if item.mainRepresentation || item.mainManifest}
     <MainImage 
