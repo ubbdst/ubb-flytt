@@ -54,7 +54,7 @@
         {#if activity.tookPlaceAt && activity.tookPlaceAt.length > 0}
           <p>
           {#each activity.tookPlaceAt as place, i}
-            <span><a href="/places/{place._id}">{place.label}</a></span>
+            <span><a href="/places/{place._id}">{place.label.nor}</a></span>
           {/each}
           </p>
         {/if}
