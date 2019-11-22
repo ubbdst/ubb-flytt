@@ -97,13 +97,25 @@ export default {
         editModal: 'fullscreen'
       }
     },
-    {
+    /* {
       title: 'Parts',
       description: 'Sub reports',
       name: 'consistsOf',
       type: 'array',
       of: [
         {type: 'report'}
+      ],
+      options: {
+        editModal: 'fullscreen'
+      }
+    }, */
+    {
+      title: 'Parts',
+      description: 'Sub reports',
+      name: 'consistsOf',
+      type: 'array',
+      of: [
+        {type: 'reportPart'}
       ],
       options: {
         editModal: 'fullscreen'

@@ -82,6 +82,7 @@ import externalMediaObject from './images/externalMediaObject'
 import valueSlider from './objects/valueSlider'
 import era from './objects/era'
 import background from './objects/background'
+import reportPart from './objects/reportPart'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -147,6 +148,7 @@ export default createSchema({
     valueSlider,
     era,
     background,
+    reportPart,
     // Text
     bodyPortableText,
     bioPortableText,
