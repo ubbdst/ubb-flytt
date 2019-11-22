@@ -61,7 +61,7 @@
         </div>
 
         <div class="column has-text-centered">
-          <p class="has-text-centered"><i class="fas fa-chevron-right fa-2x"> </i><i class="fas fa-gift fa-3x"></i> <i class="fas fa-chevron-right fa-2x"></i></p>
+          <p class="has-text-centered"><i class="fas fa-gift fa-3x"></i></p>
         </div>
 
         <div class="column has-text-centered">
@@ -102,7 +102,7 @@
           <ul>
             {#each item.wasMotivatedBy as a, i}
             <li>
-              <span><a href="/id/{a._id}">{a.label}</a></span>
+              <span><a href="/id/{a._id}">{a.label.nor}</a></span>
             </li>
             {/each}
           </ul>

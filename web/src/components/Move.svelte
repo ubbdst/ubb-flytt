@@ -55,7 +55,7 @@
           <h3 class="title is-hidden is-size-5">Fra</h3>
           <p class="has-text-centered"><i class="fas fa-box fa-2x"></i></p>
           <ul>
-            <li><a href="/places/{item.movedFrom._id}">{item.movedFrom.label}</a></li>
+            <li><a href="/places/{item.movedFrom._id}">{item.movedFrom.label.nor}</a></li>
           </ul>
           {/if}
         </div>
@@ -69,7 +69,7 @@
           <h3 class="title is-hidden is-size-5">Til</h3>
           <p class="has-text-centered"><i class="fas fa-box-open fa-2x"></i></p>
           <ul>
-            <li><a href="/places/{item.movedTo._id}">{item.movedTo.label}</a></li>
+            <li><a href="/places/{item.movedTo._id}">{item.movedTo.label.nor}</a></li>
           </ul>
           {/if}
         </div>
@@ -102,7 +102,7 @@
           <ul>
             {#each item.wasMotivatedBy as a, i}
             <li>
-              <span><a href="/id/{a._id}">{a.label}</a></span>
+              <span><a href="/id/{a._id}">{a.label.nor}</a></span>
             </li>
             {/each}
           </ul>
