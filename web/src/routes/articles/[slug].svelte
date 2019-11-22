@@ -46,7 +46,7 @@
 </style>
 
 <svelte:head>
-	<title>{post.title}</title>
+	<title>{post.label}</title>
 </svelte:head>
 
 <nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
@@ -59,9 +59,8 @@
 
 <main class="section">
   <div class="container">
-    <h1 class="title">{post.label}</h1>
-
     <div class='content'>
+    <h1 class="title">{post.label}</h1>
       {@html post.body}
     </div>
   </div>

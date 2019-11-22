@@ -115,5 +115,17 @@ export default {
         editModal: 'popup'
       }
     }
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'label'
+    },
+    prepare (selection) {
+      const {title} = selection
+
+      return {
+        title: title
+      }
+    }
+  }
 }

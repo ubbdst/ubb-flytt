@@ -56,17 +56,15 @@ export default {
   ],
   preview: {
     select: {
-      title: 'title',
-      typeOfObject: 'textType',
+      title: 'label.nor',
       blocks: 'body'
     },
     prepare (selection) {
-      const {title, typeOfObject, blocks} = selection
+      const {title, blocks} = selection
       const block = (blocks || []).find(block => block._type === 'block')
 
       return {
         title: title,
-        subtitle: `${typeOfObject || ''}`,
         description: block
           ? block.children
             .filter(child => child._type === 'span')

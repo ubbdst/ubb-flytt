@@ -21,5 +21,17 @@ export default {
         {type: 'creation'}
       ]
     }
-  ]
+  ],
+  preview: {
+    select: {
+      title: 'label.nor'
+    },
+    prepare (selection) {
+      const {title} = selection
+
+      return {
+        title: title
+      }
+    }
+  }
 }

@@ -16,7 +16,7 @@ export default {
           .auto('format')
           .url()
       }),
-    reference: ({ node }) =>
+    madeObject: ({ node }) =>
       h('figure', {},
         [h('img', {
         src: urlFor(node.mainRepresentation)
@@ -24,7 +24,7 @@ export default {
           .auto('format')
           .url()
         }),
-        h('figcaption', {}, [node.label, h('a', {href: '/id/' + node._id, target: '_target'}, '. Åpne i nytt vindu')])
+        h('figcaption', {}, [node.label, h('a', {href: '/id/' + node._id, target: '_target'}, ' (Åpne i nytt vindu)')])
       ]),
     figure: ({ node }) =>
       h('figure', {},
@@ -36,6 +36,17 @@ export default {
         alt: node.alt
         }),
         h('figcaption', {}, node.caption)
+      ]),
+    event: ({ node }) =>
+      h('div',{class: 'media'}, [h('figure', {class: 'media-left'}, h('p', {class: 'image is-64x64'},
+        h('img', {
+        src: urlFor(node.media)
+          .width(800)
+          .auto('format')
+          .url(),
+        alt: node.alt
+        }))),
+        h('div', {class: 'media-content'}, h('div', {class: 'content'}, h('h1', {}, h('a', {'href': '/id/' + node._id}, node.label.nor))))
       ]),
     authorReference: ({ node }) => h('b', {}, h('a', {'href': '/id/' + node.author._id}, node.author.label)),
     code: ({ node }) =>

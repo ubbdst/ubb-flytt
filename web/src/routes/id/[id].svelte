@@ -19,6 +19,7 @@
         nor[]{
           _type == 'reference' => @->{
             _id,
+            _type,
             preferredIdentifier,
             label,
             mainRepresentation
@@ -32,6 +33,7 @@
       description[]{
         _type == 'reference' => @->{
           _id,
+          _type,
           preferredIdentifier,
           label,
           mainRepresentation
