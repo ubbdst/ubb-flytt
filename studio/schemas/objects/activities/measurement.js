@@ -2,20 +2,11 @@ export default {
   title: 'Measurement',
   name: 'measurement',
   type: 'object',
-  fieldsets: [
-    {
-      name: 'time',
-      title: 'Time',
-      description: 'Choose to set a timespan or an exact date, not both!',
-      options: {collapsible: false, collapsed: false}
-    }
-  ],
   fields: [
     {
       title: 'Timespan',
       name: 'timespan',
       type: 'array',
-      fieldset: 'time',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },

@@ -66,6 +66,30 @@ export default {
       ]
     },
     {
+      title: 'Used general technique',
+      name: 'usedGeneralTechnique',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'technique'}
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Use spesific technique',
+      name: 'usedSpecificTechnique',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'designOrProcedure'}
+          ]
+        }
+      ]
+    },
+    {
       title: 'Employed',
       name: 'employed',
       description: 'WIP, could be a API call to some source of authorities',
