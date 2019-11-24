@@ -354,16 +354,18 @@ export default {
       id: 'preferredIdentifier',
       type: 'hasType.0.label.nor',
       blocks: 'description',
-      media: 'mainRepresentation'
+      media: 'mainRepresentation',
+      published: 'accessState'
     },
     prepare (selection) {
-      const {title, id, type, blocks, media} = selection
+      const {title, id, type, blocks, media, published} = selection
       const expression = jsonata('nor[0]')
       const block = expression.evaluate(blocks)
+      const secret = published === 'secret' ? '🔒' : ''
 
       return {
         title: title,
-        subtitle: id + ', ' + type,
+        subtitle: secret + id + ', ' + type,
         description: block
           ? block.children
             .filter(child => child._type === 'span')

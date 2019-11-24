@@ -73,6 +73,30 @@ export default {
       ]
     },
     {
+      title: 'Used general technique',
+      name: 'usedGeneralTechnique',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'technique'}
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Use spesific technique',
+      name: 'usedSpecificTechnique',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'designOrProcedure'}
+          ]
+        }
+      ]
+    },
+    {
       title: 'Condition assignment',
       name: 'conditionAssignment',
       type: 'array',
@@ -149,15 +173,17 @@ export default {
     select: {
       type: 'hasType.0.label.nor',
       title: 'label.nor',
-      blocks: 'description.nor'
+      blocks: 'description.nor',
+      published: 'accessState'
     },
     prepare (selection) {
-      const {type, title, blocks} = selection
+      const {type, title, blocks, published} = selection
       const block = (blocks || []).find(block => block._type === 'block')
+      const secret = published === 'secret' ? '🔒' : ''
 
       return {
         title: title,
-        subtitle: type,
+        subtitle: secret + type,
         description: block
           ? block.children
             .filter(child => child._type === 'span')

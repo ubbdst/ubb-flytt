@@ -98,12 +98,16 @@ export default {
   ],
   preview: {
     select: {
-      type: '_type'
+      type: '_type',
+      published: 'accessState'
     },
     prepare (selection) {
-      const {type} = selection
+      const {type, published} = selection
+      const secret = published === 'secret' ? '🔒' : ''
+
       return {
-        title: `${capitalize(type)}`
+        title: `${capitalize(type)}`,
+        subtitle: secret
       }
     }
   }
