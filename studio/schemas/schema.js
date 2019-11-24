@@ -27,7 +27,6 @@ import siteSettings from './documents/siteSettings'
 import actor from './documents/actor'
 import madeObject from './documents/madeObject'
 import work from './documents/work'
-import material from './documents/types/material'
 import collection from './documents/collection'
 import group from './documents/group'
 import linguisticObject from './documents/linguisticObject'
@@ -40,9 +39,11 @@ import place from './documents/place'
 import designOrProcedure from './documents/designOrProcedure'
 import project from './documents/project'
 import typeClass from './documents/types/type'
+import technique from './documents/types/technique'
 import assessmentType from './documents/types/assessmentType'
 import actorType from './documents/types/actorType'
 import activityType from './documents/types/activityType'
+import material from './documents/types/material'
 import eventType from './documents/types/eventType'
 import linguisticType from './documents/types/linguisticType'
 import sectionType from './documents/types/sectionType'
@@ -120,6 +121,7 @@ export default createSchema({
     concept,
     role,
     material,
+    technique,
     assessmentType,
     actorType,
     activityType,
