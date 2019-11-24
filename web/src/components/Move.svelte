@@ -39,7 +39,7 @@
 <nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
   <ul>
     <li><a href="/">Hjem</a></li>
-    <li><a href="/experimental/move">Flytt</a></li>
+    <li><a href="/experimental/moves">Flytt</a></li>
     <li class="is-active"><a href="#" aria-current="page">{titleForMove}</a></li>
   </ul>
 </nav>
@@ -61,7 +61,7 @@
         </div>
 
         <div class="column has-text-centered">
-          <p class="has-text-centered"><i class="fas fa-dolly fa-3x"></i></p>
+          <p class="has-text-centered"><i class="fas fa-truck-loading fa-3x"></i></p>
         </div>
 
         <div class="column has-text-centered">

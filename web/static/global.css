@@ -76,3 +76,8 @@ a {
 	font-weight: 400;
 	color: dark-grey;
 }
+
+.content div, .content div p {
+	max-width: 50em !important;
+	margin: auto;
+}

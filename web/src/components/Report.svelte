@@ -59,11 +59,9 @@
     {/if}
 
     {#if item.description}
-    <div class="box">
-      <div class="content">
-        <h2 class="title has-text-centered">Rapport</h2>
-        {@html item.description}
-      </div>
+    <div class="content">
+      <h2 class="title has-text-centered">Rapport</h2>
+      {@html item.description}
     </div>
     {/if}
 
