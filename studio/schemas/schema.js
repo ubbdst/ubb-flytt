@@ -38,12 +38,14 @@ import experimental from './documents/experimental'
 import move from './documents/move'
 import place from './documents/place'
 import designOrProcedure from './documents/designOrProcedure'
+import project from './documents/project'
 import typeClass from './documents/types/type'
 import assessmentType from './documents/types/assessmentType'
 import actorType from './documents/types/actorType'
 import activityType from './documents/types/activityType'
 import eventType from './documents/types/eventType'
 import linguisticType from './documents/types/linguisticType'
+import sectionType from './documents/types/sectionType'
 import concept from './documents/types/concept'
 import role from './documents/types/role'
 import timeline from './documents/timeline'
@@ -83,6 +85,8 @@ import valueSlider from './objects/valueSlider'
 import era from './objects/era'
 import background from './objects/background'
 import reportPart from './objects/reportPart'
+import instagramPost from './objects/instagramPost'
+import file from './objects/file'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -107,6 +111,7 @@ export default createSchema({
     move,
     report,
     designOrProcedure,
+    project,
     work,
     visualItem,
     linguisticObject,
@@ -120,6 +125,7 @@ export default createSchema({
     activityType,
     eventType,
     linguisticType,
+    sectionType,
     experimental,
     siteSettings,
     // Objects
@@ -149,6 +155,8 @@ export default createSchema({
     era,
     background,
     reportPart,
+    instagramPost,
+    file,
     // Text
     bodyPortableText,
     bioPortableText,

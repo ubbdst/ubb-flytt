@@ -43,12 +43,40 @@ export default {
           {
             name: 'link',
             type: 'object',
-            title: 'URL',
+            title: 'External link',
             fields: [
               {
-                title: 'URL',
                 name: 'href',
-                type: 'url'
+                type: 'url',
+                title: 'URL'
+              },
+              {
+                title: 'Open in new tab',
+                name: 'blank',
+                description: 'Read https://css-tricks.com/use-target_blank/',
+                type: 'boolean'
+              }
+            ]
+          },
+          {
+            name: 'internalLink',
+            type: 'object',
+            title: 'Internal link',
+            fields: [
+              {
+                name: 'reference',
+                type: 'reference',
+                title: 'Reference',
+                to: [
+                  {type: 'actor'},
+                  {type: 'madeObject'},
+                  {type: 'collection'},
+                  {type: 'group'},
+                  {type: 'event'},
+                  {type: 'material'},
+                  {type: 'timeline'}
+                  // other types you may want to link to
+                ]
               }
             ]
           }
@@ -66,6 +94,7 @@ export default {
         {type: 'material'},
         {type: 'timeline'}
       ]
-    }
+    },
+    {type: 'instagramPost'}
   ]
 }
