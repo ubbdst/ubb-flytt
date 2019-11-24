@@ -3,7 +3,8 @@
   import blocksToHtml from '@sanity/block-content-to-html'
   import serializers from '../../components/serializers'
   import jsonata from 'jsonata'
-  import dayjs from 'dayjs'
+
+  import Timeline from '../../components/Timeline'
 
   export async function preload({ params }) {
 		// the `slug` parameter is available because
@@ -38,185 +39,31 @@
         }
       }`;
     const query = filter + projection
-    let data = await client.fetch(query, { id }).catch(err => this.error(500, err))
+    let data = await client.fetch(query, { id })
+      .catch(err => this.error(500, err))
    
-    console.log(JSON.stringify(data, undefined, 2));
-    
-    const events = await data.events.map(
-      function (event, i) {
-      if(event._type == 'event') {
-        return {
-          start_date: {
-            year: dayjs(event.timespan[0].beginOfTheBegin ? event.timespan[0].beginOfTheBegin : event.timespan[0].date).format("YYYY"),
-            day: dayjs(event.timespan[0].beginOfTheBegin ? event.timespan[0].beginOfTheBegin : event.timespan[0].date).format("DD"),
-            month: dayjs(event.timespan[0].beginOfTheBegin ? event.timespan[0].beginOfTheBegin : event.timespan[0].date).format("MM")
-          },
-          end_date: {
-            year: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("YYYY"),
-            day: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("DD"),
-            month: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("MM")
-          },
-          media: Object.assign({}, event.media, {
-            caption: event.media.caption,
-            credit: event.media.credit
-          }),
-          text: Object.assign({}, {
-            headline: event.label.nor,
-            text: event.description
-              ? blocksToHtml({
-                  blocks: event.description.nor.filter(({ _key = "" }) => _key)
-                })
-              : ""
-          })
-        }
-      }
-      if(event._type == 'timelineSlide') {
-        return {
-          start_date: {
-            year: dayjs(event.timespan[0].beginOfTheBegin ? event.timespan[0].beginOfTheBegin : event.timespan[0].date).format("YYYY"),
-            day: dayjs(event.timespan[0].beginOfTheBegin ? event.timespan[0].beginOfTheBegin : event.timespan[0].date).format("DD"),
-            month: dayjs(event.timespan[0].beginOfTheBegin ? event.timespan[0].beginOfTheBegin : event.timespan[0].date).format("MM")
-          },
-          end_date: {
-            year: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("YYYY"),
-            day: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("DD"),
-            month: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("MM")
-          },
-          media: Object.assign({}, event.media, {
-            url: event.media.url ? event.media.url : null,
-            caption: event.media.caption ? event.media.caption : null,
-            credit: event.media.credit ? event.media.credit : null,
-          }),
-          text: Object.assign({}, {
-            headline: event.headline.nor,
-            text: event.text.nor
-              ? blocksToHtml({
-                  blocks: event.text.nor.filter(({ _key = "" }) => _key)
-                })
-              : ""
-          })
-        }
-      }
-    });
-
-/*       ({ start_date = new Date(), end_date = new Date(), media = {}, text }) => ({
-        start_date: {
-          year: dayjs(start_date).format("YYYY"),
-          day: dayjs(start_date).format("DD"),
-          month: dayjs(start_date).format("MM")
-        },
-        end_date: {
-          year: dayjs(start_date).format("YYYY"),
-          day: dayjs(start_date).format("DD"),
-          month: dayjs(start_date).format("MM")
-        },
-        media,
-        text: Object.assign({}, text, {
-          text: text.text
-            ? blocksToHtml({
-                blocks: text.text.nor.filter(({ _key = "" }) => _key)
-              })
-            : ""
-        })
-      })
-    ); */
-
-    const { title } = data;
-
-    const tl = await Object.assign({}, data, {
-      title: {
-        text: {
-          headline: data.headline.nor,
-          text: data.text.nor ? blocksToHtml({
-                blocks: data.text.nor.filter(({ _key = "" }) => _key)
-              })
-            : ""
-        },
-        /* background: Object.assign({}, title.background, {
-          color: title.background.color.hex ? title.background.color.hex : '#dddddd'
-        }), */
-        media:  {
-          url: data.media[0].url ? data.media[0].url : null,
-          caption: data.media[0].caption
-            ? blocksToHtml({
-                blocks: data.media[0].caption.filter(({ _key = "" }) => _key)
-              })
-            : "",
-          credit: data.media[0].credit
-            ? blocksToHtml({
-                blocks: data.media[0].credit.filter(({ _key = "" }) => _key)
-              })
-            : ""
-        }
-      },
-      events
-    });
-
-    //const { media = {}, title = { text: {} }, events = [] } = data;
-    /* const timeline = {
-      title: {
-        text: {
-          headline: title.text.headline,
-          text: "test"
-        }
-      },
-      media,
-      events: events.map(
-        ({
-          media = {},
-          text: { headline = "", text = "" } = {},
-          start_date = ""
-        }) => ({
-          text: {
-            headline,
-            text: text
-              ? blocksToHtml({ blocks: text.filter(({ _key = "" }) => _key) })
-              : ""
-          },
-          media,
-          start_date: {
-            year: dayjs(start_date).format("YYYY"),
-            day: dayjs(start_date).format("DD"),
-            month: dayjs(start_date).format("MM")
-          }
-        })
-      )
-    }; */
-    console.log(tl);
-    return {tl};
+    return {data};
   };
 </script>
 
 <script>
-  import { onMount } from 'svelte';
-  export let tl;
-
-  onMount(() => {
-    const options = {
-      debug: true
-    }
-    async function timeline()  { 
-      await tl;
-      const timeline = new TL.Timeline('timeline-embed', tl, options);
-    }
-    timeline();
-  })
+  export let data;
 </script>
 
 <style>
 </style>
 
 <svelte:head>
-  <title>{tl.title.text.headline}</title>
+  <title>{data.headline.nor}</title>
 </svelte:head>
 
 <nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
   <ul>
     <li><a href="/">Hjem</a></li>
     <li><a href="/timelines">Tidslinjer</a></li>
-    <li class="is-active"><a href="#" aria-current="page">{tl.headline.nor}</a></li>
+    <li class="is-active"><a href="#" aria-current="page">{data.headline.nor}</a></li>
   </ul>
 </nav>
- 
-<div id='timeline-embed' style="width: 100%; height: 600px"></div>
+
+<Timeline data={data} />
  
