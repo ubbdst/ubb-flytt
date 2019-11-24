@@ -52,6 +52,16 @@ export default {
       title: 'Body',
       name: 'body',
       type: 'genericText'
+    },
+    {
+      title: 'Documented in',
+      name: 'documentedIn',
+      type: 'array',
+      of: [
+        {
+          type: 'file'
+        }
+      ]
     }
   ],
   preview: {

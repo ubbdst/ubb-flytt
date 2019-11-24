@@ -43,6 +43,19 @@ export default {
       title: 'Description',
       name: 'description',
       type: 'localeBlock'
+    },
+    {
+      title: 'Documented in',
+      name: 'documentedIn',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'file'}
+          ]
+        }
+      ]
     }
   ],
   preview: {

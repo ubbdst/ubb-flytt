@@ -20,16 +20,16 @@ export default {
       }
     },
     {
-      title: 'Category Set',
-      name: 'categorySet',
+      title: 'Attributes',
+      name: 'attributes',
       type: 'array',
       of: [{type: 'string'}],
       options: {
         list: [
-          {title: 'Building', value: 'building'},
-          {title: 'Master plan', value: 'masterPlan'},
-          {title: 'Infrastructure', value: 'infrastructure'},
-          {title: 'Private Home', value: 'privateHome'}
+          {title: 'Missing', value: 'missing'},
+          {title: 'Damaged', value: 'damaged'},
+          {title: 'Mint', value: 'mint'},
+          {title: 'Fucked up', value: 'fuckedUp'}
         ]
       }
     }

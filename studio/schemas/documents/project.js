@@ -1,10 +1,10 @@
-import {FaPenAlt} from 'react-icons/fa'
+import {FaProjectDiagram} from 'react-icons/fa'
 
 export default {
-  title: 'Report',
-  name: 'report',
+  title: 'Project',
+  name: 'project',
   type: 'document',
-  icon: FaPenAlt,
+  icon: FaProjectDiagram,
   fieldsets: [
     {
       name: 'state',
@@ -73,19 +73,11 @@ export default {
       ]
     },
     {
-      title: 'Condition assignment',
-      name: 'conditionAssignment',
-      type: 'array',
-      of: [
-        {type: 'valueSlider'}
-      ]
-    },
-    {
       title: 'Description',
       name: 'description',
       type: 'localeBlockReport'
     },
-    {
+    /* {
       title: 'Activity stream',
       description: 'Events and activities connected to this object',
       name: 'activityStream',
@@ -96,40 +88,17 @@ export default {
       options: {
         editModal: 'fullscreen'
       }
-    },
+    }, */
     {
-      title: 'Sub reports',
+      title: 'Sub projects',
       name: 'consistsOf',
       type: 'array',
       of: [
-        {type: 'report'}
+        {type: 'project'}
       ],
       options: {
         editModal: 'fullscreen'
       }
-    },
-    {
-      title: 'Part assessments',
-      description: 'Sub assessments on the objects features or sections',
-      name: 'partAssessment',
-      type: 'array',
-      of: [
-        {type: 'reportPart'}
-      ],
-      options: {
-        editModal: 'fullscreen'
-      }
-    },
-    {
-      title: 'Documentation images before',
-      name: 'documentationImage',
-      options: {
-        layout: 'grid'
-      },
-      type: 'array',
-      of: [
-        {type: 'figure'}
-      ]
     },
     {
       title: 'Documented in',
