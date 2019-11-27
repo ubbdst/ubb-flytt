@@ -20,8 +20,8 @@
 <main class="section">
 	<h1 class="title has-text-centered">Eksperimentelle sider</h1>
   <ul>
-    <li><a href="/experimental/reports">Rapporter</a></li>
-    <li><a href="/experimental/moves">Flytt av objekt</a></li>
+    <li><a href="/reports">Rapporter</a></li>
+    <li><a href="/moves">Flytt av objekt</a></li>
     <li><a href="/acquisitions">Akkvisisjoner</a></li>
     <li><a href="/types">Typer</a></li>
     <li><a href="/exhibitions">Utstillinger</a></li>
