@@ -1,10 +1,10 @@
-import {FaPenAlt} from 'react-icons/fa'
+import {FaHandPointDown} from 'react-icons/fa'
 
 export default {
-  title: 'Report',
-  name: 'report',
+  title: 'Object feature',
+  name: 'objectFeature',
   type: 'document',
-  icon: FaPenAlt,
+  icon: FaHandPointDown,
   fieldsets: [
     {
       name: 'state',
@@ -54,67 +54,35 @@ export default {
       description: 'WIP, should use API',
       type: 'array',
       of: [
-        {type: 'reference', to: [{type: 'assessmentType'}]}
+        {type: 'reference', to: [{type: 'featureType'}]}
       ],
       validation: Rule => Rule.required()
     },
     {
+      title: 'Main image',
+      name: 'mainRepresentation',
+      description: 'Big, lovely image of the object. TODO: this should be a image in the manifest, optionally cropped',
+      type: 'mainRepresentation'
+    },
+    {
       title: 'About',
       name: 'concerned',
-      description: 'Which collection(s) or object(s) is this an assessment of.',
+      description: 'Which object(s) is this an feature of.',
       type: 'array',
       of: [
         {type: 'reference',
           to: [
-            {type: 'madeObject'},
-            {type: 'collection'}
+            {type: 'madeObject'}
           ]
         }
       ]
-    },
-    {
-      title: 'Used general technique',
-      name: 'usedGeneralTechnique',
-      type: 'array',
-      of: [
-        {type: 'reference',
-          to: [
-            {type: 'technique'}
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Used spesific technique',
-      name: 'usedSpecificTechnique',
-      type: 'array',
-      of: [
-        {type: 'reference',
-          to: [
-            {type: 'designOrProcedure'}
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Condition assignment',
-      name: 'conditionAssignment',
-      type: 'array',
-      of: [
-        {type: 'valueSlider'}
-      ]
-    },
-    {
-      title: 'Purpose',
-      name: 'purpose',
-      type: 'localeBlockSimple'
     },
     {
       title: 'Description',
       name: 'description',
       type: 'localeBlockReport'
     },
-    {
+    /* {
       title: 'Activity stream',
       description: 'Events and activities connected to this object',
       name: 'activityStream',
@@ -125,25 +93,13 @@ export default {
       options: {
         editModal: 'fullscreen'
       }
-    },
+    }, */
     {
-      title: 'Sub reports',
+      title: 'Sub projects',
       name: 'consistsOf',
       type: 'array',
       of: [
-        {type: 'report'}
-      ],
-      options: {
-        editModal: 'fullscreen'
-      }
-    },
-    {
-      title: 'Part assessments',
-      description: 'Sub assessments on the objects features or sections',
-      name: 'partAssessment',
-      type: 'array',
-      of: [
-        {type: 'reportPart'}
+        {type: 'project'}
       ],
       options: {
         editModal: 'fullscreen'
@@ -159,36 +115,21 @@ export default {
       of: [
         {type: 'figure'}
       ]
-    },
-    {
-      title: 'Documented in',
-      name: 'documentedIn',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            {type: 'file'}
-          ]
-        }
-      ]
     }
   ],
   preview: {
     select: {
       type: 'hasType.0.label.nor',
       title: 'label.nor',
-      blocks: 'description.nor',
-      published: 'accessState'
+      blocks: 'description.nor'
     },
     prepare (selection) {
-      const {type, title, blocks, published} = selection
+      const {type, title, blocks} = selection
       const block = (blocks || []).find(block => block._type === 'block')
-      const secret = published === 'secret' ? '🔒' : ''
 
       return {
         title: title,
-        subtitle: secret + type,
+        subtitle: (type || ''),
         description: block
           ? block.children
             .filter(child => child._type === 'span')

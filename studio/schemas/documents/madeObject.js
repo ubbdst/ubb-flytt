@@ -158,6 +158,7 @@ export default {
       of: [
         {type: 'production'},
         {type: 'transformation'},
+        {type: 'reference', to: [{type: 'acquisition'}]},
         {type: 'move'},
         {type: 'activity'},
         {type: 'endingActivity'}

@@ -46,13 +46,14 @@ import activityType from './documents/types/activityType'
 import material from './documents/types/material'
 import eventType from './documents/types/eventType'
 import linguisticType from './documents/types/linguisticType'
-import sectionType from './documents/types/sectionType'
+import featureType from './documents/types/featureType'
 import concept from './documents/types/concept'
 import role from './documents/types/role'
 import timeline from './documents/timeline'
 import exhibition from './documents/exhibition'
 import acquisition from './documents/acquisition'
 import activity from './documents/activity'
+import objectFeature from './documents/objectFeature'
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText'
@@ -92,7 +93,7 @@ import file from './objects/file'
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
-  name: 'blog',
+  name: 'special-collection',
   // Then proceed to concatenate our our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
@@ -110,6 +111,7 @@ export default createSchema({
     timeline,
     acquisition,
     move,
+    objectFeature,
     report,
     designOrProcedure,
     project,
@@ -127,7 +129,7 @@ export default createSchema({
     activityType,
     eventType,
     linguisticType,
-    sectionType,
+    featureType,
     experimental,
     siteSettings,
     // Objects

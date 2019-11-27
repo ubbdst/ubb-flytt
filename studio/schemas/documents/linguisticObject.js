@@ -1,11 +1,11 @@
 import {languages} from '../vocabularies/default'
-import {FaToiletPaper} from 'react-icons/fa'
+import {FaFileAlt} from 'react-icons/fa'
 
 export default {
   title: 'Linguistic object',
   name: 'linguisticObject',
   type: 'document',
-  icon: FaToiletPaper,
+  icon: FaFileAlt,
   fields: [
     {
       name: 'editorialState',

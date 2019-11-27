@@ -43,6 +43,12 @@ export default {
       }
     },
     {
+      title: 'Active?',
+      name: 'active',
+      type: 'boolean',
+      fieldset: 'state'
+    },
+    {
       title: 'Title',
       name: 'label',
       type: 'localeString',
@@ -54,7 +60,7 @@ export default {
       description: 'WIP, should use API',
       type: 'array',
       of: [
-        {type: 'reference', to: [{type: 'assessmentType'}]}
+        {type: 'reference', to: [{type: 'typeClass'}]}
       ],
       validation: Rule => Rule.required()
     },
@@ -70,6 +76,14 @@ export default {
             {type: 'collection'}
           ]
         }
+      ]
+    },
+    {
+      title: 'Timespan',
+      name: 'timespan',
+      type: 'array',
+      of: [
+        {type: 'timespan'}
       ]
     },
     {
@@ -119,16 +133,18 @@ export default {
       type: 'hasType.0.label.nor',
       title: 'label.nor',
       blocks: 'description.nor',
-      published: 'accessState'
+      published: 'accessState',
+      active: 'active'
     },
     prepare (selection) {
-      const {type, title, blocks, published} = selection
+      const {type, title, blocks, published, active} = selection
       const block = (blocks || []).find(block => block._type === 'block')
       const secret = published === 'secret' ? '🔒' : ''
+      const a = active ? 'Active' : 'Finished'
 
       return {
         title: title,
-        subtitle: secret + type,
+        subtitle: secret + ' ' + a + (type || ''),
         description: block
           ? block.children
             .filter(child => child._type === 'span')
