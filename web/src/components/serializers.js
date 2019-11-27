@@ -41,7 +41,7 @@ export default {
       ]),
     event: ({ node }) =>
       h('div',{class: 'media'}, [
-        h('figure', {class: 'media-left'}, 
+        node.media ? h('figure', {class: 'media-left'}, 
           h('p', {class: 'image is-64x64'},
             h('img', {
               src: urlFor(node.media)
@@ -52,7 +52,7 @@ export default {
               }
             )
           )
-        ),
+        ) : '',
         h('div', {class: 'media-content'}, 
           h('div', {class: 'content'}, 
             h('h1', {}, 
@@ -70,5 +70,9 @@ export default {
     code: ({ node }) =>
       h('pre', { 'data-language': node.language }, h('code', {}, node.code)),
     timeline: ({node}) => h('p', {}, 'Tidslinje er ikke implementert')
+  },
+  marks: {
+    internalLink: ( props ) => 
+      h('a', {'href': '/id/' + props.mark.reference._ref}, props.children)
   }
 }

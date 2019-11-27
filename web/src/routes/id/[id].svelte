@@ -22,7 +22,8 @@
             _type,
             preferredIdentifier,
             label,
-            mainRepresentation
+            mainRepresentation,
+            media
         	},
           ...,
           children[]{
@@ -36,7 +37,8 @@
           _type,
           preferredIdentifier,
           label,
-          mainRepresentation
+          mainRepresentation,
+          media
         },
         ...,
         children[]{
@@ -119,7 +121,8 @@
       conditionAssignment[]{
         ...,
         hasType->
-      }
+      },
+      media->
     }`
 
     const query = filter + projection

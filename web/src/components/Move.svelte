@@ -53,7 +53,7 @@
         <div class="column has-text-centered">
           {#if item.movedFrom}
           <h3 class="title is-hidden is-size-5">Fra</h3>
-          <p class="has-text-centered"><i class="fas fa-box fa-2x"></i></p>
+          <p class="has-text-centered"><i class="fas fa-boxes fa-2x"></i></p>
           <ul>
             <li><a href="/places/{item.movedFrom._id}">{item.movedFrom.label.nor}</a></li>
           </ul>

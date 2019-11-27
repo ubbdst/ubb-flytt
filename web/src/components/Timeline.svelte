@@ -21,10 +21,10 @@
             day: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("DD"),
             month: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("MM")
           },
-          media: Object.assign({}, event.media, {
+          media: event.media ? Object.assign({}, event.media, {
             caption: event.media.caption,
             credit: event.media.credit
-          }),
+          }) : '',
           text: Object.assign({}, {
             headline: event.label.nor,
             text: event.description
@@ -47,11 +47,11 @@
             day: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("DD"),
             month: dayjs(event.timespan[0].endOfTheEnd ? event.timespan[0].endOfTheEnd : event.timespan[0].date).format("MM")
           },
-          media: Object.assign({}, event.media, {
+          media: event.media ? Object.assign({}, event.media, {
             url: event.media.url ? event.media.url : null,
             caption: event.media.caption ? event.media.caption : null,
             credit: event.media.credit ? event.media.credit : null,
-          }),
+          }) : '',
           text: Object.assign({}, {
             headline: event.headline.nor,
             text: event.text.nor

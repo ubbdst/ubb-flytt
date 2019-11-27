@@ -4,11 +4,14 @@
   import MediaObjects from './MediaObjects'
   import ConditionAssignment from './ConditionAssignment'
   import Map from './Map'
+  import Modal from './Modal.svelte';
 
   import client from '../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
   
   export let item
+
+  let showData = false;
 
   // Get a pre-configured url-builder from your sanity client
   const builder = imageUrlBuilder(client)
@@ -43,7 +46,7 @@
 </nav>
 
 <main class="section">
-  <div class="container">
+  <div class="text container">
     <h1 class="title is-size-1 has-text-centered">{item.label.nor}</h1>
 
     {#if item.description}
@@ -66,5 +69,25 @@
     </div>
     {/if} -->
 
+    <hr>
+    <p class="has-text-centered">
+      <button class="button is-white is-small" on:click="{() => showData = true}">
+        <i class="fas fa-code"></i>
+      </button>
+    </p>
+
+    {#if showData}
+      <Modal on:close="{() => showData = false}">
+        <h2 slot="header">
+          Data
+        </h2>
+
+        <pre>
+          <code>
+          {JSON.stringify(item, null, 2)}
+          </code>
+        </pre>
+      </Modal>
+    {/if}
   </div>
 </main>
