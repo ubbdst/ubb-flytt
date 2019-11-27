@@ -77,7 +77,7 @@ a {
 	color: dark-grey;
 }
 
-.content div, .content div p {
+.text.container {
 	max-width: 50em !important;
 	margin: auto;
 }
