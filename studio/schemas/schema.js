@@ -12,6 +12,7 @@ import reportText from './texts/reportText'
 import simpleText from './texts/simpleText'
 import localeBlock from './texts/localeBlock'
 import localeString from './texts/localeString'
+import localeSlug from './texts/localeSlug'
 import localeBlockSimple from './texts/localeBlockSimple'
 import localeBlockReport from './texts/localeBlockReport'
 
@@ -90,6 +91,13 @@ import reportPart from './objects/reportPart'
 import instagramPost from './objects/instagramPost'
 import file from './objects/file'
 
+// Site
+import navigation from './site/navigation'
+import navItem from './site/navItem'
+import navSection from './site/navSection'
+import openGraph from './site/openGraph'
+import route from './site/route'
+
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
   // We name our schema
@@ -131,6 +139,8 @@ export default createSchema({
     linguisticType,
     featureType,
     experimental,
+    navigation,
+    route,
     siteSettings,
     // Objects
     authorReference,
@@ -161,6 +171,9 @@ export default createSchema({
     reportPart,
     instagramPost,
     file,
+    navItem,
+    navSection,
+    openGraph,
     // Text
     bodyPortableText,
     bioPortableText,
@@ -172,6 +185,7 @@ export default createSchema({
     localeBlockSimple,
     localeBlockReport,
     localeString,
+    localeSlug,
     // Image
     mainImage,
     mainRepresentation,
