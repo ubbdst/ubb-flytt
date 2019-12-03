@@ -33,7 +33,7 @@ export default {
             value: 'https://github.com/tarjelavik/saelen-samlingen',
             category: 'Code'
           },
-          {title: 'Frontend', value: 'https://saelen-samlingen.netlify.com', category: 'apps'}
+          {title: 'Frontend', value: 'https://saelen.family', category: 'apps'}
         ]
       }
     },
