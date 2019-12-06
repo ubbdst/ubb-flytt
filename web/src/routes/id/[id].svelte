@@ -11,6 +11,10 @@
     const filter = '*[_id == $id][0]'
     const projection = `{
       ...,
+      mainRepresentation{
+        ...,
+        asset->
+      },
       hasType[]->{
         _id,
         label
