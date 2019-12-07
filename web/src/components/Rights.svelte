@@ -17,6 +17,7 @@
 
   a.rights {
     display: inline-flex;
+    padding-right: .75em;
   }
 </style>
 

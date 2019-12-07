@@ -4,7 +4,7 @@
   import Rights from './Rights'
   import MainImage from './MainImage'
   import Map from './Map'
-
+  import MadeObjectFooter from './MadeObjectFooter'
   import client from '../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
 
@@ -67,13 +67,18 @@
             <span class="tag is-light">{item.preferredIdentifier}</span>
           </div>
         </div>
+
+        <div class="control">
+          <Rights item={item.rights}></Rights>
+        </div>
       </div>
-      <Rights item={item.rights}></Rights>
+      
     </div>
 
     <MainImage 
       image={item.mainRepresentation}
-      manifest={item.mainRepresentation.asset.source.url ? item.mainRepresentation.asset.source.url : ''}
+      manifest={item.mainRepresentation.asset.source && item.mainRepresentation.asset.source.url ? item.mainRepresentation.asset.source.url : ''}
+      source={item.mainRepresentation.asset.creditLine}
       rights={item.rights}
       id={item.preferredIdentifier}
       alt={item.title}>
@@ -102,6 +107,8 @@
     {#if item.activityStream}
     <ActivityStream stream={item.activityStream} title="Tidslinje"></ActivityStream>
     {/if}
+
+    <MadeObjectFooter footerData={item} />
 
   </div>
 </main>

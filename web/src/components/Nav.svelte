@@ -16,6 +16,10 @@
 </script>
 
 <style>
+.navbar{
+	z-index: 1200;
+}
+
 .navbar-brand{
 	font-weight: bolder;
 }

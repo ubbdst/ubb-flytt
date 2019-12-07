@@ -6,6 +6,7 @@
 
   export let image
   export let manifest
+  export let source
   export let alt
   export let id
   export let rights
@@ -54,8 +55,11 @@
 </style>
 
 {#if manifest}
-  <div class='mirador'>
-    <Mirador manifest='{manifest}'/>
+  <div>
+    <div class='mirador'>
+      <Mirador manifest='{manifest}'/>
+    </div>
+    <p class="has-text-centered"><small>{source}</small></p>
   </div>
 {:else}
   <figure onload="setRights()">
