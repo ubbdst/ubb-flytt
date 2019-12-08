@@ -38,3 +38,7 @@
 .iconWrapper {
   font-size: 2em;
 }
+
+.iconWrapper svg {
+  display: inline;
+}
