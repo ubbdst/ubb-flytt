@@ -39,7 +39,7 @@
 <nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
   <ul>
     <li><a href="/">Hjem</a></li>
-    <li><a href="/experimental/moves">Flytt</a></li>
+    <li><a href="/moves">Flytt</a></li>
     <li class="is-active"><a href="#" aria-current="page">{titleForMove}</a></li>
   </ul>
 </nav>
