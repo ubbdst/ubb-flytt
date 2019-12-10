@@ -10,10 +10,7 @@ export default {
     {
       title: 'Caption',
       name: 'caption',
-      type: 'string',
-      options: {
-        isHighlighted: true
-      }
+      type: 'localeString'
     }
   ],
   preview: {

@@ -38,12 +38,10 @@ export default {
   ],
   preview: {
     select: {
-      type: 'hasType',
-      value: 'value',
-      unit: 'hasUnit'
+      type: 'hasType'
     },
     prepare (selection) {
-      const {type, value, unit} = selection
+      const {type} = selection
       return {
         title: `${type || 'Not enough information'}`
       }

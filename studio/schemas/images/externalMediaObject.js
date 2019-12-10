@@ -1,3 +1,7 @@
+/*
+  Used by the timeline.js
+*/
+
 export default {
   title: 'External media object',
   name: 'externalMediaObject',

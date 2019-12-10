@@ -6,9 +6,15 @@ import client from 'part:@sanity/base/client'
 import {rights} from '../vocabularies/default'
 
 export default {
-  title: 'Made Object',
+  title: 'Objekt',
+  titleEN: 'Made Object',
+  description: 'Menneskapte objekt',
   name: 'madeObject',
   type: 'document',
+  initialValue: {
+    editorialState: 'workingDraft',
+    accessState: 'secret'
+  },
   icon: FaBookDead,
   fieldsets: [
     {
@@ -54,28 +60,32 @@ export default {
   ],
   fields: [
     {
+      title: 'Redaksjonell status',
+      titleEN: 'Editorial state',
       name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
       options: {
         list: [
-          {title: 'Working draft', value: 'workingDraft'},
-          {title: 'Needs review', value: 'review'},
-          {title: 'Published', value: 'published'}
+          {title: 'Utkast', value: 'workingDraft'},
+          {title: 'Trenger gjennomgang', value: 'review'},
+          {title: 'Publisert', value: 'published'}
         ],
         layout: 'radio',
         direction: 'horizontal'
       }
     },
     {
+      title: 'Tilgangsstatus',
+      titleEN: 'Access state',
       name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
       options: {
         list: [
-          {title: 'Private/Secret', value: 'secret'},
+          {title: 'Privat', value: 'secret'},
           {title: 'Open', value: 'open'}
         ],
         layout: 'radio',
@@ -83,21 +93,8 @@ export default {
       }
     },
     {
-      title: 'Main manifest',
-      description: 'The main manifest of this object',
-      fieldset: 'representation',
-      name: 'mainManifest',
-      type: 'url'
-    },
-    {
-      title: 'Main image',
-      name: 'mainRepresentation',
-      fieldset: 'representation',
-      description: 'Big, lovely image of the object. TODO: this should be a image in the manifest, optionally cropped',
-      type: 'mainRepresentation'
-    },
-    {
-      title: 'Preferred identifier',
+      title: 'Foretrukket identifikator',
+      titleEN: 'Preferred identifier',
       name: 'preferredIdentifier',
       fieldset: 'minimum',
       type: 'string',
@@ -108,17 +105,47 @@ export default {
       })
     },
     {
-      title: 'Title',
+      title: 'Identifiers',
+      name: 'identifiedBy',
+      description: 'Add all known identifiers',
+      fieldset: 'additionalInformation',
+      type: 'array',
+      of: [
+        {type: 'identifier'}
+      ],
+      options: {
+        editModal: 'popup'
+      }
+    },
+    {
+      title: 'Tittel',
+      titleEN: 'Title',
       name: 'label',
-      description: 'WIP, change to localeBlock',
+      description: 'WIP, endre til localeBlock',
+      descriptionEN: 'WIP, change to localeBlock',
       fieldset: 'minimum',
       type: 'string',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Classified as',
+      title: 'Titles',
+      name: 'title',
+      description: 'Add all known titles',
+      fieldset: 'minimum',
+      type: 'array',
+      of: [
+        {type: 'name'}
+      ],
+      options: {
+        editModal: 'popup'
+      }
+    },
+    {
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       name: 'hasType',
-      description: 'WIP, should use API',
+      description: 'WIP, bør bruke API',
+      descriptionEN: 'WIP, should use API',
       fieldset: 'minimum',
       type: 'array',
       of: [
@@ -133,16 +160,20 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'Description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       name: 'description',
-      description: 'A shortish description',
+      description: 'En kort beskrivelse.',
+      descriptionEN: 'A shortish description',
       fieldset: 'minimum',
       type: 'localeBlockSimple'
     },
     {
-      title: 'Rights',
+      title: 'Rettigheter og lisensiering',
+      titleEN: 'Rights',
       name: 'rights',
-      description: 'Choose the correct lisense or mark',
+      description: 'Velg den korrekt lisensen eller rettighetserklæringen.',
+      descriptionEN: 'Choose the correct lisense or mark',
       fieldset: 'minimum',
       type: 'string',
       options: {
@@ -151,8 +182,28 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'Activity stream',
-      description: 'Events and activities connected to this object',
+      title: 'Hovedbilde',
+      titleEN: 'Main image',
+      name: 'mainRepresentation',
+      fieldset: 'representation',
+      description: 'Velg et bilde fra egen samling eller fra NB.no. Legg til bildetekst ved å trykke "Edit".',
+      descriptionEN: 'Choose a image from out own collection or from NB.no.',
+      type: 'mainRepresentation'
+    },
+    {
+      title: 'Hovedmanifest',
+      titleEN: 'Main manifest',
+      description: 'Hovedmanifestet til objektet.',
+      descriptionEN: 'The main manifest of this object',
+      fieldset: 'representation',
+      name: 'mainManifest',
+      type: 'url'
+    },
+    {
+      title: 'Aktivitetsstrøm',
+      titleEN: 'Activity stream',
+      description: 'Hendelser og aktiviteter knyttet til dette objektet.',
+      descriptionEN: 'Events and activities connected to this object',
       name: 'activityStream',
       type: 'array',
       of: [
@@ -165,20 +216,8 @@ export default {
       ]
     },
     {
-      title: 'Composed of',
-      description: 'Other identified madeObjects this object is composed of',
-      name: 'composedOf',
-      type: 'array',
-      of: [
-        {type: 'reference',
-          to: [
-            {type: 'madeObject'}
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Depicts',
+      title: 'Avbilder',
+      titleEN: 'Depicts',
       name: 'depicts',
       type: 'array',
       fieldset: 'visualObject',
@@ -203,6 +242,21 @@ export default {
         {type: 'reference',
           to: [
             {type: 'visualItem'}
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Består av',
+      titleEN: 'Composed of',
+      description: 'Andre identifiserte objekt som er en del av dette objektet. Bok -> Omslag.',
+      descriptionEN: 'Other identified madeObjects this object is composed of',
+      name: 'composedOf',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'madeObject'}
           ]
         }
       ]
@@ -237,30 +291,17 @@ export default {
       ]
     },
     {
-      title: 'Titles',
-      name: 'title',
-      description: 'Add all known titles',
-      fieldset: 'additionalInformation',
+      title: 'Emne',
+      name: 'subject',
       type: 'array',
       of: [
-        {type: 'name'}
-      ],
-      options: {
-        editModal: 'popup'
-      }
-    },
-    {
-      title: 'Identifiers',
-      name: 'identifiedBy',
-      description: 'Add all known identifiers',
-      fieldset: 'additionalInformation',
-      type: 'array',
-      of: [
-        {type: 'identifier'}
-      ],
-      options: {
-        editModal: 'popup'
-      }
+        {
+          type: 'reference',
+          to: [
+            {type: 'concept'}
+          ]
+        }
+      ]
     },
     {
       title: 'Subject of',

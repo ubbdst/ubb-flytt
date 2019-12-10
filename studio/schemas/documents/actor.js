@@ -118,13 +118,15 @@ export default {
   ],
   preview: {
     select: {
-      title: 'label'
+      title: 'label',
+      media: 'mainRepresentation'
     },
     prepare (selection) {
-      const {title} = selection
+      const {title, media} = selection
 
       return {
-        title: title
+        title: title,
+        media: media
       }
     }
   }

@@ -1,0 +1,82 @@
+Arguments: 
+  /Users/st10938/.nvm/versions/node/v10.16.0/bin/node /Users/st10938/.nvm/versions/node/v10.16.0/lib/node_modules/@sanity/cli/vendor/yarn install --json --non-interactive --ignore-engines --registry https://registry.npmjs.org
+
+PATH: 
+  /Users/st10938/code/saelen/saelen-samlingen/studio/node_modules/.bin:/Users/st10938/code/saelen/saelen-samlingen/node_modules/.bin:/Users/st10938/code/saelen/node_modules/.bin:/Users/st10938/code/node_modules/.bin:/Users/st10938/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/Users/st10938/.nvm/versions/node/v10.16.0/bin:/Users/st10938/.nvm/versions/node/v10.16.0/lib/node_modules/vendor:/Users/st10938/google-cloud-sdk/bin:/Users/st10938/.nvm/versions/node/v10.16.0/bin:/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.6.0
+
+Node version: 
+  10.16.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, lstat '/Users/st10938/code/saelen/saelen-samlingen/studio/node_modules/sanity-plugin-asset-source-nbiiif/node_modules/@sanity/initial-value-templates/node_modules'
+
+npm manifest: 
+  {
+    "private": true,
+    "name": "saelen-samlingen-studio",
+    "version": "1.0.0",
+    "main": "package.json",
+    "author": "Sanity <hello@sanity.io>",
+    "scripts": {
+      "dev": "sanity start",
+      "format": "prettier-eslint --write \"**/*.js\" \"!node_modules/**\"",
+      "build": "sanity build",
+      "graphql-deploy": "sanity graphql deploy --playground",
+      "lint": "eslint .",
+      "test": "sanity check"
+    },
+    "dependencies": {
+      "@sanity/base": "^0.147.0",
+      "@sanity/cli": "^0.147.0",
+      "@sanity/code-input": "^0.147.0",
+      "@sanity/color-input": "^0.147.0",
+      "@sanity/components": "^0.147.0",
+      "@sanity/core": "^0.147.0",
+      "@sanity/dashboard": "^0.147.0",
+      "@sanity/default-layout": "^0.147.0",
+      "@sanity/default-login": "^0.147.0",
+      "@sanity/desk-tool": "^0.147.1",
+      "@sanity/google-maps-input": "^0.147.0",
+      "@sanity/vision": "^0.147.0",
+      "axios": "^0.19.0",
+      "capitalize": "^2.0.0",
+      "date-fns": "^1.30.1",
+      "downshift": "^3.4.7",
+      "jsonata": "^1.6.4",
+      "prop-types": "^15.7.2",
+      "react": "^16.8.6",
+      "react-dom": "^16.8.6",
+      "react-icons": "^3.7.0",
+      "react-instagram-embed": "^1.5.0",
+      "sanity-plugin-asset-source-nbiiif": "0.0.6",
+      "sanity-plugin-content-model-graph": "^1.1.0",
+      "sanity-plugin-dashboard-widget-document-list": "^0.0.8",
+      "sanity-plugin-dashboard-widget-netlify": "^1.0.0",
+      "sanity-plugin-media": "^0.2.4",
+      "sanity-plugin-vision": "^2.0.7"
+    },
+    "devDependencies": {
+      "babel-eslint": "^10.0.1",
+      "eslint": "^5.16.0",
+      "eslint-config-standard": "^12.0.0",
+      "eslint-config-standard-react": "^7.0.2",
+      "eslint-plugin-import": "^2.17.2",
+      "eslint-plugin-node": "^9.0.1",
+      "eslint-plugin-promise": "^4.1.1",
+      "eslint-plugin-react": "^7.13.0",
+      "eslint-plugin-standard": "^4.0.0",
+      "prettier-eslint-cli": "^4.7.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
