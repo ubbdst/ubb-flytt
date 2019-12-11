@@ -6,3 +6,5 @@
 /yarn.lock
 
 .env.development
+# Local Netlify folder
+.netlify
