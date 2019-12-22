@@ -146,7 +146,7 @@ export default {
       const {type, title, blocks, published, active} = selection
       const block = (blocks || []).find(block => block._type === 'block')
       const secret = published === 'secret' ? '🔒' : ''
-      const a = active ? 'Active' : 'Finished'
+      const a = active ? 'Active' : 'Completed'
 
       return {
         title: title,

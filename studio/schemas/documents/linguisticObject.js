@@ -2,7 +2,7 @@ import {languages} from '../vocabularies/default'
 import {FaFileAlt} from 'react-icons/fa'
 
 export default {
-  title: 'Linguistic object',
+  title: 'Text',
   name: 'linguisticObject',
   type: 'document',
   icon: FaFileAlt,
@@ -47,6 +47,22 @@ export default {
       options: {
         list: languages
       }
+    },
+    {
+      title: 'Classified as',
+      name: 'hasType',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Teksttype'}
+          }
+        }
+      ],
+      validation: Rule => Rule.required()
     },
     {
       title: 'Body',
