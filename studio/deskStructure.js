@@ -1,8 +1,8 @@
 import S from '@sanity/desk-tool/structure-builder'
-import {FaCog, FaTag, FaBookDead} from 'react-icons/fa'
+import {FaCog, FaTag, FaBookDead, FaUser, FaUsers} from 'react-icons/fa'
 
 const hiddenDocTypes = listItem =>
-  !['madeObject', 'siteSettings', 'typeClass', 'systemCategory', 'concept', 'material'].includes(listItem.getId())
+  !['madeObject', 'actor', 'group', 'siteSettings', 'typeClass', 'systemCategory', 'concept', 'material'].includes(listItem.getId())
 
 export default () =>
   S.list()
@@ -50,6 +50,92 @@ export default () =>
                 )
             ])
         ),
+      S.divider(),
+      S.listItem()
+        .title('Actor')
+        .icon(FaUser)
+        .child(
+          S.list()
+            .title('Actor')
+            .items([
+              S.listItem()
+                .title('Actor by type')
+                .icon(FaUser)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Actor by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Aktørtype"]]._id)'
+                    )
+                    .child(catId =>
+                    // List out project documents where the _id for the selected
+                    // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('actor')
+                        .title('Object')
+                        .filter(
+                          '_type == "actor" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('All actors')
+                .icon(FaUser)
+                .child(
+                  S.documentList()
+                    .title('All actors')
+                    .schemaType('actor')
+                    .filter(
+                      '_type == "actor"'
+                    )
+                )
+            ])
+        ),
+      S.listItem()
+        .title('Group')
+        .icon(FaUsers)
+        .child(
+          S.list()
+            .title('Group')
+            .items([
+              S.listItem()
+                .title('Group by type')
+                .icon(FaUsers)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Group by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Gruppetype"]]._id)'
+                    )
+                    .child(catId =>
+                    // List out project documents where the _id for the selected
+                    // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('group')
+                        .title('Object')
+                        .filter(
+                          '_type == "group" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('All groups')
+                .icon(FaUsers)
+                .child(
+                  S.documentList()
+                    .title('All types')
+                    .schemaType('group')
+                    .filter(
+                      '_type == "group"'
+                    )
+                )
+            ])
+        ),
+      S.divider(),
       // This returns an array of all the document types
       // defined in schema.js. We filter out those that we have
       // defined the structure above
