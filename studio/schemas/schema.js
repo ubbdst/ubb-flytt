@@ -20,9 +20,9 @@ import localeBlockReport from './texts/localeBlockReport'
 // Images
 import mainRepresentation from './images/mainRepresentation'
 import figure from './images/figure'
-import mediaObject from './images/mediaObject'
+import mainImage from './images/mainImage'
 
-// document schemas
+// Document schemas
 import post from './documents/post'
 import actor from './documents/actor'
 import madeObject from './documents/madeObject'
@@ -42,17 +42,29 @@ import typeClass from './documents/types/type'
 import systemCategory from './documents/types/systemCategory'
 import material from './documents/types/material'
 import concept from './documents/types/concept'
-import timeline from './documents/timeline'
 import exhibition from './documents/exhibition'
 import acquisition from './documents/acquisition'
 import activity from './documents/activity'
 import objectFeature from './documents/objectFeature'
 
+// Timeline
+import timeline from './documents/timeline/timeline'
+import mediaObject from './documents/timeline/mediaObject'
+import externalMediaObject from './documents/timeline/externalMediaObject'
+import era from './documents/timeline/era'
+import timelineSlide from './documents/timeline/timelineSlide'
+
+// Site
+import navigation from './site/navigation'
+import navItem from './site/navItem'
+import navSection from './site/navSection'
+import openGraph from './site/openGraph'
+import route from './site/route'
+
 // Object types
 import bodyPortableText from './objects/bodyPortableText'
 import bioPortableText from './objects/bioPortableText'
 import excerptPortableText from './objects/excerptPortableText'
-import mainImage from './objects/mainImage'
 import authorReference from './objects/authorReference'
 import production from './objects/activities/production'
 import creation from './objects/activities/creation'
@@ -73,22 +85,12 @@ import part from './objects/part'
 import dissolution from './objects/activities/dissolution'
 import formation from './objects/activities/formation'
 import manifest from './objects/manifest'
-import timelineSlide from './objects/timelineSlide'
 import feature from './objects/feature'
-import externalMediaObject from './images/externalMediaObject'
 import valueSlider from './objects/valueSlider'
-import era from './objects/era'
 import background from './objects/background'
 import reportPart from './objects/reportPart'
 import instagramPost from './objects/instagramPost'
 import file from './objects/file'
-
-// Site
-import navigation from './site/navigation'
-import navItem from './site/navItem'
-import navSection from './site/navSection'
-import openGraph from './site/openGraph'
-import route from './site/route'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
