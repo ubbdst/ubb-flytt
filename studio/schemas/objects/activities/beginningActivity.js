@@ -29,11 +29,18 @@ export default {
       ]
     },
     {
-      title: 'Type',
+      title: 'Classified as',
       name: 'hasType',
       type: 'array',
       of: [
-        {type: 'reference', to: [{type: 'eventType'}]}
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Hendelsestype'}
+          }
+        }
       ]
     }
   ],

@@ -6,12 +6,20 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Type',
+      title: 'Classified as',
       name: 'hasType',
       type: 'array',
       of: [
-        {type: 'reference', to: [{type: 'eventType'}]}
-      ]
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Hendelsestype'}
+          }
+        }
+      ],
+      validation: Rule => Rule.required()
     },
     {
       title: 'Carried out by',
@@ -70,10 +78,13 @@ export default {
       name: 'usedGeneralTechnique',
       type: 'array',
       of: [
-        {type: 'reference',
-          to: [
-            {type: 'technique'}
-          ]
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Teknikk'}
+          }
         }
       ]
     },

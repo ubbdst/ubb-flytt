@@ -1,8 +1,8 @@
 import {FaTag} from 'react-icons/fa'
 
 export default {
-  title: 'Feature type',
-  name: 'featureType',
+  title: 'System category',
+  name: 'systemCategory',
   type: 'document',
   icon: FaTag,
   fieldsets: [

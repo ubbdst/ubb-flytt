@@ -51,17 +51,20 @@ export default {
       ]
     },
     {
+      title: 'Categories',
       name: 'categories',
       type: 'array',
-      title: 'Categories',
       of: [
         {
           type: 'reference',
-          to: {
-            type: 'category'
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Kategorier'}
           }
         }
-      ]
+      ],
+      validation: Rule => Rule.required()
     },
     {
       name: 'body',

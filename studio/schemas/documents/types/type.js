@@ -53,6 +53,14 @@ export default {
       type: 'localeString'
     },
     {
+      title: 'System category',
+      name: 'systemCategory',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'systemCategory'}]}
+      ]
+    },
+    {
       title: 'Broader',
       name: 'broader',
       type: 'array',

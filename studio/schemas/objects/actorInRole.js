@@ -14,7 +14,14 @@ export default {
       name: 'role',
       type: 'array',
       of: [
-        {type: 'reference', to: [{type: 'role'}]}
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Rolle'}
+          }
+        }
       ]
     }
   ],

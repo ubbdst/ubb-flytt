@@ -23,7 +23,6 @@ import figure from './images/figure'
 import mediaObject from './images/mediaObject'
 
 // document schemas
-import category from './documents/types/category'
 import post from './documents/post'
 import actor from './documents/actor'
 import madeObject from './documents/madeObject'
@@ -40,16 +39,9 @@ import place from './documents/place'
 import designOrProcedure from './documents/designOrProcedure'
 import project from './documents/project'
 import typeClass from './documents/types/type'
-import technique from './documents/types/technique'
-import assessmentType from './documents/types/assessmentType'
-import actorType from './documents/types/actorType'
-import activityType from './documents/types/activityType'
+import systemCategory from './documents/types/systemCategory'
 import material from './documents/types/material'
-import eventType from './documents/types/eventType'
-import linguisticType from './documents/types/linguisticType'
-import featureType from './documents/types/featureType'
 import concept from './documents/types/concept'
-import role from './documents/types/role'
 import timeline from './documents/timeline'
 import exhibition from './documents/exhibition'
 import acquisition from './documents/acquisition'
@@ -127,17 +119,9 @@ export default createSchema({
     visualItem,
     linguisticObject,
     typeClass,
-    category,
+    systemCategory,
     concept,
-    role,
     material,
-    technique,
-    assessmentType,
-    actorType,
-    activityType,
-    eventType,
-    linguisticType,
-    featureType,
     experimental,
     navigation,
     route,

@@ -51,10 +51,16 @@ export default {
     {
       title: 'Classified as',
       name: 'hasType',
-      description: 'WIP, should use API',
       type: 'array',
       of: [
-        {type: 'reference', to: [{type: 'assessmentType'}]}
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Rapporttype'}
+          }
+        }
       ],
       validation: Rule => Rule.required()
     },
@@ -77,10 +83,13 @@ export default {
       name: 'usedGeneralTechnique',
       type: 'array',
       of: [
-        {type: 'reference',
-          to: [
-            {type: 'technique'}
-          ]
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Teknikk'}
+          }
         }
       ]
     },

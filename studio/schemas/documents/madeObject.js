@@ -151,10 +151,11 @@ export default {
       of: [
         {
           type: 'reference',
-          to: [
-            {type: 'typeClass'},
-            {type: 'concept'}
-          ]
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Objekt-/verkstype'}
+          }
         }
       ],
       validation: Rule => Rule.required()

@@ -45,6 +45,22 @@ export default {
       type: 'localeBlock'
     },
     {
+      title: 'Classified as',
+      name: 'hasType',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Prosedyretype'}
+          }
+        }
+      ],
+      validation: Rule => Rule.required()
+    },
+    {
       title: 'Documented in',
       name: 'documentedIn',
       type: 'array',

@@ -51,10 +51,16 @@ export default {
     {
       title: 'Classified as',
       name: 'hasType',
-      description: 'WIP, should use API',
       type: 'array',
       of: [
-        {type: 'reference', to: [{type: 'featureType'}]}
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Egenskapstype'}
+          }
+        }
       ],
       validation: Rule => Rule.required()
     },

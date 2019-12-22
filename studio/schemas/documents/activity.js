@@ -34,7 +34,14 @@ export default {
       name: 'hasType',
       type: 'array',
       of: [
-        {type: 'reference', to: [{type: 'activityType'}]}
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Aktivitetstype'}
+          }
+        }
       ]
     },
     {
@@ -90,10 +97,13 @@ export default {
       fieldset: 'objects',
       type: 'array',
       of: [
-        {type: 'reference',
-          to: [
-            {type: 'typeClass'}
-          ]
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Objekt-/verkstype'}
+          }
         }
       ]
     },
@@ -118,10 +128,13 @@ export default {
       fieldset: 'technique',
       type: 'array',
       of: [
-        {type: 'reference',
-          to: [
-            {type: 'typeClass'}
-          ]
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'technique'}
+          }
         }
       ]
     },
@@ -146,10 +159,13 @@ export default {
       fieldset: 'purpose',
       type: 'array',
       of: [
-        {type: 'reference',
-          to: [
-            {type: 'typeClass'}
-          ]
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'purposeType'}
+          }
         }
       ]
     },
