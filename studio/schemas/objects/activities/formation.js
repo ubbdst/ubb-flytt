@@ -20,8 +20,7 @@ export default {
             filterParams: {sysCat: 'Hendelsestype'}
           }
         }
-      ],
-      validation: Rule => Rule.required()
+      ]
     },
     {
       title: 'Formed from',
