@@ -58,7 +58,7 @@ export default {
           to: [{type: 'typeClass'}],
           options: {
             filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
-            filterParams: {sysCat: 'Aktørtype'}
+            filterParams: {sysCat: 'Gruppetype'}
           }
         }
       ],

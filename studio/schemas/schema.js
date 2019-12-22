@@ -23,7 +23,6 @@ import figure from './images/figure'
 import mainImage from './images/mainImage'
 
 // Document schemas
-import post from './documents/post'
 import actor from './documents/actor'
 import madeObject from './documents/madeObject'
 import work from './documents/work'
@@ -102,24 +101,23 @@ export default createSchema({
     // The following are document types which will appear
     // in the studio.
     madeObject,
+    work,
+    visualItem,
     collection,
     actor,
     group,
     event,
     activity,
     place,
-    post,
-    exhibition,
-    timeline,
     acquisition,
     move,
     objectFeature,
     report,
-    designOrProcedure,
     project,
-    work,
-    visualItem,
     linguisticObject,
+    exhibition,
+    timeline,
+    designOrProcedure,
     typeClass,
     systemCategory,
     concept,

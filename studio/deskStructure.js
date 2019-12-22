@@ -1,8 +1,8 @@
 import S from '@sanity/desk-tool/structure-builder'
-import {FaCog, FaTag, FaBookDead, FaUser, FaUsers} from 'react-icons/fa'
+import {FaCog, FaTag, FaBookDead, FaUser, FaUsers, FaProjectDiagram} from 'react-icons/fa'
 
 const hiddenDocTypes = listItem =>
-  !['madeObject', 'actor', 'group', 'siteSettings', 'typeClass', 'systemCategory', 'concept', 'material'].includes(listItem.getId())
+  !['madeObject', 'actor', 'group', 'project', 'siteSettings', 'typeClass', 'systemCategory', 'concept', 'material'].includes(listItem.getId())
 
 export default () =>
   S.list()
@@ -38,12 +38,12 @@ export default () =>
                     )
                 ),
               S.listItem()
-                .title('All types')
+                .title('All objects')
                 .icon(FaBookDead)
                 .child(
                   S.documentList()
-                    .title('All types')
-                    .schemaType('typeClass')
+                    .title('All objects')
+                    .schemaType('madeObject')
                     .filter(
                       '_type == "madeObject"'
                     )
@@ -182,6 +182,49 @@ export default () =>
         ),
       S.documentTypeListItem('concept').title('Concept'),
       S.documentTypeListItem('material').title('Material'),
+      S.divider(),
+      S.listItem()
+        .title('Project')
+        .icon(FaProjectDiagram)
+        .child(
+          S.list()
+            .title('Project')
+            .items([
+              S.listItem()
+                .title('Active projects')
+                .icon(FaProjectDiagram)
+                .child(
+                // List out all categories
+                  S.documentTypeList('project')
+                    .title('Active projects')
+                    .filter(
+                      '_type == "project" && active'
+                    )
+                ),
+              S.listItem()
+                .title('Completed projects')
+                .icon(FaProjectDiagram)
+                .child(
+                // List out all categories
+                  S.documentTypeList('project')
+                    .title('Completed projects')
+                    .filter(
+                      '_type == "project" && !active'
+                    )
+                ),
+              S.listItem()
+                .title('All projects')
+                .icon(FaProjectDiagram)
+                .child(
+                  S.documentList()
+                    .title('All projects')
+                    .schemaType('project')
+                    .filter(
+                      '_type == "project"'
+                    )
+                )
+            ])
+        ),
       S.divider(),
       S.listItem()
         .title('Settings')

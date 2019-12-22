@@ -1,11 +1,12 @@
+import jsonata from 'jsonata'
 import {languages} from '../vocabularies/default'
-import {FaFileAlt} from 'react-icons/fa'
+import {FaMarker} from 'react-icons/fa'
 
 export default {
   title: 'Text',
   name: 'linguisticObject',
   type: 'document',
-  icon: FaFileAlt,
+  icon: FaMarker,
   fields: [
     {
       name: 'editorialState',
@@ -41,6 +42,26 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      description: 'Some frontends will require a slug to be set to be able to show the post',
+      options: {
+        source: 'label.nor',
+        maxLength: 96
+      }
+    },
+    {
+      name: 'authors',
+      title: 'Authors',
+      type: 'array',
+      of: [
+        {
+          type: 'authorReference'
+        }
+      ]
+    },
+    {
       title: 'Language',
       name: 'language',
       type: 'string',
@@ -65,9 +86,41 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      title: 'Categories',
+      name: 'categories',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Kategorier'}
+          }
+        }
+      ]
+    },
+    {
+      name: 'publishedAt',
+      type: 'datetime',
+      title: 'Published at',
+      description: 'This can be used to schedule post for publishing'
+    },
+    {
+      name: 'mainImage',
+      type: 'mainImage',
+      title: 'Main image'
+    },
+    {
+      name: 'excerpt',
+      type: 'excerptPortableText',
+      title: 'Excerpt',
+      description: 'This ends up on summary pages, on Google, when people share your post in social media.'
+    },
+    {
       title: 'Body',
       name: 'body',
-      type: 'genericText'
+      type: 'bodyPortableText'
     },
     {
       title: 'Documented in',
@@ -80,14 +133,46 @@ export default {
       ]
     }
   ],
+  orderings: [
+    {
+      name: 'publishingDateAsc',
+      title: 'Publishing date new–>old',
+      by: [
+        {
+          field: 'publishedAt',
+          direction: 'asc'
+        },
+        {
+          field: 'title',
+          direction: 'asc'
+        }
+      ]
+    },
+    {
+      name: 'publishingDateDesc',
+      title: 'Publishing date old->new',
+      by: [
+        {
+          field: 'publishedAt',
+          direction: 'desc'
+        },
+        {
+          field: 'title',
+          direction: 'asc'
+        }
+      ]
+    }
+  ],
   preview: {
     select: {
       title: 'label.nor',
-      blocks: 'body'
+      blocks: 'excerpt',
+      media: 'mainImage'
     },
     prepare (selection) {
-      const {title, blocks} = selection
-      const block = (blocks || []).find(block => block._type === 'block')
+      const {title, blocks, media} = selection
+      const expression = jsonata('nor[0]')
+      const block = expression.evaluate(blocks)
 
       return {
         title: title,
@@ -96,7 +181,8 @@ export default {
             .filter(child => child._type === 'span')
             .map(span => span.text)
             .join('')
-          : 'No description'
+          : 'No description',
+        media: media
       }
     }
   }

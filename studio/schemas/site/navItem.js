@@ -12,7 +12,7 @@ export default {
       name: 'internal',
       type: 'reference',
       title: 'Internal',
-      to: [{type: 'route'}, {type: 'post'}]
+      to: [{type: 'route'}]
     },
     {
       name: 'external',
