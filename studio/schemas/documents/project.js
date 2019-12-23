@@ -169,14 +169,14 @@ export default {
       title: 'Title, A-Å',
       name: 'title',
       by: [
-        {field: 'title', direction: 'desc'}
+        {field: 'label', direction: 'desc'}
       ]
     },
     {
       title: 'Title, Å-A',
       name: 'title',
       by: [
-        {field: 'title', direction: 'asc'}
+        {field: 'label', direction: 'asc'}
       ]
     }
   ]
