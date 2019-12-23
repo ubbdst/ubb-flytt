@@ -6,7 +6,47 @@ export default {
   name: 'collection',
   type: 'document',
   icon: GiBookshelf,
+  fieldsets: [
+    {
+      name: 'state',
+      title: 'State',
+      options: {collapsible: true, collapsed: false}
+    }
+  ],
   fields: [
+    {
+      title: 'Redaksjonell status',
+      titleEN: 'Editorial state',
+      name: 'editorialState',
+      type: 'string',
+      fieldset: 'state',
+      validation: Rule => Rule.required(),
+      options: {
+        list: [
+          {title: 'Utkast', value: 'workingDraft'},
+          {title: 'Trenger gjennomgang', value: 'review'},
+          {title: 'Publisert', value: 'published'}
+        ],
+        layout: 'radio',
+        direction: 'horizontal'
+      }
+    },
+    {
+      title: 'Tilgangsstatus',
+      titleEN: 'Access state',
+      name: 'accessState',
+      type: 'string',
+      fieldset: 'state',
+      validation: Rule => Rule.required(),
+      options: {
+        list: [
+          {title: 'Privat', value: 'secret'},
+          {title: 'Open', value: 'open'}
+        ],
+        layout: 'radio',
+        direction: 'horizontal'
+      }
+    },
     {
       title: 'Title',
       name: 'label',

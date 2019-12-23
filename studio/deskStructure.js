@@ -1,8 +1,8 @@
 import S from '@sanity/desk-tool/structure-builder'
-import {FaCog, FaTag, FaBookDead, FaUser, FaUsers, FaProjectDiagram} from 'react-icons/fa'
+import {FaCog, FaTag, FaBookDead, FaUser, FaUsers, FaProjectDiagram, FaCalendar} from 'react-icons/fa'
 
 const hiddenDocTypes = listItem =>
-  !['madeObject', 'actor', 'group', 'project', 'siteSettings', 'typeClass', 'systemCategory', 'concept', 'material'].includes(listItem.getId())
+  !['madeObject', 'actor', 'group', 'event', 'project', 'siteSettings', 'typeClass', 'systemCategory', 'concept', 'material'].includes(listItem.getId())
 
 export default () =>
   S.list()
@@ -35,6 +35,28 @@ export default () =>
                           '_type == "madeObject" && $catId in hasType[]._ref'
                         )
                         .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('Unpublished objects')
+                .icon(FaBookDead)
+                .child(
+                // List out all categories
+                  S.documentTypeList('madeObject')
+                    .title('Unpublished objects')
+                    .filter(
+                      '_type == "madeObject" && accessState == "secret"'
+                    )
+                ),
+              S.listItem()
+                .title('Needs review')
+                .icon(FaBookDead)
+                .child(
+                // List out all categories
+                  S.documentTypeList('madeObject')
+                    .title('Needs review')
+                    .filter(
+                      '_type == "madeObject" && editorialState == "review"'
                     )
                 ),
               S.listItem()
@@ -131,6 +153,49 @@ export default () =>
                     .schemaType('group')
                     .filter(
                       '_type == "group"'
+                    )
+                )
+            ])
+        ),
+      S.divider(),
+      S.listItem()
+        .title('Event')
+        .icon(FaCalendar)
+        .child(
+          S.list()
+            .title('Event')
+            .items([
+              S.listItem()
+                .title('Event by type')
+                .icon(FaCalendar)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Event by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Hendelsestype"]]._id)'
+                    )
+                    .child(catId =>
+                      // List out project documents where the _id for the selected
+                      // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('event')
+                        .title('Object')
+                        .filter(
+                          '_type == "event" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('All events')
+                .icon(FaCalendar)
+                .child(
+                  S.documentList()
+                    .title('All events')
+                    .schemaType('event')
+                    .filter(
+                      '_type == "event"'
                     )
                 )
             ])

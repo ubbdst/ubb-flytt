@@ -14,28 +14,32 @@ export default {
   ],
   fields: [
     {
+      title: 'Redaksjonell status',
+      titleEN: 'Editorial state',
       name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
       options: {
         list: [
-          {title: 'Working draft', value: 'workingDraft'},
-          {title: 'Needs review', value: 'review'},
-          {title: 'Published', value: 'published'}
+          {title: 'Utkast', value: 'workingDraft'},
+          {title: 'Trenger gjennomgang', value: 'review'},
+          {title: 'Publisert', value: 'published'}
         ],
         layout: 'radio',
         direction: 'horizontal'
       }
     },
     {
+      title: 'Tilgangsstatus',
+      titleEN: 'Access state',
       name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
       options: {
         list: [
-          {title: 'Private/Secret', value: 'secret'},
+          {title: 'Privat', value: 'secret'},
           {title: 'Open', value: 'open'}
         ],
         layout: 'radio',
