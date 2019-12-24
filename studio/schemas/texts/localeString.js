@@ -1,6 +1,7 @@
 import {supportedLanguages} from '../vocabularies/default'
 
 export default {
+  title: 'Locale string',
   name: 'localeString',
   type: 'object',
   fieldsets: [

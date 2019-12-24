@@ -73,6 +73,30 @@ export default {
       type: 'localeBlock'
     },
     {
+      title: 'Sub activities',
+      name: 'consistsOf',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'activity'}]}
+      ]
+    },
+    {
+      title: 'Continued',
+      name: 'continued',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'activity'}]}
+      ]
+    },
+    {
+      title: 'Was continued by',
+      name: 'wasContinuedBy',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'activity'}]}
+      ]
+    },
+    {
       title: 'Influenced by',
       name: 'influencedBy',
       description: '',

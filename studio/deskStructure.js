@@ -13,7 +13,7 @@ export default () =>
         .icon(FaBookDead)
         .child(
           S.list()
-            .title('Object')
+            .title('Objects')
             .items([
               S.listItem()
                 .title('Object by type')
@@ -78,7 +78,7 @@ export default () =>
         .icon(FaUser)
         .child(
           S.list()
-            .title('Actor')
+            .title('Actors')
             .items([
               S.listItem()
                 .title('Actor by type')
@@ -120,7 +120,7 @@ export default () =>
         .icon(FaUsers)
         .child(
           S.list()
-            .title('Group')
+            .title('Groups')
             .items([
               S.listItem()
                 .title('Group by type')
@@ -163,7 +163,7 @@ export default () =>
         .icon(FaCalendar)
         .child(
           S.list()
-            .title('Event')
+            .title('Events')
             .items([
               S.listItem()
                 .title('Event by type')
@@ -207,7 +207,7 @@ export default () =>
       ...S.documentTypeListItems().filter(hiddenDocTypes),
       S.divider(),
       S.listItem()
-        .title('Types')
+        .title('Type')
         .icon(FaTag)
         .child(
           S.list()
@@ -253,7 +253,7 @@ export default () =>
         .icon(FaProjectDiagram)
         .child(
           S.list()
-            .title('Project')
+            .title('Projects')
             .items([
               S.listItem()
                 .title('Active projects')

@@ -16,6 +16,7 @@ import localeString from './texts/localeString'
 import localeSlug from './texts/localeSlug'
 import localeBlockSimple from './texts/localeBlockSimple'
 import localeBlockReport from './texts/localeBlockReport'
+import excerptPortableText from './texts/excerptPortableText'
 
 // Images
 import mainRepresentation from './images/mainRepresentation'
@@ -24,7 +25,6 @@ import mainImage from './images/mainImage'
 
 // Document schemas
 import actor from './documents/actor'
-import madeObject from './documents/madeObject'
 import work from './documents/work'
 import collection from './documents/collection'
 import group from './documents/group'
@@ -44,7 +44,10 @@ import concept from './documents/types/concept'
 import exhibition from './documents/exhibition'
 import acquisition from './documents/acquisition'
 import activity from './documents/activity'
-import objectFeature from './documents/objectFeature'
+
+// MadeObject
+import madeObject from './documents/madeObject/madeObject'
+import section from './documents/madeObject/section'
 
 // Timeline
 import timeline from './documents/timeline/timeline'
@@ -63,7 +66,6 @@ import route from './site/route'
 // Object types
 import bodyPortableText from './objects/bodyPortableText'
 import bioPortableText from './objects/bioPortableText'
-import excerptPortableText from './objects/excerptPortableText'
 import authorReference from './objects/authorReference'
 import production from './objects/activities/production'
 import creation from './objects/activities/creation'
@@ -80,14 +82,12 @@ import joining from './objects/activities/joining'
 import identifier from './objects/identifier'
 import birth from './objects/activities/birth'
 import death from './objects/activities/death'
-import part from './objects/part'
 import dissolution from './objects/activities/dissolution'
 import formation from './objects/activities/formation'
 import manifest from './objects/manifest'
 import feature from './objects/feature'
 import valueSlider from './objects/valueSlider'
 import background from './objects/background'
-import reportPart from './objects/reportPart'
 import instagramPost from './objects/instagramPost'
 import file from './objects/file'
 
@@ -111,7 +111,6 @@ export default createSchema({
     place,
     acquisition,
     move,
-    objectFeature,
     report,
     project,
     linguisticObject,
@@ -148,16 +147,15 @@ export default createSchema({
     identifier,
     manifest,
     timelineSlide,
-    part,
     valueSlider,
     era,
     background,
-    reportPart,
     instagramPost,
     file,
     navItem,
     navSection,
     openGraph,
+    section,
     // Text
     bodyPortableText,
     bioPortableText,

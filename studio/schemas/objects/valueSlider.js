@@ -6,17 +6,12 @@ export default {
     {
       title: 'Classified as',
       name: 'hasType',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{type: 'typeClass'}],
-          options: {
-            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
-            filterParams: {sysCat: 'Rapporttype'}
-          }
-        }
-      ],
+      type: 'reference',
+      to: [{type: 'typeClass'}],
+      options: {
+        filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+        filterParams: {sysCat: 'Tilstandstype'}
+      },
       validation: Rule => Rule.required()
     },
     {
@@ -27,6 +22,18 @@ export default {
       options: {
         layout: 'slider',
         range: {min: 1, max: 100, step: 1}
+      }
+    },
+    {
+      title: 'Attributes',
+      name: 'attributes',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        list: [
+          {title: 'Missing', value: 'missing'},
+          {title: 'Partial remains', value: 'partialRemains'}
+        ]
       }
     }
   ],

@@ -151,18 +151,6 @@ export default {
       }
     },
     {
-      title: 'Part assessments',
-      description: 'Sub assessments on the objects features or sections',
-      name: 'partAssessment',
-      type: 'array',
-      of: [
-        {type: 'reportPart'}
-      ],
-      options: {
-        editModal: 'fullscreen'
-      }
-    },
-    {
       title: 'Documentation images before',
       name: 'documentationImage',
       options: {

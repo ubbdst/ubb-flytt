@@ -3,7 +3,7 @@ import {FaBookDead} from 'react-icons/fa'
 import jsonata from 'jsonata'
 import client from 'part:@sanity/base/client'
 
-import {rights} from '../vocabularies/default'
+import {rights} from '../../vocabularies/default'
 
 export default {
   title: 'Objekt',
@@ -144,8 +144,8 @@ export default {
       title: 'Klassifisert som',
       titleEN: 'Classified as',
       name: 'hasType',
-      description: 'WIP, bør bruke API',
-      descriptionEN: 'WIP, should use API',
+      description: '',
+      descriptionEN: '',
       fieldset: 'minimum',
       type: 'array',
       of: [
@@ -159,6 +159,19 @@ export default {
         }
       ],
       validation: Rule => Rule.required()
+    },
+    {
+      title: 'Emne',
+      name: 'subject',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'concept'}
+          ]
+        }
+      ]
     },
     {
       title: 'Beskrivelse',
@@ -194,7 +207,7 @@ export default {
     {
       title: 'Hovedmanifest',
       titleEN: 'Main manifest',
-      description: 'Hovedmanifestet til objektet.',
+      description: 'Hovedmanifestet til objektet, for eksempel: https://digi.ub.uni-heidelberg.de/diglit/iiif/cpgraec132/manifest.json. Det kan også være en lenke til en sekvens eller et utvalg. For eksempel: https://digi.ub.uni-heidelberg.de/diglit/iiif/cpgraec132/range/r2',
       descriptionEN: 'The main manifest of this object',
       fieldset: 'representation',
       name: 'mainManifest',
@@ -250,7 +263,7 @@ export default {
     {
       title: 'Består av',
       titleEN: 'Composed of',
-      description: 'Andre identifiserte objekt som er en del av dette objektet. Bok -> Omslag.',
+      description: 'Andre identifiserte objekt som er en del av dette objektet. For eksempel: bokomslaget eller "Sult" av Hamsun bundet sammen med andre verk.',
       descriptionEN: 'Other identified madeObjects this object is composed of',
       name: 'composedOf',
       type: 'array',
@@ -260,6 +273,17 @@ export default {
             {type: 'madeObject'}
           ]
         }
+      ]
+    },
+    {
+      title: 'Seksjon',
+      titleEN: 'Section',
+      description: 'Et objekt kan deles opp i de stedene eller seksjonene den består av. Disse seksjonene kan være der et annet objekt ER. En bok kan ha en bokblokk, som er der en tekst er lokalisert. Simples ;-).',
+      descriptionEN: 'Parts the object consists of',
+      name: 'sectionList',
+      type: 'array',
+      of: [
+        {type: 'section'}
       ]
     },
     {
@@ -287,19 +311,6 @@ export default {
             {type: 'madeObject'},
             {type: 'actor'},
             {type: 'group'}
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Emne',
-      name: 'subject',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            {type: 'concept'}
           ]
         }
       ]
@@ -378,16 +389,6 @@ export default {
           {type: 'material'}
         ]
       }
-      ]
-    },
-    {
-      title: 'Features',
-      description: 'Features of this object is composed of',
-      name: 'bearsFeature',
-      fieldset: 'physicalDescription',
-      type: 'array',
-      of: [
-        {type: 'part'}
       ]
     }
   ],
