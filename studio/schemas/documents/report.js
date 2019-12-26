@@ -1,10 +1,10 @@
-import {FaPenAlt} from 'react-icons/fa'
+import {GiCrackedGlass} from 'react-icons/gi'
 
 export default {
   title: 'Report',
   name: 'report',
   type: 'document',
-  icon: FaPenAlt,
+  icon: GiCrackedGlass,
   fieldsets: [
     {
       name: 'state',

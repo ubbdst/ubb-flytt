@@ -1,10 +1,10 @@
-import {FaClock} from 'react-icons/fa'
+import {GiCalendar} from 'react-icons/gi'
 
 export default {
   name: 'timeline',
   type: 'document',
   title: 'Timeline',
-  icon: FaClock,
+  icon: GiCalendar,
   fields: [
     {
       title: 'Headline',

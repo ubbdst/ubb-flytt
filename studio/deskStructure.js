@@ -1,8 +1,10 @@
 import S from '@sanity/desk-tool/structure-builder'
-import {FaCog, FaTag, FaBookDead, FaUser, FaUsers, FaProjectDiagram, FaCalendar} from 'react-icons/fa'
+import {FaCog, FaTag, FaBookDead, FaUser, FaUsers, FaProjectDiagram, FaCalendar, FaGlasses, FaGifts, FaTruckLoading, FaClipboard} from 'react-icons/fa'
+import {GiBookshelf, GiCrackedGlass, GiCalendar, GiBoltSpellCast} from 'react-icons/gi'
+import {TiPen} from 'react-icons/ti'
 
 const hiddenDocTypes = listItem =>
-  !['madeObject', 'actor', 'group', 'event', 'project', 'siteSettings', 'typeClass', 'systemCategory', 'concept', 'material'].includes(listItem.getId())
+  !['madeObject', 'collection', 'actor', 'group', 'event', 'activity', 'linguisticObject', 'report', 'acquisition', 'move', 'designOrProcedure', 'timeline', 'exhibition', 'project', 'siteSettings', 'place', 'typeClass', 'systemCategory', 'concept', 'material'].includes(listItem.getId())
 
 export default () =>
   S.list()
@@ -72,6 +74,48 @@ export default () =>
                 )
             ])
         ),
+      S.listItem()
+        .title('Collection')
+        .icon(GiBookshelf)
+        .child(
+          S.list()
+            .title('Collections')
+            .items([
+              S.listItem()
+                .title('Collection by type')
+                .icon(GiBookshelf)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Collection by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Samlingstype"]]._id)'
+                    )
+                    .child(catId =>
+                    // List out project documents where the _id for the selected
+                    // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('collection')
+                        .title('Collection')
+                        .filter(
+                          '_type == "Collection" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('All Collections')
+                .icon(GiBookshelf)
+                .child(
+                  S.documentList()
+                    .title('All types')
+                    .schemaType('collection')
+                    .filter(
+                      '_type == "Collection"'
+                    )
+                )
+            ])
+        ),
       S.divider(),
       S.listItem()
         .title('Actor')
@@ -95,7 +139,7 @@ export default () =>
                     // category appear as a _ref in the project’s categories array
                       S.documentList()
                         .schemaType('actor')
-                        .title('Object')
+                        .title('Actor')
                         .filter(
                           '_type == "actor" && $catId in hasType[]._ref'
                         )
@@ -137,7 +181,7 @@ export default () =>
                     // category appear as a _ref in the project’s categories array
                       S.documentList()
                         .schemaType('group')
-                        .title('Object')
+                        .title('Group')
                         .filter(
                           '_type == "group" && $catId in hasType[]._ref'
                         )
@@ -180,7 +224,7 @@ export default () =>
                       // category appear as a _ref in the project’s categories array
                       S.documentList()
                         .schemaType('event')
-                        .title('Object')
+                        .title('Event')
                         .filter(
                           '_type == "event" && $catId in hasType[]._ref'
                         )
@@ -200,12 +244,549 @@ export default () =>
                 )
             ])
         ),
+      // ACTIVITY
+      S.listItem()
+        .title('Activity')
+        .icon(GiBoltSpellCast)
+        .child(
+          S.list()
+            .title('Activities')
+            .items([
+              S.listItem()
+                .title('Activity by type')
+                .icon(GiBoltSpellCast)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Activity by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Hendelsestype"]]._id)'
+                    )
+                    .child(catId =>
+                      // List out project documents where the _id for the selected
+                      // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('activity')
+                        .title('Object')
+                        .filter(
+                          '_type == "activity" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('All acivities')
+                .icon(GiBoltSpellCast)
+                .child(
+                  S.documentList()
+                    .title('All acivities')
+                    .schemaType('activity')
+                    .filter(
+                      '_type == "activity"'
+                    )
+                )
+            ])
+        ),
+      S.divider(),
+      S.listItem()
+        .title('Text')
+        .icon(TiPen)
+        .child(
+          S.list()
+            .title('Texts')
+            .items([
+              S.listItem()
+                .title('Text by type')
+                .icon(TiPen)
+                .child(
+                // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Text by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Utstillingstypetype"]]._id)'
+                    )
+                    .child(catId =>
+                    // List out project documents where the _id for the selected
+                    // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('linguisticObject')
+                        .title('Text')
+                        .filter(
+                          '_type == "linguisticObject" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('Unpublished texts')
+                .icon(TiPen)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('linguisticObject')
+                    .title('Unpublished texts')
+                    .filter(
+                      '_type == "linguisticObject" && accessState == "secret"'
+                    )
+                ),
+              S.listItem()
+                .title('Needs review')
+                .icon(TiPen)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('linguisticObject')
+                    .title('Needs review')
+                    .filter(
+                      '_type == "linguisticObject" && editorialState == "review"'
+                    )
+                ),
+              S.listItem()
+                .title('All texts')
+                .icon(TiPen)
+                .child(
+                  S.documentList()
+                    .title('Texts')
+                    .schemaType('linguisticObject')
+                    .filter(
+                      '_type == "linguisticObject"'
+                    )
+                )
+            ])
+        ),
+      S.listItem()
+        .title('Exhibition')
+        .icon(FaGlasses)
+        .child(
+          S.list()
+            .title('Exhibitions')
+            .items([
+              S.listItem()
+                .title('Exhibition by type')
+                .icon(FaGlasses)
+                .child(
+                // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Exhibition by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Utstillingstypetype"]]._id)'
+                    )
+                    .child(catId =>
+                    // List out project documents where the _id for the selected
+                    // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('exhibition')
+                        .title('Exhibition')
+                        .filter(
+                          '_type == "Exhibition" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('Unpublished Exhibitions')
+                .icon(FaGlasses)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('exhibition')
+                    .title('Unpublished exhibitions')
+                    .filter(
+                      '_type == "exhibition" && accessState == "secret"'
+                    )
+                ),
+              S.listItem()
+                .title('Needs review')
+                .icon(FaGlasses)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('exhibition')
+                    .title('Needs review')
+                    .filter(
+                      '_type == "exhibition" && editorialState == "review"'
+                    )
+                ),
+              S.listItem()
+                .title('All Exhibitions')
+                .icon(FaGlasses)
+                .child(
+                  S.documentList()
+                    .title('All exhibitions')
+                    .schemaType('exhibition')
+                    .filter(
+                      '_type == "exhibition"'
+                    )
+                )
+            ])
+        ),
+      S.listItem()
+        .title('Timeline')
+        .icon(GiCalendar)
+        .child(
+          S.list()
+            .title('Timelines')
+            .items([
+              S.listItem()
+                .title('Timeline by type')
+                .icon(GiCalendar)
+                .child(
+                // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Timeline by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Rapporttype"]]._id)'
+                    )
+                    .child(catId =>
+                    // List out project documents where the _id for the selected
+                    // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('timeline')
+                        .title('Timeline')
+                        .filter(
+                          '_type == "timeline" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('Unpublished Timelines')
+                .icon(GiCalendar)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('timeline')
+                    .title('Unpublished Timelines')
+                    .filter(
+                      '_type == "timeline" && accessState == "secret"'
+                    )
+                ),
+              S.listItem()
+                .title('Needs review')
+                .icon(GiCalendar)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('timeline')
+                    .title('Needs review')
+                    .filter(
+                      '_type == "timeline" && editorialState == "review"'
+                    )
+                ),
+              S.listItem()
+                .title('All Timelines')
+                .icon(GiCalendar)
+                .child(
+                  S.documentList()
+                    .title('All Timelines')
+                    .schemaType('timeline')
+                    .filter(
+                      '_type == "timeline"'
+                    )
+                )
+            ])
+        ),
+      S.divider(),
+      S.listItem()
+        .title('Acquisition')
+        .icon(FaGifts)
+        .child(
+          S.list()
+            .title('Acquisitions')
+            .items([
+              S.listItem()
+                .title('Acquisition by type')
+                .icon(FaGifts)
+                .child(
+                // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Acquisition by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Akkvisisjonstype"]]._id)'
+                    )
+                    .child(catId =>
+                    // List out project documents where the _id for the selected
+                    // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('acquisition')
+                        .title('Acquisition')
+                        .filter(
+                          '_type == "acquisition" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('Unpublished Acquisitions')
+                .icon(FaGifts)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('acquisition')
+                    .title('Unpublished Acquisitions')
+                    .filter(
+                      '_type == "acquisition" && accessState == "secret"'
+                    )
+                ),
+              S.listItem()
+                .title('Needs review')
+                .icon(FaGifts)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('acquisition')
+                    .title('Needs review')
+                    .filter(
+                      '_type == "acquisition" && editorialState == "review"'
+                    )
+                ),
+              S.listItem()
+                .title('All Acquisitions')
+                .icon(FaGifts)
+                .child(
+                  S.documentList()
+                    .title('All Acquisitions')
+                    .schemaType('acquisition')
+                    .filter(
+                      '_type == "acquisition"'
+                    )
+                )
+            ])
+        ),
+      S.listItem()
+        .title('Move')
+        .icon(FaTruckLoading)
+        .child(
+          S.list()
+            .title('Moves')
+            .items([
+              S.listItem()
+                .title('Move by type')
+                .icon(FaTruckLoading)
+                .child(
+                // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Move by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Rapporttype"]]._id)'
+                    )
+                    .child(catId =>
+                    // List out project documents where the _id for the selected
+                    // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('move')
+                        .title('Move')
+                        .filter(
+                          '_type == "move" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('Unpublished moves')
+                .icon(FaTruckLoading)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('move')
+                    .title('Unpublished moves')
+                    .filter(
+                      '_type == "move" && accessState == "secret"'
+                    )
+                ),
+              S.listItem()
+                .title('Needs review')
+                .icon(FaTruckLoading)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('move')
+                    .title('Needs review')
+                    .filter(
+                      '_type == "move" && editorialState == "review"'
+                    )
+                ),
+              S.listItem()
+                .title('All moves')
+                .icon(FaTruckLoading)
+                .child(
+                  S.documentList()
+                    .title('All moves')
+                    .schemaType('move')
+                    .filter(
+                      '_type == "move"'
+                    )
+                )
+            ])
+        ),
+      S.listItem()
+        .title('Design or procedure')
+        .icon(FaClipboard)
+        .child(
+          S.list()
+            .title('Design or procedures')
+            .items([
+              S.listItem()
+                .title('Design or procedure by type')
+                .icon(FaClipboard)
+                .child(
+                // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Design or procedure by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Rapporttype"]]._id)'
+                    )
+                    .child(catId =>
+                    // List out project documents where the _id for the selected
+                    // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('designOrProcedure')
+                        .title('Design or procedure')
+                        .filter(
+                          '_type == "designOrProcedure" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('Unpublished Design or procedures')
+                .icon(FaClipboard)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('designOrProcedure')
+                    .title('Unpublished Design or procedures')
+                    .filter(
+                      '_type == "designOrProcedure" && accessState == "secret"'
+                    )
+                ),
+              S.listItem()
+                .title('Needs review')
+                .icon(FaClipboard)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('designOrProcedure')
+                    .title('Needs review')
+                    .filter(
+                      '_type == "designOrProcedure" && editorialState == "review"'
+                    )
+                ),
+              S.listItem()
+                .title('All design or procedures')
+                .icon(FaClipboard)
+                .child(
+                  S.documentList()
+                    .title('All design or procedures')
+                    .schemaType('designOrProcedure')
+                    .filter(
+                      '_type == "designOrProcedure"'
+                    )
+                )
+            ])
+        ),
+      S.listItem()
+        .title('Report')
+        .icon(GiCrackedGlass)
+        .child(
+          S.list()
+            .title('Reports')
+            .items([
+              S.listItem()
+                .title('Report by type')
+                .icon(GiCrackedGlass)
+                .child(
+                // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Report by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Rapporttype"]]._id)'
+                    )
+                    .child(catId =>
+                    // List out project documents where the _id for the selected
+                    // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('report')
+                        .title('Report')
+                        .filter(
+                          '_type == "report" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('Unpublished Reports')
+                .icon(GiCrackedGlass)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('report')
+                    .title('Unpublished reports')
+                    .filter(
+                      '_type == "report" && accessState == "secret"'
+                    )
+                ),
+              S.listItem()
+                .title('Needs review')
+                .icon(GiCrackedGlass)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('report')
+                    .title('Needs review')
+                    .filter(
+                      '_type == "report" && editorialState == "review"'
+                    )
+                ),
+              S.listItem()
+                .title('All Reports')
+                .icon(GiCrackedGlass)
+                .child(
+                  S.documentList()
+                    .title('All Reports')
+                    .schemaType('report')
+                    .filter(
+                      '_type == "report"'
+                    )
+                )
+            ])
+        ),
       S.divider(),
       // This returns an array of all the document types
       // defined in schema.js. We filter out those that we have
       // defined the structure above
       ...S.documentTypeListItems().filter(hiddenDocTypes),
       S.divider(),
+      S.listItem()
+        .title('Place')
+        .icon(FaCalendar)
+        .child(
+          S.list()
+            .title('Places')
+            .items([
+              S.listItem()
+                .title('Place by type')
+                .icon(FaCalendar)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Place by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Stedstype"]]._id)'
+                    )
+                    .child(catId =>
+                      // List out project documents where the _id for the selected
+                      // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('place')
+                        .title('Place')
+                        .filter(
+                          '_type == "place" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('All Places')
+                .icon(FaCalendar)
+                .child(
+                  S.documentList()
+                    .title('All Places')
+                    .schemaType('place')
+                    .filter(
+                      '_type == "place"'
+                    )
+                )
+            ])
+        ),
+      S.divider(),
+      // TYPE
       S.listItem()
         .title('Type')
         .icon(FaTag)
@@ -248,6 +829,7 @@ export default () =>
       S.documentTypeListItem('concept').title('Concept'),
       S.documentTypeListItem('material').title('Material'),
       S.divider(),
+      // PROJECT
       S.listItem()
         .title('Project')
         .icon(FaProjectDiagram)
@@ -291,6 +873,7 @@ export default () =>
             ])
         ),
       S.divider(),
+      // SETTINGS SINGLETON
       S.listItem()
         .title('Settings')
         .icon(FaCog)
