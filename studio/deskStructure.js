@@ -1,10 +1,51 @@
 import S from '@sanity/desk-tool/structure-builder'
-import {FaCog, FaTag, FaBookDead, FaUser, FaUsers, FaProjectDiagram, FaCalendar, FaGlasses, FaGifts, FaTruckLoading, FaClipboard} from 'react-icons/fa'
-import {GiBookshelf, GiCrackedGlass, GiCalendar, GiBoltSpellCast} from 'react-icons/gi'
+import {
+  FaCog,
+  FaTag,
+  FaBookDead,
+  FaUser,
+  FaUsers,
+  FaProjectDiagram,
+  FaCalendar,
+  FaGlasses,
+  FaGifts,
+  FaTruckLoading,
+  FaClipboard,
+  FaEmpire,
+  FaMapMarkedAlt
+} from 'react-icons/fa'
+import {
+  GiBookshelf,
+  GiCrackedGlass,
+  GiCalendar,
+  GiBoltSpellCast
+} from 'react-icons/gi'
 import {TiPen} from 'react-icons/ti'
 
 const hiddenDocTypes = listItem =>
-  !['madeObject', 'collection', 'actor', 'group', 'event', 'activity', 'linguisticObject', 'report', 'acquisition', 'move', 'designOrProcedure', 'timeline', 'exhibition', 'project', 'siteSettings', 'place', 'typeClass', 'systemCategory', 'concept', 'material'].includes(listItem.getId())
+  ![
+    'madeObject',
+    'collection',
+    'actor',
+    'group',
+    'period',
+    'event',
+    'activity',
+    'linguisticObject',
+    'report',
+    'acquisition',
+    'move',
+    'designOrProcedure',
+    'timeline',
+    'exhibition',
+    'project',
+    'siteSettings',
+    'place',
+    'typeClass',
+    'systemCategory',
+    'concept',
+    'material'
+  ].includes(listItem.getId())
 
 export default () =>
   S.list()
@@ -203,6 +244,48 @@ export default () =>
         ),
       S.divider(),
       S.listItem()
+        .title('Period')
+        .icon(FaEmpire)
+        .child(
+          S.list()
+            .title('Periods')
+            .items([
+              S.listItem()
+                .title('Period by type')
+                .icon(FaEmpire)
+                .child(
+                  // List out all categories
+                  S.documentTypeList('typeClass')
+                    .title('Period by type')
+                    .filter(
+                      '_type == "typeClass" && references(*[_type == "systemCategory" && label.nor in ["Hendelsestype"]]._id)'
+                    )
+                    .child(catId =>
+                      // List out project documents where the _id for the selected
+                      // category appear as a _ref in the project’s categories array
+                      S.documentList()
+                        .schemaType('period')
+                        .title('Period')
+                        .filter(
+                          '_type == "period" && $catId in hasType[]._ref'
+                        )
+                        .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('All periods')
+                .icon(FaEmpire)
+                .child(
+                  S.documentList()
+                    .title('All periods')
+                    .schemaType('period')
+                    .filter(
+                      '_type == "period"'
+                    )
+                )
+            ])
+        ),
+      S.listItem()
         .title('Event')
         .icon(FaCalendar)
         .child(
@@ -344,7 +427,7 @@ export default () =>
                 .icon(TiPen)
                 .child(
                   S.documentList()
-                    .title('Texts')
+                    .title('All texts')
                     .schemaType('linguisticObject')
                     .filter(
                       '_type == "linguisticObject"'
@@ -745,14 +828,14 @@ export default () =>
       S.divider(),
       S.listItem()
         .title('Place')
-        .icon(FaCalendar)
+        .icon(FaMapMarkedAlt)
         .child(
           S.list()
             .title('Places')
             .items([
               S.listItem()
                 .title('Place by type')
-                .icon(FaCalendar)
+                .icon(FaMapMarkedAlt)
                 .child(
                   // List out all categories
                   S.documentTypeList('typeClass')
@@ -774,7 +857,7 @@ export default () =>
                 ),
               S.listItem()
                 .title('All Places')
-                .icon(FaCalendar)
+                .icon(FaMapMarkedAlt)
                 .child(
                   S.documentList()
                     .title('All Places')

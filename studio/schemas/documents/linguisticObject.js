@@ -70,7 +70,7 @@ export default {
       type: 'array',
       of: [
         {
-          type: 'authorReference'
+          type: 'actorInRole'
         }
       ]
     },
@@ -126,14 +126,14 @@ export default {
     },
     {
       name: 'excerpt',
-      type: 'excerptPortableText',
+      type: 'localeBlockSimple',
       title: 'Excerpt',
       description: 'This ends up on summary pages, on Google, when people share your post in social media.'
     },
     {
       title: 'Body',
       name: 'body',
-      type: 'bodyPortableText'
+      type: 'localeBlock'
     },
     {
       title: 'Documented in',

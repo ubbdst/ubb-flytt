@@ -10,6 +10,16 @@ export default {
       name: 'state',
       title: 'State',
       options: {collapsible: true, collapsed: false}
+    },
+    {
+      name: 'documentation',
+      title: 'Documentation',
+      options: {collapsible: true, collapsed: false}
+    },
+    {
+      name: 'technique',
+      title: 'Technique',
+      options: {collapsible: true, collapsed: false}
     }
   ],
   fields: [
@@ -83,8 +93,33 @@ export default {
       ]
     },
     {
+      title: 'Description',
+      name: 'description',
+      type: 'localeBlockReport'
+    },
+    {
+      title: 'Condition assignment',
+      name: 'conditionAssignment',
+      type: 'array',
+      of: [
+        {type: 'valueSlider'}
+      ]
+    },
+    {
+      title: 'Activity stream',
+      description: 'Events and activities connected to this object',
+      name: 'activityStream',
+      type: 'array',
+      of: [
+        {type: 'measurement'},
+        {type: 'sample'},
+        {type: 'treatment'}
+      ]
+    },
+    {
       title: 'Used general technique',
       name: 'usedGeneralTechnique',
+      fieldset: 'technique',
       type: 'array',
       of: [
         {
@@ -100,6 +135,7 @@ export default {
     {
       title: 'Used spesific technique',
       name: 'usedSpecificTechnique',
+      fieldset: 'technique',
       type: 'array',
       of: [
         {type: 'reference',
@@ -110,49 +146,17 @@ export default {
       ]
     },
     {
-      title: 'Condition assignment',
-      name: 'conditionAssignment',
+      title: 'Motivated',
+      name: 'motivated',
       type: 'array',
       of: [
-        {type: 'valueSlider'}
+        {type: 'treatment'}
       ]
     },
     {
-      title: 'Purpose',
-      name: 'purpose',
-      type: 'localeBlockSimple'
-    },
-    {
-      title: 'Description',
-      name: 'description',
-      type: 'localeBlockReport'
-    },
-    {
-      title: 'Activity stream',
-      description: 'Events and activities connected to this object',
-      name: 'activityStream',
-      type: 'array',
-      of: [
-        {type: 'measurement'}
-      ],
-      options: {
-        editModal: 'fullscreen'
-      }
-    },
-    {
-      title: 'Sub reports',
-      name: 'consistsOf',
-      type: 'array',
-      of: [
-        {type: 'report'}
-      ],
-      options: {
-        editModal: 'fullscreen'
-      }
-    },
-    {
-      title: 'Documentation images before',
+      title: 'Documentation images',
       name: 'documentationImage',
+      fieldset: 'documentation',
       options: {
         layout: 'grid'
       },
@@ -164,15 +168,20 @@ export default {
     {
       title: 'Documented in',
       name: 'documentedIn',
+      fieldset: 'documentation',
+      type: 'array',
+      of: [{type: 'file'}]
+    },
+    {
+      title: 'Sub reports',
+      name: 'consistsOf',
       type: 'array',
       of: [
-        {
-          type: 'reference',
-          to: [
-            {type: 'file'}
-          ]
-        }
-      ]
+        {type: 'report'}
+      ],
+      options: {
+        editModal: 'fullscreen'
+      }
     }
   ],
   preview: {

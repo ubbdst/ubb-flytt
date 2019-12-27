@@ -41,7 +41,22 @@ export default {
     {
       name: 'document-list',
       options: {title: 'Recent objects', order: '_createdAt desc', types: ['madeObject']},
-      layout: {width: 'medium'}
+      layout: {width: 'small'}
+    },
+    {
+      name: 'document-list',
+      options: {title: 'Recent types', order: '_createdAt desc', types: ['typeClass']},
+      layout: {width: 'small'}
+    },
+    {
+      name: 'document-list',
+      options: {title: 'All recent documents', order: '_createdAt desc'},
+      layout: {width: 'small'}
+    },
+    {
+      name: 'document-list',
+      options: {title: 'Recent updated', order: '_updatedAt desc'},
+      layout: {width: 'small'}
     }
   ]
 }

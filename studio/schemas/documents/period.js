@@ -1,11 +1,11 @@
-import {FaCalendar} from 'react-icons/fa'
+import {FaEmpire} from 'react-icons/fa'
 
 export default {
-  title: 'Event',
-  name: 'event',
+  title: 'Period',
+  name: 'period',
   description: 'Should be fetched from KulturNav',
   type: 'document',
-  icon: FaCalendar,
+  icon: FaEmpire,
   fieldsets: [
     {
       name: 'state',

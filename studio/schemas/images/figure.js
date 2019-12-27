@@ -23,7 +23,7 @@ export default {
       options: {
         isHighlighted: true
       },
-      validation: Rule => Rule.error('You have to fill out the alternative text.').required()
+      validation: Rule => Rule.warning('You should fill out the alternative text.')
     }
   ],
   preview: {

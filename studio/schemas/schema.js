@@ -16,7 +16,6 @@ import localeString from './texts/localeString'
 import localeSlug from './texts/localeSlug'
 import localeBlockSimple from './texts/localeBlockSimple'
 import localeBlockReport from './texts/localeBlockReport'
-import excerptPortableText from './texts/excerptPortableText'
 
 // Images
 import mainRepresentation from './images/mainRepresentation'
@@ -29,7 +28,7 @@ import work from './documents/work'
 import collection from './documents/collection'
 import group from './documents/group'
 import linguisticObject from './documents/linguisticObject'
-import report from './documents/report'
+import report from './documents/report/report'
 import visualItem from './documents/visualItem'
 import event from './documents/event'
 import experimental from './documents/experimental'
@@ -44,6 +43,7 @@ import concept from './documents/types/concept'
 import exhibition from './documents/exhibition'
 import acquisition from './documents/acquisition'
 import activity from './documents/activity'
+import period from './documents/period'
 
 // MadeObject
 import madeObject from './documents/madeObject/madeObject'
@@ -64,9 +64,6 @@ import openGraph from './site/openGraph'
 import route from './site/route'
 
 // Object types
-import bodyPortableText from './objects/bodyPortableText'
-import bioPortableText from './objects/bioPortableText'
-import authorReference from './objects/authorReference'
 import production from './objects/activities/production'
 import creation from './objects/activities/creation'
 import timespan from './objects/timespan'
@@ -90,6 +87,9 @@ import valueSlider from './objects/valueSlider'
 import background from './objects/background'
 import instagramPost from './objects/instagramPost'
 import file from './objects/file'
+import treatment from './documents/report/treatment'
+import treatmentAssessment from './documents/report/treatmentAssessment'
+import sample from './documents/report/sample'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -106,6 +106,7 @@ export default createSchema({
     collection,
     actor,
     group,
+    period,
     event,
     activity,
     place,
@@ -126,7 +127,6 @@ export default createSchema({
     route,
     siteSettings,
     // Objects
-    authorReference,
     name,
     birth,
     death,
@@ -156,10 +156,10 @@ export default createSchema({
     navSection,
     openGraph,
     section,
+    treatment,
+    treatmentAssessment,
+    sample,
     // Text
-    bodyPortableText,
-    bioPortableText,
-    excerptPortableText,
     genericText,
     reportText,
     simpleText,

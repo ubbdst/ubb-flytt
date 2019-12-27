@@ -22,7 +22,6 @@
     "@sanity/google-maps-input",
     "sanity-plugin-github-input",
     "@sanity/vision",
-    "content-model-graph",
     "media"
   ],
   "parts": [
