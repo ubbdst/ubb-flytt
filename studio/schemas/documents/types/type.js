@@ -98,13 +98,14 @@ export default {
   preview: {
     select: {
       title: 'label.nor',
-      broader: 'broader.0.label.nor'
+      broader: 'broader.0.label.nor',
+      sysCat: 'systemCategory.0.label.nor'
     },
     prepare (selection) {
-      const {title, broader} = selection
+      const {title, broader, sysCat} = selection
       return {
         title: title,
-        subtitle: broader ? `⬆️` + broader : '🔝 Overordnet type/konsept'
+        subtitle: sysCat ? `⚙️ ${sysCat}` : '' + ' | ' + broader ? `⬆️` + broader : '🔝 Toppkonsept'
       }
     }
   }

@@ -1,6 +1,7 @@
 export default {
   title: 'Section',
   name: 'section',
+  description: 'Underklasse av Place',
   type: 'object',
   fields: [
     {
@@ -20,28 +21,22 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'About',
-      name: 'concerned',
+      title: 'Location of',
+      name: 'locationOf',
       description: 'Which object(s) is this an feature of.',
       type: 'array',
       of: [
         {type: 'reference',
           to: [
-            {type: 'madeObject'},
-            {type: 'linguisticObject'}
-          ],
-          options: {
-            filter: '_type == "madeObject" || _type == "linguisticObject" && references(*[_type == "typeClass" && label.nor in [$sysCat]]._id)',
-            filterParams: {sysCat: 'Transkripsjon'}
-          }
+            {type: 'madeObject'}
+          ]
         }
       ]
     },
     {
       title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [{type: 'block'}]
+      type: 'localeBlockSimple'
     }
   ],
   preview: {

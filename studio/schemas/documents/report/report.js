@@ -63,6 +63,20 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      title: 'About',
+      name: 'concerned',
+      description: 'Which collection(s) or object(s) is this an assessment of.',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'madeObject'},
+            {type: 'collection'}
+          ]
+        }
+      ]
+    },
+    {
       title: 'Classified as',
       name: 'hasType',
       type: 'array',
@@ -77,20 +91,6 @@ export default {
         }
       ],
       validation: Rule => Rule.required()
-    },
-    {
-      title: 'About',
-      name: 'concerned',
-      description: 'Which collection(s) or object(s) is this an assessment of.',
-      type: 'array',
-      of: [
-        {type: 'reference',
-          to: [
-            {type: 'madeObject'},
-            {type: 'collection'}
-          ]
-        }
-      ]
     },
     {
       title: 'Description',
@@ -112,7 +112,7 @@ export default {
       type: 'array',
       of: [
         {type: 'measurement'},
-        {type: 'sample'},
+        {type: 'sampling'},
         {type: 'treatment'}
       ]
     },
@@ -141,6 +141,35 @@ export default {
         {type: 'reference',
           to: [
             {type: 'designOrProcedure'}
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Used object of type',
+      name: 'usedObjectOfType',
+      fieldset: 'technique',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Objekt-/verkstype'}
+          }
+        }
+      ]
+    },
+    {
+      title: 'Used spesific object',
+      name: 'usedSpecificObject',
+      fieldset: 'technique',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'madeObject'}
           ]
         }
       ]

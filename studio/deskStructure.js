@@ -3,8 +3,6 @@ import {
   FaCog,
   FaTag,
   FaBookDead,
-  FaUser,
-  FaUsers,
   FaProjectDiagram,
   FaCalendar,
   FaGlasses,
@@ -20,7 +18,7 @@ import {
   GiCalendar,
   GiBoltSpellCast
 } from 'react-icons/gi'
-import {TiPen} from 'react-icons/ti'
+import {TiPen, TiGroup, TiUser} from 'react-icons/ti'
 
 const hiddenDocTypes = listItem =>
   ![
@@ -160,14 +158,14 @@ export default () =>
       S.divider(),
       S.listItem()
         .title('Actor')
-        .icon(FaUser)
+        .icon(TiUser)
         .child(
           S.list()
             .title('Actors')
             .items([
               S.listItem()
                 .title('Actor by type')
-                .icon(FaUser)
+                .icon(TiUser)
                 .child(
                   // List out all categories
                   S.documentTypeList('typeClass')
@@ -189,7 +187,7 @@ export default () =>
                 ),
               S.listItem()
                 .title('All actors')
-                .icon(FaUser)
+                .icon(TiUser)
                 .child(
                   S.documentList()
                     .title('All actors')
@@ -202,14 +200,14 @@ export default () =>
         ),
       S.listItem()
         .title('Group')
-        .icon(FaUsers)
+        .icon(TiGroup)
         .child(
           S.list()
             .title('Groups')
             .items([
               S.listItem()
                 .title('Group by type')
-                .icon(FaUsers)
+                .icon(TiGroup)
                 .child(
                   // List out all categories
                   S.documentTypeList('typeClass')
@@ -231,7 +229,7 @@ export default () =>
                 ),
               S.listItem()
                 .title('All groups')
-                .icon(FaUsers)
+                .icon(TiGroup)
                 .child(
                   S.documentList()
                     .title('All types')
@@ -276,12 +274,8 @@ export default () =>
                 .title('All periods')
                 .icon(FaEmpire)
                 .child(
-                  S.documentList()
+                  S.documentTypeList('period')
                     .title('All periods')
-                    .schemaType('period')
-                    .filter(
-                      '_type == "period"'
-                    )
                 )
             ])
         ),
@@ -465,7 +459,7 @@ export default () =>
                     )
                 ),
               S.listItem()
-                .title('Unpublished Exhibitions')
+                .title('Unpublished exhibitions')
                 .icon(FaGlasses)
                 .child(
                   // List out all categories
@@ -487,7 +481,7 @@ export default () =>
                     )
                 ),
               S.listItem()
-                .title('All Exhibitions')
+                .title('All exhibitions')
                 .icon(FaGlasses)
                 .child(
                   S.documentList()
@@ -529,12 +523,12 @@ export default () =>
                     )
                 ),
               S.listItem()
-                .title('Unpublished Timelines')
+                .title('Unpublished timelines')
                 .icon(GiCalendar)
                 .child(
                   // List out all categories
                   S.documentTypeList('timeline')
-                    .title('Unpublished Timelines')
+                    .title('Unpublished timelines')
                     .filter(
                       '_type == "timeline" && accessState == "secret"'
                     )
@@ -551,11 +545,11 @@ export default () =>
                     )
                 ),
               S.listItem()
-                .title('All Timelines')
+                .title('All timelines')
                 .icon(GiCalendar)
                 .child(
                   S.documentList()
-                    .title('All Timelines')
+                    .title('All timelines')
                     .schemaType('timeline')
                     .filter(
                       '_type == "timeline"'
@@ -594,12 +588,12 @@ export default () =>
                     )
                 ),
               S.listItem()
-                .title('Unpublished Acquisitions')
+                .title('Unpublished acquisitions')
                 .icon(FaGifts)
                 .child(
                   // List out all categories
                   S.documentTypeList('acquisition')
-                    .title('Unpublished Acquisitions')
+                    .title('Unpublished acquisitions')
                     .filter(
                       '_type == "acquisition" && accessState == "secret"'
                     )
@@ -616,11 +610,11 @@ export default () =>
                     )
                 ),
               S.listItem()
-                .title('All Acquisitions')
+                .title('All acquisitions')
                 .icon(FaGifts)
                 .child(
                   S.documentList()
-                    .title('All Acquisitions')
+                    .title('All acquisitions')
                     .schemaType('acquisition')
                     .filter(
                       '_type == "acquisition"'
@@ -722,12 +716,12 @@ export default () =>
                     )
                 ),
               S.listItem()
-                .title('Unpublished Design or procedures')
+                .title('Unpublished design or procedures')
                 .icon(FaClipboard)
                 .child(
                   // List out all categories
                   S.documentTypeList('designOrProcedure')
-                    .title('Unpublished Design or procedures')
+                    .title('Unpublished design or procedures')
                     .filter(
                       '_type == "designOrProcedure" && accessState == "secret"'
                     )
@@ -786,7 +780,7 @@ export default () =>
                     )
                 ),
               S.listItem()
-                .title('Unpublished Reports')
+                .title('Unpublished reports')
                 .icon(GiCrackedGlass)
                 .child(
                   // List out all categories
@@ -812,7 +806,7 @@ export default () =>
                 .icon(GiCrackedGlass)
                 .child(
                   S.documentList()
-                    .title('All Reports')
+                    .title('All reports')
                     .schemaType('report')
                     .filter(
                       '_type == "report"'
@@ -856,11 +850,11 @@ export default () =>
                     )
                 ),
               S.listItem()
-                .title('All Places')
+                .title('All places')
                 .icon(FaMapMarkedAlt)
                 .child(
                   S.documentList()
-                    .title('All Places')
+                    .title('All places')
                     .schemaType('place')
                     .filter(
                       '_type == "place"'

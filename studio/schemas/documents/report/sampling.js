@@ -1,6 +1,6 @@
 export default {
-  title: 'Sample',
-  name: 'sample',
+  title: 'Sampling',
+  name: 'sampling',
   type: 'object',
   fields: [
     {
@@ -34,14 +34,6 @@ export default {
       name: 'description',
       type: 'array',
       of: [{type: 'block'}]
-    },
-    {
-      title: 'Assessment',
-      name: 'assessedBy',
-      type: 'array',
-      of: [
-        {type: 'treatmentAssessment'}
-      ]
     }
   ],
   preview: {

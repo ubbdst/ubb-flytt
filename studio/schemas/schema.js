@@ -89,7 +89,7 @@ import instagramPost from './objects/instagramPost'
 import file from './objects/file'
 import treatment from './documents/report/treatment'
 import treatmentAssessment from './documents/report/treatmentAssessment'
-import sample from './documents/report/sample'
+import sampling from './documents/report/sampling'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -158,7 +158,7 @@ export default createSchema({
     section,
     treatment,
     treatmentAssessment,
-    sample,
+    sampling,
     // Text
     genericText,
     reportText,

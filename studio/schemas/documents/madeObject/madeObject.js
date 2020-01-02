@@ -1,8 +1,7 @@
-import {FaBookDead} from 'react-icons/fa'
-
 import jsonata from 'jsonata'
-import client from 'part:@sanity/base/client'
+/* import client from 'part:@sanity/base/client' */
 
+import {FaBookDead} from 'react-icons/fa'
 import {rights} from '../../vocabularies/default'
 
 export default {
@@ -19,42 +18,47 @@ export default {
   fieldsets: [
     {
       name: 'state',
-      title: 'State',
+      title: 'Status',
       options: {collapsible: true, collapsed: false}
     },
     {
       name: 'minimum',
-      title: 'Mandatory fields for minimum registration',
+      title: 'Felt for minimumsregistrering',
       options: {collapsible: true, collapsed: false}
     },
     {
       name: 'representation',
-      title: 'Manifest and main image',
+      title: 'Hovedbilde og IIIF manifest',
       options: {collapsible: true, collapsed: false}
     },
     {
-      name: 'visualObject',
-      title: 'Fields related to visual objects',
-      options: {collapsible: true, collapsed: false}
+      name: 'partsOfTheObject',
+      title: 'Felt relatert til deler eller seksjoner',
+      options: {collapsible: true, collapsed: true}
     },
     {
       name: 'additionalInformation',
-      title: 'Alternative names, identifiers and descriptions',
+      title: 'Alternative navn, identifikatorer og beskrivelser',
+      options: {collapsible: true, collapsed: true}
+    },
+    {
+      name: 'visualObject',
+      title: 'Felt relatert til visuelle objekt',
       options: {collapsible: true, collapsed: true}
     },
     {
       name: 'linguisticObject',
-      title: 'Fields related to linguistic objects',
+      title: 'Felt relatert til tekstlige objekt',
       options: {collapsible: true, collapsed: true}
     },
     {
       name: 'physicalDescription',
-      title: 'Fields related to physical descriptions',
+      title: 'Felt relatert til fysisk beskrivelse',
       options: {collapsible: true, collapsed: true}
     },
     {
       name: 'collectionManagement',
-      title: 'Fields related to collection management',
+      title: 'Felt relatert til samlingspleie',
       options: {collapsible: true, collapsed: true}
     }
   ],
@@ -93,29 +97,34 @@ export default {
       }
     },
     {
+      title: 'Hovedbilde',
+      titleEN: 'Main image',
+      name: 'mainRepresentation',
+      fieldset: 'representation',
+      description: 'Velg et bilde fra egen samling eller fra NB.no. Legg til bildetekst ved å trykke "Edit".',
+      descriptionEN: 'Choose a image from out own collection or from NB.no.',
+      type: 'mainRepresentation'
+    },
+    {
+      title: 'Hovedmanifest',
+      titleEN: 'Main manifest',
+      description: 'Hovedmanifestet til objektet, for eksempel: https://digi.ub.uni-heidelberg.de/diglit/iiif/cpgraec132/manifest.json. Det kan også være en lenke til en sekvens eller et utvalg. For eksempel: https://digi.ub.uni-heidelberg.de/diglit/iiif/cpgraec132/range/r2',
+      descriptionEN: 'The main manifest of this object',
+      fieldset: 'representation',
+      name: 'mainManifest',
+      type: 'url'
+    },
+    {
       title: 'Foretrukket identifikator',
       titleEN: 'Preferred identifier',
       name: 'preferredIdentifier',
       fieldset: 'minimum',
-      type: 'string',
-      validation: Rule => Rule.required().custom(async prefId => {
+      type: 'string'
+      /* validation: Rule => Rule.required().custom(async prefId => {
         // eslint-disable-next-line no-template-curly-in-string
         const docs = await client.fetch('*[preferredIdentifier == "${prefId}" && !(_id in path("drafts.**"))] { preferredIdentifier }', {prefId})
         return docs.length > 1 ? 'Value is not unique' : true
-      })
-    },
-    {
-      title: 'Identifiers',
-      name: 'identifiedBy',
-      description: 'Add all known identifiers',
-      fieldset: 'additionalInformation',
-      type: 'array',
-      of: [
-        {type: 'identifier'}
-      ],
-      options: {
-        editModal: 'popup'
-      }
+      }) */
     },
     {
       title: 'Tittel',
@@ -126,19 +135,6 @@ export default {
       fieldset: 'minimum',
       type: 'string',
       validation: Rule => Rule.required()
-    },
-    {
-      title: 'Titles',
-      name: 'title',
-      description: 'Add all known titles',
-      fieldset: 'minimum',
-      type: 'array',
-      of: [
-        {type: 'name'}
-      ],
-      options: {
-        editModal: 'popup'
-      }
     },
     {
       title: 'Klassifisert som',
@@ -161,8 +157,22 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      title: 'Rettigheter og lisensiering',
+      titleEN: 'Rights',
+      name: 'rights',
+      description: 'Velg den korrekt lisensen eller rettighetserklæringen.',
+      descriptionEN: 'Choose the correct lisense or mark',
+      fieldset: 'minimum',
+      type: 'string',
+      options: {
+        list: rights
+      },
+      validation: Rule => Rule.required()
+    },
+    {
       title: 'Emne',
       name: 'subject',
+      fieldset: 'minimum',
       type: 'array',
       of: [
         {
@@ -183,37 +193,6 @@ export default {
       type: 'localeBlockSimple'
     },
     {
-      title: 'Rettigheter og lisensiering',
-      titleEN: 'Rights',
-      name: 'rights',
-      description: 'Velg den korrekt lisensen eller rettighetserklæringen.',
-      descriptionEN: 'Choose the correct lisense or mark',
-      fieldset: 'minimum',
-      type: 'string',
-      options: {
-        list: rights
-      },
-      validation: Rule => Rule.required()
-    },
-    {
-      title: 'Hovedbilde',
-      titleEN: 'Main image',
-      name: 'mainRepresentation',
-      fieldset: 'representation',
-      description: 'Velg et bilde fra egen samling eller fra NB.no. Legg til bildetekst ved å trykke "Edit".',
-      descriptionEN: 'Choose a image from out own collection or from NB.no.',
-      type: 'mainRepresentation'
-    },
-    {
-      title: 'Hovedmanifest',
-      titleEN: 'Main manifest',
-      description: 'Hovedmanifestet til objektet, for eksempel: https://digi.ub.uni-heidelberg.de/diglit/iiif/cpgraec132/manifest.json. Det kan også være en lenke til en sekvens eller et utvalg. For eksempel: https://digi.ub.uni-heidelberg.de/diglit/iiif/cpgraec132/range/r2',
-      descriptionEN: 'The main manifest of this object',
-      fieldset: 'representation',
-      name: 'mainManifest',
-      type: 'url'
-    },
-    {
       title: 'Aktivitetsstrøm',
       titleEN: 'Activity stream',
       description: 'Hendelser og aktiviteter knyttet til dette objektet.',
@@ -228,6 +207,122 @@ export default {
         {type: 'activity'},
         {type: 'endingActivity'}
       ]
+    },
+    {
+      title: 'Relaterte ting',
+      description: 'Uspesifisert relasjon til en annen ting',
+      name: 'relation',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'madeObject'},
+            {type: 'actor'},
+            {type: 'group'}
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Nåværende eier',
+      name: 'hasCurrentOwner',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'actor'},
+            {type: 'group'}
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Tidligere eller nåværende eier',
+      name: 'hasFormerOrCurrentOwner',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'actor'},
+            {type: 'group'}
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Består av',
+      titleEN: 'Composed of',
+      description: 'Andre identifiserte objekt som er en del av dette objektet. For eksempel: bokomslaget eller "Sult" av Hamsun bundet sammen med andre verk.',
+      descriptionEN: 'Other identified madeObjects this object is composed of',
+      name: 'composedOf',
+      fieldset: 'partsOfTheObject',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'madeObject'}
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Seksjon',
+      titleEN: 'Section',
+      description: 'Et objekt kan deles opp i de stedene eller seksjonene den består av. Disse seksjonene kan være der et annet objekt ER. En bok kan ha en bokblokk, som er der en tekst er lokalisert. Simples ;-).',
+      descriptionEN: 'Parts the object consists of',
+      name: 'sectionList',
+      fieldset: 'partsOfTheObject',
+      type: 'array',
+      of: [
+        {type: 'section'},
+        {type: 'reference',
+          to: [
+            {type: 'madeObject'}
+          ]
+        }
+      ]
+    },
+    {
+      title: 'Titles',
+      name: 'title',
+      description: 'Add all known titles',
+      fieldset: 'additionalInformation',
+      type: 'array',
+      of: [
+        {type: 'name'}
+      ],
+      options: {
+        editModal: 'popup'
+      }
+    },
+    {
+      title: 'Identifiers',
+      name: 'identifiedBy',
+      description: 'Add all known identifiers',
+      fieldset: 'additionalInformation',
+      type: 'array',
+      of: [
+        {type: 'identifier'}
+      ],
+      options: {
+        editModal: 'popup'
+      }
+    },
+    {
+      title: 'Subject of',
+      name: 'isSubjectOf',
+      description: 'Texts about this object, both internal and other texts',
+      fieldset: 'additionalInformation',
+      type: 'array',
+      of: [{
+        type: 'reference',
+        to: [
+          {type: 'linguisticObject'}
+        ]
+      }]
     },
     {
       title: 'Avbilder',
@@ -261,83 +356,6 @@ export default {
       ]
     },
     {
-      title: 'Består av',
-      titleEN: 'Composed of',
-      description: 'Andre identifiserte objekt som er en del av dette objektet. For eksempel: bokomslaget eller "Sult" av Hamsun bundet sammen med andre verk.',
-      descriptionEN: 'Other identified madeObjects this object is composed of',
-      name: 'composedOf',
-      type: 'array',
-      of: [
-        {type: 'reference',
-          to: [
-            {type: 'madeObject'}
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Seksjon',
-      titleEN: 'Section',
-      description: 'Et objekt kan deles opp i de stedene eller seksjonene den består av. Disse seksjonene kan være der et annet objekt ER. En bok kan ha en bokblokk, som er der en tekst er lokalisert. Simples ;-).',
-      descriptionEN: 'Parts the object consists of',
-      name: 'sectionList',
-      type: 'array',
-      of: [
-        {type: 'section'}
-      ]
-    },
-    {
-      title: 'Former or current owner',
-      name: 'hasFormerOrCurrentOwner',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            {type: 'actor'},
-            {type: 'group'}
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Related stuff',
-      name: 'relation',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [
-            {type: 'madeObject'},
-            {type: 'actor'},
-            {type: 'group'}
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Subject of',
-      name: 'isSubjectOf',
-      description: 'Texts about this object, both internal and other texts',
-      fieldset: 'additionalInformation',
-      type: 'array',
-      of: [{
-        type: 'reference',
-        to: [
-          {type: 'linguisticObject'}
-        ]
-      }]
-    },
-    /* {
-      title: 'Geographic features',
-      name: 'geoJSON',
-      fieldset: 'visualObject',
-      type: 'array',
-      of: [
-        {type: 'feature'}
-      ]
-    }, */
-    {
       title: 'Carries Work',
       name: 'carries',
       type: 'array',
@@ -353,19 +371,11 @@ export default {
     {
       title: 'Physical description',
       name: 'physicalDescription',
-      type: 'array',
-      fieldset: 'physicalDescription',
-      of: [
-        {type: 'block'}
-        /* {type: 'reference',
-            to: [
-                { type: 'actor' }
-            ]
-        } */
-      ]
+      type: 'localeBlockSimple',
+      fieldset: 'physicalDescription'
     },
     {
-      title: '# of pages',
+      title: 'Antall sider',
       name: 'pages',
       fieldset: 'physicalDescription',
       type: 'number'
@@ -378,9 +388,10 @@ export default {
       of: [{type: 'measurement'}]
     },
     {
-      title: 'Consists of',
+      title: 'Laget av',
+      titleEn: 'Consists of',
+      description: 'Laget av material, for eksempel lær, pertament eller noe annet.',
       name: 'consistsOf',
-      description: 'WIP, could be a API call to some source of material definitions',
       type: 'array',
       fieldset: 'physicalDescription',
       of: [{
