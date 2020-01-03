@@ -4,7 +4,7 @@
 	import Cards from '../../components/Cards'
 
 	export function preload({ params, query }) {
-    return client.fetch('*[_type == "typeClass"]').then(items => {
+    return client.fetch('*[_type == "typeClass"]|order(label.nor asc) ').then(items => {
 			return { items };
 		}).catch(err => this.error(500, err));
 	}
