@@ -38,6 +38,7 @@ import designOrProcedure from './documents/designOrProcedure'
 import project from './documents/project'
 import typeClass from './documents/types/type'
 import systemCategory from './documents/types/systemCategory'
+import language from './documents/types/language'
 import material from './documents/types/material'
 import concept from './documents/types/concept'
 import exhibition from './documents/exhibition'
@@ -47,7 +48,6 @@ import period from './documents/period'
 
 // MadeObject
 import madeObject from './documents/madeObject/madeObject'
-import section from './documents/madeObject/section'
 
 // Timeline
 import timeline from './documents/timeline/timeline'
@@ -121,6 +121,7 @@ export default createSchema({
     typeClass,
     systemCategory,
     concept,
+    language,
     material,
     experimental,
     navigation,
@@ -155,7 +156,6 @@ export default createSchema({
     navItem,
     navSection,
     openGraph,
-    section,
     treatment,
     treatmentAssessment,
     sampling,

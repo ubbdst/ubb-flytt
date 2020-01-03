@@ -149,8 +149,8 @@ export default {
           type: 'reference',
           to: [{type: 'typeClass'}],
           options: {
-            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
-            filterParams: {sysCat: 'Objekt-/verkstype'}
+            filter: 'references(*[_type == "systemCategory" && label.nor in [...($sysCat)]]._id)',
+            filterParams: {sysCat: ['Objekt-/verkstype', 'Seksjonstype']}
           }
         }
       ],
@@ -258,26 +258,8 @@ export default {
       description: 'Andre identifiserte objekt som er en del av dette objektet. For eksempel: bokomslaget eller "Sult" av Hamsun bundet sammen med andre verk.',
       descriptionEN: 'Other identified madeObjects this object is composed of',
       name: 'composedOf',
-      fieldset: 'partsOfTheObject',
       type: 'array',
       of: [
-        {type: 'reference',
-          to: [
-            {type: 'madeObject'}
-          ]
-        }
-      ]
-    },
-    {
-      title: 'Seksjon',
-      titleEN: 'Section',
-      description: 'Et objekt kan deles opp i de stedene eller seksjonene den består av. Disse seksjonene kan være der et annet objekt ER. En bok kan ha en bokblokk, som er der en tekst er lokalisert. Simples ;-).',
-      descriptionEN: 'Parts the object consists of',
-      name: 'sectionList',
-      fieldset: 'partsOfTheObject',
-      type: 'array',
-      of: [
-        {type: 'section'},
         {type: 'reference',
           to: [
             {type: 'madeObject'}
@@ -420,7 +402,7 @@ export default {
 
       return {
         title: title,
-        subtitle: secret + id + ', ' + type,
+        subtitle: secret + (id ? id + ', ' : '') + type,
         description: block
           ? block.children
             .filter(child => child._type === 'span')
