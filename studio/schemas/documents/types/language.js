@@ -1,10 +1,10 @@
-import {FaTag} from 'react-icons/fa'
+import {FaLanguage} from 'react-icons/fa'
 
 export default {
   title: 'Language',
   name: 'language',
   type: 'document',
-  icon: FaTag,
+  icon: FaLanguage,
   fieldsets: [
     {
       name: 'state',
