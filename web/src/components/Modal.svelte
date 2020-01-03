@@ -45,21 +45,22 @@
 		width: 100%;
 		height: 100%;
 		background: rgba(0,0,0,0.3);
+		z-index: 99999999999;
 	}
 
 	.svelte-modal {
 		position: absolute;
 		left: 50%;
-		top: 50%;
+		top: 40%;
 		width: calc(100vw - 2em);
 		max-width: 52em;
-		max-height: calc(100vh - 2em);
+		max-height: calc(100vh - 4em);
 		overflow: auto;
-		transform: translate(-50%,-50%);
+		transform: translate(-50%,-60%);
 		padding: 1em;
 		border-radius: 0.2em;
     background: white;
-    z-index: 999;
+    z-index: 999999999999;
 	}
 
 	button {
