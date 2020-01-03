@@ -64,7 +64,11 @@
         <div class="control">
           <div class="tags has-addons">
             <span class="tag">ID:</span>
+            {#if item.preferredIdentifier}
             <span class="tag is-light">{item.preferredIdentifier}</span>
+            {:else}
+            <span class="tag is-light">?</span>
+            {/if}
           </div>
         </div>
 
@@ -72,7 +76,6 @@
           <Rights item={item.rights}></Rights>
         </div>
       </div>
-      
     </div>
 
     <MainImage 

@@ -63,6 +63,6 @@
   </div>
 {:else}
   <figure onload="setRights()">
-    <img alt="{alt ? alt : ''}" src={urlFor(image).width(1000).url()} />
+    <img alt="{alt ? alt : ''}" src={urlFor(image).width(1600).url()} />
   </figure>
 {/if}
