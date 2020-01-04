@@ -1,7 +1,6 @@
 import S from '@sanity/desk-tool/structure-builder'
 import {
   FaCog,
-  FaTag,
   FaBookDead,
   FaProjectDiagram,
   FaGlasses,
