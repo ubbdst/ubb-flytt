@@ -4,26 +4,30 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Carried out by',
       name: 'carriedOutBy',
+      title: 'Utført av',
+      titleEN: 'Carried out by',
       type: 'array',
       of: [{type: 'actorInRole'}]
     },
     {
-      title: 'Timespan',
       name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
-      title: 'Success?',
       name: 'success',
+      title: 'Suksess?',
+      titleEN: 'Success?',
       type: 'boolean'
     },
     {
-      title: 'Took place at',
       name: 'tookPlaceAt',
+      title: 'Skjedde ved',
+      titleEN: 'Took place at',
       type: 'array',
       of: [
         {type: 'reference',
@@ -35,10 +39,10 @@ export default {
       ]
     },
     {
-      title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [{type: 'block'}]
+      title: 'Beskrivelse',
+      titleEN: 'Description',
+      type: 'localeBlock'
     }
   ],
   preview: {
@@ -48,7 +52,7 @@ export default {
     prepare (selection) {
       const {date} = selection
       return {
-        title: `Transformation${date ? ', dated ' + date : ''}`
+        title: `Assessed${date ? ', dated ' + date : ''}`
       }
     }
   }

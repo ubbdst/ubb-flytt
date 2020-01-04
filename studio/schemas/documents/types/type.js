@@ -4,6 +4,10 @@ export default {
   title: 'Type',
   name: 'typeClass',
   type: 'document',
+  initialValue: {
+    editorialState: 'workingDraft',
+    accessState: 'secret'
+  },
   icon: FaTag,
   fieldsets: [
     {
@@ -15,14 +19,16 @@ export default {
   fields: [
     {
       name: 'editorialState',
+      title: 'Redaksjonell status',
+      titleEN: 'Editorial state',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
       options: {
         list: [
-          {title: 'Working draft', value: 'workingDraft'},
-          {title: 'Needs review', value: 'review'},
-          {title: 'Published', value: 'published'}
+          {title: 'Utkast', value: 'workingDraft'},
+          {title: 'Trenger gjennomgang', value: 'review'},
+          {title: 'Publisert', value: 'published'}
         ],
         layout: 'radio',
         direction: 'horizontal'
@@ -30,12 +36,14 @@ export default {
     },
     {
       name: 'accessState',
+      title: 'Tilgangsstatus',
+      titleEN: 'Access state',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
       options: {
         list: [
-          {title: 'Private/Secret', value: 'secret'},
+          {title: 'Privat', value: 'secret'},
           {title: 'Open', value: 'open'}
         ],
         layout: 'radio',
@@ -43,13 +51,15 @@ export default {
       }
     },
     {
-      title: 'Preferred label',
       name: 'label',
+      title: 'Foretrukket navn',
+      titleEN: 'Preferred label',
       type: 'localeString'
     },
     {
-      title: 'Alternative label',
       name: 'altLabel',
+      title: 'Alternativt navn',
+      titleEN: 'Alternative label',
       type: 'localeString'
     },
     {
@@ -61,16 +71,18 @@ export default {
       ]
     },
     {
-      title: 'Broader',
       name: 'broader',
+      title: 'Overordnet term',
+      titleEN: 'Broader',
       type: 'array',
       of: [
         {type: 'reference', to: [{type: 'typeClass'}]}
       ]
     },
     {
-      title: 'Narrower',
       name: 'narrower',
+      title: 'Underordnet term',
+      titleEN: 'Narrower',
       description: 'Trenger vi narrower? Blir mye å registrere...',
       type: 'array',
       of: [
@@ -78,17 +90,19 @@ export default {
       ]
     },
     {
-      title: 'Domain',
       name: 'domain',
+      title: 'Domene',
+      titleEN: 'Domain',
       type: 'array',
       of: [
         {type: 'reference', to: [{type: 'typeClass'}]}
       ]
     },
     {
-      title: 'Activity stream',
+      name: 'activityStream',
+      title: 'Aktivitetsstrøm',
+      titleEN: 'Activity stream',
       description: 'Events and activities connected to this object',
-      name: 'events',
       type: 'array',
       of: [
         {type: 'creation'}

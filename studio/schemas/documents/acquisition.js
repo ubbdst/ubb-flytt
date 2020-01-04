@@ -4,6 +4,10 @@ export default {
   title: 'Acquisition',
   name: 'acquisition',
   type: 'document',
+  initialValue: {
+    editorialState: 'workingDraft',
+    accessState: 'secret'
+  },
   icon: FaGifts,
   fieldsets: [
     {
@@ -14,9 +18,9 @@ export default {
   ],
   fields: [
     {
+      name: 'editorialState',
       title: 'Redaksjonell status',
       titleEN: 'Editorial state',
-      name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -31,9 +35,9 @@ export default {
       }
     },
     {
+      name: 'accessState',
       title: 'Tilgangsstatus',
       titleEN: 'Access state',
-      name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -47,19 +51,22 @@ export default {
       }
     },
     {
-      title: 'Title',
       name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
       type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Description',
       name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       type: 'localeBlockReport'
     },
     {
-      title: 'Transferred title to',
-      name: 'transferred_title_to',
+      name: 'transferredTitleTo',
+      title: 'Overfrte tittel til',
+      titleEN: 'Transferred title to',
       description: '',
       type: 'array',
       of: [
@@ -72,8 +79,9 @@ export default {
       ]
     },
     {
-      title: 'Transferred title from',
-      name: 'transferred_title_from',
+      name: 'transferredTitleFrom',
+      title: 'Overførte tittel fra',
+      titleEN: 'Transferred title from',
       description: '',
       type: 'array',
       of: [
@@ -86,8 +94,9 @@ export default {
       ]
     },
     {
-      title: 'Transferred title of',
-      name: 'transferred_title_of',
+      name: 'transferredTitleOf',
+      title: 'Overførte tittel',
+      titleEN: 'Transferred title of',
       description: '',
       type: 'array',
       of: [
@@ -100,9 +109,10 @@ export default {
       ]
     },
     {
-      title: 'Sub acquisition',
-      description: 'Events and activities connected to this object',
       name: 'consistsOf',
+      title: 'Underakkvisisasjon',
+      titleEN: 'Sub acquisition',
+      description: 'Events and activities connected to this object',
       type: 'array',
       of: [
         {type: 'acquisition'}

@@ -7,15 +7,17 @@ export default {
   icon: FaCrown,
   fields: [
     {
-      title: 'Title',
       name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
       type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Activity stream',
+      name: 'activityStream',
+      title: 'Aktivitetsstrøm',
+      titleEN: 'Activity stream',
       description: 'Events and activities connected to this object',
-      name: 'events',
       type: 'array',
       of: [
         {type: 'creation'}

@@ -14,13 +14,15 @@ export default {
   ],
   fields: [
     {
-      title: 'Preferred label',
       name: 'label',
+      title: 'Foretrukket navn',
+      titleEN: 'Preferred label',
       type: 'localeString'
     },
     {
-      title: 'Alternative label',
       name: 'altLabel',
+      title: 'Alternativt navn',
+      titleEN: 'Alternative label',
       type: 'localeString'
     }
   ],

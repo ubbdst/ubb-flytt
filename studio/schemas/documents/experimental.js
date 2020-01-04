@@ -7,15 +7,17 @@ export default {
   icon: FaFlask,
   fields: [
     {
-      title: 'Title',
       name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
       type: 'string',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Github search',
-      description: 'Experimental feature',
       name: 'repos',
+      title: 'Github-søk',
+      titleEN: 'Github search',
+      description: 'Experimental feature',
       type: 'array',
       of: [
         {type: 'apiMetadata'}

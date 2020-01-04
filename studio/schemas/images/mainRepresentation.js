@@ -8,9 +8,13 @@ export default {
   },
   fields: [
     {
-      title: 'Caption',
       name: 'caption',
-      type: 'localeString'
+      title: 'Bildetekst',
+      titleEN: 'Caption',
+      type: 'localeString',
+      options: {
+        isHighlighted: true
+      }
     }
   ],
   preview: {

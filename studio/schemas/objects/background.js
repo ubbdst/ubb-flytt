@@ -4,13 +4,15 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Image',
       name: 'url',
+      title: 'Bilde',
+      titleEN: 'Image',
       type: 'image'
     },
     {
-      title: 'Color',
       name: 'color',
+      title: 'Farge',
+      titleEN: 'Color',
       type: 'color'
     }
   ]

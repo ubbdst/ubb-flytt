@@ -8,21 +8,23 @@ export default {
   fields: [
     {
       name: 'caption',
+      title: 'Bildetekst',
+      titleEN: 'Caption',
       type: 'string',
-      title: 'Caption',
       options: {
         isHighlighted: true
       }
     },
     {
       name: 'alt',
-      type: 'string',
-      title: 'Alternative text',
+      title: 'Alternative tekst',
+      titleEN: 'Alternative text',
       description: 'Important for SEO and accessiblity.',
-      validation: Rule => Rule.warning('You have to fill out the alternative text.'),
+      type: 'string',
       options: {
         isHighlighted: true
-      }
+      },
+      validation: Rule => Rule.warning('You have to fill out the alternative text.')
     }
   ],
   preview: {

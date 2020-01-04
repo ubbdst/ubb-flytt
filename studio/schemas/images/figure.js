@@ -8,16 +8,18 @@ export default {
   },
   fields: [
     {
-      title: 'Caption',
       name: 'caption',
+      title: 'Bildetekst',
+      titleEN: 'Caption',
       type: 'string',
       options: {
         isHighlighted: true
       }
     },
     {
-      title: 'Alternative text',
       name: 'alt',
+      title: 'Alternative tekst',
+      titleEN: 'Alternative text',
       description: 'Important for SEO and accessiblity.',
       type: 'string',
       options: {

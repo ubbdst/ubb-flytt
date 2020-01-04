@@ -6,6 +6,10 @@ export default {
   title: 'Move',
   name: 'move',
   type: 'document',
+  initialValue: {
+    editorialState: 'workingDraft',
+    accessState: 'secret'
+  },
   icon: FaTruckLoading,
   fieldsets: [
     {
@@ -16,9 +20,9 @@ export default {
   ],
   fields: [
     {
+      name: 'editorialState',
       title: 'Redaksjonell status',
       titleEN: 'Editorial state',
-      name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -33,9 +37,9 @@ export default {
       }
     },
     {
+      name: 'accessState',
       title: 'Tilgangsstatus',
       titleEN: 'Access state',
-      name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -49,23 +53,26 @@ export default {
       }
     },
     {
-      title: 'Carried out by',
       name: 'carriedOutBy',
+      title: 'Utført av',
+      titleEN: 'Carried out by',
       type: 'array',
       of: [
         {type: 'reference', to: [{type: 'actor', title: 'Actor'}]}
       ]
     },
     {
-      title: 'Timespan',
       name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
-      title: 'Moved',
       name: 'moved',
+      title: 'Flyttet',
+      titleEN: 'Moved',
       type: 'array',
       of: [
         {type: 'reference',
@@ -76,29 +83,33 @@ export default {
       ]
     },
     {
-      title: 'Description',
       name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       type: 'localeBlockReport'
     },
     {
-      title: 'Moved from',
       name: 'movedFrom',
+      title: 'Flyttet fra',
+      titleEN: 'Moved from',
       type: 'reference',
       to: [
         {type: 'place'}
       ]
     },
     {
-      title: 'Moved to',
       name: 'movedTo',
+      title: 'Flyttet til',
+      titleEN: 'Moved to',
       type: 'reference',
       to: [
         {type: 'place'}
       ]
     },
     {
-      title: 'Motivated by',
       name: 'wasMotivatedBy',
+      title: 'Motivert av',
+      titleEN: 'Motivated by',
       type: 'array',
       of: [
         {type: 'reference',

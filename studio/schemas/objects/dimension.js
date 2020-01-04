@@ -6,8 +6,9 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Classified as',
       name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       description: 'WIP, should use API',
       type: 'string',
       options: {
@@ -24,13 +25,15 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'Value',
       name: 'value',
+      title: 'Verdi',
+      titleEN: 'Value',
       type: 'number'
     },
     {
-      title: 'Measurement unit',
       name: 'hasUnit',
+      title: 'Måleenhet',
+      titleEN: 'Measurement unit',
       description: 'WIP, should use API',
       type: 'string',
       options: {

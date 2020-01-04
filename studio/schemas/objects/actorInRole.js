@@ -4,14 +4,16 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Actor',
       name: 'actor',
+      title: 'Aktør',
+      titleEN: 'Actor',
       type: 'reference',
       to: [{type: 'actor', title: 'Actor'}]
     },
     {
-      title: 'Role',
       name: 'role',
+      title: 'Rolle',
+      titleEN: 'Role',
       type: 'array',
       of: [
         {

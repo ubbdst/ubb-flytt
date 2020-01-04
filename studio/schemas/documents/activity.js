@@ -24,14 +24,16 @@ export default {
   ],
   fields: [
     {
-      title: 'Title',
       name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
       type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Activity type',
       name: 'hasType',
+      title: 'Aktivitetstype',
+      titleEN: 'Activity type',
       type: 'array',
       of: [
         {
@@ -45,14 +47,16 @@ export default {
       ]
     },
     {
-      title: 'Carried out by',
       name: 'carriedOutBy',
+      title: 'Utført av',
+      titleEN: 'Carried out by',
       type: 'array',
       of: [{type: 'actorInRole'}]
     },
     {
-      title: 'Target',
       name: 'target',
+      title: 'Mål',
+      titleEN: 'Target',
       type: 'reference',
       to: [
         {type: 'collection'},
@@ -61,44 +65,50 @@ export default {
       ]
     },
     {
-      title: 'Timespan',
       name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
-      title: 'Description',
       name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       type: 'localeBlock'
     },
     {
-      title: 'Sub activities',
       name: 'consistsOf',
+      title: 'Underaktiviteter',
+      titleEN: 'Sub activities',
       type: 'array',
       of: [
         {type: 'reference', to: [{type: 'activity'}]}
       ]
     },
     {
-      title: 'Continued',
       name: 'continued',
+      title: 'Fortsatte',
+      titleEN: 'Continued',
       type: 'array',
       of: [
         {type: 'reference', to: [{type: 'activity'}]}
       ]
     },
     {
-      title: 'Was continued by',
       name: 'wasContinuedBy',
+      title: 'Ble fortsatt av',
+      titleEN: 'Was continued by',
       type: 'array',
       of: [
         {type: 'reference', to: [{type: 'activity'}]}
       ]
     },
     {
-      title: 'Influenced by',
       name: 'influencedBy',
+      title: 'Påvirket av',
+      titleEN: 'Influenced by',
       description: '',
       type: 'array',
       of: [
@@ -115,8 +125,9 @@ export default {
       ]
     },
     {
-      title: 'Used object of type',
       name: 'usedObjectOfType',
+      title: 'Brukte objekt av type',
+      titleEN: 'Used object of type',
       description: '',
       fieldset: 'objects',
       type: 'array',
@@ -132,8 +143,9 @@ export default {
       ]
     },
     {
-      title: 'Used specific object',
       name: 'usedspecificObject',
+      title: 'Brukte spesifikt objekt',
+      titleEN: 'Used specific object',
       description: '',
       fieldset: 'objects',
       type: 'array',
@@ -146,8 +158,9 @@ export default {
       ]
     },
     {
-      title: 'Used general technique',
       name: 'usedGeneralTechnique',
+      title: 'Brukte generell teknikk',
+      titleEN: 'Used general technique',
       description: '',
       fieldset: 'technique',
       type: 'array',
@@ -163,8 +176,9 @@ export default {
       ]
     },
     {
-      title: 'Used specific technique',
       name: 'usedspecificTechnique',
+      title: 'Brukte spesifikk teknikk',
+      titleEN: 'Used specific technique',
       description: '',
       fieldset: 'technique',
       type: 'array',
@@ -177,8 +191,9 @@ export default {
       ]
     },
     {
-      title: 'General purpose',
       name: 'generalPurpose',
+      title: 'Generelt formål',
+      titleEN: 'General purpose',
       description: '',
       fieldset: 'purpose',
       type: 'array',
@@ -194,8 +209,9 @@ export default {
       ]
     },
     {
-      title: 'Intended use of',
       name: 'intendedUseOf',
+      title: 'Forutså bruk av',
+      titleEN: 'Intended use of',
       description: '',
       fieldset: 'purpose',
       type: 'array',

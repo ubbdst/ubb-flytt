@@ -5,6 +5,10 @@ export default {
   name: 'exhibition',
   description: 'Should be fetched from KulturNav',
   type: 'document',
+  initialValue: {
+    editorialState: 'workingDraft',
+    accessState: 'secret'
+  },
   icon: FaGlasses,
   fieldsets: [
     {
@@ -15,9 +19,9 @@ export default {
   ],
   fields: [
     {
+      name: 'editorialState',
       title: 'Redaksjonell status',
       titleEN: 'Editorial state',
-      name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -32,9 +36,9 @@ export default {
       }
     },
     {
+      name: 'accessState',
       title: 'Tilgangsstatus',
       titleEN: 'Access state',
-      name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -48,14 +52,16 @@ export default {
       }
     },
     {
-      title: 'Title',
       name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
       type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Description',
       name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       type: 'localeBlock'
     }
   ],

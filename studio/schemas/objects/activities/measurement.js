@@ -4,32 +4,36 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Timespan',
       name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
-      title: 'Carried out by',
       name: 'carriedOutBy',
+      title: 'Utført av',
+      titleEN: 'Carried out by',
       type: 'array',
       of: [
         {type: 'reference', to: [{type: 'actor', title: 'Actor'}]}
       ]
     },
     {
-      title: 'Dimension',
-      description: 'Events and activities connected to this object',
       name: 'observedDimension',
+      title: 'Dimmensjon',
+      titleEN: 'Dimension',
+      description: 'Events and activities connected to this object',
       type: 'array',
       of: [
         {type: 'dimension'}
       ]
     },
     {
-      title: 'Took place at',
       name: 'tookPlaceAt',
+      title: 'Fant sted ved',
+      titleEN: 'Took place at',
       type: 'array',
       of: [
         {type: 'reference',
@@ -40,10 +44,10 @@ export default {
       ]
     },
     {
-      title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [{type: 'block'}]
+      title: 'Beskrivelse',
+      titleEN: 'Description',
+      type: 'localeBlock'
     }
   ],
   preview: {

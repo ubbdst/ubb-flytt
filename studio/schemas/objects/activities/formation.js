@@ -8,8 +8,9 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Classified as',
       name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       type: 'array',
       of: [
         {
@@ -23,8 +24,9 @@ export default {
       ]
     },
     {
-      title: 'Formed from',
       name: 'wasFormedFrom',
+      title: 'Opprettet fra',
+      titleEN: 'Formed from',
       type: 'array',
       of: [
         {type: 'reference',
@@ -35,15 +37,17 @@ export default {
       ]
     },
     {
-      title: 'Timespan',
       name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
-      title: 'Took place at',
       name: 'tookPlaceAt',
+      title: 'Fant sted ved',
+      titleEN: 'Took place at',
       type: 'array',
       of: [
         {type: 'reference',
@@ -54,8 +58,9 @@ export default {
       ]
     },
     {
-      title: 'Motivated by',
       name: 'wasMotivatedBy',
+      title: 'Motivert av',
+      titleEN: 'Motivated by',
       type: 'array',
       of: [
         {type: 'reference',
@@ -66,9 +71,10 @@ export default {
       ]
     },
     {
-      title: 'Description',
       name: 'description',
-      type: 'genericText'
+      title: 'Beskrivelse',
+      titleEN: 'Description',
+      type: 'localeBlock'
     }
   ],
   preview: {

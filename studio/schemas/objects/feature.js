@@ -5,8 +5,9 @@ export default {
   fields: [
 
     {
-      title: 'Type',
       name: 'type',
+      title: 'Type',
+      titleEN: 'Type',
       type: 'string',
       validation: Rule => Rule.required(),
       options: {
@@ -19,8 +20,9 @@ export default {
       }
     },
     {
-      title: 'Coordinates',
       name: 'geometry',
+      title: 'Koordinater',
+      titleEN: 'Coordinates',
       type: 'geopoint'
     }
   ],

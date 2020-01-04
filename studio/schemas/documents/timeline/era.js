@@ -4,23 +4,27 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Headline',
       name: 'headline',
+      title: 'Tittel',
+      titleEN: 'Headline',
       type: 'string'
     },
     {
-      text: 'Text',
       name: 'text',
+      text: 'Tekst',
+      textEN: 'Text',
       type: 'localeBlock'
     },
     {
-      title: 'Start date',
       name: 'startDate',
+      title: 'Startdato',
+      titleEN: 'Start date',
       type: 'date'
     },
     {
-      title: 'End date',
       name: 'endDate',
+      title: 'Sluttdato',
+      titleEN: 'End date',
       type: 'date'
     }
   ]

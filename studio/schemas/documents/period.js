@@ -5,6 +5,10 @@ export default {
   name: 'period',
   description: 'Should be fetched from KulturNav',
   type: 'document',
+  initialValue: {
+    editorialState: 'workingDraft',
+    accessState: 'secret'
+  },
   icon: FaEmpire,
   fieldsets: [
     {
@@ -20,9 +24,9 @@ export default {
   ],
   fields: [
     {
+      name: 'editorialState',
       title: 'Redaksjonell status',
       titleEN: 'Editorial state',
-      name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -37,9 +41,9 @@ export default {
       }
     },
     {
+      name: 'accessState',
       title: 'Tilgangsstatus',
       titleEN: 'Access state',
-      name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -53,8 +57,9 @@ export default {
       }
     },
     {
-      title: 'Classified as',
       name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       type: 'array',
       of: [
         {
@@ -69,35 +74,40 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'Title',
       name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
       fieldset: 'minimum',
       type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Description',
       name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       description: 'A shortish description',
       fieldset: 'minimum',
       type: 'localeBlock'
     },
     {
-      title: 'Timespan',
       name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
-      title: 'Location',
-      description: 'Where the hell did this happen?!',
       name: 'location',
+      title: 'Lokasjon',
+      titleEN: 'Location',
+      description: 'Where the hell did this happen?!',
       type: 'geopoint'
     },
     {
-      title: 'Media',
       name: 'media',
+      title: 'Media',
+      titleEN: 'Media',
       type: 'mediaObject'
     }
   ],

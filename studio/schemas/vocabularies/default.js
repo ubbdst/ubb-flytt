@@ -5,13 +5,6 @@ export const supportedLanguages = [
   {id: 'ger', title: 'German'}
 ]
 
-export const languages = [
-  {title: 'Norwegian', value: 'nor'},
-  {title: 'Sami', value: 'sme'},
-  {title: 'English', value: 'eng'},
-  {title: 'German', value: 'ger'}
-]
-
 export const rights = [
   {title: 'Public Domain Mark', value: 'https://creativecommons.org/publicdomain/mark/1.0/'},
   {title: 'CC0 1.0 - Public Domain Dedication', value: 'https://creativecommons.org/publicdomain/zero/1.0/'},
@@ -64,7 +57,6 @@ export const textTypes = [
 
 export default {
   supportedLanguages,
-  languages,
   reportTypes,
   activityTypes,
   units,

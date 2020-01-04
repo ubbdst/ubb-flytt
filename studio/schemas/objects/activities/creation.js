@@ -4,20 +4,23 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Carried out by',
       name: 'carriedOutBy',
+      title: 'Utført av',
+      titleEN: 'Carried out by',
       type: 'array',
       of: [{type: 'actorInRole'}]
     },
     {
-      title: 'Timespan',
       name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
       type: 'array',
       of: [{type: 'timespan'}]
     },
     {
-      title: 'Took place at',
       name: 'tookPlaceAt',
+      title: 'Fant sted ved',
+      titleEN: 'Took place at',
       type: 'array',
       of: [
         {type: 'reference',

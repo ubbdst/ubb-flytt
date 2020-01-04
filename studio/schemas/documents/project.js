@@ -14,9 +14,9 @@ export default {
   ],
   fields: [
     {
+      name: 'editorialState',
       title: 'Redaksjonell status',
       titleEN: 'Editorial state',
-      name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -31,9 +31,9 @@ export default {
       }
     },
     {
+      name: 'accessState',
       title: 'Tilgangsstatus',
       titleEN: 'Access state',
-      name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -47,20 +47,23 @@ export default {
       }
     },
     {
-      title: 'Active?',
       name: 'active',
+      title: 'Pågående?',
+      titleEN: 'Active?',
       type: 'boolean',
       fieldset: 'state'
     },
     {
-      title: 'Title',
       name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
       type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Classified as',
       name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       type: 'array',
       of: [
         {
@@ -75,8 +78,9 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'About',
       name: 'concerned',
+      title: 'Omhandler',
+      titleEN: 'About',
       description: 'Which collection(s) or object(s) is this an assessment of.',
       type: 'array',
       of: [
@@ -89,16 +93,18 @@ export default {
       ]
     },
     {
-      title: 'Timespan',
       name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
       type: 'array',
       of: [
         {type: 'timespan'}
       ]
     },
     {
-      title: 'Description',
       name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       type: 'localeBlockReport'
     },
     /* {
@@ -114,8 +120,9 @@ export default {
       }
     }, */
     {
-      title: 'Sub projects',
       name: 'consistsOf',
+      title: 'Underprosjekt',
+      titleEN: 'Sub projects',
       type: 'array',
       of: [
         {type: 'project'}
@@ -125,8 +132,9 @@ export default {
       }
     },
     {
-      title: 'Documented in',
       name: 'documentedIn',
+      title: 'Dokumentert i',
+      titleEN: 'Documented in',
       type: 'array',
       of: [
         {

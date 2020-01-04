@@ -4,25 +4,28 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Identifier',
       name: 'identifier',
+      title: 'Identifikator',
+      titleEN: 'Identifier',
       type: 'string'
     },
     {
-      title: 'URL',
       name: 'url',
+      title: 'URL',
+      titleEN: 'URL',
       type: 'url'
     },
     {
-      title: 'Label',
       name: 'label',
+      title: 'Navn',
+      titleEN: 'Label',
       type: 'string'
     },
     {
-      title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [{type: 'block'}]
+      title: 'Beskrivelse',
+      titleEN: 'Description',
+      type: 'localeBlock'
     }
   ],
   preview: {

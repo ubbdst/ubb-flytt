@@ -8,20 +8,23 @@ export default {
   icon: FaMapMarker,
   fields: [
     {
-      title: 'Name',
       name: 'label',
+      title: 'Navn',
+      titleEN: 'Name',
       type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Description',
       name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       type: 'localeBlock'
     },
     {
-      title: 'Location',
-      description: 'Where the hell did this happen?!',
       name: 'geoJSON',
+      title: 'Lokasjon',
+      titleEN: 'Location',
+      description: 'Where the hell did this happen?!',
       type: 'feature'
     }
   ],

@@ -7,8 +7,10 @@ export default {
   fields: [
     {
       name: 'url',
-      type: 'url',
-      description: 'Visit an Instagram post in a browser and copy the URL'
+      title: 'URL',
+      titleEN: 'URL',
+      description: 'Visit an Instagram post in a browser and copy the URL',
+      type: 'url'
     }
   ],
   preview: {

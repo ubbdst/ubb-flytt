@@ -11,32 +11,36 @@ export default {
   },
   fields: [
     {
-      title: 'Url',
       name: 'url',
+      title: 'Nettadresse',
+      titleEN: 'Url',
       type: 'url',
       options: {
         isHighlighted: true
       }
     },
     {
-      title: 'Caption',
       name: 'caption',
+      title: 'Billedtekst',
+      titleEN: 'Caption',
       type: 'string',
       options: {
         isHighlighted: true
       }
     },
     {
-      title: 'Credit',
       name: 'credit',
+      title: 'Kreditering',
+      titleEN: 'Credit',
       type: 'string',
       options: {
         isHighlighted: true
       }
     },
     {
-      title: 'Alternative text',
       name: 'alt',
+      title: 'Alternative tekst',
+      titleEN: 'Alternative text',
       description: 'Important for SEO and accessiblity.',
       type: 'string',
       options: {
@@ -45,16 +49,18 @@ export default {
       validation: Rule => Rule.error('You have to fill out the alternative text.').required()
     },
     {
-      title: 'Link',
       name: 'link',
+      title: 'Lenke',
+      titleEN: 'Link',
       type: 'url',
       options: {
         isHighlighted: true
       }
     },
     {
-      title: 'Link target',
       name: 'linkTarget',
+      title: 'Lenkemål',
+      titleEN: 'Link target',
       type: 'string',
       options: {
         isHighlighted: true

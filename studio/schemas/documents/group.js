@@ -4,6 +4,10 @@ export default {
   title: 'Group',
   name: 'group',
   type: 'document',
+  initialValue: {
+    editorialState: 'workingDraft',
+    accessState: 'secret'
+  },
   icon: FaUsers,
   fieldsets: [
     {
@@ -14,9 +18,9 @@ export default {
   ],
   fields: [
     {
+      name: 'editorialState',
       title: 'Redaksjonell status',
       titleEN: 'Editorial state',
-      name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -31,9 +35,9 @@ export default {
       }
     },
     {
+      name: 'accessState',
       title: 'Tilgangsstatus',
       titleEN: 'Access state',
-      name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -47,14 +51,16 @@ export default {
       }
     },
     {
-      title: 'Name',
       name: 'label',
+      title: 'Navn',
+      titleEN: 'Name',
       type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Classified as',
       name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       type: 'array',
       of: [
         {
@@ -69,14 +75,16 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'Description',
       name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       type: 'localeBlock'
     },
     {
-      title: 'Activity stream',
-      description: 'Events and activities connected to this object',
       name: 'activityStream',
+      title: 'Aktivitetsstrøm',
+      titleEN: 'Activity stream',
+      description: 'Events and activities connected to this object',
       type: 'array',
       of: [
         {type: 'formation'},

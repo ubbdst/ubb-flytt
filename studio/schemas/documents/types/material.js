@@ -1,16 +1,22 @@
-import {FaTag} from 'react-icons/fa'
+import {GiExplosiveMaterials} from 'react-icons/gi'
 
 export default {
   title: 'Material',
   name: 'material',
   type: 'document',
-  icon: FaTag,
+  icon: GiExplosiveMaterials,
   fields: [
     {
-      title: 'Label',
       name: 'label',
-      type: 'string',
-      validation: Rule => Rule.required()
+      title: 'Foretrukket navn',
+      titleEN: 'Preferred label',
+      type: 'localeString'
+    },
+    {
+      name: 'altLabel',
+      title: 'Alternativt navn',
+      titleEN: 'Alternative label',
+      type: 'localeString'
     }
   ]
 }

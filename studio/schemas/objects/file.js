@@ -6,18 +6,21 @@ export default {
   type: 'file',
   fields: [
     {
-      title: 'Title',
       name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
       type: 'string'
     },
     {
-      title: 'Description',
       name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       type: 'localeBlockSimple'
     },
     {
-      title: 'Rights',
       name: 'rights',
+      title: 'Rettigheter',
+      titleEN: 'Rights',
       description: 'Choose the correct lisense or mark',
       fieldset: 'minimum',
       type: 'string',
@@ -27,8 +30,9 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'Source',
       name: 'souce',
+      title: 'Kilde',
+      titleEN: 'Source',
       type: 'url'
     }
   ]

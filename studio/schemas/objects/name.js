@@ -6,13 +6,15 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Name',
       name: 'name',
+      title: 'Navn',
+      titleEN: 'Name',
       type: 'string'
     },
     {
+      name: 'hasType',
       title: 'Type',
-      name: 'nameType',
+      titleEN: 'Type',
       type: 'string',
       options: {
         list: appelationTypes,
@@ -20,17 +22,27 @@ export default {
       }
     },
     {
-      title: 'Timespan',
+      name: 'language',
+      title: 'Språk',
+      titleEN: 'Language',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'language'}]}
+      ]
+    },
+    {
       name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
-      title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [{type: 'block'}]
+      title: 'Beskrivelse',
+      titleEN: 'Description',
+      type: 'localeBlock'
     }
   ],
   preview: {

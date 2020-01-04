@@ -6,8 +6,9 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Classified as',
       name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       type: 'array',
       of: [
         {
@@ -21,29 +22,33 @@ export default {
       ]
     },
     {
-      title: 'Carried out by',
       name: 'carriedOutBy',
+      title: 'Utført av',
+      titleEN: 'Carried out by',
       type: 'array',
       of: [{type: 'actorInRole'}]
     },
     {
-      title: 'Timespan',
       name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
-      title: 'Geographic features',
       name: 'geoJSON',
+      title: 'Lokasjon',
+      titleEN: 'Geographic features',
       type: 'array',
       of: [
         {type: 'feature'}
       ]
     },
     {
-      title: 'Took place at',
       name: 'tookPlaceAt',
+      title: 'Fant sted ved',
+      titleEN: 'Took place at',
       type: 'array',
       of: [
         {type: 'reference',
@@ -54,14 +59,15 @@ export default {
       ]
     },
     {
-      title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [{type: 'block'}]
+      title: 'Beskrivelse',
+      titleEN: 'Description',
+      type: 'localeBlock'
     },
     {
-      title: 'Has modified',
       name: 'hasModified',
+      title: 'Har modifisert',
+      titleEN: 'Has modified',
       description: 'A production can modify an existing object',
       type: 'array',
       of: [
@@ -73,8 +79,9 @@ export default {
       ]
     },
     {
-      title: 'Used general technique',
       name: 'usedGeneralTechnique',
+      title: 'Brukte generell teknikk',
+      titleEN: 'Used general technique',
       type: 'array',
       of: [
         {
@@ -88,8 +95,9 @@ export default {
       ]
     },
     {
-      title: 'Use spesific technique',
       name: 'usedSpecificTechnique',
+      title: 'Brukte spesifikk teknikk',
+      titleEN: 'Used spesific technique',
       type: 'array',
       of: [
         {type: 'reference',
@@ -100,8 +108,9 @@ export default {
       ]
     },
     {
-      title: 'Employed',
       name: 'employed',
+      title: 'Benyttet',
+      titleEN: 'Employed',
       description: 'WIP, could be a API call to some source of authorities',
       type: 'array',
       of: [

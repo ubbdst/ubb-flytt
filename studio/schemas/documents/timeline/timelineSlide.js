@@ -7,18 +7,21 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Headline',
-      name: 'headline',
+      name: 'headline', // path: title.text.heading
+      title: 'Tittel',
+      titleEN: 'Headline',
       type: 'localeString'
     },
     {
-      title: 'Text',
-      name: 'text',
+      name: 'text', // path: title.text.text
+      title: 'Tekst',
+      titleEN: 'Text',
       type: 'localeBlock'
     },
     {
-      title: 'Media',
       name: 'media',
+      title: 'Media',
+      titleEN: 'Media',
       type: 'array',
       of: [
         {type: 'mediaObject'},
@@ -27,15 +30,17 @@ export default {
       validation: Rule => Rule.length(1).error('You should only register one media object')
     },
     {
-      title: 'Timespan',
       name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
-      title: 'Group',
       name: 'group',
+      title: 'Gruppe',
+      titleEN: 'Group',
       type: 'array',
       of: [{type: 'string'}],
       options: {
@@ -44,8 +49,9 @@ export default {
       validation: Rule => Rule.length(1).error('An event can only be in one group!')
     },
     {
-      title: 'Background',
       name: 'background',
+      title: 'Bakgrunn',
+      titleEN: 'Background',
       type: 'background'
     }
   ],

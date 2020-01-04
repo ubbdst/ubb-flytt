@@ -4,6 +4,10 @@ export default {
   title: 'Actor',
   name: 'actor',
   type: 'document',
+  initialValue: {
+    editorialState: 'workingDraft',
+    accessState: 'secret'
+  },
   icon: FaUser,
   fieldsets: [
     {
@@ -14,9 +18,9 @@ export default {
   ],
   fields: [
     {
+      name: 'editorialState',
       title: 'Redaksjonell status',
       titleEN: 'Editorial state',
-      name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -31,9 +35,9 @@ export default {
       }
     },
     {
+      name: 'accessState',
       title: 'Tilgangsstatus',
       titleEN: 'Access state',
-      name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -47,14 +51,16 @@ export default {
       }
     },
     {
-      title: 'Display name',
       name: 'label',
+      title: 'Visningsnavn',
+      titleEN: 'Display name',
       type: 'string',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Classified as',
       name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       type: 'array',
       of: [
         {
@@ -68,22 +74,25 @@ export default {
       ]
     },
     {
-      title: 'Image',
       name: 'mainRepresentation',
+      title: 'Hovedbilde',
+      titleEN: 'Image',
       type: 'image',
       options: {
         hotspot: true
       }
     },
     {
-      title: 'Description',
       name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       description: 'A shortish description',
       type: 'localeBlockSimple'
     },
     {
-      title: 'Activity stream',
       name: 'activityStream',
+      title: 'Aktivitetsstrøm',
+      titleEN: 'Activity stream',
       description: 'Add all known events this smuck did',
       type: 'array',
       of: [
@@ -96,8 +105,9 @@ export default {
       }
     },
     {
-      title: 'Names',
       name: 'names',
+      title: 'Navn',
+      titleEN: 'Names',
       description: 'Add all known names and pseudonyms you wish',
       type: 'array',
       of: [
@@ -108,8 +118,9 @@ export default {
       }
     },
     {
-      title: 'Identifiers',
       name: 'identifier',
+      title: 'Identifikatorer',
+      titleEN: 'Identifiers',
       description: 'Add identifiers this actor is identified by, both internally and externally, like in KulturNav og VIAF.',
       type: 'array',
       of: [

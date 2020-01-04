@@ -4,8 +4,9 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Classified as',
       name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       type: 'array',
       of: [
         {
@@ -19,21 +20,24 @@ export default {
       ]
     },
     {
-      title: 'Carried out by',
       name: 'carriedOutBy',
+      title: 'Utført av',
+      titleEN: 'Carried out by',
       type: 'array',
       of: [{type: 'actorInRole'}]
     },
     {
-      title: 'Timespan',
       name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
-      title: 'Took place at',
       name: 'tookPlaceAt',
+      title: 'Fant sted ved',
+      titleEN: 'Took place at',
       type: 'array',
       of: [
         {type: 'reference',
@@ -44,10 +48,10 @@ export default {
       ]
     },
     {
-      title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [{type: 'block'}]
+      title: 'Beskrivelse',
+      titleEN: 'Description',
+      type: 'localeBlock'
     }
   ],
   preview: {

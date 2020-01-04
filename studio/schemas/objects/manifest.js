@@ -4,8 +4,9 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Manifest URL',
       name: 'url',
+      title: 'Manifest URL',
+      titleEN: 'Manifest URL',
       type: 'url'
     }
   ],

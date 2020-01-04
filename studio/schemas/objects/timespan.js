@@ -4,8 +4,9 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Begin of the begin',
       name: 'beginOfTheBegin',
+      title: 'Begynnelsen av begynnelsen',
+      titleEN: 'Begin of the begin',
       type: 'date',
       options: {
         dateFormat: 'YYYY-MM-DD',
@@ -15,8 +16,9 @@ export default {
       // validation: Rule => Rule.max(Rule.valueOfField('endOfTheBegin')).max(Rule.valueOfField('BeginOfTheEnd')).max(Rule.valueOfField('endOfTheEnd'))
     },
     {
-      title: 'End of the begin',
       name: 'endOfTheBegin',
+      title: 'Slutten på begynnelsen',
+      titleEN: 'End of the begin',
       type: 'date',
       options: {
         dateFormat: 'YYYY-MM-DD',
@@ -24,8 +26,9 @@ export default {
       }
     },
     {
-      title: 'Date',
       name: 'date',
+      title: 'Dato',
+      titleEN: 'Date',
       type: 'datetime',
       options: {
         dateFormat: 'YYYY-MM-DD',
@@ -33,8 +36,9 @@ export default {
       }
     },
     {
-      title: 'Begin of the end',
       name: 'beginOfTheEnd',
+      title: 'Begynnelsen av slutten',
+      titleEN: 'Begin of the end',
       type: 'date',
       options: {
         dateFormat: 'YYYY-MM-DD',
@@ -42,8 +46,9 @@ export default {
       }
     },
     {
-      title: 'End of the end',
       name: 'endOfTheEnd',
+      title: 'Slutten av slutten',
+      titleEN: 'End of the end',
       type: 'date',
       options: {
         dateFormat: 'YYYY-MM-DD',
@@ -51,10 +56,10 @@ export default {
       }
     },
     {
-      title: 'Description',
       name: 'description',
-      type: 'array',
-      of: [{type: 'block'}]
+      title: 'Beskrivelse',
+      titleEN: 'Description',
+      type: 'localeBlock'
     }
   ],
   preview: {

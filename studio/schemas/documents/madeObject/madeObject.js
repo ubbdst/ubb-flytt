@@ -5,10 +5,10 @@ import {FaBookDead} from 'react-icons/fa'
 import {rights} from '../../vocabularies/default'
 
 export default {
+  name: 'madeObject',
   title: 'Objekt',
   titleEN: 'Made Object',
   description: 'Menneskapte objekt',
-  name: 'madeObject',
   type: 'document',
   initialValue: {
     editorialState: 'workingDraft',
@@ -64,9 +64,9 @@ export default {
   ],
   fields: [
     {
+      name: 'editorialState',
       title: 'Redaksjonell status',
       titleEN: 'Editorial state',
-      name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -81,9 +81,9 @@ export default {
       }
     },
     {
+      name: 'accessState',
       title: 'Tilgangsstatus',
       titleEN: 'Access state',
-      name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -115,9 +115,9 @@ export default {
       type: 'url'
     },
     {
+      name: 'preferredIdentifier',
       title: 'Foretrukket identifikator',
       titleEN: 'Preferred identifier',
-      name: 'preferredIdentifier',
       fieldset: 'minimum',
       type: 'string'
       /* validation: Rule => Rule.required().custom(async prefId => {
@@ -127,19 +127,19 @@ export default {
       }) */
     },
     {
+      name: 'label',
       title: 'Tittel',
       titleEN: 'Title',
-      name: 'label',
-      description: 'WIP, endre til localeBlock',
-      descriptionEN: 'WIP, change to localeBlock',
+      description: '',
+      descriptionEN: '',
       fieldset: 'minimum',
       type: 'string',
       validation: Rule => Rule.required()
     },
     {
+      name: 'hasType',
       title: 'Klassifisert som',
       titleEN: 'Classified as',
-      name: 'hasType',
       description: '',
       descriptionEN: '',
       fieldset: 'minimum',
@@ -147,7 +147,9 @@ export default {
       of: [
         {
           type: 'reference',
-          to: [{type: 'typeClass'}],
+          to: [
+            {type: 'typeClass'}
+          ],
           options: {
             filter: 'references(*[_type == "systemCategory" && label.nor in [...($sysCat)]]._id)',
             filterParams: {sysCat: ['Objekt-/verkstype', 'Seksjonstype']}
@@ -157,9 +159,9 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'rights',
       title: 'Rettigheter og lisensiering',
       titleEN: 'Rights',
-      name: 'rights',
       description: 'Velg den korrekt lisensen eller rettighetserklæringen.',
       descriptionEN: 'Choose the correct lisense or mark',
       fieldset: 'minimum',
@@ -170,8 +172,9 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'Emne',
       name: 'subject',
+      title: 'Emne',
+      titleEN: 'Subject',
       fieldset: 'minimum',
       type: 'array',
       of: [
@@ -184,20 +187,20 @@ export default {
       ]
     },
     {
+      name: 'description',
       title: 'Beskrivelse',
       titleEN: 'Description',
-      name: 'description',
       description: 'En kort beskrivelse.',
       descriptionEN: 'A shortish description',
       fieldset: 'minimum',
       type: 'localeBlockSimple'
     },
     {
+      name: 'activityStream',
       title: 'Aktivitetsstrøm',
       titleEN: 'Activity stream',
       description: 'Hendelser og aktiviteter knyttet til dette objektet.',
       descriptionEN: 'Events and activities connected to this object',
-      name: 'activityStream',
       type: 'array',
       of: [
         {type: 'production'},
@@ -209,9 +212,10 @@ export default {
       ]
     },
     {
-      title: 'Relaterte ting',
-      description: 'Uspesifisert relasjon til en annen ting',
       name: 'relation',
+      title: 'Relaterte ting',
+      titleEN: 'Related stuff',
+      description: 'Uspesifisert relasjon til en annen ting',
       type: 'array',
       of: [
         {
@@ -225,8 +229,8 @@ export default {
       ]
     },
     {
-      title: 'Nåværende eier',
       name: 'hasCurrentOwner',
+      title: 'Nåværende eier',
       type: 'array',
       of: [
         {
@@ -239,8 +243,8 @@ export default {
       ]
     },
     {
-      title: 'Tidligere eller nåværende eier',
       name: 'hasFormerOrCurrentOwner',
+      title: 'Tidligere eller nåværende eier',
       type: 'array',
       of: [
         {
@@ -253,11 +257,11 @@ export default {
       ]
     },
     {
+      name: 'composedOf',
       title: 'Består av',
       titleEN: 'Composed of',
       description: 'Andre identifiserte objekt som er en del av dette objektet. For eksempel: bokomslaget eller "Sult" av Hamsun bundet sammen med andre verk.',
       descriptionEN: 'Other identified madeObjects this object is composed of',
-      name: 'composedOf',
       type: 'array',
       of: [
         {type: 'reference',
@@ -268,9 +272,11 @@ export default {
       ]
     },
     {
-      title: 'Titles',
       name: 'title',
-      description: 'Add all known titles',
+      title: 'Titler',
+      titleEN: 'Titles',
+      description: 'Legg til alternative titler',
+      descriptionEN: 'Add all known titles',
       fieldset: 'additionalInformation',
       type: 'array',
       of: [
@@ -281,9 +287,11 @@ export default {
       }
     },
     {
-      title: 'Identifiers',
       name: 'identifiedBy',
-      description: 'Add all known identifiers',
+      title: 'Identifikator',
+      titleEN: 'Identifier',
+      description: 'Legg til identifikator',
+      descriptionEN: 'Add all known identifiers',
       fieldset: 'additionalInformation',
       type: 'array',
       of: [
@@ -294,22 +302,26 @@ export default {
       }
     },
     {
-      title: 'Subject of',
       name: 'isSubjectOf',
-      description: 'Texts about this object, both internal and other texts',
+      title: 'omhandlet i',
+      titleEN: 'Subject of',
+      description: 'Tekster om dette objektet',
+      descriptionEN: 'Texts about this object, both internal and other texts',
       fieldset: 'additionalInformation',
       type: 'array',
-      of: [{
-        type: 'reference',
-        to: [
-          {type: 'linguisticObject'}
-        ]
-      }]
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'linguisticObject'}
+          ]
+        }
+      ]
     },
     {
+      name: 'depicts',
       title: 'Avbilder',
       titleEN: 'Depicts',
-      name: 'depicts',
       type: 'array',
       fieldset: 'visualObject',
       of: [
@@ -325,8 +337,9 @@ export default {
       ]
     },
     {
-      title: 'Shown visual item',
       name: 'showsVisualItem',
+      title: 'Viser merke eller bilde',
+      titleEN: 'Shown visual item',
       type: 'array',
       fieldset: 'visualObject',
       of: [
@@ -338,8 +351,9 @@ export default {
       ]
     },
     {
-      title: 'Carries Work',
       name: 'carries',
+      title: 'Bærer verk',
+      titleEN: 'Carries work',
       type: 'array',
       fieldset: 'linguisticObject',
       of: [
@@ -351,37 +365,34 @@ export default {
       ]
     },
     {
-      title: 'Physical description',
-      name: 'physicalDescription',
-      type: 'localeBlockSimple',
-      fieldset: 'physicalDescription'
-    },
-    {
-      title: 'Antall sider',
       name: 'pages',
+      title: 'Antall sider',
+      titleEN: 'Pages',
       fieldset: 'physicalDescription',
       type: 'number'
     },
     {
-      title: 'Measurement',
       name: 'measurement',
+      title: 'Måling',
+      titleEN: 'Measurement',
       type: 'array',
       fieldset: 'physicalDescription',
       of: [{type: 'measurement'}]
     },
     {
+      name: 'consistsOf',
       title: 'Laget av',
       titleEn: 'Consists of',
       description: 'Laget av material, for eksempel lær, pertament eller noe annet.',
-      name: 'consistsOf',
       type: 'array',
       fieldset: 'physicalDescription',
-      of: [{
-        type: 'reference',
-        to: [
-          {type: 'material'}
-        ]
-      }
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'material'}
+          ]
+        }
       ]
     }
   ],
@@ -408,35 +419,35 @@ export default {
             .filter(child => child._type === 'span')
             .map(span => span.text)
             .join('')
-          : 'No description',
+          : '',
         media: media
       }
     }
   },
   orderings: [
     {
-      title: 'Title, A-Å',
+      title: 'Tittel, A-Å',
       name: 'title',
       by: [
         {field: 'label', direction: 'asc'}
       ]
     },
     {
-      title: 'Title, Å-A',
+      title: 'Tittel, Å-A',
       name: 'title',
       by: [
         {field: 'label', direction: 'desc'}
       ]
     },
     {
-      title: 'Preferred identifier, Descending',
+      title: 'Foretrukket id, Synkende',
       name: 'preferredIdentifier',
       by: [
         {field: 'preferredIdentifier', direction: 'desc'}
       ]
     },
     {
-      title: 'Preferred identifier, Ascending',
+      title: 'Foretrukket id, Stigende',
       name: 'preferredIdentifier',
       by: [
         {field: 'preferredIdentifier', direction: 'asc'}

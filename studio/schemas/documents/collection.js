@@ -5,6 +5,10 @@ export default {
   title: 'Collection',
   name: 'collection',
   type: 'document',
+  initialValue: {
+    editorialState: 'workingDraft',
+    accessState: 'secret'
+  },
   icon: GiBookshelf,
   fieldsets: [
     {
@@ -15,9 +19,9 @@ export default {
   ],
   fields: [
     {
+      name: 'editorialState',
       title: 'Redaksjonell status',
       titleEN: 'Editorial state',
-      name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -32,9 +36,9 @@ export default {
       }
     },
     {
+      name: 'accessState',
       title: 'Tilgangsstatus',
       titleEN: 'Access state',
-      name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -48,14 +52,16 @@ export default {
       }
     },
     {
-      title: 'Title',
       name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
       type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
-      title: 'Preferred identifier',
       name: 'preferredIdentifier',
+      title: 'Foretrukket identifikator',
+      titleEN: 'Preferred identifier',
       type: 'string',
       validation: Rule => Rule.required().custom(async prefId => {
         // eslint-disable-next-line no-template-curly-in-string
@@ -64,14 +70,16 @@ export default {
       })
     },
     {
-      title: 'Description',
       name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       type: 'localeBlock'
     },
     {
-      title: 'Activity stream',
-      description: 'Events and activities connected to this object',
       name: 'activityStream',
+      title: 'Aktivitetsstrøm',
+      titleEN: 'Activity stream',
+      description: 'Events and activities connected to this object',
       type: 'array',
       of: [
         {type: 'production'},

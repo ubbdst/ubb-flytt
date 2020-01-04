@@ -4,8 +4,9 @@ export default {
   type: 'object',
   fields: [
     {
-      title: 'Classified as',
       name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       type: 'reference',
       to: [{type: 'typeClass'}],
       options: {
@@ -15,8 +16,9 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'Condition',
       name: 'condition',
+      title: 'Tilstand',
+      titleEN: 'Condition',
       description: '1 is horrible, 100 is MINT!',
       type: 'number',
       options: {
@@ -25,8 +27,9 @@ export default {
       }
     },
     {
-      title: 'Attributes',
       name: 'attributes',
+      title: 'Egenskaper',
+      titleEN: 'Attributes',
       type: 'array',
       of: [{type: 'string'}],
       options: {

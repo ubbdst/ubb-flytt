@@ -4,6 +4,10 @@ export default {
   title: 'Report',
   name: 'report',
   type: 'document',
+  initialValue: {
+    editorialState: 'workingDraft',
+    accessState: 'secret'
+  },
   icon: GiCrackedGlass,
   fieldsets: [
     {
@@ -24,9 +28,9 @@ export default {
   ],
   fields: [
     {
+      name: 'editorialState',
       title: 'Redaksjonell status',
       titleEN: 'Editorial state',
-      name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -41,9 +45,9 @@ export default {
       }
     },
     {
+      name: 'accessState',
       title: 'Tilgangsstatus',
       titleEN: 'Access state',
-      name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -57,14 +61,16 @@ export default {
       }
     },
     {
-      title: 'Title',
       name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
       type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
-      title: 'About',
       name: 'concerned',
+      title: 'Omhandler',
+      titleEN: 'About',
       description: 'Which collection(s) or object(s) is this an assessment of.',
       type: 'array',
       of: [
@@ -77,8 +83,9 @@ export default {
       ]
     },
     {
-      title: 'Classified as',
       name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       type: 'array',
       of: [
         {
@@ -93,22 +100,26 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'Description',
       name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
       type: 'localeBlockReport'
     },
     {
-      title: 'Condition assignment',
       name: 'conditionAssignment',
+      title: 'Tilstandsvurdering',
+      titleEN: 'Condition assignment',
       type: 'array',
       of: [
         {type: 'valueSlider'}
       ]
     },
     {
-      title: 'Activity stream',
-      description: 'Events and activities connected to this object',
       name: 'activityStream',
+      title: 'Aktivitetsstrøm',
+      titleEN: 'Activity stream',
+      description: 'Hendelser og aktiviteter relatert til rapporten',
+      descriptionEN: 'Events and activities connected to this object',
       type: 'array',
       of: [
         {type: 'measurement'},
@@ -117,8 +128,9 @@ export default {
       ]
     },
     {
-      title: 'Used general technique',
       name: 'usedGeneralTechnique',
+      title: 'Brukte generell teknikk',
+      titleEN: 'Used general technique',
       fieldset: 'technique',
       type: 'array',
       of: [
@@ -133,8 +145,9 @@ export default {
       ]
     },
     {
-      title: 'Used spesific technique',
       name: 'usedSpecificTechnique',
+      title: 'Brukte spesifikk teknikk',
+      titleEN: 'Used spesific technique',
       fieldset: 'technique',
       type: 'array',
       of: [
@@ -146,8 +159,9 @@ export default {
       ]
     },
     {
-      title: 'Used object of type',
       name: 'usedObjectOfType',
+      title: 'Brukte objekt av type',
+      titleEN: 'Used object of type',
       fieldset: 'technique',
       type: 'array',
       of: [
@@ -162,8 +176,9 @@ export default {
       ]
     },
     {
-      title: 'Used spesific object',
       name: 'usedSpecificObject',
+      title: 'Brukte spesifikt objekt',
+      titleEN: 'Used spesific object',
       fieldset: 'technique',
       type: 'array',
       of: [
@@ -175,35 +190,39 @@ export default {
       ]
     },
     {
-      title: 'Motivated',
       name: 'motivated',
+      title: 'Motiverte',
+      titleEN: 'Motivated',
       type: 'array',
       of: [
         {type: 'treatment'}
       ]
     },
     {
-      title: 'Documentation images',
       name: 'documentationImage',
+      title: 'Documentasjonsfotografi',
+      titleEN: 'Documentation images',
       fieldset: 'documentation',
-      options: {
-        layout: 'grid'
-      },
       type: 'array',
       of: [
         {type: 'figure'}
-      ]
+      ],
+      options: {
+        layout: 'grid'
+      }
     },
     {
-      title: 'Documented in',
       name: 'documentedIn',
+      title: 'Documented in',
+      titleEN: 'Dokumentert i',
       fieldset: 'documentation',
       type: 'array',
       of: [{type: 'file'}]
     },
     {
-      title: 'Sub reports',
       name: 'consistsOf',
+      title: 'Underrapport',
+      titleEN: 'Sub report',
       type: 'array',
       of: [
         {type: 'report'}
@@ -233,20 +252,20 @@ export default {
             .filter(child => child._type === 'span')
             .map(span => span.text)
             .join('')
-          : 'No description'
+          : ''
       }
     }
   },
   orderings: [
     {
-      title: 'Title, A-Å',
+      title: 'Tittel, A-Å',
       name: 'title',
       by: [
         {field: 'label', direction: 'desc'}
       ]
     },
     {
-      title: 'Title, Å-A',
+      title: 'Tittel, Å-A',
       name: 'title',
       by: [
         {field: 'label', direction: 'asc'}

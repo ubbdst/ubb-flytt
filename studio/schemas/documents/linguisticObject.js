@@ -1,11 +1,14 @@
 import jsonata from 'jsonata'
-import {languages} from '../vocabularies/default'
 import {FaMarker} from 'react-icons/fa'
 
 export default {
   title: 'Text',
   name: 'linguisticObject',
   type: 'document',
+  initialValue: {
+    editorialState: 'workingDraft',
+    accessState: 'secret'
+  },
   icon: FaMarker,
   fieldsets: [
     {
@@ -16,9 +19,9 @@ export default {
   ],
   fields: [
     {
+      name: 'editorialState',
       title: 'Redaksjonell status',
       titleEN: 'Editorial state',
-      name: 'editorialState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -33,9 +36,9 @@ export default {
       }
     },
     {
+      name: 'accessState',
       title: 'Tilgangsstatus',
       titleEN: 'Access state',
-      name: 'accessState',
       type: 'string',
       fieldset: 'state',
       validation: Rule => Rule.required(),
@@ -49,16 +52,18 @@ export default {
       }
     },
     {
-      title: 'Title',
       name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
       type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
       name: 'slug',
-      type: 'slug',
       title: 'Slug',
+      titleEN: 'Slug',
       description: 'Some frontends will require a slug to be set to be able to show the post',
+      type: 'slug',
       options: {
         source: 'label.nor',
         maxLength: 96
@@ -66,7 +71,8 @@ export default {
     },
     {
       name: 'authors',
-      title: 'Authors',
+      title: 'Forfattere',
+      titleEN: 'Authors',
       type: 'array',
       of: [
         {
@@ -75,16 +81,18 @@ export default {
       ]
     },
     {
-      title: 'Language',
       name: 'language',
-      type: 'string',
-      options: {
-        list: languages
-      }
+      title: 'Språk',
+      titleEN: 'Language',
+      type: 'array',
+      of: [
+        {type: 'reference', to: [{type: 'language'}]}
+      ]
     },
     {
-      title: 'Classified as',
       name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       type: 'array',
       of: [
         {
@@ -99,8 +107,9 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      title: 'Categories',
       name: 'categories',
+      title: 'Kategorier',
+      titleEN: 'Categories',
       type: 'array',
       of: [
         {
@@ -115,29 +124,34 @@ export default {
     },
     {
       name: 'publishedAt',
-      type: 'datetime',
-      title: 'Published at',
-      description: 'This can be used to schedule post for publishing'
+      title: 'Publikasjonsdato',
+      titleEN: 'Published at',
+      description: 'This can be used to schedule post for publishing',
+      type: 'datetime'
     },
     {
       name: 'mainImage',
-      type: 'mainImage',
-      title: 'Main image'
+      title: 'Hovedbilde',
+      titleEN: 'Main image',
+      type: 'mainImage'
     },
     {
       name: 'excerpt',
-      type: 'localeBlockSimple',
-      title: 'Excerpt',
-      description: 'This ends up on summary pages, on Google, when people share your post in social media.'
+      title: 'Sammendrag',
+      titleEN: 'Excerpt',
+      description: 'This ends up on summary pages, on Google, when people share your post in social media.',
+      type: 'localeBlockSimple'
     },
     {
-      title: 'Body',
       name: 'body',
+      title: 'Tekst',
+      titleEN: 'Body',
       type: 'localeBlock'
     },
     {
-      title: 'Documented in',
       name: 'documentedIn',
+      title: 'Dokumentert i',
+      titleEN: 'Documented in',
       type: 'array',
       of: [
         {
