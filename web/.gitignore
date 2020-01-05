@@ -7,3 +7,5 @@ yarn-error.log
 public
 
 .env.development
+# Local Netlify folder
+.netlify

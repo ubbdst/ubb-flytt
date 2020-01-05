@@ -303,7 +303,7 @@ export default {
     },
     {
       name: 'isSubjectOf',
-      title: 'omhandlet i',
+      title: 'Omhandlet i',
       titleEN: 'Subject of',
       description: 'Tekster om dette objektet',
       descriptionEN: 'Texts about this object, both internal and other texts',

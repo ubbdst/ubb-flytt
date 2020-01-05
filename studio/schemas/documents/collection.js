@@ -15,6 +15,11 @@ export default {
       name: 'state',
       title: 'State',
       options: {collapsible: true, collapsed: false}
+    },
+    {
+      name: 'additionalInformation',
+      title: 'Alternative navn, identifikatorer og beskrivelser',
+      options: {collapsible: true, collapsed: true}
     }
   ],
   fields: [
@@ -59,6 +64,36 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'title',
+      title: 'Titler',
+      titleEN: 'Titles',
+      description: 'Legg til alternative titler',
+      descriptionEN: 'Add all known titles',
+      fieldset: 'additionalInformation',
+      type: 'array',
+      of: [
+        {type: 'name'}
+      ],
+      options: {
+        editModal: 'popup'
+      }
+    },
+    {
+      name: 'identifiedBy',
+      title: 'Identifikator',
+      titleEN: 'Identifier',
+      description: 'Legg til identifikator',
+      descriptionEN: 'Add all known identifiers',
+      fieldset: 'additionalInformation',
+      type: 'array',
+      of: [
+        {type: 'identifier'}
+      ],
+      options: {
+        editModal: 'popup'
+      }
+    },
+    {
       name: 'preferredIdentifier',
       title: 'Foretrukket identifikator',
       titleEN: 'Preferred identifier',
@@ -84,12 +119,45 @@ export default {
       of: [
         {type: 'production'},
         {type: 'transformation'},
+        {type: 'acquisition'},
         {type: 'move'},
         {type: 'endingActivity'}
       ],
       options: {
         editModal: 'fullscreen'
       }
+    },
+    {
+      name: 'composedOf',
+      title: 'Består av',
+      titleEN: 'Composed of',
+      description: 'Andre identifiserte undersamlinger som er en del av dette samlingen.',
+      descriptionEN: 'Other identified subcollections this collection is composed of',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'collection'}
+          ]
+        }
+      ]
+    },
+    {
+      name: 'isSubjectOf',
+      title: 'Omhandlet i',
+      titleEN: 'Subject of',
+      description: 'Tekster om dette objektet',
+      descriptionEN: 'Texts about this object, both internal and other texts',
+      fieldset: 'additionalInformation',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [
+            {type: 'linguisticObject'}
+          ]
+        }
+      ]
     }
   ],
   preview: {
