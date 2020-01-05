@@ -1,5 +1,6 @@
 <script>
   import ActivityStream from './ActivityStream'
+  import Block from './Block'
   import Cards from './Cards'
   import Rights from './Rights'
   import MainImage from './MainImage'
@@ -89,7 +90,7 @@
 
     {#if item.description}
       <div class="content is-medium has-text-centered">
-      {@html item.description}
+        <Block content={item.description.nor}/>
       </div>
     {/if}
 

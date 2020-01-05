@@ -1,5 +1,6 @@
 <script>
   import ActivityStream from './ActivityStream'
+  import Block from './Block'
   import Cards from './Cards'
   import client from '../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
@@ -60,7 +61,7 @@
     
     {#if item.description}
     <p class="content is-medium">
-      {@html item.description}
+        <Block content={item.description.nor}/>
     </p>
     {/if}
 

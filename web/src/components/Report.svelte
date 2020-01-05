@@ -1,14 +1,18 @@
 <script>
+  import Block from './Block'
   import ActivityStream from './ActivityStream'
   import Cards from './Cards'
   import MediaObjects from './MediaObjects'
   import ConditionAssignment from './ConditionAssignment'
   import Map from './Map'
+  import MadeObjectFooter from './MadeObjectFooter'
 
   import client from '../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
   
   export let item
+
+  import MainImage from './MainImage'
 
   // Get a pre-configured url-builder from your sanity client
   const builder = imageUrlBuilder(client)
@@ -37,7 +41,7 @@
 <nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
   <ul>
     <li><a href="/">Hjem</a></li>
-    <li><a href="/experimental/reports">Rapporter</a></li>
+    <li><a href="/reports">Rapporter</a></li>
     <li class="is-active"><a href="#" aria-current="page">{item.label.nor}</a></li>
   </ul>
 </nav>
@@ -58,12 +62,7 @@
     <ActivityStream stream={item.activityStream} title="Vurdering(er)" showMap="false"></ActivityStream>
     {/if}
 
-    {#if item.description}
-    <div class="content">
-      <h2 class="title has-text-centered">Rapport</h2>
-      {@html item.description}
-    </div>
-    {/if}
+    <Block content={item.description.nor}/>
 
     {#if item.referencedBy && item.referencedBy.length != 0}
     <Cards cards={item.referencedBy} title="Relatert til"></Cards>
@@ -83,6 +82,8 @@
         {/each}
     </div>
     {/if}
+
+    <MadeObjectFooter footerData={item} />
 
   </div>
 </main>

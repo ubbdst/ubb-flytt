@@ -1,5 +1,6 @@
 <script>
   import ActivityStream from './ActivityStream'
+  import Block from './Block'
   import Cards from './Cards'
   import MediaObjects from './MediaObjects'
   import ConditionAssignment from './ConditionAssignment'
@@ -119,7 +120,7 @@
     <div class="box">
       <div class="content">
         <h2 class="title has-text-centered">Rapport</h2>
-        {@html item.description}
+          <Block content={item.description.nor}/>
       </div>
     </div>
     {/if}

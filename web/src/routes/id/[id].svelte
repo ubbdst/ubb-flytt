@@ -1,7 +1,5 @@
 <script context="module">
   import client from '../../sanityClient'
-  import blocksToHtml from '@sanity/block-content-to-html'
-  import serializers from '../../components/serializers'
   import jsonata from 'jsonata'
 
 	export async function preload({ params }) {
@@ -26,8 +24,33 @@
             _type,
             preferredIdentifier,
             label,
+            headline,
+            text,
             mainRepresentation,
-            media
+            media,
+            media[]{
+              caption,
+              credit,
+              "url": asset->url
+            },
+            events[] {
+              _type == 'reference' => @->{
+                ...,
+                "media": media{
+                  caption,
+                  credit,
+                  "url": coalesce(url, asset->url)
+                }
+              },
+              _type == 'timelineSlide' => @{
+                ...,
+                "media": media[0]{
+                  caption,
+                  credit,
+                  "url": coalesce(url, asset->url)
+                }
+              }
+            }
         	},
           ...,
           children[]{
@@ -131,14 +154,6 @@
 
     const query = filter + projection
     let item = await client.fetch(query, { id }).catch(err => this.error(500, err))
-
-    if (item.description) { 
-      if (item.description.nor) {
-        item.description = blocksToHtml({blocks: item.description.nor, serializers, ...client.clientConfig})
-      }else{
-        item.description = blocksToHtml({blocks: item.description, serializers, ...client.clientConfig})
-      }
-    };
 
     const expression = jsonata("**.geoJSON[]");
     let result = expression.evaluate(item);

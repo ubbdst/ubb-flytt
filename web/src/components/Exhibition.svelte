@@ -1,5 +1,6 @@
 <script>
   import ActivityStream from './ActivityStream'
+  import Block from './Block'
   import Cards from './Cards'
   import MediaObjects from './MediaObjects'
   import ConditionAssignment from './ConditionAssignment'
@@ -48,7 +49,7 @@
 
     {#if item.description}
     <div class="content">
-      {@html item.description}
+      <Block content={item.description.nor || item.description}/>
     </div>
     {/if}
 

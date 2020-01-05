@@ -3,6 +3,7 @@
   import blocksToHtml from '@sanity/block-content-to-html'
   import serializers from './serializers'
   import dayjs from 'dayjs'
+  
   export let data
 
     /* console.log(JSON.stringify(data, undefined, 2)); */
