@@ -24,7 +24,6 @@
 .navbar{
 	z-index: 1200;
 }
-
 .navbar-brand{
 	font-family: 'Big Shoulders Text', cursive;
 	font-size: 1.5em;

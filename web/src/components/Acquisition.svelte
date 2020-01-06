@@ -70,7 +70,7 @@
           <h3 class="title is-hidden is-size-5">Til</h3>
           <p class="has-text-centered"><i data-fa-transform="flip-h" class="fas fa-hand-holding-heart fa-2x"></i></p>
           <ul>
-            {#each item.transferred_title_to as to, i}<li><a href="/places/{to._id}">{to.label}</a></li>{/each}
+            {#each item.transferred_title_to as to, i}<li><a href="/id/{to._id}">{to.label}</a></li>{/each}
           </ul>
           {/if}
         </div>
