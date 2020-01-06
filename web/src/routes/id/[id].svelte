@@ -6,7 +6,7 @@
 		// the `slug` parameter is available because
     // this file is called [slug].html
     const { id } = params
-    const filter = '*[_id == $id][0]'
+    const filter = '*[_id == $id && accessState == "open"][0]'
     const projection = `{
       ...,
       mainRepresentation{
@@ -53,6 +53,8 @@
             }
         	},
           ...,
+          "before": before[]{asset->{url}},
+          "after": after[]{asset->{url}},
           children[]{
             ...
           }

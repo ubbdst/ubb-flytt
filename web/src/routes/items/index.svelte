@@ -4,7 +4,7 @@
 	import Cards from '../../components/Cards'
 
 	export function preload({ params, query }) {
-    return client.fetch('*[_type == "madeObject" && !references( *[_type == "typeClass" && references( *[_type == "systemCategory" && label.nor == "Seksjonstype"]._id) ]._id) ] |order(preferredIdentifier desc)').then(items => {
+    return client.fetch('*[_type == "madeObject" && accessState == "open" && !references( *[_type == "typeClass" && references( *[_type == "systemCategory" && label.nor == "Seksjonstype"]._id) ]._id) ] |order(preferredIdentifier desc)').then(items => {
 			return { items };
 		}).catch(err => this.error(500, err));
 	}

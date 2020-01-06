@@ -9,8 +9,8 @@
   export let caption
   export let source
   export let alt
-  export let id
-  export let rights
+/*   export let id
+  export let rights */
 
   // Get a pre-configured url-builder from your sanity client
   const builder = imageUrlBuilder(client)

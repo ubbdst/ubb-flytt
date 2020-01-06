@@ -21,6 +21,7 @@ import localeBlockReport from './texts/localeBlockReport'
 import mainRepresentation from './images/mainRepresentation'
 import figure from './images/figure'
 import mainImage from './images/mainImage'
+import imageCompare from './images/imageCompare'
 
 // Document schemas
 import actor from './documents/actor'
@@ -159,6 +160,7 @@ export default createSchema({
     treatment,
     treatmentAssessment,
     sampling,
+    imageCompare,
     // Text
     genericText,
     reportText,

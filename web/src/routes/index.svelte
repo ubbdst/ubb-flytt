@@ -1,7 +1,7 @@
 <script context="module">
   import client from '../sanityClient'
 	export function preload({ params, query }) {
-    return client.fetch('{"articles": *[_type == "post" && defined(slug.current) && publishedAt < now()]|order(publishedAt desc), "siteSettings": *[_type == "siteSettings"]}').then(data => {
+    return client.fetch('{"articles": *[_type == "linguisticObject" && defined(slug.current) && publishedAt < now()]|order(publishedAt desc), "siteSettings": *[_type == "siteSettings"]}').then(data => {
 			return { data };
 		}).catch(err => this.error(500, err));
 	}
@@ -43,7 +43,6 @@
 
 <section class="section">
 	<div class="container">
-
 		<ul>
 		{#each data.articles as post}
 			<!-- we're using the non-standard `rel=prefetch` attribute to
@@ -51,7 +50,7 @@
 					the user hovers over the link or taps it, instead of
 					waiting for the 'click' event -->
 			<li class="post">
-				<h1><a rel='prefetch' href='articles/{post.slug.current}'>{post.label}</a></h1>
+				<h1><a rel='prefetch' href='articles/{post.slug.current}'>{post.label.nor}</a></h1>
 				<h2>({formatDate(post.publishedAt)})</h2>
 			</li>
 		{/each}

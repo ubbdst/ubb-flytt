@@ -95,6 +95,7 @@ export default {
         {type: 'timeline'}
       ]
     },
-    {type: 'instagramPost'}
+    {type: 'instagramPost'},
+    {type: 'imageCompare'}
   ]
 }

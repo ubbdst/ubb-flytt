@@ -6,14 +6,14 @@
   import ConditionAssignment from './ConditionAssignment'
   import Map from './Map'
   import Timeline from './Timeline'
-  
   import MainImage from './MainImage'
   import BlockMadeObject from './BlockMadeObject'
   import BlockImage from './BlockImage'
   import ItemList from './ItemList'
   import InstagramPost from './InstagramPost'
   import InternalLink from './internalLink'
-  
+  import ImageCompare from './ImageCompare.svelte';
+
   function formatDate(date) {
     return new Date(date).toLocaleDateString()
   }
@@ -91,6 +91,17 @@
           childNodes: props.children,
           props: {
             data: props.node
+          }
+        };
+      },
+      imageCompare: props => {
+        return {
+          component: ImageCompare,
+          childNodes: props.children,
+          props: {
+            before: props.node.before[0].asset.url,
+            after: props.node.after[0].asset.url,
+            contain: true
           }
         };
       }
