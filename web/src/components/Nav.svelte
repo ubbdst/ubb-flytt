@@ -40,7 +40,7 @@
   </p>
 </div>
 
-<nav class="navbar has-shadow is-light is-fixed-bottom">
+<nav class="navbar has-shadow is-white is-fixed-bottom">
 	<div class="navbar-brand">
 		<a class="navbar-item has-text-black" href=".">
 			Sælen
