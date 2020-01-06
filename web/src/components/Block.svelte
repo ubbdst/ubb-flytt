@@ -124,6 +124,4 @@
 
 </style>
 
-<div class="content">
-  <BlockContent blocks={content} serializers={customSerializers} />
-</div>
+<BlockContent blocks={content} serializers={customSerializers} />

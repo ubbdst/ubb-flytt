@@ -165,7 +165,7 @@
       item.geoJSON.all = result
     };
     
-    console.log(JSON.stringify(item, null, 2));
+    // console.log(JSON.stringify(item, null, 2));
     return { 
       item: {
         ...item,

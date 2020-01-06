@@ -25,9 +25,11 @@
 </style>
 
 <div class="media">
+  {#if image}
   <figure class="media-left">
     <img class="image is-64x64" alt="{alt ? alt : ''}" src={urlFor(image).width(250).url()} />
   </figure>
+  {/if}
   <div class="media-content">
     <div class="content">
       <h1>

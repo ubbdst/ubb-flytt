@@ -47,7 +47,7 @@
 </nav>
 
 <main class="section">
-  <div class="container">
+  <div class="text container">
     <h1 class="title is-size-1 has-text-centered">{item.label.nor}</h1>
     
     {#if item.concerned && item.concerned.length > 0}
@@ -62,7 +62,9 @@
     <ActivityStream stream={item.activityStream} title="Vurdering(er)" showMap="false"></ActivityStream>
     {/if}
 
-    <Block content={item.description.nor}/>
+    <div class="content">
+      <Block content={item.description.nor}/>
+    </div>
 
     {#if item.referencedBy && item.referencedBy.length != 0}
     <Cards cards={item.referencedBy} title="Relatert til"></Cards>

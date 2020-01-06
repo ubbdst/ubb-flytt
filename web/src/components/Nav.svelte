@@ -26,7 +26,7 @@
 }
 .navbar-brand{
 	font-family: 'Big Shoulders Text', cursive;
-	font-size: 1.5em;
+	font-size: 1.4em;
 }
 .brand{
 	font-family: 'Big Shoulders Text', cursive;
