@@ -96,7 +96,7 @@
 
   onMount(() => {
     const options = {
-      debug: true
+      debug: false
     }
     async function timeline()  { 
       await tl;

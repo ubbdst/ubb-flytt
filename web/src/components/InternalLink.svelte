@@ -1,5 +1,4 @@
 <script>
-  export let text
   export let id
 </script>
 

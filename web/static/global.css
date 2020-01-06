@@ -9,6 +9,10 @@ a {
 	color: black !important;
 }
 
+.selected{
+	font-weight: bolder;
+}
+
 .box{
 	margin-top: 2em;
 }

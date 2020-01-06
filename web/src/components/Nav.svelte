@@ -11,6 +11,11 @@
 				burger.classList.toggle('is-active');
 				nav.classList.toggle('is-active');
 			});
+
+			nav.addEventListener('click', function(){
+				burger.classList.remove('is-active');
+				nav.classList.remove('is-active');
+			});
 		})();
 	})
 </script>
@@ -21,7 +26,8 @@
 }
 
 .navbar-brand{
-	font-weight: bolder;
+	font-family: 'Big Shoulders Text', cursive;
+	font-size: 1.5em;
 }
 .brand{
 	font-family: 'Big Shoulders Text', cursive;
@@ -38,7 +44,7 @@
 <nav class="navbar has-shadow is-light is-fixed-bottom">
 	<div class="navbar-brand">
 		<a class="navbar-item has-text-black" href=".">
-			Sælen<span class="is-hidden-mobile">-samlingen</span>
+			Sælen
 		</a>
 		<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
 			<span aria-hidden="true"></span>
@@ -51,14 +57,26 @@
 					the blog data when we hover over the link or tap it on a touchscreen -->
 	<div id="navMenu" class="navbar-menu">
 		<div class="navbar-start">
-			<a rel=prefetch class='navbar-item has-text-black {segment === "articles" ? "selected" : ""}' href='articles'>Artikler</a>
-			<a rel=prefetch class='navbar-item has-text-black {segment === "timelines" ? "selected" : ""}' href='timelines'>Tidslinjer</a>
-			<a rel=prefetch class='navbar-item has-text-black {segment === "map" ? "selected" : ""}' href='map'>Kart</a>
-			<a rel=prefetch class='navbar-item has-text-black {segment === "places" ? "selected" : ""}' href='places'>Steder</a>
-			<a rel=prefetch class='navbar-item has-text-black {segment === "events" ? "selected" : ""}' href='events'>Hendelser</a>
-			<a rel=prefetch class='navbar-item has-text-black {segment === "actors" ? "selected" : ""}' href='actors'>Aktører</a>
 			<a rel=prefetch class='navbar-item has-text-black {segment === "items" ? "selected" : ""}' href='items'>Objekt</a>
-			<a rel=prefetch class='navbar-item has-text-black {segment === "experimental" ? "selected" : ""}' href='experimental'>Eksperiment</a>
+			<a rel=prefetch class='navbar-item has-text-black {segment === "actors" ? "selected" : ""}' href='actors'>Aktører</a>
+			<a rel=prefetch class='navbar-item has-text-black {segment === "events" ? "selected" : ""}' href='events'>Hendelser</a>
+			<a rel=prefetch class='navbar-item has-text-black {segment === "places" ? "selected" : ""}' href='places'>Steder</a>
+			<a rel=prefetch class='navbar-item has-text-black {segment === "articles" ? "selected" : ""}' href='articles'>Artikler</a>
+			<a rel=prefetch class='navbar-item has-text-black {segment === "exhibitions" ? "selected" : ""}' href="/exhibitions">Utstillinger</a>
+			<div class="navbar-item has-dropdown-up is-hoverable">
+        <a class="navbar-link">
+          Mer
+        </a>
+
+        <div class="navbar-dropdown">
+					<a rel=prefetch class='navbar-item has-text-black {segment === "reports" ? "selected" : ""}' href="/reports">Rapporter</a>
+					<a rel=prefetch class='navbar-item has-text-black {segment === "moves" ? "selected" : ""}' href="/moves">Flytt av objekt</a>
+					<a rel=prefetch class='navbar-item has-text-black {segment === "acquisitions" ? "selected" : ""}' href="/acquisitions">Akkvisisjoner</a>
+					<a rel=prefetch class='navbar-item has-text-black {segment === "types" ? "selected" : ""}' href="/types">Typer</a>
+					<a rel=prefetch class='navbar-item has-text-black {segment === "timelines" ? "selected" : ""}' href='timelines'>Tidslinjer</a>
+					<a rel=prefetch class='navbar-item has-text-black {segment === "map" ? "selected" : ""}' href='map'>Kart</a>
+        </div>
+      </div>
 		</div>
 	</div>
 </nav>

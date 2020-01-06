@@ -1,30 +1,76 @@
 <script context="module">
-  import blocksToHtml from '@sanity/block-content-to-html'
   import client from '../../sanityClient'
-  import serializers from '../../components/serializers'
+
+  import Block from '../../components/Block'
+
 	export async function preload({ params }) {
 		// the `slug` parameter is available because
     // this file is called [slug].html
     const { slug } = params
-    const filter = '*[_type == "post" && slug.current == $slug][0]'
+    const filter = '*[_type == "linguisticObject" && slug.current == $slug][0]'
     const projection = `{
       ...,
-      body[]{
-        ...,
-        children[]{
+      body{
+        nor[]{
+          _type == 'reference' => @->{
+            _id,
+            _type,
+            preferredIdentifier,
+            label,
+            headline,
+            text,
+            mainRepresentation,
+            media,
+            media[]{
+              caption,
+              credit,
+              "url": asset->url
+            },
+            events[] {
+              _type == 'reference' => @->{
+                ...,
+                "media": media{
+                  caption,
+                  credit,
+                  "url": coalesce(url, asset->url)
+                }
+              },
+              _type == 'timelineSlide' => @{
+                ...,
+                "media": media[0]{
+                  caption,
+                  credit,
+                  "url": coalesce(url, asset->url)
+                }
+              }
+            }
+        	},
           ...,
-          _type == 'authorReference' => {
-            author->
+          children[]{
+            ...
           }
         }
-      }
+      },
+      body[]{
+        _type == 'reference' => @->{
+          _id,
+          _type,
+          preferredIdentifier,
+          label,
+          mainRepresentation,
+          media
+        },
+        ...,
+        children[]{
+          ...
+        }
+      },
     }`
 
     const query = filter + projection
     const post = await client.fetch(query, { slug }).catch(err => this.error(500, err))
     return { post: {
       ...post,
-      body: blocksToHtml({blocks: post.body, serializers, ...client.clientConfig })
     } };
 	}
 </script>
@@ -53,15 +99,15 @@
   <ul>
     <li><a href="/">Hjem</a></li>
     <li><a href="/articles">Artikler</a></li>
-    <li class="is-active"><a href="#" aria-current="page">{post.label}</a></li>
+    <li class="is-active"><a href="#" aria-current="page">{post.label.nor}</a></li>
   </ul>
 </nav>
 
 <main class="section">
-  <div class="container">
+  <div class="text container">
     <div class='content'>
-    <h1 class="title">{post.label}</h1>
-      {@html post.body}
+    <h1 class="title">{post.label.nor}</h1>
+     <Block content={post.body.nor}/>
     </div>
   </div>
 </main>
