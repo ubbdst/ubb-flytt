@@ -130,14 +130,14 @@
       },
       movedFrom->,
       movedTo->,
-      transferred_title_of[]->{
+      transferredTitleOf[]->{
         _id,
         preferredIdentifier,
         label,
         mainRepresentation
       },
-      transferred_title_from[]->,
-      transferred_title_to[]->,
+      transferredTitleFrom[]->,
+      transferredTitleTo[]->,
       carriedOutBy[]->{
         _id,
         label,

@@ -81,7 +81,7 @@ a {
 	color: dark-grey;
 }
 
-.text.container {
+.text.container, .text.content {
 	max-width: 50em !important;
 	margin: auto;
 }

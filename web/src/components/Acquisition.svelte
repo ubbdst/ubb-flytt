@@ -26,7 +26,7 @@
     return new Date(date).toLocaleDateString()
   }
 
-  let titleForAcquisition = 'Akkvisisjon fra ' + item.transferred_title_from[0].label + ' til ' + item.transferred_title_to[0].label
+  let titleForAcquisition = 'Akkvisisjon fra ' + item.transferredTitleFrom[0].label + ' til ' + item.transferredTitleTo[0].label
 
 </script>
 
@@ -47,16 +47,17 @@
 
 <main class="section">
   <div class="container">
-    <h1 class="title is-hidden has-text-centered">{titleForAcquisition}</h1>
+    <h1 class="title has-text-centered">{item.label.nor}</h1>
+    <h2 class="subtitle has-text-centered">{titleForAcquisition}</h2>
 
     <div class="has-background-grey-lighter box">
       <div class="columns">
         <div class="column has-text-centered">
-          {#if item.transferred_title_from}
+          {#if item.transferredTitleFrom}
           <h3 class="title is-hidden is-size-5">Fra</h3>
           <p class="has-text-centered"><i class="fas fa-hand-holding-heart fa-2x"></i></p>
           <ul>
-            {#each item.transferred_title_from as from, i}<li><a href="/id/{from._id}">{from.label}</a></li>{/each}
+            {#each item.transferredTitleFrom as from, i}<li><a href="/id/{from._id}">{from.label}</a></li>{/each}
           </ul>
           {/if}
         </div>
@@ -66,11 +67,11 @@
         </div>
 
         <div class="column has-text-centered">
-          {#if item.transferred_title_to}
+          {#if item.transferredTitleTo}
           <h3 class="title is-hidden is-size-5">Til</h3>
           <p class="has-text-centered"><i data-fa-transform="flip-h" class="fas fa-hand-holding-heart fa-2x"></i></p>
           <ul>
-            {#each item.transferred_title_to as to, i}<li><a href="/id/{to._id}">{to.label}</a></li>{/each}
+            {#each item.transferredTitleTo as to, i}<li><a href="/id/{to._id}">{to.label}</a></li>{/each}
           </ul>
           {/if}
         </div>
@@ -109,8 +110,8 @@
           </ul>
           {/if}
 
-          {#if item.transferred_title_of && item.transferred_title_of.length > 0}
-          <MediaObjects objects={item.transferred_title_of}></MediaObjects>
+          {#if item.transferredTitleOf && item.transferredTitleOf.length > 0}
+          <MediaObjects objects={item.transferredTitleOf}></MediaObjects>
           {/if}
         </div>
       </div>
