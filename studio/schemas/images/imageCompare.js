@@ -7,9 +7,7 @@ export default {
       name: 'label',
       title: 'Tittel',
       titleEN: 'Title',
-      description: '',
-      descriptionEN: '',
-      type: 'string',
+      type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
@@ -39,11 +37,17 @@ export default {
         }
       ],
       validation: Rule => Rule.required()
+    },
+    {
+      name: 'caption',
+      title: 'Bildetekst',
+      titleEN: 'Caption',
+      type: 'localeString'
     }
   ],
   preview: {
     select: {
-      title: 'label'
+      title: 'label.nor'
     }
   }
 }

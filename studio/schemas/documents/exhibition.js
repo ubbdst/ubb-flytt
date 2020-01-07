@@ -59,6 +59,18 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'creator',
+      title: 'Skaper',
+      titleEN: 'Author',
+      description: 'Registrer en eller flere aktører som har skapt dette dokumentet, gjerne med hvilken rolle de hadde.',
+      type: 'array',
+      of: [
+        {
+          type: 'actorInRole'
+        }
+      ]
+    },
+    {
       name: 'description',
       title: 'Beskrivelse',
       titleEN: 'Description',

@@ -90,6 +90,7 @@ export default {
         {type: 'formation'},
         {type: 'joining'},
         {type: 'leaving'},
+        {type: 'relocation'},
         {type: 'dissolution'}
       ],
       options: {

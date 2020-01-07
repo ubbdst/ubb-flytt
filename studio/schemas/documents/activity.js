@@ -54,6 +54,13 @@ export default {
       of: [{type: 'actorInRole'}]
     },
     {
+      name: 'hasParticipant',
+      title: 'Hadde medvirkende',
+      titleEN: 'Had participant',
+      type: 'array',
+      of: [{type: 'actorInRole'}]
+    },
+    {
       name: 'target',
       title: 'Mål',
       titleEN: 'Target',
@@ -71,6 +78,20 @@ export default {
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
+    },
+    {
+      name: 'tookPlaceAt',
+      title: 'Tok sted ved',
+      titleEN: 'Took place at',
+      description: '',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'place'}
+          ]
+        }
+      ]
     },
     {
       name: 'description',
@@ -143,7 +164,7 @@ export default {
       ]
     },
     {
-      name: 'usedspecificObject',
+      name: 'usedSpecificObject',
       title: 'Brukte spesifikt objekt',
       titleEN: 'Used specific object',
       description: '',
@@ -176,7 +197,7 @@ export default {
       ]
     },
     {
-      name: 'usedspecificTechnique',
+      name: 'usedSpecificTechnique',
       title: 'Brukte spesifikk teknikk',
       titleEN: 'Used specific technique',
       description: '',
@@ -205,6 +226,26 @@ export default {
             filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
             filterParams: {sysCat: 'purposeType'}
           }
+        }
+      ]
+    },
+    {
+      name: 'motivatedBy',
+      title: 'Motivert av',
+      titleEN: 'Motivated by',
+      description: '',
+      fieldset: 'purpose',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'designOrProcedure'},
+            {type: 'event'},
+            {type: 'report'},
+            {type: 'acquisition'},
+            {type: 'exhibition'},
+            {type: 'project'}
+          ]
         }
       ]
     },

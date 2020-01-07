@@ -1,24 +1,20 @@
-import {FaEmpire} from 'react-icons/fa'
+import {FaTruckLoading} from 'react-icons/fa'
+
+var capitalize = require('capitalize')
 
 export default {
-  title: 'Period',
-  name: 'period',
-  description: 'Should be fetched from KulturNav',
+  title: 'Relocation',
+  name: 'relocation',
   type: 'document',
   initialValue: {
     editorialState: 'workingDraft',
     accessState: 'secret'
   },
-  icon: FaEmpire,
+  icon: FaTruckLoading,
   fieldsets: [
     {
       name: 'state',
       title: 'State',
-      options: {collapsible: true, collapsed: false}
-    },
-    {
-      name: 'minimum',
-      title: 'Mandatory fields for minimum registration',
       options: {collapsible: true, collapsed: false}
     }
   ],
@@ -57,52 +53,12 @@ export default {
       }
     },
     {
-      name: 'label',
-      title: 'Tittel',
-      titleEN: 'Title',
-      fieldset: 'minimum',
-      type: 'localeString',
-      validation: Rule => Rule.required()
-    },
-    {
-      name: 'hasType',
-      title: 'Klassifisert som',
-      titleEN: 'Classified as',
-      type: 'array',
-      of: [
-        {
-          type: 'reference',
-          to: [{type: 'typeClass'}],
-          options: {
-            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
-            filterParams: {sysCat: 'Hendelsestype'}
-          }
-        }
-      ],
-      validation: Rule => Rule.required()
-    },
-    {
-      name: 'description',
-      title: 'Beskrivelse',
-      titleEN: 'Description',
-      description: 'A shortish description',
-      fieldset: 'minimum',
-      type: 'localeBlock'
-    },
-    {
       name: 'timespan',
       title: 'Tidsspenn',
       titleEN: 'Timespan',
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
-    },
-    {
-      name: 'location',
-      title: 'Lokasjon',
-      titleEN: 'Location',
-      description: 'Where the hell did this happen?!',
-      type: 'geopoint'
     },
     {
       name: 'tookPlaceAt',
@@ -119,40 +75,69 @@ export default {
       ]
     },
     {
-      name: 'media',
-      title: 'Media',
-      titleEN: 'Media',
-      type: 'mediaObject'
-    },
-    {
-      name: 'consistsOf',
-      title: 'Består av',
-      titleEN: 'consistsOf',
+      name: 'moved',
+      title: 'Flyttet',
+      titleEN: 'Moved',
       type: 'array',
       of: [
         {type: 'reference',
           to: [
-            {type: 'period'},
+            {type: 'group'},
+            {type: 'actor'}
+          ]
+        }
+      ]
+    },
+    {
+      name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
+      type: 'localeBlockReport'
+    },
+    {
+      name: 'movedFrom',
+      title: 'Flyttet fra',
+      titleEN: 'Moved from',
+      type: 'reference',
+      to: [
+        {type: 'place'}
+      ]
+    },
+    {
+      name: 'movedTo',
+      title: 'Flyttet til',
+      titleEN: 'Moved to',
+      type: 'reference',
+      to: [
+        {type: 'place'}
+      ]
+    },
+    {
+      name: 'wasMotivatedBy',
+      title: 'Motivert av',
+      titleEN: 'Motivated by',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
             {type: 'event'}
           ]
         }
-      ],
-      options: {
-        editModal: 'fullscreen'
-      }
+      ]
     }
   ],
   preview: {
     select: {
-      type: 'hasType.0.label.nor',
-      title: 'label.nor'
+      type: '_type',
+      published: 'accessState'
     },
     prepare (selection) {
-      const {title, type} = selection
+      const {type, published} = selection
+      const secret = published === 'secret' ? '🔒' : ''
 
       return {
-        title: title,
-        subtitle: type
+        title: `${capitalize(type)}`,
+        subtitle: secret
       }
     }
   }

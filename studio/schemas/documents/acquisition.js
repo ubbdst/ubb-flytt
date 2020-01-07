@@ -58,14 +58,38 @@ export default {
       validation: Rule => Rule.required()
     },
     {
+      name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
+      type: 'array',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Akkvisisjonstype'}
+          }
+        }
+      ]
+    },
+    {
       name: 'description',
       title: 'Beskrivelse',
       titleEN: 'Description',
       type: 'localeBlockReport'
     },
     {
+      name: 'timespan',
+      title: 'Tidsspenn',
+      titleEN: 'Timespan',
+      type: 'array',
+      of: [{type: 'timespan'}],
+      validation: Rule => Rule.length(1).warning('You should only register one timespan')
+    },
+    {
       name: 'transferredTitleTo',
-      title: 'Overfrte tittel til',
+      title: 'Overførte tittel til',
       titleEN: 'Transferred title to',
       description: '',
       type: 'array',
@@ -120,6 +144,29 @@ export default {
       options: {
         editModal: 'fullscreen'
       }
+    },
+    {
+      name: 'documentedIn',
+      title: 'Documented in',
+      titleEN: 'Dokumentert i',
+      type: 'array',
+      of: [{type: 'file'}]
     }
-  ]
+  ],
+  preview: {
+    select: {
+      type: 'hasType.0.label.nor',
+      title: 'label.nor',
+      published: 'accessState'
+    },
+    prepare (selection) {
+      const {type, title, published} = selection
+      const secret = published === 'secret' ? '🔒' : ''
+
+      return {
+        title: title,
+        subtitle: secret + type
+      }
+    }
+  }
 }

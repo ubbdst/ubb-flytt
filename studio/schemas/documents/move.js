@@ -70,6 +70,20 @@ export default {
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
+      name: 'tookPlaceAt',
+      title: 'Tok sted ved',
+      titleEN: 'Took place at',
+      description: 'Det generelle området eller stedet dette skjedde',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'place'}
+          ]
+        }
+      ]
+    },
+    {
       name: 'moved',
       title: 'Flyttet',
       titleEN: 'Moved',
@@ -77,7 +91,9 @@ export default {
       of: [
         {type: 'reference',
           to: [
-            {type: 'madeObject'}
+            {type: 'madeObject'},
+            {type: 'group'},
+            {type: 'actor'}
           ]
         }
       ]

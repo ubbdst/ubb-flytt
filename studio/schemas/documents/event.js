@@ -57,6 +57,14 @@ export default {
       }
     },
     {
+      name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
+      fieldset: 'minimum',
+      type: 'localeString',
+      validation: Rule => Rule.required()
+    },
+    {
       name: 'hasType',
       title: 'Klassifisert som',
       titleEN: 'Classified as',
@@ -71,14 +79,6 @@ export default {
           }
         }
       ],
-      validation: Rule => Rule.required()
-    },
-    {
-      name: 'label',
-      title: 'Tittel',
-      titleEN: 'Title',
-      fieldset: 'minimum',
-      type: 'localeString',
       validation: Rule => Rule.required()
     },
     {
@@ -103,6 +103,20 @@ export default {
       titleEN: 'Location',
       description: 'Where the hell did this happen?!',
       type: 'geopoint'
+    },
+    {
+      name: 'tookPlaceAt',
+      title: 'Tok sted ved',
+      titleEN: 'Took place at',
+      description: 'Det generelle området eller stedet dette skjedde',
+      type: 'array',
+      of: [
+        {type: 'reference',
+          to: [
+            {type: 'place'}
+          ]
+        }
+      ]
     },
     {
       name: 'media',

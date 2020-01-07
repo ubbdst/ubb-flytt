@@ -213,6 +213,28 @@ export default () =>
                     )
                 ),
               S.listItem()
+                .title('Upubliserte poster')
+                .icon(TiUser)
+                .child(
+                // List out all categories
+                  S.documentTypeList('actor')
+                    .title('Upubliserte objekter')
+                    .filter(
+                      '_type == "actor" && accessState == "secret"'
+                    )
+                ),
+              S.listItem()
+                .title('Til gjennomgang')
+                .icon(TiUser)
+                .child(
+                // List out all categories
+                  S.documentTypeList('actor')
+                    .title('Til gjennomgang')
+                    .filter(
+                      '_type == "actor" && editorialState == "review"'
+                    )
+                ),
+              S.listItem()
                 .title('Alle Aktører')
                 .icon(TiUser)
                 .child(
@@ -252,6 +274,28 @@ export default () =>
                           '_type == "group" && $catId in hasType[]._ref'
                         )
                         .params({catId})
+                    )
+                ),
+              S.listItem()
+                .title('Upubliserte poster')
+                .icon(TiGroup)
+                .child(
+                // List out all categories
+                  S.documentTypeList('group')
+                    .title('Upubliserte objekter')
+                    .filter(
+                      '_type == "group" && accessState == "secret"'
+                    )
+                ),
+              S.listItem()
+                .title('Til gjennomgang')
+                .icon(TiGroup)
+                .child(
+                // List out all categories
+                  S.documentTypeList('group')
+                    .title('Til gjennomgang')
+                    .filter(
+                      '_type == "group" && editorialState == "review"'
                     )
                 ),
               S.listItem()

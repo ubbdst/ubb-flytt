@@ -34,6 +34,7 @@ import visualItem from './documents/visualItem'
 import event from './documents/event'
 import experimental from './documents/experimental'
 import move from './documents/move'
+import relocation from './documents/relocation'
 import place from './documents/place'
 import designOrProcedure from './documents/designOrProcedure'
 import project from './documents/project'
@@ -113,6 +114,7 @@ export default createSchema({
     place,
     acquisition,
     move,
+    relocation,
     report,
     project,
     linguisticObject,

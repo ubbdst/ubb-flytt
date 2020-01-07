@@ -81,7 +81,7 @@ export default {
       name: 'concerned',
       title: 'Omhandler',
       titleEN: 'About',
-      description: 'Which collection(s) or object(s) is this an assessment of.',
+      description: 'Which collection(s) or object(s) is this project was about.',
       type: 'array',
       of: [
         {type: 'reference',

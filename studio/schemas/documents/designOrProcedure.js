@@ -58,12 +58,6 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      name: 'description',
-      title: 'Beskrivelse',
-      titleEN: 'Description',
-      type: 'localeBlock'
-    },
-    {
       name: 'hasType',
       title: 'Klassifisert som',
       titleEN: 'Classified as',
@@ -79,6 +73,12 @@ export default {
         }
       ],
       validation: Rule => Rule.required()
+    },
+    {
+      name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
+      type: 'localeBlock'
     },
     {
       name: 'documentedIn',

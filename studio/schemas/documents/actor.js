@@ -93,7 +93,8 @@ export default {
       name: 'activityStream',
       title: 'Aktivitetsstrøm',
       titleEN: 'Activity stream',
-      description: 'Add all known events this smuck did',
+      description: 'En aktivitetsstrøm samler alle hendelser knyttet til denne aktøren. Fødsel og død er "inline" til personen, mens andre aktiviteter som ekteskap er egne dokument.',
+      descriptionEN: 'Add all known events this smuck did',
       type: 'array',
       of: [
         {type: 'birth'},
@@ -105,7 +106,7 @@ export default {
       }
     },
     {
-      name: 'names',
+      name: 'name',
       title: 'Navn',
       titleEN: 'Names',
       description: 'Add all known names and pseudonyms you wish',
