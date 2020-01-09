@@ -99,6 +99,7 @@ export default {
       of: [
         {type: 'birth'},
         {type: 'reference', to: [{type: 'activity'}]},
+        {type: 'relocation'},
         {type: 'death'}
       ],
       options: {

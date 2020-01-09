@@ -5,8 +5,52 @@ export default {
   name: 'place',
   description: 'Should be fetched from KulturNav',
   type: 'document',
+  initialValue: {
+    editorialState: 'published',
+    accessState: 'open'
+  },
   icon: FaMapMarker,
+  fieldsets: [
+    {
+      name: 'state',
+      title: 'State',
+      options: {collapsible: true, collapsed: true}
+    }
+  ],
   fields: [
+    {
+      name: 'editorialState',
+      title: 'Redaksjonell status',
+      titleEN: 'Editorial state',
+      type: 'string',
+      fieldset: 'state',
+      validation: Rule => Rule.required(),
+      options: {
+        list: [
+          {title: 'Utkast', value: 'workingDraft'},
+          {title: 'Trenger gjennomgang', value: 'review'},
+          {title: 'Publisert', value: 'published'}
+        ],
+        layout: 'radio',
+        direction: 'horizontal'
+      }
+    },
+    {
+      name: 'accessState',
+      title: 'Tilgangsstatus',
+      titleEN: 'Access state',
+      type: 'string',
+      fieldset: 'state',
+      validation: Rule => Rule.required(),
+      options: {
+        list: [
+          {title: 'Privat', value: 'secret'},
+          {title: 'Open', value: 'open'}
+        ],
+        layout: 'radio',
+        direction: 'horizontal'
+      }
+    },
     {
       name: 'label',
       title: 'Navn',
@@ -28,8 +72,7 @@ export default {
             filterParams: {sysCat: 'Stedstype'}
           }
         }
-      ],
-      validation: Rule => Rule.required()
+      ]
     },
     {
       name: 'description',

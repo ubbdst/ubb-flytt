@@ -53,6 +53,13 @@ export default {
       }
     },
     {
+      name: 'label',
+      title: 'Tittel',
+      titleEN: 'Title',
+      description: 'Overskriver den genererte standardtittelen',
+      type: 'localeString'
+    },
+    {
       name: 'carriedOutBy',
       title: 'Utført av',
       titleEN: 'Carried out by',

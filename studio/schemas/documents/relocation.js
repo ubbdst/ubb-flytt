@@ -61,6 +61,24 @@ export default {
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
+      name: 'movedFrom',
+      title: 'Flyttet fra',
+      titleEN: 'Moved from',
+      type: 'reference',
+      to: [
+        {type: 'place'}
+      ]
+    },
+    {
+      name: 'movedTo',
+      title: 'Flyttet til',
+      titleEN: 'Moved to',
+      type: 'reference',
+      to: [
+        {type: 'place'}
+      ]
+    },
+    {
       name: 'tookPlaceAt',
       title: 'Tok sted ved',
       titleEN: 'Took place at',
@@ -93,24 +111,6 @@ export default {
       title: 'Beskrivelse',
       titleEN: 'Description',
       type: 'localeBlockReport'
-    },
-    {
-      name: 'movedFrom',
-      title: 'Flyttet fra',
-      titleEN: 'Moved from',
-      type: 'reference',
-      to: [
-        {type: 'place'}
-      ]
-    },
-    {
-      name: 'movedTo',
-      title: 'Flyttet til',
-      titleEN: 'Moved to',
-      type: 'reference',
-      to: [
-        {type: 'place'}
-      ]
     },
     {
       name: 'wasMotivatedBy',

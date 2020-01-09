@@ -64,6 +64,7 @@ export default {
         {type: 'collection'},
         {type: 'group'},
         {type: 'event'},
+        {type: 'place'},
         {type: 'material'},
         {type: 'timeline'},
         {type: 'measurement'}
