@@ -101,7 +101,19 @@
           props: {
             before: props.node.before[0].asset.url,
             after: props.node.after[0].asset.url,
-            contain: true
+            contain: true,
+            caption: props.node.caption.nor
+          }
+        };
+      },
+      place: props => {
+        return {
+          component: Map,
+          childNodes: props.children,
+          props: {
+            src: props.node,
+            label: props.node.label.nor,
+            height: '300px'
           }
         };
       }

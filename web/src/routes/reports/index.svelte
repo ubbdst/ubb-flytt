@@ -5,7 +5,7 @@
   import imageUrlBuilder from '@sanity/image-url'
 
 	export function preload({ params, query }) {
-    return client.fetch('*[_type == "report" && accessState == "open"]|order(preferredIdentifier desc)').then(items => {
+    return client.fetch('*[_type == "report" && accessState == "open"]|order(preferredIdentifier desc){..., hasType[]->{ _id, label }}').then(items => {
 			return { items };
 		}).catch(err => this.error(500, err));
 	}

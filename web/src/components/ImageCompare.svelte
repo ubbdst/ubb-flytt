@@ -35,6 +35,9 @@
 		<div class="arrow-right"></div>
 	</div>
 </div>
+{#if caption}
+<p>{caption}</p>
+{/if}
 
 <script>	
 	let hideOnSlide = true,
@@ -45,6 +48,7 @@
 		offset = 0.5,
 		before = '',
 		after = '',
+		caption,
     img;
 
 	function resize(e) {
@@ -74,7 +78,7 @@
 	$: opacity = hideOnSlide && sliding ? 0 : 1;
 	$: style = contain ? `width:100%;height:70vh;` : `width:${w}px;height:${h}px;`;
 
-	export { before, after, offset, overlay, contain, hideOnSlide };
+	export { before, after, caption, offset, overlay, contain, hideOnSlide };
 </script>
 
 <style>

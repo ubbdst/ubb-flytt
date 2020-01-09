@@ -47,6 +47,11 @@
         {#if activity.carriedOutBy && activity.carriedOutBy.length > 0}
           <p>
           {#each activity.carriedOutBy as actor, i}
+            {#if actor.actor.mainRepresentation}
+            <figure style="float: left; margin-right: 0.5em;" class="image">
+              <img class='rounded' style="width: 25px; border-radius:50%;" alt="{actor.actor.label}" src={urlFor(actor.actor.mainRepresentation).width(50).height(50).url()} />
+            </figure>
+            {/if}
             <span style="display: block;"><a alt="{actor.actor.label}" href="id/{actor.actor._id}">{actor.actor.label}</a></span>
           {/each}
           </p>
@@ -54,8 +59,13 @@
         {#if activity.tookPlaceAt && activity.tookPlaceAt.length > 0}
           <p>
           {#each activity.tookPlaceAt as place, i}
-            <span><a href="/places/{place._id}">{place.label.nor}</a></span>
+            <span>📍 <a href="/id/{place._id}">{place.label.nor}</a></span>
           {/each}
+          </p>
+        {/if}
+        {#if activity.movedTo}
+          <p>
+            <span>➡️ <a href="/id/{activity.movedTo._id}">{activity.movedTo.label.nor}</a></span>
           </p>
         {/if}
         {#if activity.observedDimension && activity.observedDimension.length > 0}

@@ -33,6 +33,7 @@
               credit,
               "url": asset->url
             },
+            geoJSON,
             events[] {
               _type == 'reference' => @->{
                 ...,
@@ -67,7 +68,8 @@
           preferredIdentifier,
           label,
           mainRepresentation,
-          media
+          media,
+          geoJSON
         },
         ...,
         children[]{
@@ -88,32 +90,54 @@
             actor->{
               _id,
               label,
-              mainRepresentation
+              mainRepresentation{
+                ...,
+                asset->
+              }
         	  }
           }
         },
         ...,
         tookPlaceAt[]->,
+        movedFrom->{
+          _id,
+          label
+        },
+        movedTo->{
+          _id,
+          label
+        },
         carriedOutBy[]{
           _type == 'reference' => @->{
             'actor': {
               _id,
               label,
-              mainRepresentation
+              mainRepresentation{
+                ...,
+                asset->
+              }
             }
           },
           ...,
           actor->{
           	_id,
           	label,
-          	mainRepresentation
+          	mainRepresentation{
+              ...,
+              asset->
+            }
         	}
         }
       },
       'referencedBy': *[references(^._id) && accessState == "open"]{ 
-        _id, 
+        _id,
+        _type,
         preferredIdentifier,
         label, 
+        hasType[]->{
+          _id,
+          label
+        },
         mainRepresentation 
       },
       depicts[]->{
@@ -165,7 +189,7 @@
       item.geoJSON.all = result
     };
     
-    // console.log(JSON.stringify(item, null, 2));
+    console.log(JSON.stringify(item, null, 2));
     return { 
       item: {
         ...item,
@@ -184,6 +208,7 @@
   import Acquisition from '../../components/Acquisition';
   import Exhibition from '../../components/Exhibition';
   import Type from '../../components/Type';
+  import Place from '../../components/Place';
 
   export let item;
 </script>
@@ -230,6 +255,10 @@
 
 {#if item._type == 'exhibition'}
   <Exhibition item={item}></Exhibition>
+{/if}
+
+{#if item._type == 'place'}
+  <Place item={item}></Place>
 {/if}
 
 {#if (['typeClass', 'concept','role', 'actorType', 'activityType','eventType', 'acquisitionType'].indexOf(item._type) >= 0)}

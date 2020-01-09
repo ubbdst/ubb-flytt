@@ -1,7 +1,7 @@
 <script context="module">
   import client from '../../sanityClient'
 	export function preload({ params, query }) {
-    return client.fetch('*[_type == "linguisticObject" && defined(slug.current) && publishedAt < now()]|order(publishedAt desc)').then(posts => {
+    return client.fetch('*[_type == "linguisticObject" && defined(slug.current) && publishedAt < now()]|order(publishedAt desc){..., hasType[]->{ _id, label }}').then(posts => {
 			return { posts };
 		}).catch(err => this.error(500, err));
 	}

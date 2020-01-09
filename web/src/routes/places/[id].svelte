@@ -12,8 +12,14 @@
       {
         ...,
         'referencedBy': *[references(^._id) && accessState == "open"]{ 
-          _id, 
+          _id,
+          _type,
+          preferredIdentifier,
           label, 
+          hasType[]->{
+            _id,
+            label
+          },
           mainRepresentation 
         },
       }`;

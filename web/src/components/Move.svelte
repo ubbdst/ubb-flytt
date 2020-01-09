@@ -47,7 +47,8 @@
 
 <main class="section">
   <div class="container">
-    <h1 class="title is-hidden has-text-centered">{titleForMove}</h1>
+    <h1 class="title has-text-centered">{item.label.nor}</h1>
+    <h2 class="subtitle has-text-centered">{titleForMove}</h2>
 
     <div class="has-background-grey-lighter box">
       <div class="columns">

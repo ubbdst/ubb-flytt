@@ -28,7 +28,9 @@
 </script>
 
 <style>
-
+.map{
+  height: 300px;
+}
 </style>
 
 <svelte:head>

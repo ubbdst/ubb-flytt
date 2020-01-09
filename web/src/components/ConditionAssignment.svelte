@@ -42,5 +42,4 @@
 
   <h3 class="title is-size-6 is-marginless">Kalkulert gjennomsnitt: <span class="is-pulled-right">{total} / 100</span></h3>
   <div style="--width: {totalPercentage}" class="skills total"></div>
-  <span>(Overordnet tilstand ikke med)</span>
 </div>

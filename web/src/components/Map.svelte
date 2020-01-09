@@ -4,7 +4,9 @@
 
   import { mapbox } from './mapbox.js';
   
-	export let src;
+  export let src;
+  export let label;
+  export let height;
 
 	let container;
 	let map;
@@ -31,17 +33,17 @@
         pitch: 40
       });
 
-      console.log(src);
+console.log('1:' + JSON.stringify(src));
 
       const expression = jsonata("**.geoJSON[]");
-      
+console.log('2:' + JSON.stringify(src))
       if (src.all) {
         src = src.all;
       }
       else {
         src = expression.evaluate(src);
       };
-
+console.log('3:' + JSON.stringify(src))
       if(src) {
         src = src.map(item => {
           let container = {}
@@ -55,12 +57,16 @@
           return container
         })
       };
+console.log('4: ' + JSON.stringify(src))
+      if (!Array.isArray(src)) {
+        src = [src]
+      }
 
       let geojson = {
         type: 'FeatureCollection',
         features: src 
       };
-      
+console.log('5:' + JSON.stringify(geojson))
       var bounds = new mapbox.LngLatBounds();
 
       map.on('load', function () {
@@ -149,4 +155,7 @@
 	}
 </style>
 
-<div id="{id}"></div>
+<div id="{id}" style="height: {height};"></div>
+{#if label}
+<p>{label}</p>
+{/if}

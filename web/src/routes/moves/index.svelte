@@ -1,9 +1,10 @@
 <script context="module">
 	import client from '../../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
+  import Cards from '../../components/Cards'
 
 	export function preload({ params, query }) {
-    return client.fetch('*[_type == "move" && accessState == "open"]|order(preferredIdentifier desc)').then(items => {
+    return client.fetch('*[_type == "move" && accessState == "open"]|order(preferredIdentifier desc){..., hasType[]->{ _id, label }}').then(items => {
 			return { items };
 		}).catch(err => this.error(500, err));
 	}
@@ -36,8 +37,5 @@
 </svelte:head>
 
 <main class="section">
-  <h1 class="title has-text-centered">Flytt av objekt</h1>
-  {#each items as item, i}
-  <li><a href="id/{item._id}">{item._id}</a></li>
-  {/each}
+  <Cards cards={items} title="Flyttinger"></Cards>
 </main>

@@ -38,5 +38,5 @@
 </svelte:head>
 
 <main class="section">
-  <Cards cards={items} title="Steder" path="places"></Cards>
+  <Cards cards={items} title="Steder"></Cards>
 </main>
