@@ -48,7 +48,7 @@
 				waiting for the 'click' event -->
 		<article class="card">
 			{#if item.media}
-			<a class="card-image" rel='prefetch' href='timelines/{item._id}'>
+			<a class="card-image" rel='prefetch' href='id/{item._id}'>
 				<figure class="image">
 					<img alt="{item.headline ? item.headline : ''}" src={urlFor(item.media[0]).width(1200).height(300).url()} />
 				</figure>
@@ -57,7 +57,7 @@
 			<div class="card-content">
 				<div class="media">
 					<div class="media-content">
-						<p class="title"><a rel='prefetch' href='timelines/{item._id}'>{item.headline.nor}</a></p>
+						<p class="title"><a rel='prefetch' href='id/{item._id}'>{item.headline.nor}</a></p>
 						{@html item.text.nor
 									? blocksToHtml({
 											blocks: item.text.nor.filter(({ _key = "" }) => _key)

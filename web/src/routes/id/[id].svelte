@@ -26,7 +26,11 @@
             label,
             headline,
             text,
-            mainRepresentation,
+            mainManifest,
+            mainRepresentation{
+              ...,
+              asset->
+            },
             media,
             media[]{
               caption,
@@ -197,7 +201,30 @@
         ...,
         hasType->
       },
-      media->
+      media->,
+      media[]{
+        caption,
+        credit,
+        "url": asset->url
+      },
+      events[] {
+        _type == 'reference' => @->{
+          ...,
+          "media": media{
+            caption,
+            credit,
+            "url": coalesce(url, asset->url)
+          }
+        },
+        _type == 'timelineSlide' => @{
+          ...,
+          "media": media[0]{
+            caption,
+            credit,
+            "url": coalesce(url, asset->url)
+          }
+        }
+      }
     }`
 
     const query = filter + projection
@@ -211,7 +238,7 @@
       item.geoJSON.all = result
     };
     
-    console.log(JSON.stringify(item, null, 2));
+    // console.log(JSON.stringify(item, null, 2));
     return { 
       item: {
         ...item,
@@ -231,6 +258,7 @@
   import Exhibition from '../../components/Exhibition';
   import Type from '../../components/Type';
   import Place from '../../components/Place';
+  import TimelineDocument from '../../components/TimelineDocument';
 
   export let item;
 </script>
@@ -281,6 +309,10 @@
 
 {#if item._type == 'place'}
   <Place item={item}></Place>
+{/if}
+
+{#if item._type == 'timeline'}
+  <TimelineDocument item={item}></TimelineDocument>
 {/if}
 
 {#if (['typeClass', 'concept','role', 'actorType', 'activityType','eventType', 'acquisitionType'].indexOf(item._type) >= 0)}

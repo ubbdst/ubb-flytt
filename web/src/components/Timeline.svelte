@@ -4,11 +4,11 @@
   import serializers from './serializers'
   import dayjs from 'dayjs'
   
-  export let data
+  export let item
 
-    /* console.log(JSON.stringify(data, undefined, 2)); */
+    console.log(JSON.stringify(item, undefined, 2));
     
-    const events = data.events.map(
+    const events = item.events.map(
       function (event, i) {
       if(event._type == 'event') {
         return {
@@ -65,12 +65,12 @@
       }
     });
 
-    const tl = Object.assign({}, data, {
+    const tl = Object.assign({}, item, {
       title: {
         text: {
-          headline: data.headline.nor,
-          text: data.text.nor ? blocksToHtml({
-                blocks: data.text.nor.filter(({ _key = "" }) => _key)
+          headline: item.headline.nor,
+          text: item.text.nor ? blocksToHtml({
+                blocks: item.text.nor.filter(({ _key = "" }) => _key)
               })
             : ""
         },
@@ -78,15 +78,15 @@
           color: title.background.color.hex ? title.background.color.hex : '#dddddd'
         }), */
         media:  {
-          url: data.media[0].url ? data.media[0].url : null,
-          caption: data.media[0].caption
+          url: item.media[0].url ? item.media[0].url : null,
+          caption: item.media[0].caption
             ? blocksToHtml({
-                blocks: data.media[0].caption.filter(({ _key = "" }) => _key)
+                blocks: item.media[0].caption.filter(({ _key = "" }) => _key)
               })
             : "",
-          credit: data.media[0].credit
+          credit: item.media[0].credit
             ? blocksToHtml({
-                blocks: data.media[0].credit.filter(({ _key = "" }) => _key)
+                blocks: item.media[0].credit.filter(({ _key = "" }) => _key)
               })
             : ""
         }
@@ -110,4 +110,6 @@
 
 </style>
 
-<div id='timeline-embed' style="width: 100%; height: 600px"></div>
+<div class="container is-fluid">
+  <div id='timeline-embed' style="width: 100%; height: 600px"></div>
+</div>

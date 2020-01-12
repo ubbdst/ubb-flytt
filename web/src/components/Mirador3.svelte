@@ -8,7 +8,7 @@
     onMount(async () => {
         const module = await import('mirador');
         Mirador = module.default;
-        
+
         let config = {
             id: 'mirador',
             manifests: {
@@ -24,10 +24,10 @@
 
         var mirador = Mirador.viewer(config);
 
-        return () => {
+        /* return () => {
             config = null
             manifest = null
-        };
+        }; */
     });
 </script>
 

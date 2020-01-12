@@ -59,10 +59,11 @@
     {/if}
 
     {#if item.activityStream}
-    <ActivityStream stream={item.activityStream} title="Vurdering(er)" showMap="false"></ActivityStream>
+    <ActivityStream stream={item.activityStream} title="Tidslinje" showMap="false"></ActivityStream>
     {/if}
 
     <div class="content">
+      <h2 class="title has-text-centered">Rapport</h2>
       <Block content={item.description.nor}/>
     </div>
 

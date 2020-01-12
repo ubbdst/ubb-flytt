@@ -1,10 +1,12 @@
 <script>
-  import Map from './Map'
-  import Timespan from './Timespan'
   import { onMount, onDestroy } from 'svelte';
   import imageUrlBuilder from '@sanity/image-url'
   import client from '../sanityClient'
 
+  import Map from './Map'
+  import Timespan from './Timespan'
+  import List from './List'
+  
   export let stream
   export let title
   export let showMap = 'true'
@@ -48,7 +50,7 @@
           <p>
           {#each activity.carriedOutBy as actor, i}
             {#if actor.actor.mainRepresentation}
-            <figure style="float: left; margin-right: 0.5em;" class="image">
+            <figure style="float: left; margin-right: 0.5em; clear: both;" class="image">
               <img class='rounded' style="width: 25px; border-radius:50%;" alt="{actor.actor.label}" src={urlFor(actor.actor.mainRepresentation).width(50).height(50).url()} />
             </figure>
             {/if}

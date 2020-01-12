@@ -1,18 +1,18 @@
 <script>
   import BlockContent from '@movingbrands/svelte-portable-text'
-  import ActivityStream from './ActivityStream'
-  import Cards from './Cards'
-  import MediaObjects from './MediaObjects'
-  import ConditionAssignment from './ConditionAssignment'
-  import Map from './Map'
-  import Timeline from './Timeline'
-  import MainImage from './MainImage'
-  import BlockMadeObject from './BlockMadeObject'
-  import BlockImage from './BlockImage'
-  import ItemList from './ItemList'
-  import InstagramPost from './InstagramPost'
-  import InternalLink from './internalLink'
-  import ImageCompare from './ImageCompare.svelte';
+  import ActivityStream from './ActivityStream.svelte'
+  import Cards from './Cards.svelte'
+  import MediaObjects from './MediaObjects.svelte'
+  import ConditionAssignment from './ConditionAssignment.svelte'
+  import Map from './Map.svelte'
+  import Timeline from './Timeline.svelte'
+  import MainImage from './MainImage.svelte'
+  import BlockMadeObject from './BlockMadeObject.svelte'
+  import BlockImage from './BlockImage.svelte'
+  import ItemList from './ItemList.svelte'
+  import InstagramPost from './InstagramPost.svelte'
+  import InternalLink from './internalLink.svelte'
+  import ImageCompare from './ImageCompare.svelte'
 
   function formatDate(date) {
     return new Date(date).toLocaleDateString()
@@ -42,7 +42,7 @@
           childNodes: props.children,
           props: {
             image: props.node.asset,
-            manifest: props.node.manifest,
+            // manifest: props.node.manifest,
             source: props.node.source,
             caption: props.node.caption,
             alt: props.node.alt,
@@ -57,7 +57,7 @@
           childNodes: props.children,
           props: {
             image: props.node.mainRepresentation,
-            manifest: props.node.manifest,
+            // manifest: props.node.mainManifest,
             source: props.node.source,
             alt: props.node.label,
             label: props.node.label,
@@ -90,7 +90,7 @@
           component: Timeline,
           childNodes: props.children,
           props: {
-            data: props.node
+            item: props.node
           }
         };
       },
