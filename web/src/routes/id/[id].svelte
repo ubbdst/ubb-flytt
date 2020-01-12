@@ -101,11 +101,13 @@
         tookPlaceAt[]->,
         movedFrom->{
           _id,
-          label
+          label,
+          geoJSON
         },
         movedTo->{
           _id,
-          label
+          label,
+          geoJSON
         },
         carriedOutBy[]{
           _type == 'reference' => @->{
@@ -141,13 +143,23 @@
         mainRepresentation 
       },
       depicts[]->{
-        _id, 
+        _id,
+        _type,
+        hasType[]->{
+          _id,
+          label
+        },
         preferredIdentifier,
         label, 
         mainRepresentation
       },
       moved[]->{
         _id,
+        _type,
+        hasType[]->{
+          _id,
+          label
+        },
         preferredIdentifier,
         label,
         mainRepresentation
@@ -156,6 +168,11 @@
       movedTo->,
       transferredTitleOf[]->{
         _id,
+        _type,
+        hasType[]->{
+          _id,
+          label
+        },
         preferredIdentifier,
         label,
         mainRepresentation
@@ -164,6 +181,11 @@
       transferredTitleTo[]->,
       carriedOutBy[]->{
         _id,
+        _type,
+        hasType[]->{
+          _id,
+          label
+        },
         label,
         mainRepresentation
       },

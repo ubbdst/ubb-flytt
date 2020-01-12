@@ -26,7 +26,7 @@
 
 <article class="card">
   {#if item.mainRepresentation}
-  <a class="card-image" rel='prefetch' href='{path}/{item._id}'>
+  <a class="card-image" rel='prefetch' target="_self" href='{path}/{item._id}'>
     <figure class="image">
       <img class='rounded' alt="{item.label}" src={urlFor(item.mainRepresentation).width(250).height(250).url()} />
     </figure>
@@ -37,13 +37,13 @@
       <div class="media-content">
         <p class="title">
         {#if item.label && item.label.nor}
-          <a rel=prefetch href='{path}/{item._id}'>{item.label.nor}</a>
+          <a rel=prefetch target="_self" href='{path}/{item._id}'>{item.label.nor}</a>
         {/if}
         {#if item.label && !item.label.nor}
-          <a rel=prefetch href='{path}/{item._id}'>{item.label}</a>
+          <a rel=prefetch target="_self" href='{path}/{item._id}'>{item.label}</a>
         {/if}
         {#if !item.label}
-          <a rel=prefetch href='{path}/{item._id}'>{item._id}</a>
+          <a rel=prefetch target="_self" href='{path}/{item._id}'>{item._id}</a>
         {/if}
         </p>
       </div>

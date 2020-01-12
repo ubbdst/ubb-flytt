@@ -1,6 +1,6 @@
 <script>
-    import { onMount } from 'svelte';
-    
+    import { onMount, onDestroy } from 'svelte';
+
     export let manifest;
     
     let Mirador;
@@ -23,7 +23,12 @@
         config.windows[0].loadedManifest = manifest;
 
         var mirador = Mirador.viewer(config);
-    })
+
+        return () => {
+            config = null
+            manifest = null
+        };
+    });
 </script>
 
 <div id="mirador"></div>

@@ -2,6 +2,7 @@
   import ActivityStream from './ActivityStream'
   import Block from './Block'
   import Cards from './Cards'
+  import DocumentFooter from './DocumentFooter'
   import client from '../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
   import Mirador from './Mirador3'
@@ -72,5 +73,7 @@
     {#if item.referencedBy}
     <Cards cards={item.referencedBy} title="Relatert til"></Cards>
     {/if}
+
+    <DocumentFooter footerData={item} />
   </div>
 </main>

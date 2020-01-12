@@ -75,7 +75,7 @@
           {/each}
           </p>
         {/if}
-        {#if (activity.geoJSON || activity.tookPlaceAt) && showMap == 'true' }
+        {#if (activity.geoJSON || activity.tookPlaceAt || activity.movedTo) && showMap == 'true' }
           <div class="map">
             <Map src={activity}></Map>
           </div>

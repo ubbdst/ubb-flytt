@@ -5,7 +5,7 @@
   import Rights from './Rights'
   import MainImage from './MainImage'
   import Map from './Map'
-  import MadeObjectFooter from './MadeObjectFooter'
+  import DocumentFooter from './DocumentFooter'
   import client from '../sanityClient'
   import imageUrlBuilder from '@sanity/image-url'
 
@@ -112,7 +112,7 @@
     <ActivityStream stream={item.activityStream} title="Tidslinje"></ActivityStream>
     {/if}
 
-    <MadeObjectFooter footerData={item} />
+    <DocumentFooter footerData={item} />
 
   </div>
 </main>

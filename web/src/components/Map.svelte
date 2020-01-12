@@ -5,8 +5,8 @@
   import { mapbox } from './mapbox.js';
   
   export let src;
-  export let label;
-  export let height;
+  export let label = '';
+  export let height = '300px';
 
 	let container;
 	let map;
@@ -33,17 +33,17 @@
         pitch: 40
       });
 
-console.log('1:' + JSON.stringify(src));
+// console.log('1:' + JSON.stringify(src));
 
       const expression = jsonata("**.geoJSON[]");
-console.log('2:' + JSON.stringify(src))
+// console.log('2:' + JSON.stringify(src))
       if (src.all) {
         src = src.all;
       }
       else {
         src = expression.evaluate(src);
       };
-console.log('3:' + JSON.stringify(src))
+// console.log('3:' + JSON.stringify(src))
       if(src) {
         src = src.map(item => {
           let container = {}
@@ -57,7 +57,7 @@ console.log('3:' + JSON.stringify(src))
           return container
         })
       };
-console.log('4: ' + JSON.stringify(src))
+// console.log('4: ' + JSON.stringify(src))
       if (!Array.isArray(src)) {
         src = [src]
       }
@@ -66,7 +66,7 @@ console.log('4: ' + JSON.stringify(src))
         type: 'FeatureCollection',
         features: src 
       };
-console.log('5:' + JSON.stringify(geojson))
+// console.log('5:' + JSON.stringify(geojson))
       var bounds = new mapbox.LngLatBounds();
 
       map.on('load', function () {
