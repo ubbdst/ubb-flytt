@@ -4,13 +4,14 @@
 	export function preload({ params, query }) {
 		query = `{
 			"articles": 
-				*[_type == "linguisticObject" && accessState == "open" && defined(slug.current) && publishedAt < now()] | order(publishedAt desc) [0..9], 
+				*[_type == "linguisticObject" && accessState == "open" && defined(slug.current) && publishedAt < now()] | order(publishedAt desc) [0..8], 
 			"siteSettings": 
 				*[_type == "siteSettings"],
 			"latest": 
-				*[_type == "madeObject" && accessState == "open"] | order(_createdAt desc) [0..9]
+				*[_type == "madeObject" && accessState == "open"] | order(_createdAt desc) [0..11]
 				{
 					...,
+					hasType[]->,
 					mainRepresentation{
 						...,
 						asset->
@@ -26,6 +27,7 @@
 
 <script>
 	import ItemList from '../components/ItemList'
+	import Cards from '../components/Cards'
 
   import imageUrlBuilder from '@sanity/image-url'
   
@@ -53,7 +55,7 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
-		background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0)), url('https://cdn.sanity.io/images/e56ijdvg/production/07dfa9cdc998f60c49fba21624ac9cd5ab34b428-3264x2448.jpg?w=1200')
+		background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(20, 15, 15, 0)), url('https://live.staticflickr.com/3398/3666376184_7edbe5b84b_k_d.jpg')
 	}
 </style>
 
@@ -62,46 +64,22 @@
 </svelte:head>
 
 <section class="hero is-primary">
-	<div class="hero-body">
-    <div class="container">
-      <h1 class="title">{data.siteSettings[0].title}</h1>
-      <h2 class="subtitle">{data.siteSettings[0].description}</h2>
-    </div>
-  </div>
 </section>
 
 <section class="section">
-	<h1 class="title">Artikler</h1>
-	<div class="container">
-		<ul>
-		{#each data.articles as post}
-			<!-- we're using the non-standard `rel=prefetch` attribute to
-					tell Sapper to load the data for the page as soon as
-					the user hovers over the link or taps it, instead of
-					waiting for the 'click' event -->
-			<!-- <ItemList id={`articles/${post.slug.current}`} label={post.label.nor} image={post.mainImage} /> -->
-			<li class="post">
-				<h3 class="title"><a rel='prefetch' href='articles/{post.slug.current}'>{post.label.nor}</a></h3>
-				<p>({formatDate(post.publishedAt)})</p>
-			</li>
-		{/each}
-		</ul>
+	<div class="text container">
+		<h1 class="title">{data.siteSettings[0].title}</h1>
+		<h2 class="subtitle">{data.siteSettings[0].description}</h2>
 	</div>
 </section>
 
-<section class="section">
-	<h1 class="title">Sist registrerte</h1>
-	<div class="container">
-		{#each data.latest as post}
-			<!-- we're using the non-standard `rel=prefetch` attribute to
-					tell Sapper to load the data for the page as soon as
-					the user hovers over the link or taps it, instead of
-					waiting for the 'click' event -->
-			<!-- <ItemList id={`articles/${post.slug.current}`} label={post.label.nor} image={post.mainImage} /> -->
-			<ItemList id={post._id} label={post.label} image={post.mainRepresentation} />
-		{/each}
-	</div>
-</section>
+<div class="container">
+	<Cards cards={data.articles} title='Artikler' />
+</div>
+
+<div class="container">
+	<Cards cards={data.latest} title='Sist registrerte' />
+</div>
 
 <!-- 
 <div class="tile is-ancestor">

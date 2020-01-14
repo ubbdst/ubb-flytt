@@ -15,7 +15,9 @@
 </style>
 
 <div class="box">
+  {#if title}
   <h2 class="title has-text-centered">{title}</h2>
+  {/if}
   <section class="cards">  
     {#each cards as card, i}
     <Card item={card} />

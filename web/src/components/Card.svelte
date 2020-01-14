@@ -56,7 +56,7 @@
         <div class="tags">
           {#each item.hasType as t, i}
           <span class="tag is-primary">
-            <a href="/id/{t._id}">{t.label.nor}</a>
+            <a href="/id/{t._id}">{t.label && t.label.nor || 'Mangler type'}</a>
           </span>
           {/each}
         </div>

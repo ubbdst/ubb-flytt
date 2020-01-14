@@ -73,7 +73,7 @@
 <div class="modal-background" on:click={close}></div>
 
 <div class="svelte-modal" role="dialog" aria-modal="true" bind:this={modal}>
-	<h1><slot name="header"></slot></h1>
+	<h1 class="header"><slot name="header"></slot></h1>
 	<hr>
 	<slot></slot>
 	<hr>

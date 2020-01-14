@@ -5,6 +5,7 @@
   import MediaObjects from './MediaObjects.svelte'
   import ConditionAssignment from './ConditionAssignment.svelte'
   import Map from './Map.svelte'
+  import Geojson from './Geojson.svelte'
   import Timeline from './Timeline.svelte'
   import MainImage from './MainImage.svelte'
   import BlockMadeObject from './BlockMadeObject.svelte'
@@ -114,6 +115,16 @@
             src: props.node,
             label: props.node.label.nor,
             height: '300px'
+          }
+        };
+      },
+      geojson: props => {
+        return {
+          component: Geojson,
+          childNodes: props.children,
+          props: {
+            src: props.node,
+            height: '500px'
           }
         };
       }

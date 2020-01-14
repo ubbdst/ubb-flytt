@@ -1,4 +1,7 @@
 <script>
+  import Highlight from 'svelte-highlight';
+  import { json } from 'svelte-highlight/languages';
+  import { atomOneDark } from 'svelte-highlight/styles';
   import Modal from './Modal.svelte';
 
   export let footerData
@@ -14,6 +17,10 @@ footer{
 }
 </style>
 
+<svelte:head>
+  {@html atomOneDark}
+</svelte:head>
+
 <footer>
   <hr>
     <p class="has-text-centered">
@@ -24,15 +31,13 @@ footer{
 
     {#if showData}
       <Modal on:close="{() => showData = false}">
-        <h2 slot="header">
+        <span slot="header">
           Data
-        </h2>
+        </span>
 
-        <pre>
-          <code>
-          {JSON.stringify(footerData, null, 2)}
-          </code>
-        </pre>
+        <Highlight language={json}>
+        {JSON.stringify(footerData, null, 2)}
+        </Highlight>
       </Modal>
     {/if}
 </footer>
