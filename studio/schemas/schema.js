@@ -36,6 +36,7 @@ import experimental from './documents/experimental'
 import move from './documents/move'
 import relocation from './documents/relocation'
 import place from './documents/place'
+import storage from './documents/storage'
 import designOrProcedure from './documents/designOrProcedure'
 import project from './documents/project'
 import typeClass from './documents/types/type'
@@ -92,6 +93,7 @@ import file from './objects/file'
 import treatment from './documents/report/treatment'
 import treatmentAssessment from './documents/report/treatmentAssessment'
 import sampling from './documents/report/sampling'
+import geojson from './objects/geojson'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -112,6 +114,7 @@ export default createSchema({
     event,
     activity,
     place,
+    storage,
     acquisition,
     move,
     relocation,
@@ -163,6 +166,7 @@ export default createSchema({
     treatmentAssessment,
     sampling,
     imageCompare,
+    geojson,
     // Text
     genericText,
     reportText,

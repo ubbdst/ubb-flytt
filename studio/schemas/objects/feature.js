@@ -3,7 +3,6 @@ export default {
   name: 'feature',
   type: 'object',
   fields: [
-
     {
       name: 'type',
       title: 'Type',

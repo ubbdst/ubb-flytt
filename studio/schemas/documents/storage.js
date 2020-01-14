@@ -1,20 +1,24 @@
-import {FaTruckLoading} from 'react-icons/fa'
-
-var capitalize = require('capitalize')
+import {FaBox} from 'react-icons/fa'
 
 export default {
-  title: 'Move',
-  name: 'move',
+  title: 'Storage',
+  name: 'storage',
+  description: 'Storage is a subclass of place.',
   type: 'document',
   initialValue: {
-    editorialState: 'workingDraft',
+    editorialState: 'published',
     accessState: 'secret'
   },
-  icon: FaTruckLoading,
+  icon: FaBox,
   fieldsets: [
     {
       name: 'state',
       title: 'State',
+      options: {collapsible: true, collapsed: false}
+    },
+    {
+      name: 'minimum',
+      title: 'Mandatory fields for minimum registration',
       options: {collapsible: true, collapsed: false}
     }
   ],
@@ -56,17 +60,34 @@ export default {
       name: 'label',
       title: 'Tittel',
       titleEN: 'Title',
-      description: 'Overskriver den genererte standardtittelen',
-      type: 'localeString'
+      fieldset: 'minimum',
+      type: 'localeString',
+      validation: Rule => Rule.required()
     },
     {
-      name: 'carriedOutBy',
-      title: 'Utført av',
-      titleEN: 'Carried out by',
+      name: 'hasType',
+      title: 'Klassifisert som',
+      titleEN: 'Classified as',
       type: 'array',
       of: [
-        {type: 'reference', to: [{type: 'actor', title: 'Actor'}]}
-      ]
+        {
+          type: 'reference',
+          to: [{type: 'typeClass'}],
+          options: {
+            filter: 'references(*[_type == "systemCategory" && label.nor in [$sysCat]]._id)',
+            filterParams: {sysCat: 'Lagringstype'}
+          }
+        }
+      ],
+      validation: Rule => Rule.required()
+    },
+    {
+      name: 'description',
+      title: 'Beskrivelse',
+      titleEN: 'Description',
+      description: 'A shortish description',
+      fieldset: 'minimum',
+      type: 'localeBlock'
     },
     {
       name: 'timespan',
@@ -75,6 +96,13 @@ export default {
       type: 'array',
       of: [{type: 'timespan'}],
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
+    },
+    {
+      name: 'location',
+      title: 'Lokasjon',
+      titleEN: 'Location',
+      description: 'Where the hell did this happen?!',
+      type: 'geopoint'
     },
     {
       name: 'tookPlaceAt',
@@ -91,72 +119,35 @@ export default {
       ]
     },
     {
-      name: 'moved',
-      title: 'Flyttet',
-      titleEN: 'Moved',
+      name: 'consistsOf',
+      title: 'Består av',
+      titleEN: 'consistsOf',
       type: 'array',
       of: [
         {type: 'reference',
           to: [
+            {type: 'storage'},
             {type: 'madeObject'},
-            {type: 'group'},
-            {type: 'actor'}
+            {type: 'collection'}
           ]
         }
-      ]
-    },
-    {
-      name: 'description',
-      title: 'Beskrivelse',
-      titleEN: 'Description',
-      type: 'localeBlockReport'
-    },
-    {
-      name: 'movedFrom',
-      title: 'Flyttet fra',
-      titleEN: 'Moved from',
-      type: 'reference',
-      to: [
-        {type: 'place'},
-        {type: 'storage'}
-      ]
-    },
-    {
-      name: 'movedTo',
-      title: 'Flyttet til',
-      titleEN: 'Moved to',
-      type: 'reference',
-      to: [
-        {type: 'place'},
-        {type: 'storage'}
-      ]
-    },
-    {
-      name: 'wasMotivatedBy',
-      title: 'Motivert av',
-      titleEN: 'Motivated by',
-      type: 'array',
-      of: [
-        {type: 'reference',
-          to: [
-            {type: 'event'}
-          ]
-        }
-      ]
+      ],
+      options: {
+        editModal: 'fullscreen'
+      }
     }
   ],
   preview: {
     select: {
-      type: '_type',
-      published: 'accessState'
+      type: 'hasType.0.label.nor',
+      title: 'label.nor'
     },
     prepare (selection) {
-      const {type, published} = selection
-      const secret = published === 'secret' ? '🔒' : ''
+      const {title, type} = selection
 
       return {
-        title: `${capitalize(type)}`,
-        subtitle: secret
+        title: title,
+        subtitle: type
       }
     }
   }
