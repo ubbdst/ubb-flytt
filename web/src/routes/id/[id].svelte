@@ -259,7 +259,8 @@
   import Type from '../../components/Type';
   import Place from '../../components/Place';
   import TimelineDocument from '../../components/TimelineDocument';
-
+  import LinguisticObject from '../../components/LinguisticObject'
+  
   export let item;
 </script>
 
@@ -289,6 +290,10 @@
 
 {#if item._type == 'report'}
   <Report item={item}></Report>
+{/if}
+
+{#if item._type == 'linguisticObject'}
+  <LinguisticObject item={item}></LinguisticObject>
 {/if}
 
 {#if item._type == 'move'}

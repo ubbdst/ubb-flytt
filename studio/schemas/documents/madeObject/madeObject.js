@@ -298,7 +298,7 @@ export default {
         {type: 'identifier'}
       ],
       options: {
-        editModal: 'popup'
+        editModal: 'dialog'
       }
     },
     {

@@ -51,12 +51,12 @@
 	.svelte-modal {
 		position: absolute;
 		left: 50%;
-		top: 40%;
+		top: 0%;
 		width: calc(100vw - 2em);
 		max-width: 52em;
 		max-height: calc(100vh - 4em);
 		overflow: auto;
-		transform: translate(-50%,-60%);
+		transform: translate(-50%,-50%);
 		padding: 1em;
 		border-radius: 0.2em;
     background: white;
