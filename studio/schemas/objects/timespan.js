@@ -2,11 +2,30 @@ export default {
   title: 'Timespan',
   name: 'timespan',
   type: 'object',
+  fieldsets: [
+    {
+      name: 'beginning',
+      title: 'Beginning',
+      options: {
+        collapsible: false,
+        columns: 2
+      }
+    },
+    {
+      name: 'ending',
+      title: 'Ending',
+      options: {
+        collapsible: false,
+        columns: 2
+      }
+    }
+  ],
   fields: [
     {
       name: 'beginOfTheBegin',
       title: 'Begynnelsen av begynnelsen',
       titleEN: 'Begin of the begin',
+      fieldset: 'beginning',
       type: 'date',
       options: {
         dateFormat: 'YYYY-MM-DD',
@@ -19,6 +38,7 @@ export default {
       name: 'endOfTheBegin',
       title: 'Slutten på begynnelsen',
       titleEN: 'End of the begin',
+      fieldset: 'beginning',
       type: 'date',
       options: {
         dateFormat: 'YYYY-MM-DD',
@@ -39,6 +59,7 @@ export default {
       name: 'beginOfTheEnd',
       title: 'Begynnelsen av slutten',
       titleEN: 'Begin of the end',
+      fieldset: 'ending',
       type: 'date',
       options: {
         dateFormat: 'YYYY-MM-DD',
@@ -49,6 +70,7 @@ export default {
       name: 'endOfTheEnd',
       title: 'Slutten av slutten',
       titleEN: 'End of the end',
+      fieldset: 'ending',
       type: 'date',
       options: {
         dateFormat: 'YYYY-MM-DD',
