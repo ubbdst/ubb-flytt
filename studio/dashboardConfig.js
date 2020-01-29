@@ -1,6 +1,33 @@
 export default {
   widgets: [
-    {name: 'structure-menu'},
+    /* {name: 'document-chart'}, */
+    {
+      name: 'notes',
+      options: {
+        title: 'Notater'
+      }
+    },
+    /* {name: 'structure-menu'}, */
+    {
+      name: 'document-list',
+      options: {title: 'Recent objects', order: '_createdAt desc', types: ['madeObject']},
+      layout: {width: 'small'}
+    },
+    {
+      name: 'document-list',
+      options: {title: 'Recent types', order: '_createdAt desc', types: ['typeClass']},
+      layout: {width: 'small'}
+    },
+    {
+      name: 'document-list',
+      options: {title: 'All recent documents', order: '_createdAt desc'},
+      layout: {width: 'small'}
+    },
+    {
+      name: 'document-list',
+      options: {title: 'Recent updated', order: '_updatedAt desc'},
+      layout: {width: 'small'}
+    },
     {
       name: 'project-info',
       options: {
@@ -37,26 +64,6 @@ export default {
         ]
       }
     },
-    {name: 'project-users', layout: {height: 'auto'}},
-    {
-      name: 'document-list',
-      options: {title: 'Recent objects', order: '_createdAt desc', types: ['madeObject']},
-      layout: {width: 'small'}
-    },
-    {
-      name: 'document-list',
-      options: {title: 'Recent types', order: '_createdAt desc', types: ['typeClass']},
-      layout: {width: 'small'}
-    },
-    {
-      name: 'document-list',
-      options: {title: 'All recent documents', order: '_createdAt desc'},
-      layout: {width: 'small'}
-    },
-    {
-      name: 'document-list',
-      options: {title: 'Recent updated', order: '_updatedAt desc'},
-      layout: {width: 'small'}
-    }
+    {name: 'project-users', layout: {height: 'auto'}}
   ]
 }

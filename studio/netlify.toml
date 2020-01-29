@@ -4,6 +4,11 @@
   status = 200
 
 [[redirects]]
+  from = "/kulturnav/api/"
+  to = "https://kulturnav.org/api/"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/"
   status = 200

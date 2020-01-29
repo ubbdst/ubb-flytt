@@ -13,6 +13,7 @@
     "test": "sanity check"
   },
   "dependencies": {
+    "@google-cloud/translate": "^5.1.4",
     "@sanity/base": "^0.147.8",
     "@sanity/cli": "^0.147.8",
     "@sanity/client": "^0.147.3",
@@ -39,8 +40,10 @@
     "react-instagram-embed": "^1.5.0",
     "sanity-plugin-asset-source-nbiiif": "0.0.6",
     "sanity-plugin-content-model-graph": "^1.1.0",
+    "sanity-plugin-dashboard-widget-document-chart": "^0.0.4",
     "sanity-plugin-dashboard-widget-document-list": "^0.0.8",
     "sanity-plugin-dashboard-widget-netlify": "^1.0.0",
+    "sanity-plugin-dashboard-widget-notes": "^0.3.2",
     "sanity-plugin-media": "^0.2.4",
     "sanity-plugin-vision": "^2.0.7"
   },

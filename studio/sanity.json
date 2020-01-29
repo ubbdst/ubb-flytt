@@ -22,7 +22,9 @@
     "@sanity/google-maps-input",
     "sanity-plugin-github-input",
     "@sanity/vision",
-    "media"
+    "media",
+    "dashboard-widget-document-chart",
+    "dashboard-widget-notes"
   ],
   "parts": [
     {
