@@ -1,25 +1,25 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
-  import client from '../sanityClient'
-  import imageUrlBuilder from '@sanity/image-url'
-  import Mirador from './Mirador3'
+  import { onMount, onDestroy } from "svelte";
+  import client from "../sanityClient";
+  import imageUrlBuilder from "@sanity/image-url";
+  import Mirador from "./Mirador3";
 
-  export let image
-  export let manifest
-  export let caption
-  export let source
-  export let alt
-/*   export let id
+  export let image;
+  export let manifest;
+  export let caption;
+  export let source;
+  export let alt;
+  /*   export let id
   export let rights */
 
   // Get a pre-configured url-builder from your sanity client
-  const builder = imageUrlBuilder(client)
+  const builder = imageUrlBuilder(client);
 
   // Then we like to make a simple function like this that gives the
   // builder an image and returns the builder for you to specify additional
   // parameters:
   function urlFor(source) {
-    return builder.image(source)
+    return builder.image(source);
   }
 </script>
 
@@ -47,7 +47,7 @@
   figcaption a {
     text-decoration: none;
   }
-  .mirador{
+  .mirador {
     width: 100%;
     height: 70vh;
     position: relative;
@@ -56,14 +56,20 @@
 
 {#if manifest}
   <div>
-    <div class='mirador'>
-      <Mirador manifest='{manifest}'/>
+    <div class="mirador">
+      <Mirador {manifest} />
     </div>
-    <p class="has-text-centered"><small>{source}</small></p>
+    <p class="has-text-centered">
+      <small>{source}</small>
+    </p>
   </div>
 {:else}
   <figure onload="setRights()">
-    <img alt="{alt ? alt : ''}" src={urlFor(image).width(1600).url()} />
+    <img
+      alt={alt ? alt : ''}
+      src={urlFor(image)
+        .width(1600)
+        .url()} />
     <figcaption>
       <p>{caption}</p>
     </figcaption>

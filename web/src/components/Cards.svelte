@@ -1,14 +1,14 @@
 <script>
-  import Card from './Card.svelte'
-  
-  export let cards
-  export let title
+  import Card from "./Card.svelte";
+
+  export let cards;
+  export let title;
 </script>
 
 <style>
-  .cards{
+  .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-template-rows: auto;
     grid-gap: 1em;
   }
@@ -16,11 +16,11 @@
 
 <div class="box">
   {#if title}
-  <h2 class="title has-text-centered">{title}</h2>
+    <h2 class="title has-text-centered">{title}</h2>
   {/if}
-  <section class="cards">  
+  <section class="cards">
     {#each cards as card, i}
-    <Card item={card} />
+      <Card item={card} />
     {/each}
   </section>
 </div>

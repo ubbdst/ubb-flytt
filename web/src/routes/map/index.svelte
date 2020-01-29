@@ -1,10 +1,10 @@
 <script context="module">
-  import client from '../../sanityClient'
+  import client from "../../sanityClient";
 
-	export async function preload({ params }) {
-		// the `slug` parameter is available because
+  export async function preload({ params }) {
+    // the `slug` parameter is available because
     // this file is called [slug].html
-    const filter = `*[_type == 'madeObject' && defined(activityStream)]`
+    const filter = `*[_type == 'madeObject' && defined(activityStream)]`;
     const projection = `{
       _id,
       label,
@@ -24,17 +24,17 @@
             geoJSON
           }
       }
-    }` 
+    }`;
 
-    const query = filter + projection
-    let markers = await client.fetch(query).catch(err => this.error(500, err))
+    const query = filter + projection;
+    let markers = await client.fetch(query).catch(err => this.error(500, err));
     let src;
-    if(markers) {
+    if (markers) {
       src = markers.map(marker => {
         /* let prod = marker.production[0].geoJSON.geometry;
         let took = marker.tookPlaceAt[0].tookPlaceAt[0].geoJSON; */
         let container = {};
-        container = marker; 
+        container = marker;
         /* container.type = marker.production[0].type ? marker.production[0].type : marker.tookPlaceAt[0].tookPlaceAt[0].type;
         container.properties = {};
         container.properties = marker.properties;
@@ -44,18 +44,18 @@
         container.geometry = {};
         container.geometry = took ? took : place;
         container.geometry.coordinates = [item.geometry.lng, item.geometry.lat]; */
-        return { container }
-      })
-    };
-    
-/*     console.log(JSON.stringify(src, null, 2));
- */    return { src };
+        return { container };
+      });
+    }
+
+    /*     console.log(JSON.stringify(src, null, 2));
+     */ return { src };
   }
 </script>
 
 <script>
-  import Map from '../../components/Map.svelte';
-  
+  import Map from "../../components/Map.svelte";
+
   export let src;
 </script>
 
@@ -67,11 +67,11 @@
 </style>
 
 <svelte:head>
-	<title>Kart</title>
+  <title>Kart</title>
 </svelte:head>
 
 {#if src}
-<main class="section map">
-  <Map src={src}></Map>
-</main>
+  <main class="section map">
+    <Map {src} />
+  </main>
 {/if}

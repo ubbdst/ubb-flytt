@@ -1,17 +1,23 @@
 <script context="module">
-  import client from '../../sanityClient'
-	export function preload({ params, query }) {
-    return client.fetch('*[_type == "linguisticObject" && defined(slug.current) && publishedAt < now()]|order(publishedAt desc){..., hasType[]->{ _id, label }}').then(posts => {
-			return { posts };
-		}).catch(err => this.error(500, err));
-	}
+	import client from "../../sanityClient";
+	
+  export function preload() {
+    return client
+      .fetch(
+        '*[_type == "linguisticObject" && defined(slug.current) && publishedAt < now()]|order(publishedAt desc){..., hasType[]->{ _id, label }}'
+      )
+      .then(posts => {
+        return { posts };
+      })
+      .catch(err => this.error(500, err));
+  }
 </script>
 
 <script>
   export let posts;
 
   function formatDate(date) {
-    return new Date(date).toLocaleDateString()
+    return new Date(date).toLocaleDateString();
   }
 </script>
 
@@ -20,21 +26,26 @@
 </style>
 
 <svelte:head>
-	<title>Blog</title>
+  <title>Blog</title>
 </svelte:head>
 
 <main class="section">
-	<section class="container">
-		<h1 class="title has-text-centered">Artikler</h1>
+  <section class="container">
+    <h1 class="title has-text-centered">Artikler</h1>
 
-		<ul>
-			{#each posts as post}
-				<!-- we're using the non-standard `rel=prefetch` attribute to
+    <ul>
+      {#each posts as post}
+        <!-- we're using the non-standard `rel=prefetch` attribute to
 						tell Sapper to load the data for the page as soon as
 						the user hovers over the link or taps it, instead of
 						waiting for the 'click' event -->
-				<li><a rel='prefetch' href='articles/{post.slug.current}'>{post.label.nor}</a> ({formatDate(post.publishedAt)})</li>
-			{/each}
-		</ul>
-	</section>
+        <li>
+          <a rel="prefetch" href="id/{post._id}">
+            {post.label.nor}
+          </a>
+          ({formatDate(post.publishedAt)})
+        </li>
+      {/each}
+    </ul>
+  </section>
 </main>

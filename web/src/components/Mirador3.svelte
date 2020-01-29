@@ -1,34 +1,36 @@
 <script>
-    import { onMount, onDestroy } from 'svelte';
+  import { onMount, onDestroy } from "svelte";
 
-    export let manifest;
-    
-    let Mirador;
+  export let manifest;
 
-    onMount(async () => {
-        const module = await import('mirador');
-        Mirador = module.default;
+  let Mirador;
 
-        let config = {
-            id: 'mirador',
-            manifests: {
-                'test': {
-                    provider: 'Tarje Lavik'
-                }
-            },
-            windows: [{
-                loadedManifest: 'id',
-            }]
+  onMount(async () => {
+    const module = await import("mirador");
+    Mirador = module.default;
+
+    let config = {
+      id: "mirador",
+      manifests: {
+        test: {
+          provider: "Tarje Lavik"
         }
-        config.windows[0].loadedManifest = manifest;
+      },
+      windows: [
+        {
+          loadedManifest: "id"
+        }
+      ]
+    };
+    config.windows[0].loadedManifest = manifest;
 
-        var mirador = Mirador.viewer(config);
+    var mirador = Mirador.viewer(config);
 
-        /* return () => {
+    /* return () => {
             config = null
             manifest = null
         }; */
-    });
+  });
 </script>
 
-<div id="mirador"></div>
+<div id="mirador" />

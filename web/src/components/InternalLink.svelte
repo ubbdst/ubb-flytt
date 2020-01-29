@@ -1,11 +1,11 @@
 <script>
-  export let id
+  export let id;
 </script>
 
 <style>
-  
+
 </style>
 
-<a rel=prefetch href="id/{id}">
-  <slot/>
+<a rel="prefetch" href="id/{id}">
+  <slot />
 </a>

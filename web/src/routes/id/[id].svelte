@@ -1,12 +1,12 @@
 <script context="module">
-  import client from '../../sanityClient'
-  import jsonata from 'jsonata'
+  import client from "../../sanityClient";
+  import jsonata from "jsonata";
 
-	export async function preload({ params }) {
-		// the `slug` parameter is available because
+  export async function preload({ params }) {
+    // the `slug` parameter is available because
     // this file is called [slug].html
-    const { id } = params
-    const filter = '*[_id == $id && accessState == "open"][0]'
+    const { id } = params;
+    const filter = '*[_id == $id && accessState == "open"][0]';
     const projection = `{
       ...,
       mainRepresentation{
@@ -225,42 +225,45 @@
           }
         }
       }
-    }`
+    }`;
 
-    const query = filter + projection
-    let item = await client.fetch(query, { id }).catch(err => this.error(500, err))
+    const query = filter + projection;
+    let item = await client
+      .fetch(query, { id })
+      .catch(err => this.error(500, err));
 
     const expression = jsonata("**.geoJSON[]");
     let result = expression.evaluate(item);
 
-    if(result) {
+    if (result) {
       item.geoJSON = {};
-      item.geoJSON.all = result
-    };
-    
+      item.geoJSON.all = result;
+    }
+
     // console.log(JSON.stringify(item, null, 2));
-    return { 
+    return {
       item: {
-        ...item,
+        ...item
       }
     };
   }
 </script>
 
 <script>
-  import Map from '../../components/Map';
-  import MadeObject from '../../components/MadeObject';
-  import Actor from '../../components/Actor';
-  import Report from '../../components/Report';
-  import Move from '../../components/Move';
-  import Event from '../../components/Event';
-  import Acquisition from '../../components/Acquisition';
-  import Exhibition from '../../components/Exhibition';
-  import Type from '../../components/Type';
-  import Place from '../../components/Place';
-  import TimelineDocument from '../../components/TimelineDocument';
-  import LinguisticObject from '../../components/LinguisticObject'
-  
+  import Map from "../../components/Map.svelte";
+  import MadeObject from "../../components/MadeObject.svelte";
+  import Actor from "../../components/Actor.svelte";
+  import Group from "../../components/Group";
+  import Report from "../../components/Report.svelte";
+  import Move from "../../components/Move.svelte";
+  import Event from "../../components/Event.svelte";
+  import Acquisition from "../../components/Acquisition.svelte";
+  import Exhibition from "../../components/Exhibition.svelte";
+  import Type from "../../components/Type.svelte";
+  import Place from "../../components/Place.svelte";
+  import TimelineDocument from "../../components/TimelineDocument.svelte";
+  import LinguisticObject from "../../components/LinguisticObject.svelte";
+
   export let item;
 </script>
 
@@ -269,7 +272,7 @@
 </style>
 
 <svelte:head>
-	{#if item.label && item.label.nor}
+  {#if item.label && item.label.nor}
     <title>{item.label.nor}</title>
   {/if}
   {#if item.label && !item.label.nor}
@@ -281,47 +284,51 @@
 </svelte:head>
 
 {#if item._type == 'madeObject'}
-  <MadeObject item={item}></MadeObject>
+  <MadeObject {item} />
 {/if}
 
 {#if item._type == 'actor'}
-  <Actor item={item}></Actor>
+  <Actor {item} />
+{/if}
+
+{#if item._type == 'group'}
+  <Group {item} />
 {/if}
 
 {#if item._type == 'report'}
-  <Report item={item}></Report>
+  <Report {item} />
 {/if}
 
 {#if item._type == 'linguisticObject'}
-  <LinguisticObject item={item}></LinguisticObject>
+  <LinguisticObject {item} />
 {/if}
 
 {#if item._type == 'move'}
-  <Move item={item}></Move>
+  <Move {item} />
 {/if}
 
 {#if item._type == 'event'}
-  <Event item={item}></Event>
+  <Event {item} />
 {/if}
 
 {#if item._type == 'acquisition'}
-  <Acquisition item={item}></Acquisition>
+  <Acquisition {item} />
 {/if}
 
 {#if item._type == 'exhibition'}
-  <Exhibition item={item}></Exhibition>
+  <Exhibition {item} />
 {/if}
 
 {#if item._type == 'place'}
-  <Place item={item}></Place>
+  <Place {item} />
 {/if}
 
 {#if item._type == 'timeline'}
-  <TimelineDocument item={item}></TimelineDocument>
+  <TimelineDocument {item} />
 {/if}
 
-{#if (['typeClass', 'concept','role', 'actorType', 'activityType','eventType', 'acquisitionType'].indexOf(item._type) >= 0)}
-    <Type item={item}></Type>
+{#if ['typeClass', 'concept', 'role', 'actorType', 'activityType', 'eventType', 'acquisitionType'].indexOf(item._type) >= 0}
+  <Type {item} />
 {/if}
 
 <!-- <div class="container">

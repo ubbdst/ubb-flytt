@@ -1,22 +1,22 @@
 <script>
-  import BlockContent from '@movingbrands/svelte-portable-text'
-  import ActivityStream from './ActivityStream.svelte'
-  import Cards from './Cards.svelte'
-  import MediaObjects from './MediaObjects.svelte'
-  import ConditionAssignment from './ConditionAssignment.svelte'
-  import Map from './Map.svelte'
-  import Geojson from './Geojson.svelte'
-  import Timeline from './Timeline.svelte'
-  import MainImage from './MainImage.svelte'
-  import BlockMadeObject from './BlockMadeObject.svelte'
-  import BlockImage from './BlockImage.svelte'
-  import ItemList from './ItemList.svelte'
-  import InstagramPost from './InstagramPost.svelte'
-  import InternalLink from './internalLink.svelte'
-  import ImageCompare from './ImageCompare.svelte'
+  import BlockContent from "@movingbrands/svelte-portable-text";
+  import ActivityStream from "./ActivityStream.svelte";
+  import Cards from "./Cards.svelte";
+  import MediaObjects from "./MediaObjects.svelte";
+  import ConditionAssignment from "./ConditionAssignment.svelte";
+  import Map from "./Map.svelte";
+  import Geojson from "./Geojson.svelte";
+  import Timeline from "./Timeline.svelte";
+  import MainImage from "./MainImage.svelte";
+  import BlockMadeObject from "./BlockMadeObject.svelte";
+  import BlockImage from "./BlockImage.svelte";
+  import ItemList from "./ItemList.svelte";
+  import InstagramPost from "./InstagramPost.svelte";
+  import InternalLink from "./internalLink.svelte";
+  import ImageCompare from "./ImageCompare.svelte";
 
   function formatDate(date) {
-    return new Date(date).toLocaleDateString()
+    return new Date(date).toLocaleDateString();
   }
 
   export let content;
@@ -33,7 +33,7 @@
             caption: props.node.caption,
             alt: props.node.alt,
             id: props.node.id,
-            rights: props.node.rights,
+            rights: props.node.rights
           }
         };
       },
@@ -48,7 +48,7 @@
             caption: props.node.caption,
             alt: props.node.alt,
             id: props.node.id,
-            rights: props.node.rights,
+            rights: props.node.rights
           }
         };
       },
@@ -73,7 +73,7 @@
           props: {
             image: props.node.media,
             label: props.node.label.nor,
-            id: props.node._id,
+            id: props.node._id
           }
         };
       },
@@ -114,7 +114,7 @@
           props: {
             src: props.node,
             label: props.node.label.nor,
-            height: '300px'
+            height: "300px"
           }
         };
       },
@@ -124,7 +124,7 @@
           childNodes: props.children,
           props: {
             src: props.node,
-            height: '500px'
+            height: "500px"
           }
         };
       }

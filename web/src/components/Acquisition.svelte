@@ -1,47 +1,57 @@
 <script>
-  import ActivityStream from './ActivityStream'
-  import Block from './Block'
-  import Cards from './Cards'
-  import MediaObjects from './MediaObjects'
-  import ConditionAssignment from './ConditionAssignment'
-  import Map from './Map'
-  import Timespan from './Timespan'
+  import ActivityStream from "./ActivityStream";
+  import Block from "./Block";
+  import Cards from "./Cards";
+  import MediaObjects from "./MediaObjects";
+  import ConditionAssignment from "./ConditionAssignment";
+  import Map from "./Map";
+  import Timespan from "./Timespan";
 
-  import client from '../sanityClient'
-  import imageUrlBuilder from '@sanity/image-url'
-  
-  export let item
+  import client from "../sanityClient";
+  import imageUrlBuilder from "@sanity/image-url";
+
+  export let item;
 
   // Get a pre-configured url-builder from your sanity client
-  const builder = imageUrlBuilder(client)
+  const builder = imageUrlBuilder(client);
 
   // Then we like to make a simple function like this that gives the
   // builder an image and returns the builder for you to specify additional
   // parameters:
   function urlFor(source) {
-    return builder.image(source)
+    return builder.image(source);
   }
-  
+
   function formatDate(date) {
-    return new Date(date).toLocaleDateString()
+    return new Date(date).toLocaleDateString();
   }
 
-  let titleForAcquisition = 'Akkvisisjon fra ' + item.transferredTitleFrom[0].label + ' til ' + item.transferredTitleTo[0].label
-
+  let titleForAcquisition =
+    "Akkvisisjon fra " +
+    item.transferredTitleFrom[0].label +
+    " til " +
+    item.transferredTitleTo[0].label;
 </script>
 
 <style>
+
 </style>
 
 <svelte:head>
-	<title>{titleForAcquisition}</title>
+  <title>{titleForAcquisition}</title>
 </svelte:head>
 
 <nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
   <ul>
-    <li><a href="/">Hjem</a></li>
-    <li><a href="/acquisitions">Akkvisisjoner</a></li>
-    <li class="is-active"><a href="#" aria-current="page">{titleForAcquisition}</a></li>
+    <li>
+      <a href="/">Hjem</a>
+    </li>
+    <li>
+      <a href="/acquisitions">Akkvisisjoner</a>
+    </li>
+    <li class="is-active">
+      <a href="#" aria-current="page">{titleForAcquisition}</a>
+    </li>
   </ul>
 </nav>
 
@@ -54,25 +64,41 @@
       <div class="columns">
         <div class="column has-text-centered">
           {#if item.transferredTitleFrom}
-          <h3 class="title is-hidden is-size-5">Fra</h3>
-          <p class="has-text-centered"><i class="fas fa-hand-holding-heart fa-2x"></i></p>
-          <ul>
-            {#each item.transferredTitleFrom as from, i}<li><a href="/id/{from._id}">{from.label}</a></li>{/each}
-          </ul>
+            <h3 class="title is-hidden is-size-5">Fra</h3>
+            <p class="has-text-centered">
+              <i class="fas fa-hand-holding-heart fa-2x" />
+            </p>
+            <ul>
+              {#each item.transferredTitleFrom as from, i}
+                <li>
+                  <a href="/id/{from._id}">{from.label}</a>
+                </li>
+              {/each}
+            </ul>
           {/if}
         </div>
 
         <div class="column has-text-centered">
-          <p class="has-text-centered"><i class="fas fa-gift fa-3x"></i></p>
+          <p class="has-text-centered">
+            <i class="fas fa-gift fa-3x" />
+          </p>
         </div>
 
         <div class="column has-text-centered">
           {#if item.transferredTitleTo}
-          <h3 class="title is-hidden is-size-5">Til</h3>
-          <p class="has-text-centered"><i data-fa-transform="flip-h" class="fas fa-hand-holding-heart fa-2x"></i></p>
-          <ul>
-            {#each item.transferredTitleTo as to, i}<li><a href="/id/{to._id}">{to.label}</a></li>{/each}
-          </ul>
+            <h3 class="title is-hidden is-size-5">Til</h3>
+            <p class="has-text-centered">
+              <i
+                data-fa-transform="flip-h"
+                class="fas fa-hand-holding-heart fa-2x" />
+            </p>
+            <ul>
+              {#each item.transferredTitleTo as to, i}
+                <li>
+                  <a href="/id/{to._id}">{to.label}</a>
+                </li>
+              {/each}
+            </ul>
           {/if}
         </div>
       </div>
@@ -80,67 +106,88 @@
       <div class="columns">
         <div class="column has-text-centered is-full is-marginless box">
           {#if item.timespan}
-          <p><Timespan items={item.timespan}></Timespan></p>
+            <p>
+              <Timespan items={item.timespan} />
+            </p>
           {/if}
 
           {#if item.carriedOutBy && item.carriedOutBy.length > 0}
-          <p>Ansvarlig(e):</p>
-          <ul>
-            {#each item.carriedOutBy as a, i}
-            <li>
-              <a href="/id/{a._id}">
-                <span class="icon is-small">
-                  <img class="is-rounded" src="{urlFor(a.mainRepresentation).width(128).height(128).url()}" alt="Actor icon" />
-                </span>
-                <a href="/id/{a._id}">{a.label}</a>
-              </a>
-            </li>
-            {/each}
-          </ul>
+            <p>Ansvarlig(e):</p>
+            <ul>
+              {#each item.carriedOutBy as a, i}
+                <li>
+                  <a href="/id/{a._id}">
+                    <span class="icon is-small">
+                      <img
+                        class="is-rounded"
+                        src={urlFor(a.mainRepresentation)
+                          .width(128)
+                          .height(128)
+                          .url()}
+                        alt="Actor icon" />
+                    </span>
+                    <a href="/id/{a._id}">{a.label}</a>
+                  </a>
+                </li>
+              {/each}
+            </ul>
           {/if}
 
           {#if item.wasMotivatedBy && item.wasMotivatedBy.length > 0}
-          <p>Motivasjon:</p>
-          <ul>
-            {#each item.wasMotivatedBy as a, i}
-            <li>
-              <span><a href="/id/{a._id}">{a.label.nor}</a></span>
-            </li>
-            {/each}
-          </ul>
+            <p>Motivasjon:</p>
+            <ul>
+              {#each item.wasMotivatedBy as a, i}
+                <li>
+                  <span>
+                    <a href="/id/{a._id}">{a.label.nor}</a>
+                  </span>
+                </li>
+              {/each}
+            </ul>
           {/if}
 
           {#if item.transferredTitleOf && item.transferredTitleOf.length > 0}
-          <MediaObjects objects={item.transferredTitleOf}></MediaObjects>
+            <MediaObjects objects={item.transferredTitleOf} />
           {/if}
         </div>
       </div>
     </div>
 
     {#if item.description}
-    <div class="box">
-      <div class="content">
-        <h2 class="title has-text-centered">Rapport</h2>
-          <Block content={item.description.nor}/>
+      <div class="box">
+        <div class="content">
+          <h2 class="title has-text-centered">Rapport</h2>
+          <Block content={item.description.nor} />
+        </div>
       </div>
-    </div>
     {/if}
 
     {#if item.referencedBy && item.referencedBy.length != 0}
-    <Cards cards={item.referencedBy} title="Relatert til"></Cards>
+      <Cards cards={item.referencedBy} title="Relatert til" />
     {/if}
 
     {#if item.activityStream}
-    <ActivityStream stream={item.activityStream}></ActivityStream>
+      <ActivityStream stream={item.activityStream} />
     {/if}
 
     {#if item.documentationImage}
-    <div class="box">
-      <h2 class="title has-text-centered">Dokumentasjonsfoto</h2>
+      <div class="box">
+        <h2 class="title has-text-centered">Dokumentasjonsfoto</h2>
         {#each item.documentationImage as img, i}
-        <a href="{urlFor(img).maxWidth(1600).maxHeight(1600).url()}"><img alt="{img.alt}" src={urlFor(img).width(250).height(250).url()} /></a>
+          <a
+            href={urlFor(img)
+              .maxWidth(1600)
+              .maxHeight(1600)
+              .url()}>
+            <img
+              alt={img.alt}
+              src={urlFor(img)
+                .width(250)
+                .height(250)
+                .url()} />
+          </a>
         {/each}
-    </div>
+      </div>
     {/if}
 
     <!-- <div class="box">

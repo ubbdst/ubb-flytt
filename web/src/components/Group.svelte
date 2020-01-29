@@ -2,12 +2,10 @@
   import ActivityStream from "./ActivityStream";
   import Block from "./Block";
   import Cards from "./Cards";
-
+  import DocumentFooter from "./DocumentFooter";
   import client from "../sanityClient";
   import imageUrlBuilder from "@sanity/image-url";
-
-  import MainImage from "./MainImage";
-  import Map from "./Map";
+  import Mirador from "./Mirador3";
 
   export let item;
 
@@ -27,7 +25,17 @@
 </script>
 
 <style>
+  main.section .container figure {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
 
+  main.section .container > figure img {
+    width: 15em;
+    height: 15em;
+    margin-bottom: 2em;
+  }
 </style>
 
 <nav class="breadcrumb is-centered is-small" aria-label="breadcrumbs">
@@ -36,7 +44,7 @@
       <a href="/">Hjem</a>
     </li>
     <li>
-      <a href="/events">Hendelser</a>
+      <a href="/actors">Aktører</a>
     </li>
     <li class="is-active">
       <a href="#" aria-current="page">{item.label.nor}</a>
@@ -46,42 +54,38 @@
 
 <main class="section">
   <div class="container">
-    <h1 class="title is-size-1 has-text-centered">{item.label.nor}</h1>
-
-    {#if item.mainRepresentation || item.mainManifest}
-      <MainImage
-        image={item.mainRepresentation}
-        manifest={item.mainManifest ? item.mainManifest : ''}
-        rights={item.rights}
-        id={item.preferredIdentifier}
-        alt={item.title} />
+    {#if item.mainManifest}
+      <div class="mirador">
+        <Mirador manifest={item.mainManifest.url} />
+      </div>
+    {:else if item.mainRepresentation}
+      <figure class="image">
+        <img
+          class="is-rounded"
+          alt={item.title ? item.title : ''}
+          src={urlFor(item.mainRepresentation)
+            .width(300)
+            .height(300)
+            .url()} />
+      </figure>
     {/if}
+
+    <h1 class="title has-text-centered">{item.label.nor}</h1>
 
     {#if item.description}
-      <div class="content is-medium has-text-centered">
+      <p class="content is-medium">
         <Block content={item.description.nor} />
-      </div>
-    {/if}
-
-    {#if item.referencedBy && item.referencedBy.length != 0}
-      <Cards cards={item.referencedBy} title="Relatert til" />
-    {/if}
-
-    {#if item.geoJSON}
-      <div class="map">
-        <Map src={item.geoJSON} />
-      </div>
+      </p>
     {/if}
 
     {#if item.activityStream}
       <ActivityStream stream={item.activityStream} title="Tidslinje" />
     {/if}
 
-    <div class="box">
-      <pre>
-        <code>{JSON.stringify(item, null, 2)}</code>
-      </pre>
-    </div>
+    {#if item.referencedBy}
+      <Cards cards={item.referencedBy} title="Relatert til" />
+    {/if}
 
+    <DocumentFooter footerData={item} />
   </div>
 </main>
