@@ -261,6 +261,7 @@
   import Exhibition from "../../components/Exhibition.svelte";
   import Type from "../../components/Type.svelte";
   import Place from "../../components/Place.svelte";
+  import Period from "../../components/Period.svelte";
   import TimelineDocument from "../../components/TimelineDocument.svelte";
   import LinguisticObject from "../../components/LinguisticObject.svelte";
 
@@ -321,6 +322,10 @@
 
 {#if item._type == 'place'}
   <Place {item} />
+{/if}
+
+{#if item._type == 'period'}
+  <Period {item} />
 {/if}
 
 {#if item._type == 'timeline'}

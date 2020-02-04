@@ -137,6 +137,12 @@
             href="map">
             Kart
           </a>
+          <a
+            rel="prefetch"
+            class="navbar-item has-text-black {segment === 'periods' ? 'selected' : ''}"
+            href="periods">
+            Perioder
+          </a>
         </div>
       </div>
     </div>

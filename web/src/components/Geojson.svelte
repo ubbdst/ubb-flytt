@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { mapbox } from "./mapbox.js";
+  import bbox from '@turf/bbox';
 
   export let src;
   export let label = "";
@@ -39,16 +40,18 @@
       let geojson = JSON.parse(src.data.code);
 
       map.on("load", function() {
-        var coordinates = geojson.features[0].geometry.coordinates;
+        // var coordinates = geojson.geometry.coordinates;
 
         // Pass the first coordinates in the LineString to `lngLatBounds` &
         // wrap each coordinate pair in `extend` to include them in the bounds
         // result. A variation of this technique could be applied to zooming
         // to the bounds of multiple Points or Polygon geomteries - it just
         // requires wrapping all the coordinates with the extend method.
-        var bounds = coordinates.reduce(function(bounds, coord) {
+        /* var bounds = coordinates.reduce(function(bounds, coord) {
           return bounds.extend(coord);
-        }, new mapbox.LngLatBounds(coordinates[0], coordinates[0]));
+        }, new mapbox.LngLatBounds(coordinates[0], coordinates[0])); */
+
+        var bounds = bbox(geojson);
 
         map.fitBounds(bounds, {
           padding: 20
@@ -85,6 +88,17 @@
             "line-width": 8
           },
           filter: ["==", "$type", "LineString"]
+        });
+
+        map.addLayer({
+          id: "multiPolygon",
+          type: "fill",
+          source: "features",
+          paint: {
+            "fill-color": "#888",
+            'fill-opacity': 0.8
+          },
+          filter: ["==", "$type", "Polygon"]
         });
 
         map.loadImage("/240px-Camera_Flat_Icon_Vector.svg.png", function(
@@ -147,6 +161,7 @@
 </style>
 
 <div {id} style="height: {height};" />
-{#if label}
-  <p>{label}</p>
+
+{#if src.label && src.label.nor}
+  <h3 class="title has-text-centered">{src.label.nor}</h3>
 {/if}
