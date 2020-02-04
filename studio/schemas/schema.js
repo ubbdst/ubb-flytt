@@ -94,6 +94,8 @@ import treatment from './documents/report/treatment'
 import treatmentAssessment from './documents/report/treatmentAssessment'
 import sampling from './documents/report/sampling'
 import geojson from './objects/geojson'
+import spacetimeVolume from './objects/spacetimeVolume'
+import presence from './objects/presence'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -167,6 +169,8 @@ export default createSchema({
     sampling,
     imageCompare,
     geojson,
+    spacetimeVolume,
+    presence,
     // Text
     genericText,
     reportText,

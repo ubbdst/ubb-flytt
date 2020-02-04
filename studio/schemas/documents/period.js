@@ -98,13 +98,6 @@ export default {
       validation: Rule => Rule.length(1).warning('You should only register one timespan')
     },
     {
-      name: 'location',
-      title: 'Lokasjon',
-      titleEN: 'Location',
-      description: 'Where the hell did this happen?!',
-      type: 'geopoint'
-    },
-    {
       name: 'tookPlaceAt',
       title: 'Tok sted ved',
       titleEN: 'Took place at',
@@ -137,6 +130,15 @@ export default {
           ]
         }
       ],
+      options: {
+        editModal: 'fullscreen'
+      }
+    },
+    {
+      name: 'definingSTV',
+      title: 'Definert av STV',
+      titleEN: 'Defining STC',
+      type: 'spacetimeVolume',
       options: {
         editModal: 'fullscreen'
       }
