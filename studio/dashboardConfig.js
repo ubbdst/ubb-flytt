@@ -60,7 +60,7 @@ export default {
             value: 'https://github.com/ubbdst/ubb-flytt',
             category: 'Code'
           },
-          {title: 'Frontend', value: 'https://ubb-flytt-studio.netlfy.com', category: 'apps'}
+          {title: 'Frontend', value: 'https://ubb-flytt.netlfy.com', category: 'apps'}
         ]
       }
     },
