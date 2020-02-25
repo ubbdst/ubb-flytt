@@ -37,7 +37,7 @@
 <div class="level is-marginless">
   <p class="level-item has-text-centered">
     <a href="/" class="link brand">
-      S<span class="is-hidden-mobile">ælen</span>
+      UBB-flytt
     </a>
   </p>
 </div>

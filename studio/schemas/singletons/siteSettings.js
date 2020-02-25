@@ -5,7 +5,7 @@ export default {
   type: 'document',
   title: 'Site Settings',
   icon: FaCog,
-  __experimental_actions: ['update', 'publish'],
+  /* __experimental_actions: ['update', 'publish'], */
   fields: [
     {
       name: 'title',
