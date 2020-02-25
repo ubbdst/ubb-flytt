@@ -1,11 +1,11 @@
 {
   "root": true,
-  "project": {
-    "name": "Sælen-samlingen"
-  },
   "api": {
-    "projectId": "e56ijdvg",
+    "projectId": "pul09h1x",
     "dataset": "production"
+  },
+  "project": {
+    "name": "UBB-flytt"
   },
   "plugins": [
     "@sanity/base",

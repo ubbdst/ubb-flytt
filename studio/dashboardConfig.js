@@ -39,16 +39,16 @@ export default {
                 'NOTE: Because these sites are static builds, they need to be re-deployed to see the changes when documents are published.',
               sites: [
                 {
-                  buildHookId: '5d233ea0dd15905f59bc18a4',
-                  title: 'Sanity Studio',
-                  name: 'saelen-samlingen-studio',
-                  apiId: '8650882c-97db-4284-bf66-242850629add'
+                  buildHookId: '5e553c93debe802bd4a54006',
+                  title: 'UBB-flytt Studio',
+                  name: 'ubb-flytt-studio',
+                  apiId: '6782bd64-bdf1-49e1-9cd6-dd1889ca0c4f'
                 },
                 {
-                  buildHookId: '5d233ea0c09ad50a72aed231',
-                  title: 'Sælen Web',
-                  name: 'saelen-samlingen',
-                  apiId: 'ffc4bb67-3ecc-4379-993e-25b7187a116b'
+                  buildHookId: '5e553b3213f835b928833769',
+                  title: 'UBB-flytt Web',
+                  name: 'ubb-flytt',
+                  apiId: '1939e118-ff31-43f1-a750-e1432f4246b8'
                 }
               ]
             }
@@ -57,10 +57,10 @@ export default {
         data: [
           {
             title: 'GitHub repo',
-            value: 'https://github.com/tarjelavik/saelen-samlingen',
+            value: 'https://github.com/ubbdst/ubb-flytt',
             category: 'Code'
           },
-          {title: 'Frontend', value: 'https://saelen.family', category: 'apps'}
+          {title: 'Frontend', value: 'https://ubb-flytt-studio.netlfy.com', category: 'apps'}
         ]
       }
     },

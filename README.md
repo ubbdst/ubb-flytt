@@ -1,6 +1,4 @@
-# Sælen-samlingen
-
-Code base for saelen.family, using Sanity.io and Svelte [TODO refactor schema and move to Gatsby, yeah, and redesign]. 
+# UBB-flytt
 
 _Fully customizable blog template with a Svelte.js front-end._
 

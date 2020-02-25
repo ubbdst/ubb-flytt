@@ -44,7 +44,7 @@
 
 <nav class="navbar has-shadow is-white is-fixed-bottom">
   <div class="navbar-brand">
-    <a class="navbar-item has-text-black" href=".">Sælen</a>
+    <a class="navbar-item has-text-black" href=".">UBB-flytt</a>
     <a
       role="button"
       class="navbar-burger burger"

@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "saelen-samlingen",
+  "name": "ubb-flytt",
   "version": "1.0.0",
   "scripts": {
     "build": "lerna run build --parallel",

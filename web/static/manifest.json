@@ -1,8 +1,8 @@
 {
   "background_color": "#ffffff",
   "theme_color": "#333333",
-  "name": "Sælen-samlingen",
-  "short_name": "Sælen",
+  "name": "UBB-flytt",
+  "short_name": "UBB-flytt",
   "display": "minimal-ui",
   "start_url": "/"
 }
