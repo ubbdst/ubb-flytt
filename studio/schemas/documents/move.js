@@ -16,6 +16,11 @@ export default {
       name: 'state',
       title: 'State',
       options: {collapsible: true, collapsed: false}
+    },
+    {
+      name: 'documentation',
+      title: 'Documentation',
+      options: {collapsible: true, collapsed: false}
     }
   ],
   fields: [
@@ -135,6 +140,7 @@ export default {
       name: 'wasMotivatedBy',
       title: 'Motivert av',
       titleEN: 'Motivated by',
+      description: 'Hvilken hendelse motiverte denne flytten av objekt? Det var kanskje en lekasje?',
       type: 'array',
       of: [
         {type: 'reference',
@@ -143,6 +149,28 @@ export default {
           ]
         }
       ]
+    },
+    {
+      name: 'documentationImage',
+      title: 'Documentasjonsfotografi',
+      titleEN: 'Documentation images',
+      fieldset: 'documentation',
+      type: 'array',
+      of: [
+        {type: 'figure'}
+      ],
+      options: {
+        layout: 'grid'
+      }
+    },
+    {
+      name: 'documentedIn',
+      title: 'Documented in',
+      titleEN: 'Dokumentert i',
+      description: 'Last opp en fil (pdf, csv, e.l.) med dokumentasjon.',
+      fieldset: 'documentation',
+      type: 'array',
+      of: [{type: 'file'}]
     }
   ],
   preview: {

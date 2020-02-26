@@ -215,6 +215,7 @@ export default {
       name: 'documentedIn',
       title: 'Documented in',
       titleEN: 'Dokumentert i',
+      description: 'Last opp en fil (pdf, csv, e.l.) med dokumentasjon.',
       fieldset: 'documentation',
       type: 'array',
       of: [{type: 'file'}]
