@@ -24,7 +24,8 @@
     "@sanity/vision",
     "media",
     "dashboard-widget-document-chart",
-    "dashboard-widget-notes"
+    "dashboard-widget-notes",
+    "asset-source-marcus"
   ],
   "parts": [
     {
